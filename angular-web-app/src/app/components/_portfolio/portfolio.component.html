@@ -2,57 +2,12 @@
 <app-header-small [title]="title" [subTitle]="subTitle"></app-header-small>
 
 <!-- Portfolio-->
-<div id="portfolio" class="over-header">
+<div id="portfolio" class="over-header spavento-dark">
   <div class="container-fluid">
     <div class="row no-gutters">
-      <div class="col-lg-4 col-sm-6">
+      <div *ngFor="let image of images" class="col-lg-4 col-md-6 col-sm-12">
         <a class="portfolio-box" href="#">
-          <img class="img-fluid" src="https://w.wallhaven.cc/full/39/wallhaven-3911w9.jpg" alt=""/>
-          <div class="portfolio-box-caption">
-            <div class="project-category text-white-50">Painting</div>
-            <div class="project-name">Made for someone</div>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-4 col-sm-6">
-        <a class="portfolio-box" href="#">
-          <img class="img-fluid" src="https://w.wallhaven.cc/full/dg/wallhaven-dg7y23.jpg" alt=""/>
-          <div class="portfolio-box-caption">
-            <div class="project-category text-white-50">Painting</div>
-            <div class="project-name">Made for someone</div>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-4 col-sm-6">
-        <a class="portfolio-box" href="#">
-          <img class="img-fluid" src="https://w.wallhaven.cc/full/j5/wallhaven-j5zjoq.png" alt=""/>
-          <div class="portfolio-box-caption">
-            <div class="project-category text-white-50">Painting</div>
-            <div class="project-name">Made for someone</div>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-4 col-sm-6">
-        <a class="portfolio-box" href="#">
-          <img class="img-fluid" src="https://w.wallhaven.cc/full/j5/wallhaven-j5zprq.jpg" alt=""/>
-          <div class="portfolio-box-caption">
-            <div class="project-category text-white-50">Painting</div>
-            <div class="project-name">Made for someone</div>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-4 col-sm-6">
-        <a class="portfolio-box" href="#">
-          <img class="img-fluid" src="https://w.wallhaven.cc/full/j5/wallhaven-j5zzww.jpg" alt=""/>
-          <div class="portfolio-box-caption">
-            <div class="project-category text-white-50">Painting</div>
-            <div class="project-name">Made for someone</div>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-4 col-sm-6">
-        <a class="portfolio-box" href="#">
-          <img class="img-fluid" src="https://w.wallhaven.cc/full/ey/wallhaven-eymker.jpg" alt=""/>
+          <img class="img-fluid" src="{{image}}" alt=""/>
           <div class="portfolio-box-caption">
             <div class="project-category text-white-50">Painting</div>
             <div class="project-name">Made for someone</div>

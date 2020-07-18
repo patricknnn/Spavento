@@ -1,0 +1,36 @@
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Common styles for Angular Material.
+@include mat-core();
+
+// Light theme.
+$spavento-primary: mat-palette($mat-indigo);
+$spavento-accent:  mat-palette($mat-pink, A200, A100, A400);
+$spavento-warn:    mat-palette($mat-red);
+$spavento-theme: mat-light-theme((
+  color: (
+    primary: $spavento-primary,
+    accent: $spavento-accent,
+    warn: $spavento-warn,
+  )
+));
+
+// Dark theme.
+$dark-primary: mat-palette($mat-blue-grey);
+$dark-accent:  mat-palette($mat-amber, A200, A100, A400);
+$dark-warn:    mat-palette($mat-deep-orange);
+$dark-theme:   mat-dark-theme((
+  color: (
+    primary: $dark-primary,
+    accent: $dark-accent,
+    warn: $dark-warn,
+  )
+));
+
+// Include theme styles.
+@include angular-material-theme($spavento-theme);
+
+.spavento-dark {
+  @include angular-material-color($dark-theme);
+}

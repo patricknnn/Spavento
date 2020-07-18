@@ -4,8 +4,10 @@
 #portfolio .container-lg,
 #portfolio .container-xl {
   max-width: 1920px;
-  padding-left: 5rem;
-  padding-right: 5rem;
+  @media (min-width: 992px) {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
 }
 
 #portfolio .container-fluid .portfolio-box,
