@@ -12,6 +12,7 @@ import { ContactComponent } from './components/_contact/contact.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './components/_layout/nav/nav.component';
+import { HeaderSmallComponent } from './components/_layout/header-small/header-small.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NavComponent } from './components/_layout/nav/nav.component';
     AboutComponent,
     ContactComponent,
     PageNotFoundComponent,
-    NavComponent
+    NavComponent,
+    HeaderSmallComponent
   ],
   imports: [
     BrowserModule,

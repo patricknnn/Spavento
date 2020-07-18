@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./portfolio.component.scss']
 })
 export class PortfolioComponent implements OnInit {
+  title = 'Portfolio';
+  subTitle = 'An overview of my work.';
 
   constructor() { }
 
