@@ -5,20 +5,20 @@
 @include mat-core();
 
 // Light theme.
-$spavento-primary: mat-palette($mat-indigo);
-$spavento-accent:  mat-palette($mat-pink, A200, A100, A400);
-$spavento-warn:    mat-palette($mat-red);
-$spavento-theme: mat-light-theme((
+$light-primary: mat-palette($mat-blue-gray);
+$light-accent:  mat-palette($mat-orange, A200, A100, A400);
+$light-warn:    mat-palette($mat-deep-orange);
+$light-theme:   mat-light-theme((
   color: (
-    primary: $spavento-primary,
-    accent: $spavento-accent,
-    warn: $spavento-warn,
+    primary: $light-primary,
+    accent: $light-accent,
+    warn: $light-warn,
   )
 ));
 
 // Dark theme.
 $dark-primary: mat-palette($mat-blue-grey);
-$dark-accent:  mat-palette($mat-amber, A200, A100, A400);
+$dark-accent:  mat-palette($mat-orange, A200, A100, A400);
 $dark-warn:    mat-palette($mat-deep-orange);
 $dark-theme:   mat-dark-theme((
   color: (
@@ -29,7 +29,7 @@ $dark-theme:   mat-dark-theme((
 ));
 
 // Include theme styles.
-@include angular-material-theme($spavento-theme);
+@include angular-material-theme($light-theme);
 
 .spavento-dark {
   @include angular-material-color($dark-theme);

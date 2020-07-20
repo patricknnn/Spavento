@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() {
   }
 
+  ngOnInit(): void {
+    // init footer
+    siteFooter();
+    // init on resize
+    $(window).on('resize', () => {
+      siteFooter();
+    });
+
+    function siteFooter(): void {
+      const content = $('#site-content');
+      const footer = $('#site-footer');
+      const siteFooterHeight = footer.height();
+
+      content.css({
+        'margin-bottom': siteFooterHeight
+      });
+    }
+  }
 }
