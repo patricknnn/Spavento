@@ -1,9 +1,12 @@
-<!-- Nav -->
-<app-nav></app-nav>
-<!-- Content -->
-<div id="site-content" class="theme-light">
-  <!-- Outlet -->
-  <router-outlet></router-outlet>
+<!-- Wrapper for theme -->
+<div class="site-wrapper theme-light">
+  <!-- NavBar -->
+  <app-nav></app-nav>
+  <!-- Site content -->
+  <div id="site-content">
+    <!-- Router outlet -->
+    <router-outlet></router-outlet>
+  </div>
+  <!-- Footer -->
+  <app-footer></app-footer>
 </div>
-<!-- Footer -->
-<app-footer></app-footer>
