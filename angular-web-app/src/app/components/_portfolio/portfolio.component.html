@@ -2,15 +2,23 @@
 <app-header-small [title]="title" [subTitle]="subTitle"></app-header-small>
 
 <!-- Portfolio-->
-<div id="portfolio" class="over-header spavento-dark">
-  <div class="container-fluid">
+<div id="portfolio" class="over-header">
+  <div class="container-fluid portfolio-container">
     <div class="row no-gutters">
-      <div *ngFor="let image of images" class="col-lg-4 col-md-6 col-sm-12">
+      <div *ngFor="let painting of paintings" class="col-lg-4 col-md-6 col-sm-12">
         <a class="portfolio-box" href="#">
-          <img class="img-fluid" src="{{image}}" alt=""/>
+          <img class="portfolio-box-img" src="{{painting.thumbnail}}" alt=""/>
           <div class="portfolio-box-caption">
-            <div class="project-category text-white-50">Painting</div>
-            <div class="project-name">Made for someone</div>
+            <div class="portfolio-project-name">
+              <h2 class="my-0">{{painting.title}}</h2>
+              <hr class="divider mt-2"/>
+            </div>
+            <div class="portfolio-project-category">
+              <mat-chip-list aria-label="categories">
+                <mat-chip color="primary" selected>{{painting.paint}}</mat-chip>
+                <mat-chip color="primary" selected>{{painting.category}}</mat-chip>
+              </mat-chip-list>
+            </div>
           </div>
         </a>
       </div>
