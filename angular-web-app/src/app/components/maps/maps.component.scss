@@ -1,0 +1,12 @@
+.map-container {
+  height: 100%;
+  min-height: 200px;
+}
+
+.map-container iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}

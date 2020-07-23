@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {Painting} from '../../models/painting';
-import {PaintingService} from '../../services/painting.service';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-portfolio',
@@ -10,12 +8,10 @@ import {PaintingService} from '../../services/painting.service';
 export class PortfolioComponent implements OnInit {
   title = 'Portfolio';
   subTitle = 'An overview of my work.';
-  paintings: Painting[];
 
-  constructor(private paintingService: PaintingService) { }
-
-  ngOnInit(): void {
-    this.paintings = this.paintingService.getAllPaintings();
+  constructor() {
   }
 
+  ngOnInit(): void {
+  }
 }

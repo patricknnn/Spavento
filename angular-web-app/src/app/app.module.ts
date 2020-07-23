@@ -20,6 +20,8 @@ import { LatestComponent } from './components/latest/latest.component';
 import { CallToActionComponent } from './components/call-to-action/call-to-action.component';
 import { CallToActionDividerComponent } from './components/call-to-action-divider/call-to-action-divider.component';
 import { ServicesComponent } from './components/services/services.component';
+import { GalleryComponent } from './components/gallery/gallery.component';
+import { MapsComponent } from './components/maps/maps.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { ServicesComponent } from './components/services/services.component';
     LatestComponent,
     CallToActionComponent,
     CallToActionDividerComponent,
-    ServicesComponent
+    ServicesComponent,
+    GalleryComponent,
+    MapsComponent
   ],
   imports: [
     BrowserModule,

@@ -11,16 +11,6 @@ html, body {
   font-family: 'Roboto', sans-serif;
 }
 
-.theme-light {
-  background-color: $color-light !important;
-  color: $color-dark !important;
-}
-
-.theme-dark {
-  background-color: $color-dark !important;
-  color: $color-light !important;
-}
-
 .page-section {
   padding: 4rem 0;
 }
@@ -49,76 +39,118 @@ hr.divider {
   border-color: $color-accent;
 }
 
-hr.light {
-  border-color: $color-light;
-}
-
 .view {
   position: relative;
   overflow: hidden;
+}
+
+.card-avatar-icon {
+  width: 40px;
+  height: 40px;
+  font-size: 40px;
+}
+
+.title-underlined::after {
+  content: "";
+  display: block;
+  height: 0.2rem;
+  width: 3.25rem;
+  background-color: $color-accent;
+  margin: 1rem 0;
 }
 
 /*************************************/
 /**          Color Helpers          **/
 /*************************************/
 
-.section-primary {
+.primary-light {
   background-color: $color-primary !important;
   color: $color-light !important;
 }
-.section-accent {
+
+.accent-light {
   background-color: $color-accent !important;
   color: $color-light !important;
 }
-.section-light {
+
+.theme-light,
+.light-dark {
   background-color: $color-light !important;
   color: $color-dark !important;
 }
-.section-light2 {
-  background-color: $color-light2 !important;
-  color: $color-dark2 !important;
+
+.light-dark-alt {
+  background-color: $color-light-alt !important;
+  color: $color-dark-alt !important;
 }
-.section-dark {
+
+.theme-dark,
+.dark-light {
   background-color: $color-dark !important;
   color: $color-light !important;
 }
-.section-dark2 {
-  background-color: $color-dark2 !important;
-  color: $color-light2 !important;
+
+.dark-light-alt {
+  background-color: $color-dark-alt !important;
+  color: $color-light-alt !important;
 }
+
+/** Backgrounds */
+
 .bg-primary {
   background-color: $color-primary !important;
 }
-.text-primary {
-  color: $color-primary !important;
-}
+
 .bg-accent {
   background-color: $color-accent !important;
 }
-.txt-accent {
-  color: $color-accent !important;
-}
+
 .bg-light {
   background-color: $color-light !important;
 }
-.txt-light {
-  color: $color-light !important;
+
+.bg-light-alt {
+  background-color: $color-light-alt !important;
 }
-.bg-light2 {
-  background-color: $color-light2 !important;
-}
-.txt-light2 {
-  color: $color-light2 !important;
-}
+
 .bg-dark {
   background-color: $color-dark !important;
 }
+
+.bg-dark-alt {
+  background-color: $color-dark-alt !important;
+}
+
+/** Text */
+
+.txt-primary {
+  color: $color-primary !important;
+}
+
+.txt-primary-light {
+  color: $color-primary-light !important;
+}
+
+.txt-primary-dark {
+  color: $color-primary-dark !important;
+}
+
+.txt-accent {
+  color: $color-accent !important;
+}
+
+.txt-light {
+  color: $color-light !important;
+}
+
+.txt-light-alt {
+  color: $color-light-alt !important;
+}
+
 .txt-dark {
   color: $color-dark !important;
 }
-.bg-dark2 {
-  background-color: $color-dark2 !important;
-}
-.txt-dark2 {
-  color: $color-dark2 !important;
+
+.txt-dark-alt {
+  color: $color-dark-alt !important;
 }

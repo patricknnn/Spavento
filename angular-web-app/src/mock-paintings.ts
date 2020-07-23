@@ -3,7 +3,7 @@ import {Painting} from './app/models/painting';
 export const PAINTINGS: Painting[] = [
   new Painting(
     0,
-    'Schotse hooglander',
+    'Highland Cow',
     'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam. Nullam molestie vehicula ipsum a consequat. Vivamus efficitur metus ut nulla consectetur porta. Proin auctor dui ut orci aliquet, sit amet ultricies justo mattis. Mauris nec massa sit amet metus dignissim placerat elementum a justo. Nunc sit amet facilisis velit, ac varius enim.',
     'https://scontent-ams4-1.xx.fbcdn.net/v/t1.0-9/115932795_1173222826364715_1101636021482293624_o.jpg?_nc_cat=110&_nc_sid=8bfeb9&_nc_ohc=5Je9T9TO_VYAX91ueZ4&_nc_ht=scontent-ams4-1.xx&oh=b533045c0da5d4518f1c0b98367b47a2&oe=5F3D83E3',
     'Acrylic',
