@@ -12,21 +12,24 @@ export class FooterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // get padding for first resize
+    const siteFooterPadding = 4.5 * parseFloat(getComputedStyle(document.documentElement).fontSize);
     // init footer
-    siteFooter();
+    siteFooter(siteFooterPadding);
     // init on resize
     $(window).on('resize', () => {
-      siteFooter();
+      siteFooter(0);
     });
 
-    function siteFooter(): void {
+    function siteFooter(extra: number): void {
       const content = $('#site-content');
       const footer = $('#site-footer');
       const siteFooterHeight = footer.height();
 
       content.css({
-        'margin-bottom': siteFooterHeight
+        'margin-bottom': siteFooterHeight + extra
       });
     }
   }
+
 }

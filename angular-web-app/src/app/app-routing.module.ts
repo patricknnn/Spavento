@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
-import {HomeComponent} from './components/_home/home.component';
-import {PortfolioComponent} from './components/_portfolio/portfolio.component';
-import {AboutComponent} from './components/_about/about.component';
-import {ContactComponent} from './components/_contact/contact.component';
+import {HomeComponent} from './pages/home/home.component';
+import {PortfolioComponent} from './pages/portfolio/portfolio.component';
+import {AboutComponent} from './pages/about/about.component';
+import {ContactComponent} from './pages/contact/contact.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
