@@ -14,14 +14,16 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NavComponent} from './components/_layout/nav/nav.component';
 import {HeaderSmallComponent} from './components/_layout/header-small/header-small.component';
 import {MaterialModule} from './modules/material/material.module';
-import { ContentTitleComponent } from './components/content-title/content-title.component';
-import { FeaturedComponent } from './components/featured/featured.component';
-import { LatestComponent } from './components/latest/latest.component';
-import { CallToActionComponent } from './components/call-to-action/call-to-action.component';
-import { CallToActionDividerComponent } from './components/call-to-action-divider/call-to-action-divider.component';
-import { ServicesComponent } from './components/services/services.component';
-import { GalleryComponent } from './components/gallery/gallery.component';
-import { MapsComponent } from './components/maps/maps.component';
+import {ContentTitleComponent} from './components/content-title/content-title.component';
+import {FeaturedComponent} from './components/featured/featured.component';
+import {LatestComponent} from './components/latest/latest.component';
+import {CallToActionComponent} from './components/call-to-action/call-to-action.component';
+import {CallToActionDividerComponent} from './components/call-to-action-divider/call-to-action-divider.component';
+import {GalleryComponent} from './components/gallery/gallery.component';
+import {MapsComponent} from './components/maps/maps.component';
+import {ContactCardComponent} from './components/contact-card/contact-card.component';
+import { SectionTitleCenterComponent } from './components/section-title-center/section-title-center.component';
+import { ServiceCardComponent } from './components/service-card/service-card.component';
 
 @NgModule({
   declarations: [
@@ -40,9 +42,11 @@ import { MapsComponent } from './components/maps/maps.component';
     LatestComponent,
     CallToActionComponent,
     CallToActionDividerComponent,
-    ServicesComponent,
     GalleryComponent,
-    MapsComponent
+    MapsComponent,
+    ContactCardComponent,
+    SectionTitleCenterComponent,
+    ServiceCardComponent
   ],
   imports: [
     BrowserModule,

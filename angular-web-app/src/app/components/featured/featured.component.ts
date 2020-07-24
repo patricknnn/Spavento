@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Painting} from '../../models/painting';
 
 @Component({
   selector: 'app-featured',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./featured.component.scss']
 })
 export class FeaturedComponent implements OnInit {
+  @Input() painting: Painting;
 
   constructor() { }
 

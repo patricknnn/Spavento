@@ -1,19 +1,52 @@
 <!-- Header -->
 <app-header></app-header>
 
-<!-- Cards wrapper -->
 <div class="px-3">
-  <!-- Content -->
-  <app-services></app-services>
+  <!-- Theme container -->
+  <div class="theme-container py-3">
 
-  <app-featured></app-featured>
+    <!-- Services -->
+    <app-section-title-center [title]="'Services'"></app-section-title-center>
+    <div class="container-fluid">
+      <div class="row">
+        <div *ngFor="let service of services" class="col-lg-4 col-md-6 col-sm-12">
+          <!-- Service cards -->
+          <app-service-card [service]="service"></app-service-card>
+        </div>
+      </div>
+    </div>
 
-  <app-content-title></app-content-title>
+    <!-- Featured -->
+    <app-section-title-center [title]="'Featured'"></app-section-title-center>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <app-featured [painting]="featuredPainting"></app-featured>
+        </div>
+      </div>
+    </div>
 
-  <app-latest></app-latest>
+    <!-- Latest -->
+    <app-section-title-center [title]="'Latest'"></app-section-title-center>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <app-latest></app-latest>
+        </div>
+      </div>
+    </div>
 
-  <app-call-to-action></app-call-to-action>
+    <!-- Content with title -->
+    <app-content-title></app-content-title>
 
-  <app-call-to-action-divider></app-call-to-action-divider>
+    <!-- CTA -->
+    <app-call-to-action></app-call-to-action>
+
+    <!-- CTA with divider -->
+    <app-call-to-action-divider></app-call-to-action-divider>
+
+  </div>
 </div>
+
+
 

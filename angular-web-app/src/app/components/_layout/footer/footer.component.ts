@@ -13,7 +13,7 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {
     // get padding for first resize
-    const siteFooterPadding = 5.5 * parseFloat(getComputedStyle(document.documentElement).fontSize);
+    const siteFooterPadding = 6 * parseFloat(getComputedStyle(document.documentElement).fontSize);
     // init footer
     siteFooter(siteFooterPadding);
     // init on resize
