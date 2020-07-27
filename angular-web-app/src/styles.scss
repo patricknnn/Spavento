@@ -8,20 +8,32 @@ html, body {
   width: 100%;
   height: 100%;
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
 }
 
-.theme-container {
-  width: 100%;
-  max-width: 1300px;
-  margin: 0 auto;
-  padding-right: 15px;
-  padding-left: 15px;
-  box-sizing: border-box;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+.main {
+  background: $color-light;
+  position: relative;
+  z-index: 3;
+}
+
+.main-raised {
+  margin: -60px 30px 0;
+  border-radius: 10px;
+  box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
 }
 
 .page-section {
-  padding: 4rem 0;
+  padding: 6rem 0;
+  border-radius: inherit;
 }
 
 .over-header {
@@ -93,40 +105,24 @@ hr.divider {
   font-size: 24px;
 }
 
+.subtitle {
+  margin-bottom: 0;
+  letter-spacing: .2em;
+  font-weight: 700;
+}
+
 /*************************************/
 /**          Color Helpers          **/
 /*************************************/
 
-.primary-light {
-  background-color: $color-primary !important;
-  color: $color-light !important;
+.theme-light {
+  background-color: #fff !important;
+  color: $color-txt-black !important;
 }
 
-.accent-light {
-  background-color: $color-accent !important;
-  color: $color-light !important;
-}
-
-.theme-light,
-.light-dark {
-  background-color: $color-light !important;
-  color: $color-dark !important;
-}
-
-.light-dark-alt {
-  background-color: $color-light-alt !important;
-  color: $color-dark-alt !important;
-}
-
-.theme-dark,
-.dark-light {
+.theme-dark {
   background-color: $color-dark !important;
-  color: $color-light !important;
-}
-
-.dark-light-alt {
-  background-color: $color-dark-alt !important;
-  color: $color-light-alt !important;
+  color: $color-txt-white !important;
 }
 
 /** Backgrounds */
@@ -140,10 +136,6 @@ hr.divider {
 }
 
 .bg-light {
-  background-color: $color-light !important;
-}
-
-.bg-light-alt {
   background-color: $color-light-alt !important;
 }
 
@@ -151,9 +143,10 @@ hr.divider {
   background-color: $color-dark !important;
 }
 
-.bg-dark-alt {
-  background-color: $color-dark-alt !important;
+.bg-darker {
+  background-color: $color-darker !important;
 }
+
 
 /** Text */
 
@@ -174,17 +167,15 @@ hr.divider {
 }
 
 .txt-light {
-  color: $color-light !important;
+  color: $color-txt-white !important;
 }
-
-.txt-light-alt {
-  color: $color-light-alt !important;
+.txt-light-muted {
+  color: $color-txt-white-muted
 }
 
 .txt-dark {
-  color: $color-dark !important;
+  color: $color-txt-black !important;
 }
-
-.txt-dark-alt {
-  color: $color-dark-alt !important;
+.txt-dark-muted {
+  color: $color-txt-black-muted !important;
 }

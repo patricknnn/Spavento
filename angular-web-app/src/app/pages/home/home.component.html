@@ -1,13 +1,16 @@
 <!-- Header -->
 <app-header></app-header>
 
-<div class="px-3">
-  <!-- Theme container -->
-  <div class="theme-container py-3">
+<main class="main main-raised">
 
-    <!-- Services -->
-    <app-section-title-center [title]="'Services'"></app-section-title-center>
-    <div class="container-fluid pb-3">
+  <!-- Services -->
+  <section class="page-section bg-light">
+    <div class="container">
+      <app-section-title
+        [title]="'Services'"
+        [subTitle]="'What i have to offer'"
+        [text]="'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam.'"
+      ></app-section-title>
       <div class="row">
         <div *ngFor="let service of services" class="col-lg-4 col-md-6 col-sm-12">
           <!-- Service cards -->
@@ -15,38 +18,48 @@
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Featured -->
-    <app-section-title-center [title]="'Featured'"></app-section-title-center>
-    <div class="container-fluid pb-3">
+  <!-- Featured -->
+  <section class="page-section">
+    <div class="container">
+      <app-section-title
+        [title]="'Featured'"
+        [subTitle]="'My personal favorite'"
+      ></app-section-title>
       <div class="row">
         <div class="col-12">
           <app-featured [painting]="featuredPainting"></app-featured>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Latest -->
-    <app-section-title-center [title]="'Latest'"></app-section-title-center>
-    <div class="container-fluid pb-3">
+  <!-- Latest -->
+  <section class="page-section bg-light">
+    <div class="container">
+      <app-section-title
+        [title]="'Latest'"
+        [subTitle]="'Take a look at my recent work'"
+        [link]="'#'"
+      ></app-section-title>
       <div class="row">
         <div class="col-12">
           <app-latest></app-latest>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Content with title -->
-    <app-content-title></app-content-title>
+  <!-- CTA -->
+  <section class="page-section">
+    <div class="container">
+      <app-call-to-action></app-call-to-action>
+    </div>
+  </section>
 
-    <!-- CTA -->
-    <app-call-to-action></app-call-to-action>
 
-    <!-- CTA with divider -->
-    <app-call-to-action-divider></app-call-to-action-divider>
-
-  </div>
-</div>
+</main>
 
 
 

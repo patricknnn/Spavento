@@ -1,0 +1,14 @@
+<!-- Section title -->
+<div class="row mb-5">
+  <div class="col-md-8">
+    <p *ngIf="subTitle" class="subtitle txt-primary text-uppercase">{{subTitle}}</p>
+    <h2>{{title}}</h2>
+    <p *ngIf="text" class="txt-dark-muted">{{text}}</p>
+  </div>
+  <div *ngIf="link" class="d-lg-flex align-items-center justify-content-end col-md-4">
+    <a href="{{link}}" class="text-muted text-sm">
+      Show more
+      <i class="fas fa-angle-double-right ml-2"></i>
+    </a>
+  </div>
+</div>
