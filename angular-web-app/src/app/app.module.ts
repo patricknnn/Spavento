@@ -24,6 +24,7 @@ import {MapsComponent} from './components/maps/maps.component';
 import {ContactCardComponent} from './components/contact-card/contact-card.component';
 import { SectionTitleCenterComponent } from './components/section-title-center/section-title-center.component';
 import { ServiceCardComponent } from './components/service-card/service-card.component';
+import {NguCarouselModule} from "@ngu/carousel";
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { ServiceCardComponent } from './components/service-card/service-card.com
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    NguCarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

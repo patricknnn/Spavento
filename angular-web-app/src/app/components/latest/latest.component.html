@@ -1,63 +1,29 @@
+<ngu-carousel #latestCarousel [inputs]="carouselConfig" [dataSource]="paintings">
+  <div *nguCarouselDef="let painting;" class="item">
 
+    <mat-card class="ngu-card mx-2">
+      <img mat-card-image src="{{painting.thumbnail}}" alt="Image">
+      <mat-card-content>
+        <p>{{painting.description}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>Details</button>
+      </mat-card-actions>
+    </mat-card>
 
-<!-- Latest-->
-<section class="page-section" id="latest">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-4 col-md-6">
-        <div class="mt-5">
-          <mat-card class="bg-light mat-elevation-z4">
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-            <mat-card-content>
-              <p>
-                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-                bred for hunting.
-              </p>
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button>Details</button>
-            </mat-card-actions>
-          </mat-card>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="mt-5">
-          <mat-card class="bg-light mat-elevation-z4">
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-            <mat-card-content>
-              <p>
-                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-                bred for hunting.
-              </p>
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button>Details</button>
-            </mat-card-actions>
-          </mat-card>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <div class="mt-5">
-          <mat-card class="bg-light mat-elevation-z4">
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-            <mat-card-content>
-              <p>
-                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-                bred for hunting.
-              </p>
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button>Details</button>
-            </mat-card-actions>
-          </mat-card>
-        </div>
-      </div>
-    </div>
-    <div class="text-center mt-5">
-      <a href="#">Browse all posts</a>
-    </div>
   </div>
-</section>
+
+  <button mat-fab NguCarouselNext color="primary" class="rightRs">
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </button>
+  <button mat-fab NguCarouselPrev color="primary" class="leftRs">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </button>
+
+  <ul class="ngu-points" NguCarouselPoint>
+    <li *ngFor="let j of latestCarousel.pointNumbers; let i = index"
+        [class.active]="j == latestCarousel.activePoint"
+        (click)="latestCarousel.moveTo(i)">
+    </li>
+  </ul>
+</ngu-carousel>
