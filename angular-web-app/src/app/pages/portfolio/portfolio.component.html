@@ -1,8 +1,24 @@
 <!-- Header small -->
 <app-header-small [title]="title" [subTitle]="subTitle"></app-header-small>
 
-<!-- Cards wrapper -->
-<div class="px-3">
-  <!-- Gallery -->
-  <app-gallery></app-gallery>
-</div>
+<!-- Main -->
+<main class="main main-raised">
+
+  <!-- Content -->
+  <section class="page-section bg-light">
+
+    <div class="container">
+      <app-section-title
+        [title]="'Portfolio'"
+        [subTitle]="'An overview of my work'"
+        [text]="'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam.'"
+      ></app-section-title>
+
+      <!-- Gallery -->
+      <app-gallery></app-gallery>
+
+    </div>
+  </section>
+
+</main>
+

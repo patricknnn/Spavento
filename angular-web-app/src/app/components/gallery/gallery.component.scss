@@ -1,26 +1,18 @@
 @import "../../../variables";
 
-.portfolio-container {
-  max-width: 1920px;
-  @media (min-width: 992px) {
-    padding-left: 5rem;
-    padding-right: 5rem;
-  }
-}
-
 .portfolio-box {
   position: relative;
   display: block;
   height: 30vh;
   width: 100%;
-  background-color: $color-darker;
 }
 
 .portfolio-box-img {
   width: 100%;
   height: 100%;
   object-position: 50% 50%;
-  object-fit: cover
+  object-fit: cover;
+  border-radius: 5px;
 }
 
 .portfolio-box-caption {
@@ -35,6 +27,7 @@
   text-align: center;
   opacity: 0;
   color: #fff;
+  border-radius: 5px;
   background-color: rgba($color-primary, 0.9);
   transition: opacity 0.25s ease;
 }

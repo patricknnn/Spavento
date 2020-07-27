@@ -1,24 +1,43 @@
 <!-- Header small -->
 <app-header-small [title]="title" [subTitle]="subTitle"></app-header-small>
 
-<div class="px-3">
-  <!-- Theme container -->
-  <div class="theme-container py-3">
+<!-- Main -->
+<main class="main main-raised">
 
-    <!-- Maps-->
-    <app-section-title-center [title]="'Location'"></app-section-title-center>
-    <app-maps></app-maps>
+  <!-- Location -->
+  <section class="page-section bg-light">
+    <div class="container">
 
+      <app-section-title
+        [title]="'Location'"
+        [subTitle]="'Where to find me'"
+        [text]="'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam.'"
+      ></app-section-title>
 
-    <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-12 px-0">
-          <!-- Contact -->
+        <div class="col-12">
+          <app-maps></app-maps>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="page-section">
+    <div class="container">
+      <app-section-title
+        [title]="'Contact'"
+        [subTitle]="'How to reach me'"
+      ></app-section-title>
+
+      <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12">
           <app-contact-card></app-contact-card>
         </div>
       </div>
+
     </div>
+  </section>
 
-
-  </div>
-</div>
+</main>
