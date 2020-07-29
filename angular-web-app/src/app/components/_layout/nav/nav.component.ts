@@ -25,5 +25,10 @@ export class NavComponent implements OnInit {
     navCollapse();
     // Collapse the nav when page is scrolled
     document.addEventListener('scroll', navCollapse, true);
+
+    // Animate hamburger menu
+    $('.navbar-toggler').on('click', () => {
+      $('.animated-icon').toggleClass('open');
+    });
   }
 }

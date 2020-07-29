@@ -19,6 +19,13 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
 }
 
+button {
+  outline:none !important;
+}
+button::-moz-focus-inner {
+  border: 0 !important;
+}
+
 .main {
   background: $color-light;
   position: relative;
@@ -67,7 +74,7 @@ hr.divider {
 }
 
 .title-underlined {
-  &::after {
+  &:after {
     content: "";
     display: block;
     height: 0.2rem;
