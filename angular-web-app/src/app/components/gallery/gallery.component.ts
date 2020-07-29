@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Painting} from '../../models/painting';
 import {PaintingService} from '../../services/painting.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-gallery',
@@ -10,10 +11,17 @@ import {PaintingService} from '../../services/painting.service';
 export class GalleryComponent implements OnInit {
   paintings: Painting[];
 
-  constructor(private paintingService: PaintingService) {
+  constructor(
+    private paintingService: PaintingService,
+    private router: Router
+  ) {
   }
 
   ngOnInit(): void {
     this.paintings = this.paintingService.getAllPaintings();
+  }
+
+  goToPaintingDetails(paintingId: number): void {
+    this.router.navigate(['/painting', {id: paintingId}]);
   }
 }

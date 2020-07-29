@@ -1,22 +1,25 @@
 <ngu-carousel #latestCarousel [inputs]="carouselConfig" [dataSource]="paintings">
-  <div *nguCarouselDef="let painting;" class="item">
 
-    <mat-card class="ngu-card mx-2">
-      <img mat-card-image src="{{painting.thumbnail}}" alt="Image">
-      <mat-card-content>
-        <p>{{painting.description}}</p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>Details</button>
-      </mat-card-actions>
-    </mat-card>
-
+  <div *nguCarouselDef="let painting;" class="item p-3">
+    <a class="latest-box" (click)="goToPaintingDetails(painting.id)">
+      <img class="latest-box-img mat-elevation-z4" src="{{painting.thumbnail}}" alt=""/>
+      <div class="latest-box-caption p-3">
+        <div class="latest-project-name">
+          <h2 class="my-0">{{painting.title}}</h2>
+          <hr class="divider mt-2"/>
+        </div>
+        <div class="latest-project-category">
+          <span class="badge badge-pill bg-accent mr-2">{{painting.paint}}</span>
+          <span class="badge badge-pill bg-accent">{{painting.category}}</span>
+        </div>
+      </div>
+    </a>
   </div>
 
-  <button mat-fab NguCarouselNext color="primary" class="rightRs">
+  <button mat-fab NguCarouselNext color="" class="rightRs mat-elevation-z0">
     <mat-icon>keyboard_arrow_right</mat-icon>
   </button>
-  <button mat-fab NguCarouselPrev color="primary" class="leftRs">
+  <button mat-fab NguCarouselPrev color="" class="leftRs mat-elevation-z0">
     <mat-icon>keyboard_arrow_left</mat-icon>
   </button>
 

@@ -1,7 +1,7 @@
 <!-- Gallery-->
 <div class="row">
   <div *ngFor="let painting of paintings" class="col-lg-4 col-md-6 col-sm-12 p-0 p15">
-    <a class="portfolio-box" href="#">
+    <a class="portfolio-box" (click)="goToPaintingDetails(painting.id)">
       <img class="portfolio-box-img" src="{{painting.thumbnail}}" alt=""/>
       <div class="portfolio-box-caption p-3">
         <div class="portfolio-project-name">

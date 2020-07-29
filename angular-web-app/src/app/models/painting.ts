@@ -1,6 +1,7 @@
 export class Painting {
   constructor(
     public id: number,
+    public artist: string,
     public title: string,
     public description: string,
     public thumbnail: string,

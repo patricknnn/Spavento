@@ -1,5 +1,5 @@
 <!-- Card-->
-<mat-card class="mt-3 p-0" id="featured-painting">
+<mat-card class="mt-3 p-0 mat-elevation-z4" id="featured-painting">
   <mat-card-content>
     <div class="container-fluid">
       <div class="row">
@@ -11,20 +11,20 @@
         </div>
 
         <div class="col-lg-4 col-md-6 col-sm-12 d-flex align-items-center">
-          <div>
+          <div class="py-3">
             <h2 class="title-underlined">{{painting.title}}</h2>
-            <h6 class="text-icon font-italic mb-3">
-              <mat-icon class="mr-2">palette</mat-icon>
+            <h6 class="text-icon font-italic mb-3 txt-dark-muted">
+              <mat-icon class="mr-2">brush</mat-icon>
               <span>By Rolien Schrik.</span>
             </h6>
 
-            <div class="badge primary-light mr-2">
+            <div class="badge badge-pill bg-accent txt-light mr-2">
               <div class="text-icon">
-                <mat-icon class="icon-size-16">brush</mat-icon>
+                <mat-icon class="icon-size-16">palette</mat-icon>
                 <span class="mx-2 font-size-16">{{painting.paint}}</span>
               </div>
             </div>
-            <div class="badge primary-light mr-2">
+            <div class="badge badge-pill bg-accent txt-light mr-2">
               <div class="text-icon">
                 <mat-icon class="icon-size-16">category</mat-icon>
                 <span class="mx-2 font-size-16">{{painting.category}}</span>
@@ -32,9 +32,9 @@
             </div>
 
 
-            <p class="pt-2">{{painting.description}}</p>
+            <p class="pt-2">{{getTrimmedDescription()}}</p>
 
-            <button mat-flat-button color="accent">Details</button>
+            <button mat-flat-button color="primary" (click)="goToPaintingDetails()">Details</button>
           </div>
         </div>
       </div>

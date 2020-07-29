@@ -5,10 +5,10 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './components/_layout/header/header.component';
 import {FooterComponent} from './components/_layout/footer/footer.component';
-import {HomeComponent} from './pages/home/home.component';
-import {PortfolioComponent} from './pages/portfolio/portfolio.component';
-import {AboutComponent} from './pages/about/about.component';
-import {ContactComponent} from './pages/contact/contact.component';
+import {HomeComponent} from './components/_pages/home/home.component';
+import {PortfolioComponent} from './components/_pages/portfolio/portfolio.component';
+import {AboutComponent} from './components/_pages/about/about.component';
+import {ContactComponent} from './components/_pages/contact/contact.component';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NavComponent} from './components/_layout/nav/nav.component';
@@ -24,6 +24,7 @@ import {SectionTitleCenterComponent} from './components/section-title-center/sec
 import {ServiceCardComponent} from './components/service-card/service-card.component';
 import {NguCarouselModule} from '@ngu/carousel';
 import {SectionTitleComponent} from './components/section-title/section-title.component';
+import { PaintingDetailComponent } from './components/_pages/painting-detail/painting-detail.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import {SectionTitleComponent} from './components/section-title/section-title.co
     ContactCardComponent,
     SectionTitleCenterComponent,
     ServiceCardComponent,
-    SectionTitleComponent
+    SectionTitleComponent,
+    PaintingDetailComponent
   ],
   imports: [
     BrowserModule,

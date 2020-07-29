@@ -13,7 +13,7 @@ $custom-typography: mat-typography-config(
 
 // Light theme.
 $light-primary: mat-palette($mat-blue);
-$light-accent:  mat-palette($mat-blue-gray);
+$light-accent:  mat-palette($mat-pink);
 $light-warn:    mat-palette($mat-deep-orange);
 $light-theme:   mat-light-theme((
   color: (
@@ -25,7 +25,7 @@ $light-theme:   mat-light-theme((
 
 // Dark theme.
 $dark-primary: mat-palette($mat-blue);
-$dark-accent:  mat-palette($mat-blue-gray);
+$dark-accent:  mat-palette($mat-pink);
 $dark-warn:    mat-palette($mat-deep-orange);
 $dark-theme:   mat-dark-theme((
   color: (

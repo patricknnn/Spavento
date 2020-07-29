@@ -1,0 +1,24 @@
+
+<div>
+  <!-- Header small -->
+  <app-header-small [title]="painting.title"></app-header-small>
+
+  <!-- Main -->
+  <main class="main main-raised">
+    <!-- Content -->
+    <section class="page-section bg-light">
+      <div class="container">
+        <app-section-title
+          [title]="painting.title"
+          [subTitle]="'Details of painting'"
+          [text]="'By ' + painting.artist + '.'"
+        ></app-section-title>
+        <div class="row">
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+

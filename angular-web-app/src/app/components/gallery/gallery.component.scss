@@ -30,6 +30,7 @@
   border-radius: 5px;
   background-color: rgba($color-primary, 0.9);
   transition: opacity 0.25s ease;
+  cursor: grab;
 }
 
 .portfolio-box:hover .portfolio-box-caption {

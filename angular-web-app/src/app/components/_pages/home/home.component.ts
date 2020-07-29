@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Service} from '../../models/service';
-import {Painting} from '../../models/painting';
-import {PaintingService} from '../../services/painting.service';
+import {Service} from '../../../models/service';
+import {Painting} from '../../../models/painting';
+import {PaintingService} from '../../../services/painting.service';
 
 @Component({
   selector: 'app-home',
@@ -19,19 +19,19 @@ export class HomeComponent implements OnInit {
     this.featuredPainting = this.paintingService.getLatestPaintings(1)[0];
     this.services = [
       new Service(
-        'fa-gem',
+        'fa-paint-brush',
         'Custom Work',
-        'Custom paintings made to fit your wishes!'
+        'Custom paintings made to fit your wishes.'
       ),
       new Service(
-        'fa-globe',
-        'Up to Date',
-        'Our themes are updated regularly to keep them bug free!'
+        'fa-palette',
+        'Different Styles',
+        'I paint in a variety of different styles, from landscapes to portraits.'
       ),
       new Service(
-        'fa-heart',
-        'Made with Love',
-        'Is it really open source if it\'s not made with love?'
+        'fa-eye',
+        'Expositions',
+        'You can view my work at different expositions.'
       )
     ];
   }

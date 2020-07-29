@@ -18,4 +18,8 @@ export class PaintingService {
   getLatestPaintings(amount: number): Painting[] {
     return this.paintings.slice(0, amount);
   }
+
+  getPaintingById(id: number): Painting {
+    return this.paintings.find(x => x.id === id);
+  }
 }
