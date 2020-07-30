@@ -25,6 +25,7 @@ import {ServiceCardComponent} from './components/service-card/service-card.compo
 import {NguCarouselModule} from '@ngu/carousel';
 import {SectionTitleComponent} from './components/section-title/section-title.component';
 import { PaintingDetailComponent } from './components/_pages/painting-detail/painting-detail.component';
+import { CarouselImgComponent } from './components/carousel-img/carousel-img.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { PaintingDetailComponent } from './components/_pages/painting-detail/pai
     SectionTitleCenterComponent,
     ServiceCardComponent,
     SectionTitleComponent,
-    PaintingDetailComponent
+    PaintingDetailComponent,
+    CarouselImgComponent
   ],
   imports: [
     BrowserModule,

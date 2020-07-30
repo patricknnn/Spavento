@@ -1,0 +1,28 @@
+<mat-card class="">
+  <mat-card-content>
+
+    <!-- Image -->
+    <div class="selected-image-wrapper p-2">
+      <img class="selected-image mat-elevation-z4" src="{{selectedImage}}" alt="painting">
+    </div>
+
+    <!-- Image carousel -->
+    <ngu-carousel #imageCarousel [inputs]="carouselConfig" [dataSource]="images">
+      <div *nguCarouselDef="let image;" class="item p-2">
+        <a class="img-carousel-box" (click)="setSelectedImage(image)">
+          <img class="carousel-image mat-elevation-z4" src="{{image}}" alt="thumbnail"/>
+        </a>
+      </div>
+      <button mat-fab NguCarouselNext color="" class="rightRs mat-elevation-z0">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
+      <button mat-fab NguCarouselPrev color="" class="leftRs mat-elevation-z0">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+      </button>
+    </ngu-carousel>
+
+  </mat-card-content>
+</mat-card>
+
+
+

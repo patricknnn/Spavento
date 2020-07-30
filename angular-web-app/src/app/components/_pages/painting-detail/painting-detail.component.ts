@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Painting} from '../../../models/painting';
 import {PaintingService} from '../../../services/painting.service';
 
@@ -14,12 +14,22 @@ export class PaintingDetailComponent implements OnInit {
   subTitle = 'Some subtitle';
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private paintingService: PaintingService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.painting = this.paintingService.getPaintingById(+this.route.snapshot.paramMap.get('id'));
+
+    if (!this.painting) {
+      this.goTo404();
+    }
+  }
+
+  goTo404(): void {
+    this.router.navigate(['/page-not-found']);
   }
 
 }
