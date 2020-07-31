@@ -1,54 +1,43 @@
-<!-- NavBar -->
-<app-nav></app-nav>
+<!-- Header small -->
+<app-header-small [title]="title" [subTitle]="subTitle"></app-header-small>
 
-<!-- Site content -->
-<div id="site-content">
+<!-- Main -->
+<main class="main main-raised">
 
-  <!-- Header small -->
-  <app-header-small [title]="title" [subTitle]="subTitle"></app-header-small>
+  <!-- Location -->
+  <section class="page-section bg-light">
+    <div class="container">
 
-  <!-- Main -->
-  <main class="main main-raised">
+      <app-section-title
+        [title]="'Location'"
+        [subTitle]="'Where to find me'"
+        [text]="'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam.'"
+      ></app-section-title>
 
-    <!-- Location -->
-    <section class="page-section bg-light">
-      <div class="container">
-
-        <app-section-title
-          [title]="'Location'"
-          [subTitle]="'Where to find me'"
-          [text]="'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam.'"
-        ></app-section-title>
-
-        <div class="row">
-          <div class="col-12">
-            <app-maps></app-maps>
-          </div>
+      <div class="row">
+        <div class="col-12">
+          <app-maps></app-maps>
         </div>
-
       </div>
-    </section>
 
-    <!-- Contact -->
-    <section class="page-section">
-      <div class="container">
-        <app-section-title
-          [title]="'Contact'"
-          [subTitle]="'How to reach me'"
-        ></app-section-title>
+    </div>
+  </section>
 
-        <div class="row">
-          <div class="col-lg-4 col-md-6 col-sm-12">
-            <app-contact-card></app-contact-card>
-          </div>
+  <!-- Contact -->
+  <section class="page-section">
+    <div class="container">
+      <app-section-title
+        [title]="'Contact'"
+        [subTitle]="'How to reach me'"
+      ></app-section-title>
+
+      <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <app-contact-card></app-contact-card>
         </div>
-
       </div>
-    </section>
 
-  </main>
+    </div>
+  </section>
 
-</div>
-
-<!-- Footer -->
-<app-footer></app-footer>
+</main>

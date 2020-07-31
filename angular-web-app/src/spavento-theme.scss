@@ -38,6 +38,6 @@ $dark-theme:   mat-dark-theme((
 // Include theme styles.
 @include angular-material-theme($light-theme);
 
-.spavento-dark {
+.theme-dark {
   @include angular-material-color($dark-theme);
 }

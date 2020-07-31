@@ -1,24 +1,10 @@
 <!-- Painting -->
 <div *ngIf="painting">
+  <!-- Header small -->
+  <app-header-small [title]="painting.title"></app-header-small>
 
   <!-- Main -->
-  <main class="main main-raised my-5">
-
-    <!-- Toolbar -->
-    <mat-toolbar id="details-toolbar">
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span>My App</span>
-      <span class="flex-spacer"></span>
-      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-        <mat-icon>favorite</mat-icon>
-      </button>
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-        <mat-icon>share</mat-icon>
-      </button>
-    </mat-toolbar>
-
+  <main class="main main-raised">
     <!-- Content -->
     <section class="page-section bg-light">
       <div class="container">
@@ -82,3 +68,4 @@
 
   </main>
 </div>
+

@@ -1,31 +1,22 @@
-<!-- NavBar -->
-<app-nav></app-nav>
+<!-- Header small -->
+<app-header-small [title]="title" [subTitle]="subTitle"></app-header-small>
 
-<!-- Site content -->
-<div id="site-content">
+<!-- Main -->
+<main class="main main-raised">
 
-  <!-- Header small -->
-  <app-header-small [title]="title" [subTitle]="subTitle"></app-header-small>
+  <!-- Content -->
+  <section class="page-section bg-light">
+    <div class="container">
+      <app-section-title
+        [title]="'Some title'"
+        [subTitle]="'What i have to offer'"
+        [text]="'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam.'"
+      ></app-section-title>
+      <div class="row">
 
-  <!-- Main -->
-  <main class="main main-raised">
-
-    <!-- Content -->
-    <section class="page-section bg-light">
-      <div class="container">
-        <app-section-title
-          [title]="'Some title'"
-          [subTitle]="'What i have to offer'"
-          [text]="'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam.'"
-        ></app-section-title>
-        <div class="row">
-
-        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-  </main>
+</main>
 
-</div>
-<!-- Footer -->
-<app-footer></app-footer>
