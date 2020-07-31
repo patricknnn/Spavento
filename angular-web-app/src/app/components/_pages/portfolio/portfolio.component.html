@@ -1,24 +1,34 @@
-<!-- Header small -->
-<app-header-small [title]="title" [subTitle]="subTitle"></app-header-small>
+<!-- NavBar -->
+<app-nav></app-nav>
 
-<!-- Main -->
-<main class="main main-raised">
+<!-- Site content -->
+<div id="site-content">
 
-  <!-- Content -->
-  <section class="page-section bg-light">
+  <!-- Header small -->
+  <app-header-small [title]="title" [subTitle]="subTitle"></app-header-small>
 
-    <div class="container">
-      <app-section-title
-        [title]="'Portfolio'"
-        [subTitle]="'An overview of my work'"
-        [text]="'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam.'"
-      ></app-section-title>
+  <!-- Main -->
+  <main class="main main-raised">
 
-      <!-- Gallery -->
-      <app-gallery></app-gallery>
+    <!-- Content -->
+    <section class="page-section bg-light">
 
-    </div>
-  </section>
+      <div class="container">
+        <app-section-title
+          [title]="'Portfolio'"
+          [subTitle]="'An overview of my work'"
+          [text]="'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam.'"
+        ></app-section-title>
 
-</main>
+        <!-- Gallery -->
+        <app-gallery></app-gallery>
 
+      </div>
+    </section>
+
+  </main>
+
+</div>
+
+<!-- Footer -->
+<app-footer></app-footer>

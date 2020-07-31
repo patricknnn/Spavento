@@ -1,67 +1,74 @@
-<!-- Header -->
-<app-header></app-header>
+<!-- NavBar -->
+<app-nav></app-nav>
 
-<main class="main main-raised">
+<!-- Site content -->
+<div id="site-content">
 
-  <!-- Services -->
-  <section class="page-section bg-light">
-    <div class="container">
-      <app-section-title
-        [title]="'Services'"
-        [subTitle]="'What i do'"
-        [text]="'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam.'"
-      ></app-section-title>
-      <div class="row">
-        <div *ngFor="let service of services" class="col-lg-4 col-md-6 col-sm-12">
-          <!-- Service cards -->
-          <app-service-card [service]="service"></app-service-card>
+  <!-- Header -->
+  <app-header></app-header>
+
+  <main class="main main-raised">
+
+    <!-- Services -->
+    <section class="page-section bg-light">
+      <div class="container">
+        <app-section-title
+          [title]="'Services'"
+          [subTitle]="'What i do'"
+          [text]="'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam.'"
+        ></app-section-title>
+        <div class="row">
+          <div *ngFor="let service of services" class="col-lg-4 col-md-6 col-sm-12">
+            <!-- Service cards -->
+            <app-service-card [service]="service"></app-service-card>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Featured -->
-  <section class="page-section">
-    <div class="container">
-      <app-section-title
-        [title]="'Featured'"
-        [subTitle]="'My personal favorite'"
-      ></app-section-title>
-      <div class="row">
+    <!-- Featured -->
+    <section class="page-section">
+      <div class="container">
+        <app-section-title
+          [title]="'Featured'"
+          [subTitle]="'My personal favorite'"
+        ></app-section-title>
+        <div class="row">
+          <div class="col-12">
+            <app-featured [painting]="featuredPainting"></app-featured>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Latest -->
+    <section class="page-section bg-light">
+      <div class="container">
+        <app-section-title
+          [title]="'Latest'"
+          [subTitle]="'Take a look at my recent work'"
+          [link]="'#'"
+        ></app-section-title>
+        <div class="row">
+          <div class="col-12">
+            <app-latest></app-latest>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="page-section">
+      <div class="container">
         <div class="col-12">
-          <app-featured [painting]="featuredPainting"></app-featured>
+          <app-call-to-action></app-call-to-action>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Latest -->
-  <section class="page-section bg-light">
-    <div class="container">
-      <app-section-title
-        [title]="'Latest'"
-        [subTitle]="'Take a look at my recent work'"
-        [link]="'#'"
-      ></app-section-title>
-      <div class="row">
-        <div class="col-12">
-          <app-latest></app-latest>
-        </div>
-      </div>
-    </div>
-  </section>
+  </main>
 
-  <!-- CTA -->
-  <section class="page-section">
-    <div class="container">
-      <div class="col-12">
-        <app-call-to-action></app-call-to-action>
-      </div>
-    </div>
-  </section>
+</div>
 
-
-</main>
-
-
-
+<!-- Footer -->
+<app-footer></app-footer>
