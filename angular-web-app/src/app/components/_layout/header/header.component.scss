@@ -14,20 +14,3 @@ header.masthead h1 {
   font-size: 3.5rem;
 }
 
-@media (min-width: 992px) {
-  header.masthead {
-    padding-top: 4.5rem;
-  }
-  header.masthead p {
-    font-size: 1.15rem;
-  }
-  header.masthead h1 {
-    font-size: 3rem;
-  }
-}
-
-@media (min-width: 1200px) {
-  header.masthead h1 {
-    font-size: 3.5rem;
-  }
-}

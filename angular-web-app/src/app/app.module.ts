@@ -56,10 +56,11 @@ import { CarouselImgComponent } from './components/carousel-img/carousel-img.com
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    NguCarouselModule
+    NguCarouselModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
 }
