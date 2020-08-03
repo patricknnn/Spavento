@@ -2,8 +2,6 @@
 
 header.masthead {
   height: 100vh;
-  padding-top: 10rem;
-  padding-bottom: 2rem;
   background:
     linear-gradient(to bottom, rgba(black, 0.9) 0%, rgba(black, 0.5) 100%),
     url("https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/107081307_1161994194154245_6097520492808434412_n.jpg?_nc_cat=111&_nc_sid=8bfeb9&_nc_ohc=cpta0uNYQSEAX9Tkjn3&_nc_ht=scontent-amt2-1.xx&oh=04ce395df46fa2d4886f45779e1197f1&oe=5F3B6AC9") no-repeat scroll 50%;
@@ -11,6 +9,18 @@ header.masthead {
 }
 
 header.masthead h1 {
-  font-size: 3.5rem;
+  font-family: 'Dancing Script', cursive;
+  font-size: 4rem;
+}
+
+header.masthead p {
+  margin-bottom: -1rem;
+}
+
+@media (min-width: 768px) {
+  header.masthead h1 {
+    font-size: 6rem;
+    font-family: 'Dancing Script', cursive;
+  }
 }
 

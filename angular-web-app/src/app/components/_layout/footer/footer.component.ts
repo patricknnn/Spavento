@@ -12,21 +12,14 @@ export class FooterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // init footer
+    // init footer margin
     siteFooter();
     // init on resize
     $(window).on('resize', () => {
       siteFooter();
     });
-    // show / hide footer for animations
-    document.addEventListener('scroll', () => {
-      if ($(window).scrollTop() === 0){
-        $('#site-footer').addClass('hide-footer');
-      } else {
-        $('#site-footer').removeClass('hide-footer');
-      }
-    }, true);
 
+    // Add footer margin to content
     function siteFooter(): void {
       const content = $('#site-content');
       const footer = $('#site-footer');
@@ -35,8 +28,6 @@ export class FooterComponent implements OnInit {
       content.css({
         'margin-bottom': siteFooterHeight
       });
-
-      footer.addClass('hide-footer');
     }
   }
 

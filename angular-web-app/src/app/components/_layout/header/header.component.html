@@ -1,11 +1,13 @@
 <!-- Header-->
 <header class="masthead">
   <div class="container h-100">
-    <div class="row h-100 align-items-center">
-      <div class="col-lg-6 text-white masthead-txt">
-        <p class="text-uppercase">Paintings by</p>
-        <h1 class="font-weight-bold mb-5">Spavento</h1>
-        <button mat-flat-button color="primary">Start exploring<i class="fa fa-angle-right ml-2"></i></button>
+    <div class="row h-100 align-items-center justify-content-center text-center">
+      <div class="col-lg-10 align-self-center">
+        <p class="txt-light-muted">{{subTitle}}</p>
+        <h1 class="txt-light font-weight-bold pb-3">{{title}}</h1>
+        <button mat-mini-fab color="primary" aria-label="more">
+          <mat-icon>expand_more</mat-icon>
+        </button>
       </div>
     </div>
   </div>
