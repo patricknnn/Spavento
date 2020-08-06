@@ -1,6 +1,7 @@
 import {animate, animateChild, group, query, style, transition, trigger} from '@angular/animations';
 
-const duration = '1s';
+const duration = '2s';
+const posAbs = query(':enter, :leave', [style({position: 'absolute', top: 0, left: 0, width: '100%'})]);
 
 export const routeAnimations = trigger('routeAnimations', [
   /**
@@ -8,7 +9,7 @@ export const routeAnimations = trigger('routeAnimations', [
    */
   transition('home => *', [
     // Before animate
-    query(':enter, :leave', [style({position: 'absolute', top: 0, left: 0, width: '100%'})], {optional: true}),
+    posAbs,
     // Animate
     group([
       // LEAVING PAGE
@@ -23,6 +24,7 @@ export const routeAnimations = trigger('routeAnimations', [
         style({opacity: 1}),
         animate(duration + ' ease', style({opacity: 0}))
       ], {optional: true}),
+
       // ENTERING PAGE
       query(':enter .small-head', [
         style({height: '100vh', opacity: 0}),
@@ -42,7 +44,7 @@ export const routeAnimations = trigger('routeAnimations', [
    */
   transition('* => home', [
     // Before animate
-    query(':enter, :leave', [style({position: 'absolute', top: 0, left: 0, width: '100%'})], {optional: true}),
+    posAbs,
     // Animate
     group([
       // LEAVING PAGE
@@ -54,6 +56,7 @@ export const routeAnimations = trigger('routeAnimations', [
         style({opacity: 1}),
         animate(duration + ' ease', style({opacity: 0}))
       ], {optional: true}),
+
       // ENTERING PAGE
       query(':enter .masthead', [
         style({height: '50vh', opacity: 0}),
@@ -77,30 +80,35 @@ export const routeAnimations = trigger('routeAnimations', [
    */
   transition('portfolio <=> contact', [
     // Before animate
-    query(':enter, :leave', [style({position: 'absolute', top: 0, left: 0, width: '100%'})], {optional: true}),
+    posAbs,
     // Animate
     group([
       // LEAVING PAGE
       query(':leave .small-head h1', [
-        style({opacity: 1}),
-        animate(duration + ' ease', style({opacity: 0}))
+        style({opacity: 1, transform: 'none'}),
+        animate(duration + ' ease', style({transform: 'translateY(50px)', opacity: 0}))
       ], {optional: true}),
       query(':leave .small-head p', [
-        style({opacity: 1}),
-        animate(duration + ' ease', style({opacity: 0}))
+        style({opacity: 1, transform: 'none'}),
+        animate(duration + ' ease', style({transform: 'translateY(20px)', opacity: 0}))
       ], {optional: true}),
       query(':leave .page-section', [
         style({opacity: 1}),
         animate(duration + ' ease', style({opacity: 0}))
       ], {optional: true}),
+
       // ENTERING PAGE
+      query(':enter .small-head', [
+        style({opacity: 0}),
+        animate(duration + ' ease', style({opacity: 1}))
+      ], {optional: true}),
       query(':enter .small-head h1', [
         style({opacity: 0, transform: 'translateY(-100px)'}),
-        animate(duration + ' ease', style({opacity: 1, transform: 'none'}))
+        animate(duration + ' ease', style({transform: 'none', opacity: 1}))
       ], {optional: true}),
       query(':enter .small-head p', [
         style({opacity: 0, transform: 'translateY(-20px)'}),
-        animate(duration + ' ease', style({opacity: 1, transform: 'none'}))
+        animate(duration + ' ease', style({transform: 'none', opacity: 1}))
       ], {optional: true}),
       query(':enter .page-section', [
         style({opacity: 0}),
