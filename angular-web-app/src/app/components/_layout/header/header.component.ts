@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.title = '  Spavento  ';
+    this.title = 'Spavento';
     this.titleDisplay = '';
     this.subTitle = 'Paintings & Artwork';
     this.typingCallback(this);

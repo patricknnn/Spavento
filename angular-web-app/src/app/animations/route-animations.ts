@@ -92,7 +92,7 @@ export const routeAnimations = trigger('routeAnimations', [
     ]),
     query(':enter .masthead hr, :enter .masthead p', [
       style({transform: 'translateY(50px)'}),
-      stagger(20, animate(duration + 'ms ease', style({opacity: 1, transform: 'none'})))
+      stagger(20, animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({transform: 'none', opacity: 1})))
     ], {optional: true}),
     // Animate child
     query(':enter', animateChild(), {optional: true}),
@@ -104,6 +104,7 @@ export const routeAnimations = trigger('routeAnimations', [
   transition('portfolio <=> contact', [
     // Before animate
     posAbs,
+    query(':enter .small-head p, :enter .small-head hr', [style({opacity: 0})]),
     // Animate
     group([
       // LEAVING PAGE
@@ -112,7 +113,7 @@ export const routeAnimations = trigger('routeAnimations', [
       ], {optional: true}),
       query(':leave .small-head p', [
         style({opacity: 1, transform: 'none'}),
-        animate(duration / 2 + 'ms ease', style({transform: 'translateY(25px)', opacity: 0}))
+        animate(duration / 2 + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({transform: 'translateY(25px)', opacity: 0}))
       ], {optional: true}),
       // ENTERING PAGE
       query(':enter .small-head', [
@@ -124,14 +125,14 @@ export const routeAnimations = trigger('routeAnimations', [
         style({opacity: 0}),
         animate(duration + 'ms ease', style({opacity: 1}))
       ], {optional: true}),
-      query(':enter .small-head p', [
-        style({opacity: 0, transform: 'translateY(-20px)'}),
-        animate(duration + 'ms ease', style({transform: 'none', opacity: 1}))
-      ], {optional: true}),
       // PAGE SECTION
       fadeLeavePageSection,
       fadeEnterPageSection
     ]),
+    query(':enter .small-head hr, :enter .small-head p', [
+      style({transform: 'translateY(25px)'}),
+      stagger(10, animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({transform: 'none', opacity: 1})))
+    ], {optional: true}),
     // Animate child
     query(':enter', animateChild(), {optional: true}),
   ]),
