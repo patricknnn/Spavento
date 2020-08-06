@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {animate, query, stagger, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,8 @@ export class HeaderComponent implements OnInit {
   titleDisplay: string;
   subTitle: string;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
     this.title = 'Spavento';

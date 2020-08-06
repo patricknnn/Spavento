@@ -1,8 +1,11 @@
 import {animate, animateChild, group, query, stagger, style, transition, trigger} from '@angular/animations';
 
+/**
+ * Constants
+ */
 const duration = 500;
 
-const posAbs =
+const positionAbsolute =
   query(':enter, :leave', [
     style({position: 'absolute', top: 0, left: 0, width: '100%'})
   ]);
@@ -23,13 +26,16 @@ const fadeLeavePageSection =
     )
   ], {optional: true});
 
+/**
+ * RouteAnimations
+ */
 export const routeAnimations = trigger('routeAnimations', [
   /**
    * Home => *
    */
   transition('home => *', [
     // Before animate
-    posAbs,
+    positionAbsolute,
     query(':enter .small-head hr, :enter .small-head p', [
       style({opacity: 0})
     ], {optional: true}),
@@ -64,11 +70,11 @@ export const routeAnimations = trigger('routeAnimations', [
   ]),
 
   /**
-   * Home => *
+   * Portfolio, Contact => Home
    */
-  transition('* => home', [
+  transition('portfolio => home, contact => home', [
     // Before animate
-    posAbs,
+    positionAbsolute,
     query(':enter .masthead hr, :enter .masthead p', [style({opacity: 0})]),
     // Animate
     group([
@@ -103,7 +109,7 @@ export const routeAnimations = trigger('routeAnimations', [
    */
   transition('portfolio <=> contact', [
     // Before animate
-    posAbs,
+    positionAbsolute,
     query(':enter .small-head p, :enter .small-head hr', [style({opacity: 0})]),
     // Animate
     group([
@@ -112,7 +118,6 @@ export const routeAnimations = trigger('routeAnimations', [
         animate(duration / 2 + 'ms ease', style({opacity: 0}))
       ], {optional: true}),
       query(':leave .small-head p', [
-        style({opacity: 1, transform: 'none'}),
         animate(duration / 2 + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({transform: 'translateY(25px)', opacity: 0}))
       ], {optional: true}),
       // ENTERING PAGE
