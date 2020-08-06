@@ -13,10 +13,10 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.title = 'Spavento ';
+    this.title = '  Spavento  ';
     this.titleDisplay = '';
-    // this.subTitle = 'Paintings by';
-    setTimeout(this.typingCallback, 1000, this);
+    this.subTitle = 'Paintings & Artwork';
+    this.typingCallback(this);
   }
 
   typingCallback(that): void {
@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
     const currentLength = that.titleDisplay.length;
     if (currentLength < totalLength) {
       that.titleDisplay += that.title[currentLength];
-      setTimeout(that.typingCallback, 200, that);
+      setTimeout(that.typingCallback, 100, that);
     }
   }
 }
