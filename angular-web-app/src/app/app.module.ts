@@ -12,7 +12,6 @@ import {ContactComponent} from './components/_pages/contact/contact.component';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NavComponent} from './components/_layout/nav/nav.component';
-import {HeaderSmallComponent} from './components/_layout/header-small/header-small.component';
 import {MaterialModule} from './modules/material/material.module';
 import {FeaturedComponent} from './components/featured/featured.component';
 import {LatestComponent} from './components/latest/latest.component';
@@ -38,7 +37,6 @@ import { CarouselImgComponent } from './components/carousel-img/carousel-img.com
     ContactComponent,
     PageNotFoundComponent,
     NavComponent,
-    HeaderSmallComponent,
     FeaturedComponent,
     LatestComponent,
     CallToActionComponent,

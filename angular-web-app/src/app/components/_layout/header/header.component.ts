@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {animate, query, stagger, state, style, transition, trigger} from "@angular/animations";
+import {Component, Input, OnInit} from '@angular/core';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-header',
@@ -7,18 +7,29 @@ import {animate, query, stagger, state, style, transition, trigger} from "@angul
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  title: string;
+  @Input() small = false;
+  @Input() title: string;
+  @Input() subTitle: string;
   titleDisplay: string;
-  subTitle: string;
 
   constructor() {
   }
 
   ngOnInit(): void {
-    this.title = 'Spavento';
+    // Init display title
     this.titleDisplay = '';
-    this.subTitle = 'Paintings & Artwork';
+
+    // Typing effect
     this.typingCallback(this);
+
+    // Parallax effect
+    $(window).on('scroll', () => {
+      const scroll = window.scrollY;
+      const header = this.small ? $('header.smallhead') : $('header.masthead');
+      header.css({
+        transform: 'translate3d(0px, ' + (scroll / 3) + 'px' + ', 0px)'
+      });
+    });
   }
 
   typingCallback(that): void {

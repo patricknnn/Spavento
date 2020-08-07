@@ -4,6 +4,8 @@ import {animate, animateChild, group, query, stagger, style, transition, trigger
  * Constants
  */
 const duration = 500;
+const mastheadHeight = '100vh';
+const smallheadHeight = '60vh';
 
 const positionAbsolute =
   query(':enter, :leave', [
@@ -12,7 +14,7 @@ const positionAbsolute =
 
 const fadeEnterPageSection =
   query(':enter .page-section', [
-    style({opacity: 0.5}),
+    style({opacity: 0}),
     animate(duration + 'ms ease',
       style({opacity: 1})
     )
@@ -22,7 +24,7 @@ const fadeLeavePageSection =
   query(':leave .page-section', [
     style({opacity: 1}),
     animate(duration + 'ms ease',
-      style({opacity: 0.5})
+      style({opacity: 0})
     )
   ], {optional: true});
 
@@ -36,14 +38,14 @@ export const routeAnimations = trigger('routeAnimations', [
   transition('home => *', [
     // Before animate
     positionAbsolute,
-    query(':enter .small-head hr, :enter .small-head p', [
+    query(':enter .smallhead hr, :enter .smallhead p', [
       style({opacity: 0})
     ], {optional: true}),
     // Animate
     group([
       // LEAVING PAGE
       query(':leave .masthead', [
-        animate(duration + 'ms ease', style({height: '50vh'}))
+        animate(duration + 'ms ease', style({height: smallheadHeight}))
       ], {optional: true}),
       query(':leave .masthead h1, :leave .masthead p', [
         style({opacity: 1}),
@@ -53,15 +55,15 @@ export const routeAnimations = trigger('routeAnimations', [
         animate(duration + 'ms ease', style({width: 0, opacity: 0}))
       ], {optional: true}),
       // ENTERING PAGE
-      query(':enter .small-head', [
-        style({height: '100vh', opacity: 0}),
-        animate(duration + 'ms ease', style({height: '50vh', opacity: 1}))
+      query(':enter .smallhead', [
+        style({height: mastheadHeight, opacity: 0}),
+        animate(duration + 'ms ease', style({height: smallheadHeight, opacity: 1}))
       ], {optional: true}),
       // PAGE SECTION
       fadeLeavePageSection,
       fadeEnterPageSection
     ]),
-    query(':enter .small-head hr, :enter .small-head p', [
+    query(':enter .smallhead hr, :enter .smallhead p', [
       style({transform: 'translateY(50px)'}),
       stagger(20, animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({transform: 'none', opacity: 1}))),
     ], {optional: true}),
@@ -79,27 +81,52 @@ export const routeAnimations = trigger('routeAnimations', [
     // Animate
     group([
       // LEAVING PAGE
-      query(':leave .small-head', [
-        style({height: '50vh'}),
-        animate(duration + 'ms ease', style({height: '100vh'}))
+      query(':leave .smallhead', [
+        style({height: smallheadHeight}),
+        animate(duration + 'ms ease', style({height: mastheadHeight, 'margin-bottom': '60px'}))
       ], {optional: true}),
-      query(':leave .small-head h1, :leave .small-head p, :leave .small-head hr', [
+      query(':leave .smallhead h1, :leave .smallhead p, :leave .smallhead hr', [
         style({opacity: 1}),
         animate(duration / 2 + 'ms ease', style({opacity: 0}))
       ], {optional: true}),
       // ENTERING PAGE
       query(':enter .masthead', [
-        style({height: '50vh', opacity: 0}),
-        animate(duration + 'ms ease', style({height: '100vh', opacity: 1}))
+        style({height: smallheadHeight, opacity: 0}),
+        animate(duration + 'ms ease', style({height: mastheadHeight, opacity: 1}))
       ], {optional: true}),
       // PAGE SECTION
       fadeLeavePageSection,
       fadeEnterPageSection
     ]),
-    query(':enter .masthead hr, :enter .masthead p', [
+    query(':enter .masthead hr', [
       style({transform: 'translateY(50px)'}),
-      stagger(20, animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({transform: 'none', opacity: 1})))
+      animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({transform: 'none', opacity: 1}))
     ], {optional: true}),
+    query(':enter .masthead p', [
+      style({transform: 'translateY(50px)'}),
+      animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({transform: 'none', opacity: 1}))
+    ], {optional: true}),
+    // Animate child
+    query(':enter', animateChild(), {optional: true}),
+  ]),
+
+  /**
+   * * => home
+   */
+  transition('* => home', [
+    // Before animate
+    positionAbsolute,
+    query(':enter .masthead hr, :enter .masthead p', [style({opacity: 0})]),
+    // Animate
+    query(':enter .masthead hr', [
+      style({transform: 'translateY(50px)'}),
+      animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({transform: 'none', opacity: 1}))
+    ], {optional: true}),
+    query(':enter .masthead p', [
+      style({transform: 'translateY(50px)'}),
+      animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({transform: 'none', opacity: 1}))
+    ], {optional: true}),
+    fadeEnterPageSection,
     // Animate child
     query(':enter', animateChild(), {optional: true}),
   ]),
@@ -110,23 +137,22 @@ export const routeAnimations = trigger('routeAnimations', [
   transition('portfolio <=> contact', [
     // Before animate
     positionAbsolute,
-    query(':enter .small-head p, :enter .small-head hr', [style({opacity: 0})]),
+    query(':enter .smallhead p, :enter .smallhead hr', [style({opacity: 0})]),
     // Animate
     group([
       // LEAVING PAGE
-      query(':leave .small-head h1', [
+      query(':leave .smallhead h1', [
         animate(duration / 2 + 'ms ease', style({opacity: 0}))
       ], {optional: true}),
-      query(':leave .small-head p', [
+      query(':leave .smallhead p', [
         animate(duration / 2 + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({transform: 'translateY(25px)', opacity: 0}))
       ], {optional: true}),
       // ENTERING PAGE
-      query(':enter .small-head', [
+      query(':enter .smallhead', [
         style({opacity: 0}),
         animate(duration + 'ms ease', style({opacity: 1}))
       ], {optional: true}),
-      query(':enter .small-head h1', [
-        // style({opacity: 0, transform: 'translateY(-100px)'}),
+      query(':enter .smallhead h1', [
         style({opacity: 0}),
         animate(duration + 'ms ease', style({opacity: 1}))
       ], {optional: true}),
@@ -134,9 +160,34 @@ export const routeAnimations = trigger('routeAnimations', [
       fadeLeavePageSection,
       fadeEnterPageSection
     ]),
-    query(':enter .small-head hr, :enter .small-head p', [
-      style({transform: 'translateY(25px)'}),
-      stagger(10, animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({transform: 'none', opacity: 1})))
+    query(':enter .smallhead hr', [
+      style({transform: 'translateY(50px)'}),
+      animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({transform: 'none', opacity: 1}))
+    ], {optional: true}),
+    query(':enter .smallhead p', [
+      style({transform: 'translateY(50px)'}),
+      animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({transform: 'none', opacity: 1}))
+    ], {optional: true}),
+    // Animate child
+    query(':enter', animateChild(), {optional: true}),
+  ]),
+
+  /**
+   * * => Contact, Portfolio
+   */
+  transition('* => portfolio, * => contact', [
+    // Before animate
+    positionAbsolute,
+    query(':enter .smallhead p, :enter .smallhead hr', [style({opacity: 0})]),
+    // Animate
+    fadeEnterPageSection,
+    query(':enter .smallhead hr', [
+      style({transform: 'translateY(50px)'}),
+      animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({transform: 'none', opacity: 1}))
+    ], {optional: true}),
+    query(':enter .smallhead p', [
+      style({transform: 'translateY(50px)'}),
+      animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({transform: 'none', opacity: 1}))
     ], {optional: true}),
     // Animate child
     query(':enter', animateChild(), {optional: true}),

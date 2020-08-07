@@ -2,9 +2,11 @@
 
 header.masthead {
   height: 100vh;
+  margin-bottom: 60px;
   background:
     linear-gradient(to bottom, rgba(black, 0.9) 0%, rgba(black, 0.5) 100%),
-    url("https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/107081307_1161994194154245_6097520492808434412_n.jpg?_nc_cat=111&_nc_sid=8bfeb9&_nc_ohc=cpta0uNYQSEAX9Tkjn3&_nc_ht=scontent-amt2-1.xx&oh=04ce395df46fa2d4886f45779e1197f1&oe=5F3B6AC9") no-repeat scroll 50%;
+    url("https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/107081307_1161994194154245_6097520492808434412_n.jpg?_nc_cat=111&_nc_sid=8bfeb9&_nc_ohc=cpta0uNYQSEAX9Tkjn3&_nc_ht=scontent-amt2-1.xx&oh=04ce395df46fa2d4886f45779e1197f1&oe=5F3B6AC9")
+    no-repeat scroll 50%;
   background-size: cover;
 }
 
@@ -13,12 +15,28 @@ header.masthead h1 {
   font-size: 4rem;
 }
 
-header.masthead p {
-  margin-bottom: -1rem;
+@media (min-width: 768px) {
+  header.masthead h1 {
+    font-size: 6rem;
+    font-family: 'Dancing Script', cursive;
+  }
+}
+
+header.smallhead {
+  height: 60vh;
+  background:
+    linear-gradient(to bottom, rgba(black, 0.9) 0%, rgba(black, 0.5) 100%),
+    url("https://scontent-ams4-1.xx.fbcdn.net/v/t1.0-9/115932795_1173222826364715_1101636021482293624_o.jpg?_nc_cat=110&_nc_sid=8bfeb9&_nc_ohc=5Je9T9TO_VYAX91ueZ4&_nc_ht=scontent-ams4-1.xx&oh=b533045c0da5d4518f1c0b98367b47a2&oe=5F3D83E3") no-repeat scroll center;
+  background-size: cover;
+}
+
+header.smallhead h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 4rem;
 }
 
 @media (min-width: 768px) {
-  header.masthead h1 {
+  header.smallhead h1 {
     font-size: 6rem;
     font-family: 'Dancing Script', cursive;
   }

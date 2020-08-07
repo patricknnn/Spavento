@@ -11,6 +11,8 @@ import {PaintingService} from '../../../services/painting.service';
 export class HomeComponent implements OnInit {
   services: Service[];
   featuredPainting: Painting;
+  title = 'Spavento';
+  subTitle = 'Paintings & Artwork';
 
   constructor(private paintingService: PaintingService) {
   }
