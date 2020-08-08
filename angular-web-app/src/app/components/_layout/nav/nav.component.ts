@@ -12,6 +12,9 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const navbarToggle = $('.navbar-toggler');
+    const animatedIcon = $('.animated-icon');
+    const navLink = $('.nav-link');
     // Collapse Nav
     const navCollapse = () => {
       const nav = $('#mainNav');
@@ -27,8 +30,11 @@ export class NavComponent implements OnInit {
     document.addEventListener('scroll', navCollapse, true);
 
     // Animate hamburger menu
-    $('.navbar-toggler').on('click', () => {
-      $('.animated-icon').toggleClass('open');
+    navbarToggle.on('click', () => {
+      animatedIcon.toggleClass('open');
+    });
+    navLink.on('click', () => {
+      animatedIcon.removeClass('open');
     });
   }
 }
