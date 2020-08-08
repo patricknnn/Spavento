@@ -1,8 +1,22 @@
+@import "../../../../variables.scss";
+
 #site-footer {
   position: fixed;
   z-index: -1;
   left: 0;
   right: 0;
   bottom: 0;
+}
+
+.icon-facebook {
+  color: $color-facebook;
+}
+
+.icon-twitter {
+  color: $color-twitter;
+}
+
+.icon-instagram {
+  color: $color-instagram;
 }
 

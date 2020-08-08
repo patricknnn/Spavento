@@ -1,11 +1,14 @@
-.vh-60 {
-  height: 60vh;
-}
 
 .featured-img {
-  width: 100%;
-  height: 100%;
+  width: calc(100% + 3rem);
+  height: 60vh;
+  margin-left: -1.5rem !important;
+  margin-right: -1.5rem !important;
+  border-radius: inherit;
   object-position: 50% 50%;
   object-fit: cover;
-  border-radius: 4px 0 0 4px;
+}
+
+.round-button {
+  border-radius: 1rem;
 }

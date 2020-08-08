@@ -21,17 +21,17 @@ export class HomeComponent implements OnInit {
     this.featuredPainting = this.paintingService.getLatestPaintings(1)[0];
     this.services = [
       new Service(
-        'fa-paint-brush',
+        'brush',
         'Custom Work',
         'Custom paintings made to fit your wishes.'
       ),
       new Service(
-        'fa-palette',
+        'palette',
         'Different Styles',
         'I paint in a variety of different styles, from landscapes to portraits.'
       ),
       new Service(
-        'fa-eye',
+        'collections',
         'Expositions',
         'You can view my work at different expositions.'
       )

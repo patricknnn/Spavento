@@ -26,6 +26,10 @@ button::-moz-focus-inner {
   border: 0 !important;
 }
 
+/*************************************/
+/**            Sections             **/
+/*************************************/
+
 .main {
   background: $color-light;
   position: relative;
@@ -46,8 +50,20 @@ button::-moz-focus-inner {
 
 .page-section {
   padding: 6rem 0;
-  border-radius: inherit;
+
+  &:first-child {
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+  }
+  &:last-child {
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+  }
 }
+
+/*************************************/
+/**             Helpers             **/
+/*************************************/
 
 .flex-center {
   display: -webkit-box;
@@ -72,17 +88,6 @@ hr.divider {
   border-color: $color-primary;
 }
 
-.view {
-  position: relative;
-  overflow: hidden;
-}
-
-.card-avatar-icon {
-  width: 40px;
-  height: 40px;
-  font-size: 40px;
-}
-
 .title-underlined {
   &:after {
     content: "";
@@ -94,27 +99,26 @@ hr.divider {
   }
 }
 
+/*************************************/
+/**              Icons              **/
+/*************************************/
+
+.icon-big {
+  font-size: 3rem !important;
+  height: 3rem !important;
+  width: 3rem !important;
+}
+.icon-gradient {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .text-icon {
   flex-direction: row;
   box-sizing: border-box;
   display: flex;
   place-content: center flex-start;
   align-items: center;
-}
-
-.font-size-16 {
-  font-size: 16px;
-}
-.icon-size-16 {
-  font-size: 16px !important;
-  height: 16px !important;
-  width: 16px !important;
-}
-.font-size-20 {
-  font-size: 20px;
-}
-.font-size-24 {
-  font-size: 24px;
 }
 
 .subtitle {
@@ -163,6 +167,23 @@ hr.divider {
   background-color: $color-darker !important;
 }
 
+/** Gradients */
+
+.gradient-orange {
+  background: $color-gradient-orange;
+}
+.gradient-red {
+  background: $color-gradient-red;
+}
+.gradient-blue {
+  background: $color-gradient-blue;
+}
+.gradient-green {
+  background: $color-gradient-green;
+}
+.gradient-purple {
+  background: $color-gradient-purple;
+}
 
 /** Text */
 
