@@ -5,7 +5,7 @@ header.masthead {
   margin-bottom: 60px;
   background:
     linear-gradient(to bottom, rgba(black, 0.9) 0%, rgba(black, 0.5) 100%),
-    url("https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/107081307_1161994194154245_6097520492808434412_n.jpg?_nc_cat=111&_nc_sid=8bfeb9&_nc_ohc=cpta0uNYQSEAX9Tkjn3&_nc_ht=scontent-amt2-1.xx&oh=04ce395df46fa2d4886f45779e1197f1&oe=5F3B6AC9")
+    url("../../../../assets/img/dessertcar.jpg")
     no-repeat scroll 50%;
   background-size: cover;
 }
@@ -26,7 +26,7 @@ header.smallhead {
   height: 60vh;
   background:
     linear-gradient(to bottom, rgba(black, 0.9) 0%, rgba(black, 0.5) 100%),
-    url("https://scontent-ams4-1.xx.fbcdn.net/v/t1.0-9/115932795_1173222826364715_1101636021482293624_o.jpg?_nc_cat=110&_nc_sid=8bfeb9&_nc_ohc=5Je9T9TO_VYAX91ueZ4&_nc_ht=scontent-ams4-1.xx&oh=b533045c0da5d4518f1c0b98367b47a2&oe=5F3D83E3") no-repeat scroll center;
+    url("../../../../assets/img/dessertcar.jpg") no-repeat scroll center;
   background-size: cover;
 }
 
@@ -42,3 +42,59 @@ header.smallhead h1 {
   }
 }
 
+.scrolldown a {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  z-index: 2;
+  display: inline-block;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  color: #fff;
+  font : normal 400 20px/1 'Josefin Sans', sans-serif;
+  letter-spacing: .1em;
+  text-decoration: none;
+  transition: opacity .3s;
+  padding-top: 60px;
+}
+.scrolldown a:hover {
+  opacity: .5;
+}
+
+.scrolldown a span {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  border-left: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-animation: sdb04 2s infinite;
+  animation: sdb04 2s infinite;
+  box-sizing: border-box;
+}
+@-webkit-keyframes sdb04 {
+  0% {
+    -webkit-transform: rotate(-45deg) translate(0, 0);
+  }
+  20% {
+    -webkit-transform: rotate(-45deg) translate(-10px, 10px);
+  }
+  40% {
+    -webkit-transform: rotate(-45deg) translate(0, 0);
+  }
+}
+@keyframes sdb04 {
+  0% {
+    transform: rotate(-45deg) translate(0, 0);
+  }
+  20% {
+    transform: rotate(-45deg) translate(-10px, 10px);
+  }
+  40% {
+    transform: rotate(-45deg) translate(0, 0);
+  }
+}

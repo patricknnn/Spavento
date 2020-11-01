@@ -1,9 +1,13 @@
+#featured-card {
+  margin-left: 4% !important;
+  margin-right: 4% !important;
+}
 
 .featured-img {
-  width: calc(100% + 3rem);
+  width: 108%;
   height: 60vh;
-  margin-left: -1.5rem !important;
-  margin-right: -1.5rem !important;
+  margin-left: -4% !important;
+  margin-right: -4% !important;
   border-radius: inherit;
   object-position: 50% 50%;
   object-fit: cover;
