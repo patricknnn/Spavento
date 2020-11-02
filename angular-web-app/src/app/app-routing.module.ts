@@ -9,11 +9,13 @@ import {PaintingDetailComponent} from './components/_pages/painting-detail/paint
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
+  // pages
   {path: 'home', component: HomeComponent, data: {animation: 'home'}},
   {path: 'portfolio', component: PortfolioComponent, data: {animation: 'portfolio'}},
   {path: 'about', component: AboutComponent, data: {animation: 'about'}},
   {path: 'contact', component: ContactComponent, data: {animation: 'contact'}},
   {path: 'painting', component: PaintingDetailComponent, data: {animation: 'painting'}},
+  // page not found
   {path: 'page-not-found', component: PageNotFoundComponent, data: {animation: 'page-not-found'}},
   {path: '**', redirectTo: 'page-not-found'},
 ];

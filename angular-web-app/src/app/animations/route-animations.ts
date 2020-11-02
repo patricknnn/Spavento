@@ -74,7 +74,7 @@ export const routeAnimations = trigger('routeAnimations', [
   /**
    * Portfolio, Contact => Home
    */
-  transition('portfolio => home, contact => home', [
+  transition('portfolio => home, contact => home, painting => home', [
     // Before animate
     positionAbsolute,
     query(':enter .masthead hr, :enter .masthead p', [style({opacity: 0})]),
@@ -175,7 +175,7 @@ export const routeAnimations = trigger('routeAnimations', [
   /**
    * * => Contact, Portfolio
    */
-  transition('* => portfolio, * => contact', [
+  transition('* => portfolio, * => contact, * => painting', [
     // Before animate
     positionAbsolute,
     query(':enter .smallhead p, :enter .smallhead hr', [style({opacity: 0})]),

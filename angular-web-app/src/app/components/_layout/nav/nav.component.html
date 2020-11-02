@@ -3,29 +3,35 @@
   <div class="container">
     <a class="navbar-brand" routerLink="/home">
       <img src="/assets/img/favicon/favicon-96x96.png" alt="logo" class="navbar-brand-img">
-      Spavento
+      <span class="ml-2">Spavento</span>
     </a>
-    <button class="navbar-toggler navbar-toggler-right" type="button"
+    <button id="navbarToggle" class="navbar-toggler navbar-toggler-right" type="button"
             data-toggle="collapse" data-target="#navbarResponsive"
-            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"
+            (click)="toggleIconOpen()">
+      <div id="animatedIcon" class="animated-icon"><span></span><span></span><span></span></div>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto my-2 my-lg-0">
         <li class="nav-item">
           <a class="nav-link nav-link-fade-up"
-             data-toggle="collapse" data-target="#navbarResponsive"
-             routerLink="/home" routerLinkActive="router-link-active">Home</a>
+             data-toggle="collapse" data-target="#navbarResponsive.show"
+             routerLink="/home" routerLinkActive="router-link-active"
+             (click)="removeIconOpen()">
+             Home
+            </a>
         </li>
         <li class="nav-item">
           <a class="nav-link nav-link-fade-up"
-             data-toggle="collapse" data-target="#navbarResponsive"
-             routerLink="/portfolio" routerLinkActive="router-link-active">Portfolio</a>
+             data-toggle="collapse" data-target="#navbarResponsive.show"
+             routerLink="/portfolio" routerLinkActive="router-link-active"
+             (click)="removeIconOpen()">Portfolio</a>
         </li>
         <li class="nav-item">
           <a class="nav-link nav-link-fade-up"
-             data-toggle="collapse" data-target="#navbarResponsive"
-             routerLink="/contact" routerLinkActive="router-link-active">Contact</a>
+             data-toggle="collapse" data-target="#navbarResponsive.show"
+             routerLink="/contact" routerLinkActive="router-link-active"
+             (click)="removeIconOpen()">Contact</a>
         </li>
       </ul>
     </div>

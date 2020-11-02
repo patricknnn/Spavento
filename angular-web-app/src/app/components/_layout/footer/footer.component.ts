@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import * as $ from 'jquery';
 
 @Component({
   selector: 'app-footer',
@@ -15,19 +14,12 @@ export class FooterComponent implements OnInit {
     // init footer margin
     siteFooter();
     // init on resize
-    $(window).on('resize', () => {
-      siteFooter();
-    });
+    window.onresize = siteFooter;
 
     // Add footer margin to content
     function siteFooter(): void {
-      const content = $('#site-content');
-      const footer = $('#site-footer');
-      const siteFooterHeight = footer.height();
-
-      content.css({
-        'margin-bottom': siteFooterHeight
-      });
+      const siteFooterHeight = document.getElementById("site-footer").clientHeight;
+      document.getElementById("site-content").style.marginBottom = siteFooterHeight + "px";
     }
   }
 

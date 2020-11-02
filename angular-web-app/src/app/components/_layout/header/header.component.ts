@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import * as $ from 'jquery';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +9,7 @@ export class HeaderComponent implements OnInit {
   @Input() small = false;
   @Input() title: string;
   @Input() subTitle: string;
+  imageUrl = "../../../../assets/img/dessertcar.jpg";
   titleDisplay: string;
 
   constructor() {
@@ -22,14 +22,19 @@ export class HeaderComponent implements OnInit {
     // Typing effect
     this.typingCallback(this);
 
-    // Parallax effect
-    $(window).on('scroll', () => {
+    // Parallax effect on scroll
+    window.onscroll = paralax;
+
+    function paralax(): void {
       const scroll = window.scrollY;
-      const header = this.small ? $('header.smallhead') : $('header.masthead');
-      header.css({
-        transform: 'translate3d(0px, ' + (scroll / 3) + 'px' + ', 0px)'
-      });
-    });
+      const header = document.getElementById("header");
+      header.style.transform = "translate3d(0px, " + (scroll / 3) + "px, 0px)";
+    }
+  }
+
+  scrollDown(): void {
+    let main = document.getElementById("home");
+    main.scrollIntoView({ block: 'start',  behavior: 'smooth' });
   }
 
   typingCallback(that): void {
@@ -37,7 +42,7 @@ export class HeaderComponent implements OnInit {
     const currentLength = that.titleDisplay.length;
     if (currentLength < totalLength) {
       that.titleDisplay += that.title[currentLength];
-      setTimeout(that.typingCallback, 100, that);
+      setTimeout(that.typingCallback, 75, that);
     }
   }
 }

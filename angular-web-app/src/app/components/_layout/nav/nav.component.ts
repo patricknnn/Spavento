@@ -1,40 +1,34 @@
-import {Component, OnInit} from '@angular/core';
-import * as $ from 'jquery';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.scss']
+  styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent implements OnInit {
-
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit(): void {
-    const navbarToggle = $('.navbar-toggler');
-    const animatedIcon = $('.animated-icon');
-    const navLink = $('.nav-link');
-    // Collapse Nav
-    const navCollapse = () => {
-      const nav = $('#mainNav');
-      if (nav.offset().top > 100) {
-        nav.addClass('navbar-scrolled');
+    // Scrolled nav when page is scrolled
+    window.addEventListener("scroll", function (e) {
+      const nav = document.getElementById("mainNav");
+      let scroll = window.scrollY;
+      if (scroll > 100) {
+        nav.classList.add("navbar-scrolled");
       } else {
-        nav.removeClass('navbar-scrolled');
+        nav.classList.remove("navbar-scrolled");
       }
-    };
-    // Collapse now if page is not at top
-    navCollapse();
-    // Collapse the nav when page is scrolled
-    document.addEventListener('scroll', navCollapse, true);
+    });
 
-    // Animate hamburger menu
-    navbarToggle.on('click', () => {
-      animatedIcon.toggleClass('open');
-    });
-    navLink.on('click', () => {
-      animatedIcon.removeClass('open');
-    });
+  }
+
+  toggleIconOpen(): void {
+    const animatedIcon = document.getElementById("animatedIcon");
+    animatedIcon.classList.toggle("open");
+  }
+
+  removeIconOpen(): void {
+    const animatedIcon = document.getElementById("animatedIcon");
+    animatedIcon.classList.remove("open");
   }
 }

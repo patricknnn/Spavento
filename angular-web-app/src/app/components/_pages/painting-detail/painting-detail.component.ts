@@ -10,8 +10,6 @@ import {PaintingService} from '../../../services/painting.service';
 })
 export class PaintingDetailComponent implements OnInit {
   painting: Painting;
-  title = 'Painting details';
-  subTitle = 'Some subtitle';
 
   constructor(
     private router: Router,

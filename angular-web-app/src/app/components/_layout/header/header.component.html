@@ -1,6 +1,6 @@
 <!-- Header-->
-<header [ngClass]="small ? 'smallhead' : 'masthead'">
-  <div class="container h-100">
+<header id="header" [ngClass]="small ? 'smallhead' : 'masthead'" [style.backgroundImage]="'url(' + imageUrl + ')'">
+  <div class="container-fluid h-100 linear-overlay">
     <div class="row h-100 align-items-center justify-content-center text-center">
       <div class="col-12 align-self-center">
         <h1 class="txt-light font-weight-bold">
@@ -13,6 +13,6 @@
   </div>
   <!-- scrolldown -->
   <div class="scrolldown w-100" *ngIf="!small">
-    <a href="#scrollto"><span></span></a>
+    <a (click)="scrollDown()"><span></span></a>
   </div>
 </header>
