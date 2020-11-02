@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +9,7 @@ export class HeaderComponent implements OnInit {
   @Input() small = false;
   @Input() title: string;
   @Input() subTitle: string;
-  imageUrl = "../../../../assets/img/dessertcar.jpg";
+  @Input() image: string;
   titleDisplay: string;
 
   constructor() {
@@ -18,6 +18,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     // Init display title
     this.titleDisplay = '';
+    if (!this.image) {
+      this.image = "../../../../assets/img/dessertcar.jpg";
+    }
 
     // Typing effect
     this.typingCallback(this);
@@ -34,7 +37,7 @@ export class HeaderComponent implements OnInit {
 
   scrollDown(): void {
     let main = document.getElementById("home");
-    main.scrollIntoView({ block: 'start',  behavior: 'smooth' });
+    main.scrollIntoView({ block: 'start', behavior: 'smooth' });
   }
 
   typingCallback(that): void {
