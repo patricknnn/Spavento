@@ -10,7 +10,7 @@ const smallheadHeight = '60vh';
 const positionAbsolute =
   query(':enter, :leave', [
     style({ position: 'absolute', top: 0, left: 0, width: '100%' })
-  ]);
+  ], { optional: true });
 
 const showEnterMain =
   query(':enter .main', [
@@ -22,16 +22,23 @@ const hideLeaveMain =
     style({ opacity: 0 }),
   ], { optional: true });
 
+const hideFooter =
+  query(':enter footer', [
+    style({ opacity: 0 }),
+  ], { optional: true });
+
 /**
  * RouteAnimations
  */
 export const routeAnimations = trigger('routeAnimations', [
+
   /**
    * masthead => smallhead
    */
-  transition('masthead => smallhead', [
+  transition('home => *', [
     // Before animate
     positionAbsolute,
+    hideFooter,
     query(':enter .smallhead', [
       style({ height: mastheadHeight, opacity: 0 })
     ], { optional: true }),
@@ -51,7 +58,7 @@ export const routeAnimations = trigger('routeAnimations', [
         animate(duration + 'ms ease', style({ height: smallheadHeight }))
       ], { optional: true }),
       // LEAVING PAGE
-      query(':leave .masthead hr, :leave .masthead p', [
+      query(':leave .masthead h1, :leave .masthead hr, :leave .masthead p', [
         animate(duration / 2 + 'ms ease', style({ opacity: 0 }))
       ], { optional: true }),
       query(':leave .masthead', [
@@ -81,9 +88,10 @@ export const routeAnimations = trigger('routeAnimations', [
   /**
    *  smallhead => masthead
    */
-  transition('smallhead => masthead', [
+  transition('portfolio => home, contact => home, painting => home, about => home, 404 => home', [
     // Before animate
     positionAbsolute,
+    hideFooter,
     query(':enter .masthead', [
       style({ height: smallheadHeight, opacity: 0 })
     ], { optional: true }),
@@ -103,7 +111,7 @@ export const routeAnimations = trigger('routeAnimations', [
         animate(duration + 'ms ease', style({ height: mastheadHeight }))
       ], { optional: true }),
       // LEAVING PAGE
-      query(':leave .smallhead hr, :leave .smallhead p', [
+      query(':leave .smallhead h1, :leave .smallhead hr, :leave .smallhead p', [
         animate(duration / 2 + 'ms ease', style({ opacity: 0 }))
       ], { optional: true }),
       query(':leave .smallhead', [
@@ -129,50 +137,50 @@ export const routeAnimations = trigger('routeAnimations', [
   ]),
 
   /**
-  *  smallhead <=> smallhead
+  *  * <=> *
   */
   transition('* <=> *', [
     // Before animate
     positionAbsolute,
-    query(':enter .smallhead', [
+    hideFooter,
+    query(':enter .smallhead, :enter .smallhead hr, :enter .smallhead p, :enter .masthead, :enter .masthead hr, :enter .masthead p', [
       style({ opacity: 0 })
     ], { optional: true }),
-
-    query(':enter .smallhead hr, :enter .smallhead p', [
-      style({ transform: 'translateY(50px)', opacity: 0 })
-    ], { optional: true }),
-
     query(':enter .page-section', [
       style({ transform: 'translateY(50px)', opacity: 0 }),
     ], { optional: true }),
-
-    // LEAVING PAGE
+    // Animate
     group([
-      query(':leave .smallhead hr, :leave .smallhead p', [
+      // ENTERING PAGE
+      query(':enter .smallhead, :enter .masthead', [
+        animate(duration + 'ms ease', style({ opacity: 1 }))
+      ], { optional: true }),
+      // LEAVING PAGE
+      query(':leave .smallhead h1, :leave .smallhead hr, :leave .smallhead p', [
         animate(duration / 2 + 'ms ease', style({ opacity: 0 }))
       ], { optional: true }),
-
       query(':leave .page-section', [
         style({ transform: 'none', opacity: 1 }),
         animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({ transform: 'translateY(50px)', opacity: 0 })),
       ], { optional: true }),
+      // MAIN
+      hideLeaveMain,
+      showEnterMain
     ]),
-
-    // ENTERING PAGE
     group([
-      query(':enter .smallhead', [
-        animate(duration + 'ms ease', style({ opacity: 1 }))
-      ], { optional: true }),
-
-      query(':enter .smallhead hr, :enter .smallhead p', [
+      query(':enter .smallhead hr, :enter .smallhead p, :enter .masthead hr, :enter .masthead p', [
+        style({ transform: 'translateY(50px)' }),
         stagger(20, animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({ transform: 'none', opacity: 1 }))),
       ], { optional: true }),
 
       query(':enter .page-section', [
+        style({ transform: 'translateY(50px)', opacity: 0 }),
         animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({ transform: 'none', opacity: 1 })),
       ], { optional: true }),
     ]),
+
     // Animate child
     query(':enter', animateChild(), { optional: true }),
   ]),
+
 ]);
