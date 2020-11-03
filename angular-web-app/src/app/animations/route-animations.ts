@@ -1,4 +1,4 @@
-import {animate, animateChild, group, query, stagger, style, transition, trigger} from '@angular/animations';
+import { animate, animateChild, group, query, stagger, style, transition, trigger } from '@angular/animations';
 
 /**
  * Constants
@@ -9,187 +9,170 @@ const smallheadHeight = '60vh';
 
 const positionAbsolute =
   query(':enter, :leave', [
-    style({position: 'absolute', top: 0, left: 0, width: '100%'})
+    style({ position: 'absolute', top: 0, left: 0, width: '100%' })
   ]);
 
-const fadeEnterPageSection =
-  query(':enter .page-section', [
-    style({opacity: 0}),
-    animate(duration + 'ms ease',
-      style({opacity: 1})
-    )
-  ], {optional: true});
+const showEnterMain =
+  query(':enter .main', [
+    style({ opacity: 1 }),
+  ], { optional: true });
 
-const fadeLeavePageSection =
-  query(':leave .page-section', [
-    style({opacity: 1}),
-    animate(duration + 'ms ease',
-      style({opacity: 0})
-    )
-  ], {optional: true});
+const hideLeaveMain =
+  query(':leave .main', [
+    style({ opacity: 0 }),
+  ], { optional: true });
 
 /**
  * RouteAnimations
  */
 export const routeAnimations = trigger('routeAnimations', [
   /**
-   * Home => *
+   * masthead => smallhead
    */
-  transition('home => *', [
+  transition('masthead => smallhead', [
     // Before animate
     positionAbsolute,
+    query(':enter .smallhead', [
+      style({ height: mastheadHeight, opacity: 0 })
+    ], { optional: true }),
     query(':enter .smallhead hr, :enter .smallhead p', [
-      style({opacity: 0})
-    ], {optional: true}),
+      style({ opacity: 0 })
+    ], { optional: true }),
+    query(':enter .page-section', [
+      style({ transform: 'translateY(50px)', opacity: 0 }),
+    ], { optional: true }),
     // Animate
     group([
-      // LEAVING PAGE
-      query(':leave .masthead', [
-        animate(duration + 'ms ease', style({height: smallheadHeight}))
-      ], {optional: true}),
-      query(':leave .masthead h1, :leave .masthead p', [
-        style({opacity: 1}),
-        animate(duration / 2 + 'ms ease', style({opacity: 0}))
-      ], {optional: true}),
-      query(':leave .masthead hr', [
-        animate(duration + 'ms ease', style({width: 0, opacity: 0}))
-      ], {optional: true}),
       // ENTERING PAGE
       query(':enter .smallhead', [
-        style({height: mastheadHeight, opacity: 0}),
-        animate(duration + 'ms ease', style({height: smallheadHeight, opacity: 1}))
-      ], {optional: true}),
-      // PAGE SECTION
-      fadeLeavePageSection,
-      fadeEnterPageSection
+        animate(duration + 'ms ease', style({ opacity: 1 }))
+      ], { optional: true }),
+      query(':enter .smallhead', [
+        animate(duration + 'ms ease', style({ height: smallheadHeight }))
+      ], { optional: true }),
+      // LEAVING PAGE
+      query(':leave .masthead hr, :leave .masthead p', [
+        animate(duration / 2 + 'ms ease', style({ opacity: 0 }))
+      ], { optional: true }),
+      query(':leave .masthead', [
+        animate(duration + 'ms ease', style({ height: smallheadHeight }))
+      ], { optional: true }),
+
+      // MAIN
+      hideLeaveMain,
+      showEnterMain
     ]),
-    query(':enter .smallhead hr, :enter .smallhead p', [
-      style({transform: 'translateY(50px)'}),
-      stagger(20, animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({transform: 'none', opacity: 1}))),
-    ], {optional: true}),
+    group([
+      query(':enter .smallhead hr, :enter .smallhead p', [
+        style({ transform: 'translateY(50px)' }),
+        stagger(20, animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({ transform: 'none', opacity: 1 }))),
+      ], { optional: true }),
+
+      query(':enter .page-section', [
+        style({ transform: 'translateY(50px)', opacity: 0 }),
+        animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({ transform: 'none', opacity: 1 })),
+      ], { optional: true }),
+    ]),
+
     // Animate child
-    query(':enter', animateChild(), {optional: true}),
+    query(':enter', animateChild(), { optional: true }),
   ]),
 
   /**
-   * Portfolio, Contact => Home
+   *  smallhead => masthead
    */
-  transition('portfolio => home, contact => home, painting => home', [
+  transition('smallhead => masthead', [
     // Before animate
     positionAbsolute,
-    query(':enter .masthead hr, :enter .masthead p', [style({opacity: 0})]),
+    query(':enter .masthead', [
+      style({ height: smallheadHeight, opacity: 0 })
+    ], { optional: true }),
+    query(':enter .masthead hr, :enter .masthead p', [
+      style({ opacity: 0 })
+    ], { optional: true }),
+    query(':enter .page-section', [
+      style({ transform: 'translateY(50px)', opacity: 0 }),
+    ], { optional: true }),
     // Animate
     group([
-      // LEAVING PAGE
-      query(':leave .smallhead', [
-        style({height: smallheadHeight}),
-        animate(duration + 'ms ease', style({height: mastheadHeight, 'margin-bottom': '60px'}))
-      ], {optional: true}),
-      query(':leave .smallhead h1, :leave .smallhead p, :leave .smallhead hr', [
-        style({opacity: 1}),
-        animate(duration / 2 + 'ms ease', style({opacity: 0}))
-      ], {optional: true}),
       // ENTERING PAGE
       query(':enter .masthead', [
-        style({height: smallheadHeight, opacity: 0}),
-        animate(duration + 'ms ease', style({height: mastheadHeight, opacity: 1}))
-      ], {optional: true}),
-      // PAGE SECTION
-      fadeLeavePageSection,
-      fadeEnterPageSection
-    ]),
-    query(':enter .masthead hr', [
-      style({transform: 'translateY(50px)'}),
-      animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({transform: 'none', opacity: 1}))
-    ], {optional: true}),
-    query(':enter .masthead p', [
-      style({transform: 'translateY(50px)'}),
-      animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({transform: 'none', opacity: 1}))
-    ], {optional: true}),
-    // Animate child
-    query(':enter', animateChild(), {optional: true}),
-  ]),
-
-  /**
-   * * => home
-   */
-  transition('* => home', [
-    // Before animate
-    positionAbsolute,
-    query(':enter .masthead hr, :enter .masthead p', [style({opacity: 0})]),
-    // Animate
-    query(':enter .masthead hr', [
-      style({transform: 'translateY(50px)'}),
-      animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({transform: 'none', opacity: 1}))
-    ], {optional: true}),
-    query(':enter .masthead p', [
-      style({transform: 'translateY(50px)'}),
-      animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({transform: 'none', opacity: 1}))
-    ], {optional: true}),
-    fadeEnterPageSection,
-    // Animate child
-    query(':enter', animateChild(), {optional: true}),
-  ]),
-
-  /**
-   * Portfolio <=> Contact
-   */
-  transition('portfolio <=> contact', [
-    // Before animate
-    positionAbsolute,
-    query(':enter .smallhead p, :enter .smallhead hr', [style({opacity: 0})]),
-    // Animate
-    group([
+        animate(duration + 'ms ease', style({ opacity: 1 }))
+      ], { optional: true }),
+      query(':enter .masthead', [
+        animate(duration + 'ms ease', style({ height: mastheadHeight }))
+      ], { optional: true }),
       // LEAVING PAGE
-      query(':leave .smallhead h1', [
-        animate(duration / 2 + 'ms ease', style({opacity: 0}))
-      ], {optional: true}),
-      query(':leave .smallhead p', [
-        animate(duration / 2 + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({transform: 'translateY(25px)', opacity: 0}))
-      ], {optional: true}),
-      // ENTERING PAGE
-      query(':enter .smallhead', [
-        style({opacity: 0}),
-        animate(duration + 'ms ease', style({opacity: 1}))
-      ], {optional: true}),
-      query(':enter .smallhead h1', [
-        style({opacity: 0}),
-        animate(duration + 'ms ease', style({opacity: 1}))
-      ], {optional: true}),
-      // PAGE SECTION
-      fadeLeavePageSection,
-      fadeEnterPageSection
+      query(':leave .smallhead hr, :leave .smallhead p', [
+        animate(duration / 2 + 'ms ease', style({ opacity: 0 }))
+      ], { optional: true }),
+      query(':leave .smallhead', [
+        animate(duration + 'ms ease', style({ height: mastheadHeight }))
+      ], { optional: true }),
+      // MAIN
+      hideLeaveMain,
+      showEnterMain
     ]),
-    query(':enter .smallhead hr', [
-      style({transform: 'translateY(50px)'}),
-      animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({transform: 'none', opacity: 1}))
-    ], {optional: true}),
-    query(':enter .smallhead p', [
-      style({transform: 'translateY(50px)'}),
-      animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({transform: 'none', opacity: 1}))
-    ], {optional: true}),
+    group([
+      query(':enter .masthead hr, :enter .masthead p', [
+        style({ transform: 'translateY(50px)' }),
+        stagger(20, animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({ transform: 'none', opacity: 1 }))),
+      ], { optional: true }),
+
+      query(':enter .page-section', [
+        style({ transform: 'translateY(50px)', opacity: 0 }),
+        animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({ transform: 'none', opacity: 1 })),
+      ], { optional: true }),
+    ]),
     // Animate child
-    query(':enter', animateChild(), {optional: true}),
+    query(':enter', animateChild(), { optional: true }),
   ]),
 
   /**
-   * * => Contact, Portfolio
-   */
-  transition('* => portfolio, * => contact, * => painting', [
+  *  smallhead <=> smallhead
+  */
+  transition('* <=> *', [
     // Before animate
     positionAbsolute,
-    query(':enter .smallhead p, :enter .smallhead hr', [style({opacity: 0})]),
-    // Animate
-    fadeEnterPageSection,
-    query(':enter .smallhead hr', [
-      style({transform: 'translateY(50px)'}),
-      animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({transform: 'none', opacity: 1}))
-    ], {optional: true}),
-    query(':enter .smallhead p', [
-      style({transform: 'translateY(50px)'}),
-      animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({transform: 'none', opacity: 1}))
-    ], {optional: true}),
+    query(':enter .smallhead', [
+      style({ opacity: 0 })
+    ], { optional: true }),
+
+    query(':enter .smallhead hr, :enter .smallhead p', [
+      style({ transform: 'translateY(50px)', opacity: 0 })
+    ], { optional: true }),
+
+    query(':enter .page-section', [
+      style({ transform: 'translateY(50px)', opacity: 0 }),
+    ], { optional: true }),
+
+    // LEAVING PAGE
+    group([
+      query(':leave .smallhead hr, :leave .smallhead p', [
+        animate(duration / 2 + 'ms ease', style({ opacity: 0 }))
+      ], { optional: true }),
+
+      query(':leave .page-section', [
+        style({ transform: 'none', opacity: 1 }),
+        animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({ transform: 'translateY(50px)', opacity: 0 })),
+      ], { optional: true }),
+    ]),
+
+    // ENTERING PAGE
+    group([
+      query(':enter .smallhead', [
+        animate(duration + 'ms ease', style({ opacity: 1 }))
+      ], { optional: true }),
+
+      query(':enter .smallhead hr, :enter .smallhead p', [
+        stagger(20, animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({ transform: 'none', opacity: 1 }))),
+      ], { optional: true }),
+
+      query(':enter .page-section', [
+        animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({ transform: 'none', opacity: 1 })),
+      ], { optional: true }),
+    ]),
     // Animate child
-    query(':enter', animateChild(), {optional: true}),
+    query(':enter', animateChild(), { optional: true }),
   ]),
 ]);

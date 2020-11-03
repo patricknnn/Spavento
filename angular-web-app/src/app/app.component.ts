@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
-import {routeAnimations} from './animations/route-animations2';
-import {RouterOutlet} from '@angular/router';
+import { Component } from '@angular/core';
+import { routeAnimations } from './animations/route-animations';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +12,8 @@ export class AppComponent {
   title = 'Spavento Paintings';
 
   prepareRoute(outlet: RouterOutlet): any {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
+    return (
+      outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation
+    );
   }
 }
