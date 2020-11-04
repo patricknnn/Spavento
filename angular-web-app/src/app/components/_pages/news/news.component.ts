@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsComponent implements OnInit {
   title = 'News';
-  subTitle = 'Stay up to date!';
+  subTitle = 'Stay up to date';
 
   constructor() { }
 

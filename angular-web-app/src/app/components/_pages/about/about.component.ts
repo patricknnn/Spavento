@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
   title = 'About';
-  subTitle = 'Everything you need to know.';
+  subTitle = 'Everything you need to know';
 
   constructor() { }
 

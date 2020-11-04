@@ -9,6 +9,8 @@ import { PaintingService } from '../../../services/painting.service';
   styleUrls: ['./painting-detail.component.scss'],
 })
 export class PaintingDetailComponent implements OnInit {
+  title = '';
+  subTitle = 'Painting details';
   painting: Painting;
 
   constructor(

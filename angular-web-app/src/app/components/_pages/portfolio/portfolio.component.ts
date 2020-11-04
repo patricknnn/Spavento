@@ -7,7 +7,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class PortfolioComponent implements OnInit {
   title = 'Portfolio';
-  subTitle = 'An overview of my work.';
+  subTitle = 'An overview of my work';
 
   constructor() {
   }
