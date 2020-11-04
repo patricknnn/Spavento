@@ -6,12 +6,14 @@ import { PortfolioComponent } from './components/_pages/portfolio/portfolio.comp
 import { AboutComponent } from './components/_pages/about/about.component';
 import { ContactComponent } from './components/_pages/contact/contact.component';
 import { PaintingDetailComponent } from './components/_pages/painting-detail/painting-detail.component';
+import { NewsComponent } from './components/_pages/news/news.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   // pages
   { path: 'home', component: HomeComponent, data: { animation: 'home' } },
   { path: 'portfolio', component: PortfolioComponent, data: { animation: 'portfolio' } },
+  { path: 'news', component: NewsComponent, data: { animation: 'news' } },
   { path: 'about', component: AboutComponent, data: { animation: 'about' } },
   { path: 'contact', component: ContactComponent, data: { animation: 'contact' } },
   { path: 'painting', component: PaintingDetailComponent, data: { animation: 'painting' } },

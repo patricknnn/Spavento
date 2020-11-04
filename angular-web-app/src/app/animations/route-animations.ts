@@ -88,7 +88,7 @@ export const routeAnimations = trigger('routeAnimations', [
   /**
    *  smallhead => masthead
    */
-  transition('portfolio => home, contact => home, painting => home, about => home, 404 => home', [
+  transition('portfolio => home, news => home, contact => home, painting => home, about => home, 404 => home', [
     // Before animate
     positionAbsolute,
     hideFooter,

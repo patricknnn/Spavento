@@ -26,6 +26,7 @@ import { SectionTitleComponent } from './components/section-title/section-title.
 import { PaintingDetailComponent } from './components/_pages/painting-detail/painting-detail.component';
 import { CarouselImgComponent } from './components/carousel-img/carousel-img.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NewsComponent } from './components/_pages/news/news.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SectionTitleComponent,
     PaintingDetailComponent,
     CarouselImgComponent,
+    NewsComponent,
   ],
   imports: [
     BrowserModule,
