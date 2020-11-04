@@ -8,7 +8,7 @@
 
 .navbar-brand {
   font-weight: 700;
-  color: $color-txt-black;
+  color: $color-txt-dark;
 }
 
 .navbar-brand-img {
@@ -21,7 +21,7 @@
 }
 
 .nav-link {
-  color: $color-txt-black;
+  color: $color-txt-dark;
   font-weight: 700;
   font-size: 1rem;
   padding: 1.2rem 0 !important;
@@ -69,10 +69,10 @@
     background-color: transparent;
   }
   #mainNav .navbar-brand {
-    color: $color-txt-white;
+    color: $color-txt-light;
   }
   #mainNav .navbar-nav .nav-item .nav-link {
-    color: $color-txt-white;
+    color: $color-txt-light;
     margin: 0 1rem !important;
   }
   #mainNav .navbar-nav .nav-item:last-child .nav-link {
@@ -85,9 +85,9 @@
     background-color: $color-light;
   }
   #mainNav.navbar-scrolled .navbar-brand {
-    color: $color-txt-black;
+    color: $color-txt-dark;
   }
   #mainNav.navbar-scrolled .navbar-nav .nav-item .nav-link {
-    color: $color-txt-black;
+    color: $color-txt-dark;
   }
 }

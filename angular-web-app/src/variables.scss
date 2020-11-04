@@ -1,31 +1,25 @@
-$color-primary: #2196F3;
-$color-primary-light: #BBDEFB;
-$color-primary-dark: #1976D2;
+$color-primary: #945D60;
+$color-secondary: #626E60;
+$color-accent: #AF473C;
+$color-warn: #AF473C;
 
-$color-accent: #FF4081;
+$color-dark: #3C3C3C;
+$color-light: #F8F9FA;
 
-$color-warn: #F44336;
+$color-theme-light: #FFF;
+$color-theme-dark: #212121;
 
-$color-dark: #272727;
-$color-darker: #222;
-
-$color-light: white;
-$color-light-alt: #F8F9FA;
-
-$color-txt-black: rgba(#000, 0.87);
-$color-txt-black-muted: rgba(#000, 0.54);
-$color-txt-white: #fff;
-$color-txt-white-muted: rgba(#fff, 0.7);
+$color-txt-dark: #3C3C3C;
+$color-txt-dark-muted: rgba($color-txt-dark, 0.7);
+$color-txt-light: #F8F9FA;
+$color-txt-light-muted: rgba($color-txt-light, 0.7);
 
 $color-facebook: #3b5998;
 $color-instagram: #f09433;
 $color-twitter: #55acee;
-$color-cyan: #00bcd4;
-$color-gradient-blue: linear-gradient(60deg,#26c6da,#0097a7);
-$color-gradient-green: linear-gradient(60deg,#66bb6a,#388e3c);
-$color-gradient-orange: linear-gradient(60deg,#ffa726,#f57c00);
-$color-gradient-red: linear-gradient(60deg,#ef5350,#d32f2f);
-$color-gradient-purple: linear-gradient(60deg,#ab47bc,#7b1fa2);
+$color-gradient-primary: linear-gradient(60deg,#945D60,#643236);
+$color-gradient-secondary: linear-gradient(60deg,#626E60,#384336);
+$color-gradient-accent: linear-gradient(60deg,#AF473C,#7a1715);
 
 $masthead-height: 100vh;
 $smallhead-height: 60vh;

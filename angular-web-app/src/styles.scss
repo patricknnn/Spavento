@@ -67,8 +67,20 @@ button::-moz-focus-inner {
 /**             Helpers             **/
 /*************************************/
 
-.linear-overlay {
+.linear-overlay-black {
   background-image: linear-gradient(to bottom, rgba(black, 0.9) 0%, rgba(black, 0.5) 100%);
+}
+.linear-overlay-dark {
+  background-image: linear-gradient(to bottom, rgba($color-dark, 0.9) 0%, rgba($color-dark, 0.5) 100%);
+}
+.linear-overlay-primary {
+  background-image: linear-gradient(to bottom, rgba($color-primary, 0.9) 0%, rgba($color-primary, 0.5) 100%);
+}
+.linear-overlay-secondary {
+  background-image: linear-gradient(to bottom, rgba($color-secondary, 0.9) 0%, rgba($color-secondary, 0.5) 100%);
+}
+.linear-overlay-accent {
+  background-image: linear-gradient(to bottom, rgba($color-accent, 0.9) 0%, rgba($color-accent, 0.5) 100%);
 }
 
 .flex-center {
@@ -143,13 +155,13 @@ hr.divider {
 /*************************************/
 
 .theme-light {
-  background-color: #fff !important;
-  color: $color-txt-black !important;
+  background-color: $color-theme-light !important;
+  color: $color-dark !important;
 }
 
 .theme-dark {
-  background-color: $color-dark !important;
-  color: $color-txt-white !important;
+  background-color: $color-theme-dark !important;
+  color: $color-light !important;
 }
 
 /** Backgrounds */
@@ -158,38 +170,32 @@ hr.divider {
   background-color: $color-primary !important;
 }
 
+.bg-secondary {
+  background-color: $color-secondary !important;
+}
+
 .bg-accent {
   background-color: $color-accent !important;
 }
 
 .bg-light {
-  background-color: $color-light-alt !important;
+  background-color: $color-light !important;
 }
 
 .bg-dark {
   background-color: $color-dark !important;
 }
 
-.bg-darker {
-  background-color: $color-darker !important;
-}
-
 /** Gradients */
 
-.gradient-orange {
-  background: $color-gradient-orange;
+.gradient-primary {
+  background: $color-gradient-primary;
 }
-.gradient-red {
-  background: $color-gradient-red;
+.gradient-secondary {
+  background: $color-gradient-secondary;
 }
-.gradient-blue {
-  background: $color-gradient-blue;
-}
-.gradient-green {
-  background: $color-gradient-green;
-}
-.gradient-purple {
-  background: $color-gradient-purple;
+.gradient-accent {
+  background: $color-gradient-accent;
 }
 
 /** Text */
@@ -198,12 +204,8 @@ hr.divider {
   color: $color-primary !important;
 }
 
-.txt-primary-light {
-  color: $color-primary-light !important;
-}
-
-.txt-primary-dark {
-  color: $color-primary-dark !important;
+.txt-secondary {
+  color: $color-secondary !important;
 }
 
 .txt-accent {
@@ -211,17 +213,17 @@ hr.divider {
 }
 
 .txt-light {
-  color: $color-txt-white !important;
+  color: $color-txt-light !important;
 }
 .txt-light-muted {
-  color: $color-txt-white-muted
+  color: $color-txt-light-muted !important
 }
 
 .txt-dark {
-  color: $color-txt-black !important;
+  color: $color-txt-dark !important;
 }
 .txt-dark-muted {
-  color: $color-txt-black-muted !important;
+  color: $color-txt-dark-muted !important;
 }
 
 /***************/

@@ -11,10 +11,117 @@ $custom-typography: mat-typography-config(
 // Common styles for Angular Material.
 @include mat-core($custom-typography);
 
+// Custom palette
+/* For use in src/lib/core/theming/_palette.scss */
+$spavento-primary: (
+    50 : #f2ecec,
+    100 : #dfcecf,
+    200 : #caaeb0,
+    300 : #b48e90,
+    400 : #a47578,
+    500 : #945d60,
+    600 : #8c5558,
+    700 : #814b4e,
+    800 : #774144,
+    900 : #653033,
+    A100 : #ffb1b5,
+    A200 : #ff7e85,
+    A400 : #ff4b55,
+    A700 : #ff313d,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #ffffff,
+    )
+);
+
+/* For use in src/lib/core/theming/_palette.scss */
+$spavento-secondary: (
+    50 : #eceeec,
+    100 : #d0d4cf,
+    200 : #b1b7b0,
+    300 : #919a90,
+    400 : #7a8478,
+    500 : #626e60,
+    600 : #5a6658,
+    700 : #505b4e,
+    800 : #465144,
+    900 : #343f33,
+    A100 : #a0fb97,
+    A200 : #73fa65,
+    A400 : #40ff2d,
+    A700 : #29ff14,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+/* For use in src/lib/core/theming/_palette.scss */
+$spavento-accent: (
+    50 : #f5e9e8,
+    100 : #e7c8c5,
+    200 : #d7a39e,
+    300 : #c77e77,
+    400 : #bb6359,
+    500 : #af473c,
+    600 : #a84036,
+    700 : #9f372e,
+    800 : #962f27,
+    900 : #86201a,
+    A100 : #ffc1be,
+    A200 : #ff918b,
+    A400 : #ff6058,
+    A700 : #ff483f,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #ffffff,
+    )
+);
+
+
+
+
+
 // Light theme.
-$light-primary: mat-palette($mat-blue);
-$light-accent:  mat-palette($mat-pink);
-$light-warn:    mat-palette($mat-deep-orange);
+$light-primary: mat-palette($spavento-primary);
+$light-accent:  mat-palette($spavento-secondary);
+$light-warn:    mat-palette($spavento-accent);
 $light-theme:   mat-light-theme((
   color: (
     primary: $light-primary,
@@ -24,9 +131,9 @@ $light-theme:   mat-light-theme((
 ));
 
 // Dark theme.
-$dark-primary: mat-palette($mat-blue);
-$dark-accent:  mat-palette($mat-pink);
-$dark-warn:    mat-palette($mat-deep-orange);
+$dark-primary: mat-palette($spavento-primary);
+$dark-accent:  mat-palette($spavento-secondary);
+$dark-warn:    mat-palette($spavento-accent);
 $dark-theme:   mat-dark-theme((
   color: (
     primary: $dark-primary,
