@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent implements OnInit {
+  public isMenuCollapsed = true;
+
   constructor() {}
 
   ngOnInit(): void {
@@ -22,12 +24,14 @@ export class NavComponent implements OnInit {
 
   }
 
-  toggleIconOpen(): void {
+  toggleMenu(): void {
+    this.isMenuCollapsed = !this.isMenuCollapsed;
     const animatedIcon = document.getElementById("animatedIcon");
     animatedIcon.classList.toggle("open");
   }
 
-  removeIconOpen(): void {
+  closeMenu(): void {
+    this.isMenuCollapsed = true;
     const animatedIcon = document.getElementById("animatedIcon");
     animatedIcon.classList.remove("open");
   }

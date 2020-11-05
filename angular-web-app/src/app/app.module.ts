@@ -27,6 +27,7 @@ import { PaintingDetailComponent } from './components/_pages/painting-detail/pai
 import { CarouselImgComponent } from './components/carousel-img/carousel-img.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NewsComponent } from './components/_pages/news/news.component';
+import { NewsCardComponent } from './components/news-card/news-card.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { NewsComponent } from './components/_pages/news/news.component';
     PaintingDetailComponent,
     CarouselImgComponent,
     NewsComponent,
+    NewsCardComponent,
   ],
   imports: [
     BrowserModule,

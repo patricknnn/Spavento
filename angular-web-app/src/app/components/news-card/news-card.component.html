@@ -1,0 +1,72 @@
+<mat-card class="card-clean">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="news-header">
+          <img
+            class="w-100 rounded mat-elevation-z8"
+            src="../../../assets/img/hooglander.jpg"
+            alt="news"
+          />
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="d-flex flex-column justify-content-center h-100">
+          <h6 class="txt-secondary text-uppercase mt-2">{{ category }}</h6>
+          <h3>{{ title }}</h3>
+          <p>{{ text }}</p>
+          <p class="txt-dark-muted">
+            by <strong>{{ author }}</strong
+            >, {{ date }}
+          </p>
+          <p>
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="openNewsItem(content)"
+            >
+              Read more
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-card>
+
+<!-- Modal -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <div></div>
+    <button mat-raised-button color="primary" (click)="modal.close()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <div class="container">
+      <app-section-title
+        [title]="title"
+        [subTitle]="category"
+        [text]="'by ' + author"
+      >
+      </app-section-title>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p>{{text}}</p>
+        </div>
+        <div class="col-md-6">
+          <p>{{text}}</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <app-maps></app-maps>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer"></div>
+</ng-template>

@@ -25,12 +25,11 @@
   position: absolute;
   bottom: 0;
   text-align: center;
-  opacity: 0;
   color: #fff;
   border-radius: 5px;
-  background-color: rgba($color-primary, 0.9);
+  background-color: rgba($color-dark, 0.9);
   transition: opacity 0.25s ease;
-  cursor: grab;
+  opacity: 0;
 }
 
 .portfolio-box:hover .portfolio-box-caption {
