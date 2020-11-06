@@ -2,7 +2,7 @@ import { NewsItem } from "./app/models/newsitem";
 
 export const NEWS: NewsItem[] = [
     new NewsItem(
-        "Spavento's upcoming expositions this month",
+        "Spavento's upcoming expositions",
         "John Doe",
         "Expositions",
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis neque id ex volutpat, quis tempus purus finibus. Quisque et vulputate nisi. In semper maximus arcu a auctor. Nullam mi ex, fermentum nec tellus vitae, tincidunt malesuada libero.",

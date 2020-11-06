@@ -49,8 +49,8 @@
         [link]="'/news'"
       ></app-section-title>
       <div class="row">
-        <div class="col-md-4" *ngFor="let item of newsItems">
-          <app-news-card [newsItem]="item" [direction]="'col'"></app-news-card>
+        <div class="col-12">
+          <app-latest-news></app-latest-news>
         </div>
       </div>
     </div>
@@ -60,7 +60,7 @@
   <section class="page-section">
     <div class="container">
       <app-section-title
-        [title]="'Latest'"
+        [title]="'Recent work'"
         [subTitle]="'Take a look at my recent work'"
         [link]="'/portfolio'"
       ></app-section-title>

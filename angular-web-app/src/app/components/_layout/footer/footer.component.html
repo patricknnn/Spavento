@@ -5,33 +5,19 @@
     <div class="container">
       <div class="row">
 
-        <div class="col-lg-4 pb-4">
-          <h4 class="title-underlined">About.</h4>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adip elit. Maiores deleniti explicabo voluptatem
-            quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus.
-          </p>
+        <div class="col-md-6 pb-4">
+          <h4 class="title-underlined">{{ content.aboutTitle }}</h4>
+          <p>{{ content.aboutText }}</p>
         </div>
 
-        <div class="col-lg-4 pb-4">
-          <h4 class="title-underlined">Stay updated.</h4>
-          <p class="pb-3">Follow me on social media to stay updated.</p>
+        <div class="col-md-6 pb-4">
+          <h4 class="title-underlined">{{ content.socialTitle }}</h4>
+          <p>{{ content.socialText }}</p>
           <ul class="list-inline">
             <!-- facebook, twitter, instagram -->
-            <li class="list-inline-item"><a><i class="fab fa-facebook-f fa-lg mr-5 icon-facebook"></i></a></li>
-            <li class="list-inline-item"><a><i class="fab fa-twitter fa-lg mr-5 icon-twitter"></i></a></li>
-            <li class="list-inline-item"><a><i class="fab fa-instagram fa-lg mr-5 icon-instagram"></i></a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-4 pb-4">
-          <h4 class="title-underlined">Quick links.</h4>
-          <p>Navigate to the page you are looking for.</p>
-          <ul class="list-unstyled">
-            <!-- facebook, twitter, instagram -->
-            <li class="mt-2"><a><i class="fas fa-share"></i> Home</a></li>
-            <li class="mt-2"><a><i class="fas fa-share"></i> Portfolio</a></li>
-            <li class="mt-2"><a><i class="fas fa-share"></i> Contact</a></li>
+            <li class="list-inline-item"><a href="{{ content.facebookLink }}" target="blank"><img class="social-icon" src="../../../../assets/img/icons/facebook.png" alt=""></a></li>
+            <li class="list-inline-item"><a href="{{ content.twitterLink }}" target="blank"><img class="social-icon" src="../../../../assets/img/icons/twitter.png" alt=""></a></li>
+            <li class="list-inline-item"><a href="{{ content.instagramLink }}" target="blank"><img class="social-icon" src="../../../../assets/img/icons/instagram.png" alt=""></a></li>
           </ul>
         </div>
 
@@ -44,7 +30,7 @@
     <div class="container">
       <hr>
       <div class="row d-flex flex-row align-items-center justify-content-center">
-        <div class="text-center">© 2020 Spavento Paintings.</div>
+        <div class="text-center">{{ content.footerText }}</div>
       </div>
     </div>
   </div>

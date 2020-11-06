@@ -28,6 +28,7 @@ import { CarouselImgComponent } from './components/carousel-img/carousel-img.com
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NewsComponent } from './components/_pages/news/news.component';
 import { NewsCardComponent } from './components/news-card/news-card.component';
+import { LatestNewsComponent } from './components/latest-news/latest-news.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { NewsCardComponent } from './components/news-card/news-card.component';
     CarouselImgComponent,
     NewsComponent,
     NewsCardComponent,
+    LatestNewsComponent,
   ],
   imports: [
     BrowserModule,

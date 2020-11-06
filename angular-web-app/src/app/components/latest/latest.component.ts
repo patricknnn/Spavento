@@ -1,11 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PaintingService } from '../../services/painting.service';
 import { Painting } from '../../models/painting';
 import { NguCarouselConfig } from '@ngu/carousel';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-latest',
   templateUrl: './latest.component.html',
   styleUrls: ['./latest.component.scss'],
@@ -24,15 +24,20 @@ export class LatestComponent implements OnInit {
 
   constructor(
     private paintingService: PaintingService,
+    private modalService: NgbModal,
     private router: Router
   ) {
-    this.paintings = this.paintingService.getLatestPaintings(5);
   }
 
   ngOnInit(): void {
+    this.paintings = this.paintingService.getLatestPaintings(5);
   }
 
   goToPaintingDetails(paintingId: number): void {
     this.router.navigate(['/painting', { id: paintingId }]);
+  }
+
+  openImage(content) {
+    this.modalService.open(content, { size: 'xl', windowClass: 'transparent-modal'});
   }
 }
