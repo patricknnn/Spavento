@@ -18,14 +18,8 @@
       ></app-section-title>
 
       <div class="row">
-        <div class="col-12">
-          <app-news-card></app-news-card>
-        </div>
-        <div class="col-12">
-          <app-news-card></app-news-card>
-        </div>
-        <div class="col-12">
-          <app-news-card></app-news-card>
+        <div class="col-12" *ngFor="let item of newsItems">
+          <app-news-card [newsItem]="item"></app-news-card>
         </div>
       </div>
     </div>

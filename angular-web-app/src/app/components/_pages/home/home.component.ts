@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Service} from '../../../models/service';
 import {Painting} from '../../../models/painting';
 import {PaintingService} from '../../../services/painting.service';
+import { NewsService } from 'src/app/services/news.service';
+import { NewsItem } from 'src/app/models/newsitem';
 
 @Component({
   selector: 'app-home',
@@ -11,14 +13,19 @@ import {PaintingService} from '../../../services/painting.service';
 export class HomeComponent implements OnInit {
   services: Service[];
   featuredPainting: Painting;
+  newsItems: NewsItem[];
   title = 'Spavento';
   subTitle = 'Paintings & Artwork';
 
-  constructor(private paintingService: PaintingService) {
+  constructor(
+    private paintingService: PaintingService,
+    private newsService: NewsService
+    ) {
   }
 
   ngOnInit(): void {
     this.featuredPainting = this.paintingService.getLatestPaintings(1)[0];
+    this.newsItems = this.newsService.getAllNews();
     this.services = [
       new Service(
         'brush',

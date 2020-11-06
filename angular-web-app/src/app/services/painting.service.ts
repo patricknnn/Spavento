@@ -1,15 +1,14 @@
-import {Injectable} from '@angular/core';
-import {PAINTINGS} from '../../mock-paintings';
-import {Painting} from '../models/painting';
+import { Injectable } from '@angular/core';
+import { PAINTINGS } from '../../mock-paintings';
+import { Painting } from '../models/painting';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PaintingService {
   paintings = PAINTINGS;
 
-  constructor() {
-  }
+  constructor() {}
 
   getAllPaintings(): Painting[] {
     return this.paintings;
@@ -20,7 +19,7 @@ export class PaintingService {
   }
 
   getPaintingById(id: number): Painting {
-    return this.paintings.find(x => x.id === id);
+    return this.paintings.find((x) => x.id === id);
   }
 
   getImagesByPaintingId(id: number): string[] {

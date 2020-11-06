@@ -1,23 +1,26 @@
 <mat-card class="card-clean">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-4">
+      <div [class]="colOne">
         <div class="news-header">
           <img
+            [class]="imageClass"
             class="w-100 rounded mat-elevation-z8"
-            src="../../../assets/img/hooglander.jpg"
+            src="{{newsItem.image}}"
             alt="news"
           />
         </div>
       </div>
-      <div class="col-md-8">
+      <div [class]="colTwo">
         <div class="d-flex flex-column justify-content-center h-100">
-          <h6 class="txt-secondary text-uppercase mt-2">{{ category }}</h6>
-          <h3>{{ title }}</h3>
-          <p>{{ text }}</p>
+          <h6 class="txt-secondary text-uppercase mt-2">
+            {{ newsItem.category }}
+          </h6>
+          <h3>{{ newsItem.title }}</h3>
+          <p>{{ newsItem.text }}</p>
           <p class="txt-dark-muted">
-            by <strong>{{ author }}</strong
-            >, {{ date }}
+            by <strong>{{ newsItem.author }}</strong
+            >, {{ newsItem.date }}
           </p>
           <p>
             <button
@@ -44,20 +47,37 @@
   </div>
 
   <div class="modal-body">
-    <div class="container">
-      <app-section-title
-        [title]="title"
-        [subTitle]="category"
-        [text]="'by ' + author"
-      >
-      </app-section-title>
-
+    <div class="container-fluid">
       <div class="row">
+        <div class="col-md-4">
+          <div class="news-header">
+            <img
+              class="w-100 rounded mat-elevation-z8"
+              src="{{newsItem.image}}"
+              alt="news"
+            />
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="d-flex flex-column justify-content-center h-100">
+            <h6 class="txt-secondary text-uppercase mt-2">
+              {{ newsItem.category }}
+            </h6>
+            <h3>{{ newsItem.title }}</h3>
+            <p class="txt-dark-muted">
+              by <strong>{{ newsItem.author }}</strong
+              >, {{ newsItem.date }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-5">
         <div class="col-md-6">
-          <p>{{text}}</p>
+          <p>{{ newsItem.text }}</p>
         </div>
         <div class="col-md-6">
-          <p>{{text}}</p>
+          <p>{{ newsItem.text }}</p>
         </div>
       </div>
 

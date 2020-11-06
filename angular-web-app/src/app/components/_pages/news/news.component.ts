@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NewsItem } from 'src/app/models/newsitem';
+import { NewsService } from '../../../services/news.service';
 
 @Component({
   selector: 'app-news',
@@ -8,10 +10,14 @@ import { Component, OnInit } from '@angular/core';
 export class NewsComponent implements OnInit {
   title = 'News';
   subTitle = 'Stay up to date';
+  newsItems: NewsItem[];
 
-  constructor() { }
+  constructor(
+    private newsService: NewsService,
+  ) { }
 
   ngOnInit(): void {
+    this.newsItems = this.newsService.getAllNews();
   }
 
 }

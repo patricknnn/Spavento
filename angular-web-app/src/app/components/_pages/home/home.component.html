@@ -5,17 +5,21 @@
 <app-header [title]="title" [subTitle]="subTitle" [small]="false"></app-header>
 
 <main id="home" class="main main-raised">
-
   <!-- Services -->
   <section class="page-section bg-light">
     <div class="container">
       <app-section-title
         [title]="'Services'"
         [subTitle]="'What i do'"
-        [text]="'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam.'"
+        [text]="
+          'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam.'
+        "
       ></app-section-title>
       <div class="row">
-        <div *ngFor="let service of services" class="col-lg-4 col-md-6 col-sm-12">
+        <div
+          *ngFor="let service of services"
+          class="col-lg-4 col-md-6 col-sm-12"
+        >
           <!-- Service cards -->
           <app-service-card [service]="service"></app-service-card>
         </div>
@@ -36,13 +40,29 @@
     </div>
   </section>
 
-  <!-- Latest -->
+  <!-- Latest News -->
   <section class="page-section bg-light">
+    <div class="container">
+      <app-section-title
+        [title]="'Latest News'"
+        [subTitle]="'Stay up to date'"
+        [link]="'/news'"
+      ></app-section-title>
+      <div class="row">
+        <div class="col-md-4" *ngFor="let item of newsItems">
+          <app-news-card [newsItem]="item" [direction]="'col'"></app-news-card>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest paintings -->
+  <section class="page-section">
     <div class="container">
       <app-section-title
         [title]="'Latest'"
         [subTitle]="'Take a look at my recent work'"
-        [link]="'#'"
+        [link]="'/portfolio'"
       ></app-section-title>
       <div class="row">
         <div class="col-12">
@@ -53,14 +73,13 @@
   </section>
 
   <!-- CTA -->
-  <section class="page-section">
+  <section class="page-section bg-light">
     <div class="container">
       <div class="col-12">
         <app-call-to-action></app-call-to-action>
       </div>
     </div>
   </section>
-
 </main>
 
 <!-- Footer -->

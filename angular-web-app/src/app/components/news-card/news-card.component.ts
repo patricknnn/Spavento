@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NewsItem } from '../../models/newsitem';
 
 @Component({
   selector: 'app-news-card',
@@ -7,22 +8,22 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./news-card.component.scss']
 })
 export class NewsCardComponent implements OnInit {
-  @Input() category: string;
-  @Input() title: string;
-  @Input() author: string;
-  @Input() text: string;
-  @Input() date: string;
+  @Input() newsItem: NewsItem;
+  @Input() direction = "row";
+  colOne = "col-md-4";
+  colTwo = "col-md-8";
+  imageClass = ""
 
   constructor(
     private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
-    this.title = "Spavento's upcoming expositions this month";
-    this.category = "Expositions";
-    this.author = "Spavento admin";
-    this.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis neque id ex volutpat, quis tempus purus finibus. Quisque et vulputate nisi. In semper maximus arcu a auctor. Nullam mi ex, fermentum nec tellus vitae, tincidunt malesuada libero.";
-    this.date = "2 days ago";
+    if(this.direction == "col") {
+      this.colOne = "col-12";
+      this.colTwo = "col-12";
+      this.imageClass = "img-news-small";
+    }
   }
 
   openNewsItem(content) {
