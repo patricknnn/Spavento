@@ -1,22 +1,134 @@
 <!-- Card-->
-<mat-card>
-  <mat-card-content>
-    <mat-list>
-      <mat-list-item>
-        <mat-icon mat-list-icon>maps</mat-icon>
-        <div mat-line>Address</div>
-        <div mat-line>Kropswolde, Groningen</div>
-      </mat-list-item>
-      <mat-list-item>
-        <mat-icon mat-list-icon>email</mat-icon>
-        <div mat-line>Email</div>
-        <div mat-line>mail@domain.com</div>
-      </mat-list-item>
-      <mat-list-item>
-        <mat-icon mat-list-icon>phone</mat-icon>
-        <div mat-line>Phone</div>
-        <div mat-line>06 12345678</div>
-      </mat-list-item>
-    </mat-list>
-  </mat-card-content>
+<mat-card class="card-clean p-0">
+  <div class="container-fluid">
+    <div class="row">
+      <div [hidden]="submitted" class="w-100">
+        <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+          <div class="form-group">
+            <mat-form-field
+              appearance="{{ appearance }}"
+              color="accent"
+              class="w-100"
+            >
+              <mat-label>Name</mat-label>
+              <input
+                matInput
+                type="text"
+                [(ngModel)]="model.name"
+                name="name"
+                id="name"
+                #name="ngModel"
+                required
+              />
+              <mat-error *ngIf="name.valid || name.pristine">
+                Name is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-group">
+            <mat-form-field
+              appearance="{{ appearance }}"
+              color="accent"
+              class="w-100"
+            >
+              <mat-label>Email</mat-label>
+              <input
+                matInput
+                type="email"
+                placeholder="info@example.com"
+                [(ngModel)]="model.email"
+                name="email"
+                id="email"
+                #email="ngModel"
+                required
+              />
+              <mat-error *ngIf="email.valid || email.pristine">
+                Email is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-group">
+            <mat-form-field
+              appearance="{{ appearance }}"
+              color="accent"
+              class="w-100"
+            >
+              <mat-label>Subject</mat-label>
+              <mat-select
+                [(ngModel)]="model.subject"
+                name="subject"
+                id="subject"
+                #subject="ngModel"
+                required
+              >
+                <mat-option
+                  *ngFor="let subject of subjects"
+                  [value]="subject"
+                  >{{ subject }}</mat-option
+                >
+              </mat-select>
+              <mat-error *ngIf="subject.valid || subject.pristine">
+                Subject is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-group">
+            <mat-form-field
+              appearance="{{ appearance }}"
+              color="accent"
+              class="w-100"
+            >
+              <mat-label>Message</mat-label>
+              <textarea
+                matInput
+                [(ngModel)]="model.text"
+                name="text"
+                id="text"
+                #text="ngModel"
+                required
+              ></textarea>
+              <mat-error *ngIf="text.valid || text.pristine">
+                Message is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <button
+            mat-raised-button
+            color="accent"
+            type="submit"
+            class="mr-3"
+            [disabled]="!contactForm.form.valid"
+          >
+            Submit
+          </button>
+
+          <button
+            mat-raised-button
+            color="primary"
+            type="button"
+            (click)="resetForm(); contactForm.reset()"
+          >
+            Clear
+          </button>
+        </form>
+      </div>
+
+      <!-- Submitted -->
+      <div [hidden]="!submitted">
+        <p>Thanks for your message.</p>
+        <button 
+        mat-raised-button
+        color="accent"
+        type="button"
+        (click)="submitted = false"
+        >
+          Edit
+        </button>
+      </div>
+    </div>
+  </div>
 </mat-card>

@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Painting} from '../../models/painting';
 import {Router} from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-featured',
@@ -12,6 +13,7 @@ export class FeaturedComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private modalService: NgbModal,
   ) {
   }
 
@@ -29,6 +31,10 @@ export class FeaturedComponent implements OnInit {
     } else {
       return this.painting.description;
     }
+  }
+
+  openImage(content) {
+    this.modalService.open(content, { size: 'xl', windowClass: 'transparent-modal'});
   }
 
 }

@@ -5,7 +5,7 @@
         <div class="news-header">
           <img
             [class]="imageClass"
-            class="w-100 rounded mat-elevation-z8"
+            class="w-100 rounded mat-elevation-z4"
             src="{{newsItem.image}}"
             alt="news"
           />
@@ -13,19 +13,19 @@
       </div>
       <div [class]="colTwo">
         <div class="d-flex flex-column justify-content-center h-100">
-          <h6 class="txt-secondary text-uppercase mt-2">
+          <h6 class="txt-primary text-uppercase mt-2">
             {{ newsItem.category }}
           </h6>
           <h3>{{ newsItem.title }}</h3>
           <p>{{ newsItem.text }}</p>
           <p class="txt-dark-muted">
             by <strong>{{ newsItem.author }}</strong
-            >, {{ newsItem.date }}
+            >, {{ formattedDate }}
           </p>
           <p>
             <button
               mat-raised-button
-              color="primary"
+              color="accent"
               (click)="openNewsItem(content)"
             >
               Read more
@@ -41,7 +41,7 @@
 <ng-template #content let-modal>
   <div class="modal-header">
     <div></div>
-    <button mat-raised-button color="primary" (click)="modal.close()">
+    <button mat-raised-button color="accent" (click)="modal.close()">
       <mat-icon>close</mat-icon>
     </button>
   </div>
@@ -52,7 +52,7 @@
         <div class="col-md-4">
           <div class="news-header">
             <img
-              class="w-100 rounded mat-elevation-z8"
+              class="w-100 rounded mat-elevation-z4"
               src="{{newsItem.image}}"
               alt="news"
             />
@@ -65,8 +65,7 @@
             </h6>
             <h3>{{ newsItem.title }}</h3>
             <p class="txt-dark-muted">
-              by <strong>{{ newsItem.author }}</strong
-              >, {{ newsItem.date }}
+              by <strong>{{ newsItem.author }}</strong>, {{ formattedDate }}
             </p>
           </div>
         </div>

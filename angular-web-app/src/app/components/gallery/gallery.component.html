@@ -32,7 +32,7 @@
         <div class="portfolio-project-buttons">
           <button
             mat-fab
-            color="primary"
+            color="accent"
             class="mx-2"
             aria-label="Show image"
             (click)="openImage(content)"
@@ -41,7 +41,7 @@
           </button>
           <button
             mat-fab
-            color="primary"
+            color="accent"
             class="mx-2"
             aria-label="Show details"
             (click)="goToPaintingDetails(painting.id)"
@@ -56,7 +56,7 @@
     <ng-template #content let-modal>
       <div class="modal-header">
         <div></div>
-        <button mat-raised-button color="primary" (click)="modal.close()">
+        <button mat-raised-button color="accent" (click)="modal.close()">
           <mat-icon>close</mat-icon>
         </button>
       </div>

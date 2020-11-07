@@ -33,7 +33,7 @@ button::-moz-focus-inner {
 /*************************************/
 
 .main {
-  background: $color-light;
+  background: white;
   position: relative;
   z-index: 3;
 }
@@ -102,6 +102,7 @@ button::-moz-focus-inner {
   top: 0 !important;
   bottom: 0 !important;
   left: 0 !important;
+  background-color: $color-secondary !important;
 }
 
 .rightRs {
@@ -110,6 +111,7 @@ button::-moz-focus-inner {
   top: 0 !important;
   bottom: 0 !important;
   right: 0 !important;
+  background-color: $color-secondary !important;
 }
 
 

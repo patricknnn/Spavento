@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/_layout/header/header.component';
@@ -61,6 +62,7 @@ import { LatestNewsComponent } from './components/latest-news/latest-news.compon
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    FormsModule,
     NguCarouselModule,
     NgbModule,
   ],
