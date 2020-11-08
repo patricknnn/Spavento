@@ -7,30 +7,19 @@
           <div class="map-container">
             <iframe
               src="https://maps.google.com/maps?q=Oeverlanden+60,+9606+RR+Kropswolde&t=&z=13&ie=UTF8&iwloc=&output=embed"
-              style="border:0"
+              style="border: 0"
               allowfullscreen
             ></iframe>
           </div>
         </div>
 
         <div class="col-md-4 d-flex align-items-center">
-            <mat-list>
-              <div mat-subheader>Netherlands</div>
-              <mat-list-item>
-                <mat-icon mat-list-icon class="txt-primary">place</mat-icon>
-                <div mat-line>Oeverlanden 60</div>
-              </mat-list-item>
-              <mat-list-item>
-                <mat-icon mat-list-icon class="txt-primary">local_post_office</mat-icon>
-                <div mat-line>9606 RR</div>
-              </mat-list-item>
-              <mat-list-item>
-                <mat-icon mat-list-icon class="txt-primary">home_work</mat-icon>
-                <div mat-line>Kropswolde</div>
-              </mat-list-item>
-            </mat-list>
+          <app-info-card
+            [title]="'Find us here'"
+            [text]="'Oeverlanden 60, 9606RR Kropswolde'"
+            [icon]="'pin_drop'"
+          ></app-info-card>
         </div>
-
       </div>
     </div>
   </mat-card-content>

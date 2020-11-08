@@ -2,18 +2,33 @@
 <div class="row">
   <div class="col-12">
     <div class="d-flex align-items-center justify-content-center">
-
-
-
+      <button
+        mat-raised-button
+        color="accent"
+        class="mx-2"
+        (click)="resetFilters()"
+      >
+        All
+      </button>
+      <button
+        mat-raised-button
+        color="accent"
+        class="mx-2"
+        *ngFor="let filter of filters"
+        (click)="setFilter(filter)"
+      >
+        {{ filter }}
+      </button>
     </div>
   </div>
 </div>
 
 <!-- Gallery-->
-<div class="row">
+<div class="row pt-4">
   <div
-    *ngFor="let painting of paintings"
-    class="col-lg-4 col-md-6 col-sm-12 p-0 p15"
+    *ngFor="let painting of filteredPaintings"
+    class="col-lg-4 col-md-6 col-sm-12 p-0 p-2"
+    [@scaleInOut]
   >
     <div class="portfolio-box">
       <!-- Image -->
