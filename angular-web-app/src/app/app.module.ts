@@ -31,6 +31,7 @@ import { NewsComponent } from './components/_pages/news/news.component';
 import { NewsCardComponent } from './components/news-card/news-card.component';
 import { LatestNewsComponent } from './components/latest-news/latest-news.component';
 import { InfoCardComponent } from './components/info-card/info-card.component';
+import { PaintingCardComponent } from './components/painting-card/painting-card.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { InfoCardComponent } from './components/info-card/info-card.component';
     NewsCardComponent,
     LatestNewsComponent,
     InfoCardComponent,
+    PaintingCardComponent,
   ],
   imports: [
     BrowserModule,

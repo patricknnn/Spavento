@@ -24,70 +24,12 @@
 </div>
 
 <!-- Gallery-->
-<div class="row pt-4">
-  <div
+<ul class="row list-unstyled pt-4">
+  <li
     *ngFor="let painting of filteredPaintings"
     class="col-lg-4 col-md-6 col-sm-12 p-0 p-2 flex-shrink-1"
     [@scaleInOut]
   >
-    <div class="portfolio-box">
-      <!-- Image -->
-      <img class="portfolio-box-img" src="{{ painting.thumbnail }}" alt="" />
-
-      <!-- Caption -->
-      <div class="portfolio-box-caption p-3">
-        <div class="portfolio-project-name">
-          <h2 class="my-0">{{ painting.title }}</h2>
-          <hr class="divider mt-2" />
-        </div>
-        <!-- <div class="portfolio-project-category">
-          <span class="badge bg-primary txt-light mr-2">{{painting.paint}}</span>
-          <span class="badge bg-primary txt-light ">{{painting.category}}</span>
-        </div> -->
-        <div class="portfolio-project-buttons">
-          <button
-            mat-fab
-            color="accent"
-            class="mx-2"
-            aria-label="Show image"
-            (click)="openImage(content)"
-          >
-            <mat-icon>search</mat-icon>
-          </button>
-          <button
-            mat-fab
-            color="accent"
-            class="mx-2"
-            aria-label="Show details"
-            (click)="goToPaintingDetails(painting.id)"
-          >
-            <mat-icon>more_horiz</mat-icon>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal -->
-    <ng-template #content let-modal>
-      <div class="modal-header">
-        <div></div>
-        <button mat-raised-button color="accent" (click)="modal.close()">
-          <mat-icon>close</mat-icon>
-        </button>
-      </div>
-
-      <div class="modal-body">
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <div class="d-flex align-items-center justify-content-center">
-                <img class="img-modal" src="{{ painting.thumbnail }}" alt="" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer"></div>
-    </ng-template>
-  </div>
-</div>
+    <app-painting-card [painting]="painting"></app-painting-card>
+  </li>
+</ul>

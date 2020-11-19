@@ -1,0 +1,56 @@
+<mat-card class="painting-card p-0 mat-elevation-z8">
+  <!-- Image -->
+  <img class="painting-card-img" src="{{ painting.thumbnail }}" alt="" />
+
+  <!-- Caption -->
+  <div class="painting-card-caption p-3">
+    <div class="painting-card-title">
+      <h2 class="my-0">{{ painting.title }}</h2>
+      <hr class="divider mt-2" />
+    </div>
+
+    <div class="painting-card-buttons">
+      <button
+        mat-fab
+        color="accent"
+        class="mx-2"
+        aria-label="Show image"
+        (click)="openImage(content)"
+      >
+        <mat-icon>search</mat-icon>
+      </button>
+      <button
+        mat-fab
+        color="accent"
+        class="mx-2"
+        aria-label="Show details"
+        (click)="goToPaintingDetails(painting.id)"
+      >
+        <mat-icon>more_horiz</mat-icon>
+      </button>
+    </div>
+  </div>
+</mat-card>
+
+<!-- Modal -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <div></div>
+    <button mat-raised-button color="accent" (click)="modal.close()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex align-items-center justify-content-center">
+            <img class="img-modal" src="{{ painting.thumbnail }}" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer"></div>
+</ng-template>

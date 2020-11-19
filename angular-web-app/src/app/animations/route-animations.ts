@@ -23,7 +23,7 @@ const hideLeaveMain =
   ], { optional: true });
 
 const hideFooter =
-  query(':enter footer', [
+  query('footer', [
     style({ opacity: 0 }),
   ], { optional: true });
 

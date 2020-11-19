@@ -1,0 +1,40 @@
+@import "../../../variables";
+
+.painting-card {
+  height: 30vh;
+  width: 100%;
+}
+
+.painting-card-img {
+  width: 100%;
+  height: 100%;
+  object-position: 50% 50%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.painting-card-caption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  background-color: rgba($color-dark, 0.9);
+  transition: opacity 0.25s ease;
+  opacity: 0;
+}
+
+.painting-card:hover .painting-card-caption {
+  opacity: 1;
+}
+
+.painting-card-title {
+  font-size: 1.2rem;
+}
+
