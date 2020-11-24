@@ -24,12 +24,13 @@
 </div>
 
 <!-- Gallery-->
-<ul class="row list-unstyled pt-4">
-  <li
-    *ngFor="let painting of filteredPaintings"
-    class="col-lg-4 col-md-6 col-sm-12 p-0 p-2 flex-shrink-1"
-    [@scaleInOut]
-  >
-    <app-painting-card [painting]="painting"></app-painting-card>
-  </li>
-</ul>
+<div #shuffleContainer class="shuffle-container d-flex flex-row flex-grow-1">
+
+  <app-painting-card
+    *ngFor="let painting of paintings"
+    class="shuffle-item col-lg-4 col-md-6 col-sm-12"
+    [painting]="painting"
+  ></app-painting-card>
+
+  <div #shuffleSizer class="sizer-element"></div>
+</div>
