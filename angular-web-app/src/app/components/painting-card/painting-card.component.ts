@@ -10,6 +10,7 @@ import { Painting } from 'src/app/models/painting';
 })
 export class PaintingCardComponent implements OnInit {
   @Input() painting: Painting;
+  @Input() fixedHeight = true;
 
   constructor(
     private router: Router,

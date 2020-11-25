@@ -4,7 +4,10 @@
   [dataSource]="paintings"
 >
   <div *nguCarouselDef="let painting" class="item p-3">
-    <app-painting-card [painting]="painting"></app-painting-card>
+    <app-painting-card
+      [painting]="painting"
+      [fixedHeight]="true"
+    ></app-painting-card>
   </div>
 
   <button

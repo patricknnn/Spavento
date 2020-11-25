@@ -1,6 +1,13 @@
-<mat-card class="painting-card p-0 mat-elevation-z8">
+<mat-card
+  [class.painting-card-auto-height]="!fixedHeight"
+  class="painting-card p-0 mat-elevation-z8"
+>
   <!-- Image -->
-  <img class="painting-card-img" src="{{ painting.thumbnail }}" alt="" />
+  <img
+    class ="painting-card-img"
+    src="{{ painting.thumbnail }}"
+    alt=""
+  />
 
   <!-- Caption -->
   <div class="painting-card-caption p-3">
