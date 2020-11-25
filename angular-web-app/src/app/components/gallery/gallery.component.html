@@ -1,11 +1,13 @@
 <!-- Filters -->
 <div class="row">
+  <!-- Categories -->
   <div class="col-12">
-    <div class="d-flex align-items-center justify-content-center">
+    <div class="d-flex align-items-center justify-content-center p-2">
       <button
         mat-raised-button
         color="accent"
-        class="mx-2"
+        class="mx-2 rounded-pill filter-button"
+        [class.active]="activeFilters.categories.length == 0"
         (click)="resetFilters()"
       >
         All
@@ -13,24 +15,58 @@
       <button
         mat-raised-button
         color="accent"
-        class="mx-2"
-        *ngFor="let filter of filters"
-        (click)="setFilter(filter)"
+        class="mx-2 rounded-pill filter-button"
+        *ngFor="let category of categories"
+        [class.active]="activeFilters.categories.indexOf(category) !== -1"
+        (click)="setFilter('categories', category)"
       >
-        {{ filter }}
+        {{ category }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Paints -->
+  <div class="col-12">
+    <div class="d-flex align-items-center justify-content-center p-2">
+      <button
+        mat-raised-button
+        color="accent"
+        class="mx-2 rounded-pill filter-button"
+        *ngFor="let paint of paints"
+        [class.active]="activeFilters.paints.indexOf(paint) !== -1"
+        (click)="setFilter('paints', paint)"
+      >
+        {{ paint }}
+      </button>
+    </div>
+  </div>
+
+  <!-- States -->
+  <div class="col-12">
+    <div class="d-flex align-items-center justify-content-center p-2">
+      <button
+        mat-raised-button
+        color="accent"
+        class="mx-2 rounded-pill filter-button"
+        *ngFor="let state of states"
+        [class.active]="activeFilters.states.indexOf(state) !== -1"
+        (click)="setFilter('states', state)"
+      >
+        {{ state }}
       </button>
     </div>
   </div>
 </div>
 
 <!-- Gallery-->
-<div #shuffleContainer class="shuffle-container d-flex flex-row flex-grow-1">
-
+<div #shuffleContainer class="shuffle-container row my-4">
   <app-painting-card
     *ngFor="let painting of paintings"
-    class="shuffle-item col-lg-4 col-md-6 col-sm-12"
+    class="shuffle-item col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12 my-3"
+    [attr.data-category]="painting.category"
+    [attr.data-paint]="painting.paint"
+    [attr.data-status]="painting.status"
     [painting]="painting"
   ></app-painting-card>
-
-  <div #shuffleSizer class="sizer-element"></div>
+  <div #shuffleSizer class="sizer-element col-1"></div>
 </div>
