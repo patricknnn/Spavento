@@ -1,0 +1,33 @@
+<!-- Header small -->
+<app-header [title]="title" [subTitle]="subTitle" [small]="true"></app-header>
+
+<!-- Main -->
+<main id="404" class="main main-raised">
+  <!-- News -->
+  <section class="page-section bg-light">
+    <div class="container">
+      <div class="row">
+        <div
+          class="col-12 d-flex w-100 align-items-center justify-content-center"
+        >
+          <button
+            mat-raised-button
+            color="accent"
+            class="rounded-pill mr-5"
+            (click)="goBack()"
+          >
+            Back
+          </button>
+          <button
+            mat-raised-button
+            color="accent"
+            class="rounded-pill"
+            (click)="goToHome()"
+          >
+            Home
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

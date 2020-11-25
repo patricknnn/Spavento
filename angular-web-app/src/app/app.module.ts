@@ -10,7 +10,6 @@ import { HomeComponent } from './components/_pages/home/home.component';
 import { PortfolioComponent } from './components/_pages/portfolio/portfolio.component';
 import { AboutComponent } from './components/_pages/about/about.component';
 import { ContactComponent } from './components/_pages/contact/contact.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './components/_layout/nav/nav.component';
 import { MaterialModule } from './modules/material/material.module';
@@ -32,6 +31,7 @@ import { NewsCardComponent } from './components/news-card/news-card.component';
 import { LatestNewsComponent } from './components/latest-news/latest-news.component';
 import { InfoCardComponent } from './components/info-card/info-card.component';
 import { PaintingCardComponent } from './components/painting-card/painting-card.component';
+import { PageNotFoundComponent } from './components/_pages/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [

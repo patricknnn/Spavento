@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { HomeComponent } from './components/_pages/home/home.component';
 import { PortfolioComponent } from './components/_pages/portfolio/portfolio.component';
 import { AboutComponent } from './components/_pages/about/about.component';
 import { ContactComponent } from './components/_pages/contact/contact.component';
 import { PaintingDetailComponent } from './components/_pages/painting-detail/painting-detail.component';
 import { NewsComponent } from './components/_pages/news/news.component';
+import { PageNotFoundComponent } from './components/_pages/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
