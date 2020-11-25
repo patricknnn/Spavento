@@ -116,6 +116,11 @@ button::-moz-focus-inner {
 /*************************************/
 /**             Carousel            **/
 /*************************************/
+
+.ngucarousel-items .item {
+  padding: 0px 28px;
+}
+
 .leftRs {
   position: absolute !important;
   margin: auto !important;
@@ -235,12 +240,9 @@ hr.divider {
   -webkit-text-fill-color: transparent;
 }
 
-.text-icon {
-  flex-direction: row;
-  box-sizing: border-box;
-  display: flex;
-  place-content: center flex-start;
-  align-items: center;
+.inline-icon {
+  display: inline-flex;
+  vertical-align: top;
 }
 
 .subtitle {

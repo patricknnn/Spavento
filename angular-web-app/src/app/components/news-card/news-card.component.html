@@ -1,12 +1,12 @@
-<mat-card class="card-clean">
-  <div class="container-fluid">
+<mat-card class="card-clean px-0">
+  <div class="container-fluid px-0">
     <div class="row">
       <div [class]="colOne">
         <div class="news-header">
           <img
             [class]="imageClass"
             class="w-100 rounded mat-elevation-z4"
-            src="{{newsItem.image}}"
+            src="{{ newsItem.image }}"
             alt="news"
           />
         </div>
@@ -17,15 +17,27 @@
             {{ newsItem.category }}
           </h6>
           <h3>{{ newsItem.title }}</h3>
+
+          <div class="txt-dark-muted">
+            <hr>
+            <mat-icon class="inline-icon mr-2">today</mat-icon>
+            <span>{{ formattedDate }}</span>
+            <span class="px-2">|</span>
+            <mat-icon class="inline-icon mr-2">person</mat-icon>
+            <span>{{ newsItem.author }}</span>
+            <span class="px-2">|</span>
+            <mat-icon class="inline-icon mr-2">local_offer</mat-icon>
+            <span>{{ newsItem.category }}</span>
+            <hr>
+          </div>
+
           <p>{{ newsItem.text }}</p>
-          <p class="txt-dark-muted">
-            by <strong>{{ newsItem.author }}</strong
-            >, {{ formattedDate }}
-          </p>
+
           <p>
             <button
               mat-raised-button
               color="accent"
+              class="rounded-pill"
               (click)="openNewsItem(content)"
             >
               Read more
@@ -53,7 +65,7 @@
           <div class="news-header">
             <img
               class="w-100 rounded mat-elevation-z4"
-              src="{{newsItem.image}}"
+              src="{{ newsItem.image }}"
               alt="news"
             />
           </div>
@@ -65,7 +77,8 @@
             </h6>
             <h3>{{ newsItem.title }}</h3>
             <p class="txt-dark-muted">
-              by <strong>{{ newsItem.author }}</strong>, {{ formattedDate }}
+              by <strong>{{ newsItem.author }}</strong
+              >, {{ formattedDate }}
             </p>
           </div>
         </div>
