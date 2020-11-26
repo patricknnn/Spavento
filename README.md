@@ -1,2 +1,0 @@
-# Spavento
-Angular webapp
