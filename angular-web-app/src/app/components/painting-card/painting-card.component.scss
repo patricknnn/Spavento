@@ -3,6 +3,7 @@
 .painting-card {
   height: 30vh;
   width: 100%;
+  overflow: hidden;
 }
 
 .painting-card-auto-height {
@@ -15,6 +16,14 @@
   object-position: 50% 50%;
   object-fit: cover;
   border-radius: 5px;
+}
+
+.painting-card img {
+  transition: transform .5s ease;
+}
+
+.painting-card-title {
+  font-size: 1.2rem;
 }
 
 .painting-card-caption {
@@ -38,7 +47,9 @@
   opacity: 1;
 }
 
-.painting-card-title {
-  font-size: 1.2rem;
+.painting-card:hover img {
+  transform: scale(1.25);
 }
+
+
 

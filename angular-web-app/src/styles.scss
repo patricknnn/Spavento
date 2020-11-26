@@ -210,12 +210,18 @@ hr.divider {
 
 .bg-material-dark {
   background-image: url("./assets/img/material-bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .bg-material-light {
   background-image: url("./assets/img/material-bg-light.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .bg-material-primary {
   background-image: url("./assets/img/material-bg-primary.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 /*************************************/
