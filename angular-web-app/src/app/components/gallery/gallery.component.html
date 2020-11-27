@@ -1,75 +1,92 @@
 <!-- Filters expandable -->
 <div class="row">
   <div class="col-12">
-    <mat-expansion-panel>
+    <mat-expansion-panel class="bg-light mat-elevation-z4">
       <mat-expansion-panel-header>
-        <mat-panel-title><mat-icon class="mr-2">filter_list</mat-icon> Filters</mat-panel-title>
-        <mat-panel-description></mat-panel-description>
+        <mat-panel-title>
+          <mat-icon class="mr-2">filter_list</mat-icon>
+          Filters
+        </mat-panel-title>
+        <mat-panel-description>Selected: {{activeFilters.categories.length + activeFilters.paints.length + activeFilters.states.length}}</mat-panel-description>
       </mat-expansion-panel-header>
       <div class="container">
         <!-- Filters -->
         <div class="row">
           <!-- Categories -->
-          <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="d-flex align-items-center justify-content-center p-2">
-              <button
-                mat-raised-button
-                color="accent"
-                class="mx-2 rounded-pill filter-button"
-                [class.active]="
-                  activeFilters.categories.length == 0 &&
-                  activeFilters.paints.length == 0 &&
-                  activeFilters.states.length == 0
-                "
-                (click)="resetFilters()"
-              >
-                All
-              </button>
-              <button
-                mat-raised-button
-                color="accent"
-                class="mx-2 rounded-pill filter-button"
-                *ngFor="let category of categories"
-                [class.active]="
-                  activeFilters.categories.indexOf(category) !== -1
-                "
-                (click)="setFilter('categories', category)"
-              >
-                {{ category }}
-              </button>
-            </div>
+          <div class="col-lg-3 col-sm-6">
+            <mat-list class="pb-2">
+              <div mat-subheader class="txt-primary">Category</div>
+              <mat-list-item *ngFor="let category of categories">
+                <button
+                  mat-raised-button
+                  color="accent"
+                  class="mx-2 rounded-pill filter-button"
+                  [class.active]="
+                    activeFilters.categories.indexOf(category) !== -1
+                  "
+                  (click)="setFilter('categories', category)"
+                >
+                  {{ category }}
+                </button>
+              </mat-list-item>
+            </mat-list>
           </div>
 
           <!-- Paints -->
-          <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="d-flex align-items-center justify-content-center p-2">
-              <button
-                mat-raised-button
-                color="accent"
-                class="mx-2 rounded-pill filter-button"
-                *ngFor="let paint of paints"
-                [class.active]="activeFilters.paints.indexOf(paint) !== -1"
-                (click)="setFilter('paints', paint)"
-              >
-                {{ paint }}
-              </button>
-            </div>
+          <div class="col-lg-3 col-sm-6">
+            <mat-list class="pb-2">
+              <div mat-subheader class="txt-primary">Paint</div>
+              <mat-list-item *ngFor="let paint of paints">
+                <button
+                  mat-raised-button
+                  color="accent"
+                  class="mx-2 rounded-pill filter-button"
+                  [class.active]="activeFilters.paints.indexOf(paint) !== -1"
+                  (click)="setFilter('paints', paint)"
+                >
+                  {{ paint }}
+                </button>
+              </mat-list-item>
+            </mat-list>
           </div>
 
           <!-- States -->
-          <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="d-flex align-items-center justify-content-center p-2">
-              <button
-                mat-raised-button
-                color="accent"
-                class="mx-2 rounded-pill filter-button"
-                *ngFor="let state of states"
-                [class.active]="activeFilters.states.indexOf(state) !== -1"
-                (click)="setFilter('states', state)"
-              >
-                {{ state }}
-              </button>
-            </div>
+          <div class="col-lg-3 col-sm-6">
+            <mat-list class="pb-2">
+              <div mat-subheader class="txt-primary">State</div>
+              <mat-list-item *ngFor="let state of states">
+                <button
+                  mat-raised-button
+                  color="accent"
+                  class="mx-2 rounded-pill filter-button"
+                  [class.active]="activeFilters.states.indexOf(state) !== -1"
+                  (click)="setFilter('states', state)"
+                >
+                  {{ state }}
+                </button>
+              </mat-list-item>
+            </mat-list>
+          </div>
+
+          <div class="col-lg-3 col-sm-6">
+            <mat-list class="pb-2">
+              <div mat-subheader class="txt-primary">Show all</div>
+              <mat-list-item>
+                <button
+                  mat-raised-button
+                  color="accent"
+                  class="mx-2 rounded-pill filter-button"
+                  [class.active]="
+                    activeFilters.categories.length == 0 &&
+                    activeFilters.paints.length == 0 &&
+                    activeFilters.states.length == 0
+                  "
+                  (click)="resetFilters()"
+                >
+                  All
+                </button>
+              </mat-list-item>
+            </mat-list>
           </div>
         </div>
       </div>

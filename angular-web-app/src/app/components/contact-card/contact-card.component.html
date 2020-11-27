@@ -1,133 +1,141 @@
 <!-- Card-->
-<mat-card class="card-clean p-0">
-  <div class="container-fluid">
+<mat-card class="mat-elevation-z4 p-5">
+  <div class="container">
     <div class="row">
-      <div [hidden]="submitted" class="w-100">
-        <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
-          <div class="form-group">
-            <mat-form-field
-              appearance="{{ appearance }}"
-              color="accent"
-              class="w-100"
-            >
-              <mat-label>Name</mat-label>
-              <input
-                matInput
-                type="text"
-                [(ngModel)]="model.name"
-                name="name"
-                id="name"
-                #name="ngModel"
-                required
-              />
-              <mat-error *ngIf="name.valid || name.pristine">
-                Name is <strong>required</strong>
-              </mat-error>
-            </mat-form-field>
-          </div>
-
-          <div class="form-group">
-            <mat-form-field
-              appearance="{{ appearance }}"
-              color="accent"
-              class="w-100"
-            >
-              <mat-label>Email</mat-label>
-              <input
-                matInput
-                type="email"
-                placeholder="info@example.com"
-                [(ngModel)]="model.email"
-                name="email"
-                id="email"
-                #email="ngModel"
-                required
-              />
-              <mat-error *ngIf="email.valid || email.pristine">
-                Email is <strong>required</strong>
-              </mat-error>
-            </mat-form-field>
-          </div>
-
-          <div class="form-group">
-            <mat-form-field
-              appearance="{{ appearance }}"
-              color="accent"
-              class="w-100"
-            >
-              <mat-label>Subject</mat-label>
-              <mat-select
-                [(ngModel)]="model.subject"
-                name="subject"
-                id="subject"
-                #subject="ngModel"
-                required
+      <div class="col-12">
+        <h3 class="title-underlined">Leave a message</h3>
+        <p class="txt-dark-muted">You can send us a message by completing the below form.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div [hidden]="submitted" class="w-100">
+          <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+            <div class="form-group">
+              <mat-form-field
+                appearance="{{ appearance }}"
+                color="accent"
+                class="w-100"
               >
-                <mat-option
-                  *ngFor="let subject of subjects"
-                  [value]="subject"
-                  >{{ subject }}</mat-option
+                <mat-label>Name</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  [(ngModel)]="model.name"
+                  name="name"
+                  id="name"
+                  #name="ngModel"
+                  required
+                />
+                <mat-error *ngIf="name.valid || name.pristine">
+                  Name is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="form-group">
+              <mat-form-field
+                appearance="{{ appearance }}"
+                color="accent"
+                class="w-100"
+              >
+                <mat-label>Email</mat-label>
+                <input
+                  matInput
+                  type="email"
+                  placeholder="info@example.com"
+                  [(ngModel)]="model.email"
+                  name="email"
+                  id="email"
+                  #email="ngModel"
+                  required
+                />
+                <mat-error *ngIf="email.valid || email.pristine">
+                  Email is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="form-group">
+              <mat-form-field
+                appearance="{{ appearance }}"
+                color="accent"
+                class="w-100"
+              >
+                <mat-label>Subject</mat-label>
+                <mat-select
+                  [(ngModel)]="model.subject"
+                  name="subject"
+                  id="subject"
+                  #subject="ngModel"
+                  required
                 >
-              </mat-select>
-              <mat-error *ngIf="subject.valid || subject.pristine">
-                Subject is <strong>required</strong>
-              </mat-error>
-            </mat-form-field>
-          </div>
+                  <mat-option
+                    *ngFor="let subject of subjects"
+                    [value]="subject"
+                    >{{ subject }}</mat-option
+                  >
+                </mat-select>
+                <mat-error *ngIf="subject.valid || subject.pristine">
+                  Subject is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
 
-          <div class="form-group">
-            <mat-form-field
-              appearance="{{ appearance }}"
+            <div class="form-group">
+              <mat-form-field
+                appearance="{{ appearance }}"
+                color="accent"
+                class="w-100"
+              >
+                <mat-label>Message</mat-label>
+                <textarea
+                  matInput
+                  [(ngModel)]="model.text"
+                  name="text"
+                  id="text"
+                  #text="ngModel"
+                  required
+                ></textarea>
+                <mat-error *ngIf="text.valid || text.pristine">
+                  Message is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <button
+              mat-raised-button
               color="accent"
-              class="w-100"
+              type="submit"
+              class="mr-3"
+              [disabled]="!contactForm.form.valid"
             >
-              <mat-label>Message</mat-label>
-              <textarea
-                matInput
-                [(ngModel)]="model.text"
-                name="text"
-                id="text"
-                #text="ngModel"
-                required
-              ></textarea>
-              <mat-error *ngIf="text.valid || text.pristine">
-                Message is <strong>required</strong>
-              </mat-error>
-            </mat-form-field>
-          </div>
+              Submit
+            </button>
 
+            <button
+              mat-raised-button
+              color="primary"
+              type="button"
+              (click)="resetForm(); contactForm.reset()"
+            >
+              Clear
+            </button>
+          </form>
+        </div>
+
+        <!-- Submitted -->
+        <div [hidden]="!submitted">
+          <p>Thanks for your message.</p>
           <button
             mat-raised-button
             color="accent"
-            type="submit"
-            class="mr-3"
-            [disabled]="!contactForm.form.valid"
-          >
-            Submit
-          </button>
-
-          <button
-            mat-raised-button
-            color="primary"
             type="button"
-            (click)="resetForm(); contactForm.reset()"
+            (click)="submitted = false"
           >
-            Clear
+            Edit
           </button>
-        </form>
-      </div>
-
-      <!-- Submitted -->
-      <div [hidden]="!submitted">
-        <p>Thanks for your message.</p>
-        <button 
-        mat-raised-button
-        color="accent"
-        type="button"
-        (click)="submitted = false"
-        >
-          Edit
-        </button>
+        </div>
       </div>
     </div>
   </div>

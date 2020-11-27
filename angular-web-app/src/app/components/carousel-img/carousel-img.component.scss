@@ -1,24 +1,11 @@
 @import "../../../variables";
 
-.selected-image-wrapper {
-  height: 50vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.img-wrapper {
+  width: 100%;
+  height: 60vh;
 }
 
-.selected-image {
-  max-height: 100%;
-  width: 100%;
-  border-radius: 5px;
-}
-
-.carousel-image {
-  width: 100%;
-  height: 20vh;
-  object-position: 50% 50%;
-  object-fit: cover;
-  border-radius: 5px;
-  cursor: pointer;
+.slider-img {
+  height: 100%;
 }
 

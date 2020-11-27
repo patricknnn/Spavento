@@ -66,6 +66,11 @@ button::-moz-focus-inner {
 /*************************************/
 /**             Buttons             **/
 /*************************************/
+
+button {
+  min-width: 10px !important;
+}
+
 .filter-button {
   background-color: transparent !important;
   color: $color-dark !important;

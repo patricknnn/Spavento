@@ -10,8 +10,8 @@ import { NewsItem } from '../../models/newsitem';
 export class NewsCardComponent implements OnInit {
   @Input() newsItem: NewsItem;
   @Input() direction = 'row';
-  colOne = 'col-md-4';
-  colTwo = 'col-md-8';
+  colOne = 'col-md-3';
+  colTwo = 'col-md-9';
   imageClass = '';
   formattedDate: string;
 

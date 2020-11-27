@@ -1,8 +1,12 @@
-
 <!-- Painting -->
 <div *ngIf="painting">
   <!-- Header small -->
-  <app-header [title]="painting.title" [subTitle]="subTitle" [small]="true" [image]="painting.thumbnail"></app-header>
+  <app-header
+    [title]="painting.title"
+    [subTitle]="subTitle"
+    [small]="true"
+    [image]="painting.thumbnail"
+  ></app-header>
 
   <!-- Main -->
   <main class="main main-raised">
@@ -15,57 +19,57 @@
           [text]="'By ' + painting.artist + '.'"
         ></app-section-title>
 
-        <div class="row">
-          <div class="col-lg-7 col-md-7 col-sm-12">
+        <div class="row mb-5">
+          <div class="col-12">
             <app-carousel-img [paintingId]="painting.id"></app-carousel-img>
           </div>
-          <div class="col-lg-5 col-md-5 col-sm-12">
-            <mat-card class="">
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <mat-card class="card-clean">
               <mat-card-content>
                 <h2 class="title-underlined">Details</h2>
 
                 <mat-accordion>
-
-                  <mat-expansion-panel>
+                  <mat-expansion-panel class="mat-elevation-z1">
                     <mat-expansion-panel-header>
-                      <mat-panel-title>Artist</mat-panel-title>
+                      <mat-panel-title class="txt-secondary">
+                        <span class="w-100">Artist</span>
+                      </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <p>{{painting.artist}}</p>
+                    <p>{{ painting.artist }}</p>
                   </mat-expansion-panel>
 
-                  <mat-expansion-panel [expanded]="true">
+                  <mat-expansion-panel
+                    [expanded]="true"
+                    class="mat-elevation-z1"
+                  >
                     <mat-expansion-panel-header>
                       <mat-panel-title>Description</mat-panel-title>
                     </mat-expansion-panel-header>
-                    <p>{{painting.description}}</p>
+                    <p>{{ painting.description }}</p>
                   </mat-expansion-panel>
 
-                  <mat-expansion-panel>
+                  <mat-expansion-panel class="mat-elevation-z1">
                     <mat-expansion-panel-header>
                       <mat-panel-title>Paint & Category</mat-panel-title>
                     </mat-expansion-panel-header>
-                    <p>{{painting.paint}} - {{painting.category}}</p>
+                    <p>{{ painting.paint }} - {{ painting.category }}</p>
                   </mat-expansion-panel>
 
-                  <mat-expansion-panel>
+                  <mat-expansion-panel class="mat-elevation-z1">
                     <mat-expansion-panel-header>
                       <mat-panel-title>Status & Price</mat-panel-title>
                     </mat-expansion-panel-header>
-                    <p>{{painting.status}} - &euro; {{painting.price}}</p>
+                    <p>{{ painting.status }} - &euro; {{ painting.price }}</p>
                   </mat-expansion-panel>
-
-
                 </mat-accordion>
               </mat-card-content>
-
             </mat-card>
-
           </div>
         </div>
-
       </div>
     </section>
-
   </main>
 </div>
-
