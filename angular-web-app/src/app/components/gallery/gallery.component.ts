@@ -15,8 +15,8 @@ import Shuffle from 'shufflejs';
 export class GalleryComponent implements OnInit, AfterViewInit {
   @ViewChild('shuffleContainer') private shuffleContainer: ElementRef;
   @ViewChild('shuffleSizer') private shuffleSizer: ElementRef;
+  private shuffleInstance: Shuffle;
   paintings: Painting[];
-  filteredPaintings: Painting[];
   categories = ['TV Series', 'Nature', 'Animals'];
   paints = ['Oil', 'Acryl', 'Water'];
   states = ['Sold', 'For Sale'];
@@ -25,8 +25,7 @@ export class GalleryComponent implements OnInit, AfterViewInit {
     paints: [],
     states: [],
   };
-  private shuffleInstance: Shuffle;
-
+  
   /**
    * Constructor
    * @param paintingService painting service
@@ -69,17 +68,11 @@ export class GalleryComponent implements OnInit, AfterViewInit {
     this.shuffleInstance.filter();
   }
 
-  // Sets the clicked filter or removes it and applies filter
-  setFilter(group: string, filter: string): void {
-    var array = this.getFilterArray(group);
-    let filterIndex = array.indexOf(filter);
-    filterIndex == -1 ? array.push(filter) : array.splice(filterIndex, 1);
-
+  updateFilters() {
     // Apply filter
     this.shuffleInstance.filter((element: Element) => {
       return this.itemPassesFilters(element);
     });
-
   }
 
   // Check if item passes current filters
@@ -103,20 +96,6 @@ export class GalleryComponent implements OnInit, AfterViewInit {
       return false;
     }
     return true;
-  }
-
-  // Returnes correct array
-  getFilterArray(group: string): any {
-    switch (group) {
-      case "categories":
-        return this.activeFilters.categories;
-      case "paints":
-        return this.activeFilters.paints;
-      case "states":
-        return this.activeFilters.states;
-      default:
-        return [];
-    }
   }
 
 }
