@@ -1,92 +1,102 @@
 <div class="row">
-  <div class="col-12">
-    <div class="d-flex justify-content-center">
-      <mat-expansion-panel class="bg-light mat-elevation-z4 filter-panel">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <mat-icon class="mr-2">category</mat-icon>
-            Category
-          </mat-panel-title>
-          <mat-panel-description *ngIf="activeFilters.categories.length">
-            ({{ activeFilters.categories.length }})
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <mat-selection-list
-          #categorylist
-          [(ngModel)]="activeFilters.categories"
-          (ngModelChange)="updateFilters()"
-        >
-          <mat-list-option
-            color="primary"
-            checkboxPosition="after"
-            *ngFor="let category of categories"
-            [value]="category"
-          >
-            {{ category }}
-          </mat-list-option>
-        </mat-selection-list>
-      </mat-expansion-panel>
+  <div class="col-xl-10 col-lg-10 col-md-10 col-sm-9 col-9">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12 p-0">
+          <mat-expansion-panel class="bg-light mat-elevation-z4 mb-2 mr-2">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon class="mr-2">category</mat-icon>
+                Category
+              </mat-panel-title>
+              <mat-panel-description *ngIf="activeFilters.categories.length">
+                ({{ activeFilters.categories.length }})
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-selection-list
+              #categorylist
+              [(ngModel)]="activeFilters.categories"
+              (ngModelChange)="updateFilters()"
+            >
+              <mat-list-option
+                color="primary"
+                checkboxPosition="after"
+                *ngFor="let category of categories"
+                [value]="category"
+              >
+                {{ category }}
+              </mat-list-option>
+            </mat-selection-list>
+          </mat-expansion-panel>
+        </div>
 
-      <mat-expansion-panel class="bg-light mat-elevation-z4 filter-panel">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <mat-icon class="mr-2">brush</mat-icon>
-            Paint
-          </mat-panel-title>
-          <mat-panel-description *ngIf="activeFilters.paints.length">
-            ({{ activeFilters.paints.length }})
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <mat-selection-list
-          #paintlist
-          [(ngModel)]="activeFilters.paints"
-          (ngModelChange)="updateFilters()"
-        >
-          <mat-list-option
-            color="primary"
-            checkboxPosition="after"
-            *ngFor="let paint of paints"
-            [value]="paint"
-          >
-            {{ paint }}
-          </mat-list-option>
-        </mat-selection-list>
-      </mat-expansion-panel>
+        <div class="col-lg-4 col-md-6 col-sm-12 p-0">
+          <mat-expansion-panel class="bg-light mat-elevation-z4 mb-2 mr-2">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon class="mr-2">brush</mat-icon>
+                Paint
+              </mat-panel-title>
+              <mat-panel-description *ngIf="activeFilters.paints.length">
+                ({{ activeFilters.paints.length }})
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-selection-list
+              #paintlist
+              [(ngModel)]="activeFilters.paints"
+              (ngModelChange)="updateFilters()"
+            >
+              <mat-list-option
+                color="primary"
+                checkboxPosition="after"
+                *ngFor="let paint of paints"
+                [value]="paint"
+              >
+                {{ paint }}
+              </mat-list-option>
+            </mat-selection-list>
+          </mat-expansion-panel>
+        </div>
 
-      <mat-expansion-panel class="bg-light mat-elevation-z4 filter-panel">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <mat-icon class="mr-2">local_offer</mat-icon>
-            State
-          </mat-panel-title>
-          <mat-panel-description *ngIf="activeFilters.states.length">
-            ({{ activeFilters.states.length }})
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <mat-selection-list
-          #statelist
-          [(ngModel)]="activeFilters.states"
-          (ngModelChange)="updateFilters()"
-        >
-          <mat-list-option
-            color="primary"
-            checkboxPosition="after"
-            *ngFor="let state of states"
-            [value]="state"
-          >
-            {{ state }}
-          </mat-list-option>
-        </mat-selection-list>
-      </mat-expansion-panel>
-
-      <button
-        mat-raised-button
-        class="reset-button bg-light mat-elevation-z4"
-        (click)="resetFilters()"
-      >
-        <mat-icon>replay</mat-icon>
-      </button>
+        <div class="col-lg-4 col-md-6 col-sm-12 p-0">
+          <mat-expansion-panel class="bg-light mat-elevation-z4 mb-2 mr-2">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon class="mr-2">local_offer</mat-icon>
+                State
+              </mat-panel-title>
+              <mat-panel-description *ngIf="activeFilters.states.length">
+                ({{ activeFilters.states.length }})
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-selection-list
+              #statelist
+              [(ngModel)]="activeFilters.states"
+              (ngModelChange)="updateFilters()"
+            >
+              <mat-list-option
+                color="primary"
+                checkboxPosition="after"
+                *ngFor="let state of states"
+                [value]="state"
+              >
+                {{ state }}
+              </mat-list-option>
+            </mat-selection-list>
+          </mat-expansion-panel>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <div class="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3">
+    <button
+      mat-raised-button
+      class="reset-button bg-light mat-elevation-z4"
+      (click)="resetFilters()"
+    >
+      <mat-icon>replay</mat-icon>
+    </button>
   </div>
 </div>
 
