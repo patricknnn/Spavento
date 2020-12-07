@@ -1,5 +1,5 @@
 <!-- Filters expandable -->
-<div class="row">
+<div class="row" style="display: none;">
   <div class="col-12">
     <mat-expansion-panel class="bg-light mat-elevation-z4">
       <mat-expansion-panel-header>
@@ -7,7 +7,14 @@
           <mat-icon class="mr-2">filter_list</mat-icon>
           Filters
         </mat-panel-title>
-        <mat-panel-description>Selected: {{activeFilters.categories.length + activeFilters.paints.length + activeFilters.states.length}}</mat-panel-description>
+        <mat-panel-description
+          >Selected:
+          {{
+            activeFilters.categories.length +
+              activeFilters.paints.length +
+              activeFilters.states.length
+          }}</mat-panel-description
+        >
       </mat-expansion-panel-header>
       <div class="container">
         <!-- Filters -->
@@ -90,6 +97,99 @@
           </div>
         </div>
       </div>
+    </mat-expansion-panel>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-3">
+    <button
+      mat-raised-button
+      color="accent"
+      class="mx-2 rounded-pill filter-button"
+      [class.active]="
+        activeFilters.categories.length == 0 &&
+        activeFilters.paints.length == 0 &&
+        activeFilters.states.length == 0
+      "
+      (click)="resetFilters()"
+    >
+      All
+    </button>
+  </div>
+
+  <div class="col-3">
+    <mat-expansion-panel class="bg-light mat-elevation-z4">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon class="mr-2">category</mat-icon>
+          Category
+        </mat-panel-title>
+        <mat-panel-description *ngIf="activeFilters.categories.length">( {{ activeFilters.categories.length }} )</mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-list class="pb-2">
+        <mat-list-item *ngFor="let category of categories">
+          <button
+            mat-raised-button
+            color="accent"
+            class="mx-2 rounded-pill filter-button"
+            [class.active]="activeFilters.categories.indexOf(category) !== -1"
+            (click)="setFilter('categories', category)"
+          >
+            {{ category }}
+          </button>
+        </mat-list-item>
+      </mat-list>
+    </mat-expansion-panel>
+  </div>
+
+  <div class="col-3">
+    <mat-expansion-panel class="bg-light mat-elevation-z4">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon class="mr-2">brush</mat-icon>
+          Paint
+        </mat-panel-title>
+        <mat-panel-description *ngIf="activeFilters.paints.length">( {{ activeFilters.paints.length }} )</mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-list class="pb-2">
+        <mat-list-item *ngFor="let paint of paints">
+          <button
+            mat-raised-button
+            color="accent"
+            class="mx-2 rounded-pill filter-button"
+            [class.active]="activeFilters.paints.indexOf(paint) !== -1"
+            (click)="setFilter('paints', paint)"
+          >
+            {{ paint }}
+          </button>
+        </mat-list-item>
+      </mat-list>
+    </mat-expansion-panel>
+  </div>
+
+  <div class="col-3">
+    <mat-expansion-panel class="bg-light mat-elevation-z4">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon class="mr-2">local_offer</mat-icon>
+          State
+        </mat-panel-title>
+        <mat-panel-description *ngIf="activeFilters.states.length">( {{ activeFilters.states.length }} )</mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-list class="pb-2">
+        <mat-list-item *ngFor="let state of states">
+          <button
+            mat-raised-button
+            color="accent"
+            class="mx-2 rounded-pill filter-button"
+            [class.active]="activeFilters.states.indexOf(state) !== -1"
+            (click)="setFilter('states', state)"
+          >
+            {{ state }}
+          </button>
+        </mat-list-item>
+      </mat-list>
     </mat-expansion-panel>
   </div>
 </div>

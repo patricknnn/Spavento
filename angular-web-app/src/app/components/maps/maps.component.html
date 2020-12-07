@@ -1,25 +1,20 @@
 <!-- Card-->
-<mat-card class="mt-3 p-0">
-  <mat-card-content>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-8 px-0">
-          <div class="map-container">
-            <iframe
-              src="https://maps.google.com/maps?q=Oeverlanden+60,+9606+RR+Kropswolde&t=&z=13&ie=UTF8&iwloc=&output=embed"
-              style="border: 0"
-              allowfullscreen
-            ></iframe>
-          </div>
-        </div>
-        <div class="col-md-4 d-flex align-items-center">
-          <app-info-card
-            [title]="'Pay a visit'"
-            [text]="'Oeverlanden 60, 9606RR Kropswolde'"
-            [icon]="'pin_drop'"
-          ></app-info-card>
-        </div>
+<mat-card class="mat-elevation-z4 p-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h3 class="title-underlined">Pay a visit</h3>
+        <p class="txt-dark-muted">You can find us here.</p>
       </div>
     </div>
-  </mat-card-content>
+    <div class="row">
+      <div class="col-12">
+        <iframe
+          src="https://maps.google.com/maps?q=Oeverlanden+60,+9606+RR+Kropswolde&t=&z=13&ie=UTF8&iwloc=&output=embed"
+          style="border: 0; width: 100%"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
 </mat-card>
