@@ -1,10 +1,11 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Painting } from '../../models/painting';
 import { PaintingService } from '../../services/painting.service';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { componentAnimations } from '../../animations/component-animations';
 import Shuffle from 'shufflejs';
+import { MatExpansionPanel } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-gallery',
@@ -15,6 +16,7 @@ import Shuffle from 'shufflejs';
 export class GalleryComponent implements OnInit, AfterViewInit {
   @ViewChild('shuffleContainer') private shuffleContainer: ElementRef;
   @ViewChild('shuffleSizer') private shuffleSizer: ElementRef;
+  @ViewChildren(MatExpansionPanel) expansionPanels: QueryList<MatExpansionPanel>;
   private shuffleInstance: Shuffle;
   paintings: Painting[];
   categories = ['TV Series', 'Nature', 'Animals'];
@@ -25,7 +27,7 @@ export class GalleryComponent implements OnInit, AfterViewInit {
     paints: [],
     states: [],
   };
-  
+
   /**
    * Constructor
    * @param paintingService painting service
@@ -58,6 +60,10 @@ export class GalleryComponent implements OnInit, AfterViewInit {
       size: 'xl',
       windowClass: 'transparent-modal',
     });
+  }
+
+  closeExpansionPanels() {
+    this.expansionPanels.forEach(p => p.close());
   }
 
   // Clear filters and reset

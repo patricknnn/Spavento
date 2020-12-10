@@ -32,6 +32,7 @@ import { LatestNewsComponent } from './components/latest-news/latest-news.compon
 import { InfoCardComponent } from './components/info-card/info-card.component';
 import { PaintingCardComponent } from './components/painting-card/painting-card.component';
 import { PageNotFoundComponent } from './components/_pages/page-not-found/page-not-found.component';
+import { ClickOutsideDirective } from './directives/click-outside.directive';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { PageNotFoundComponent } from './components/_pages/page-not-found/page-n
     LatestNewsComponent,
     InfoCardComponent,
     PaintingCardComponent,
+    ClickOutsideDirective,
   ],
   imports: [
     BrowserModule,

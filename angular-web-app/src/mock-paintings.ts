@@ -4,7 +4,7 @@ export const PAINTINGS: Painting[] = [
   new Painting(
     0,
     'Rolien Schrik',
-    'Polly from Peaky Blinders',
+    'Polly',
     'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam. Nullam molestie vehicula ipsum a consequat. Vivamus efficitur metus ut nulla consectetur porta. Proin auctor dui ut orci aliquet, sit amet ultricies justo mattis. Mauris nec massa sit amet metus dignissim placerat elementum a justo. Nunc sit amet facilisis velit, ac varius enim.',
     '/assets/img/polly.jpg',
     'Oil',
@@ -30,7 +30,7 @@ export const PAINTINGS: Painting[] = [
   new Painting(
     5,
     'Rolien Schrik',
-    'Tommy from Peaky Blinders',
+    'Tommy',
     'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam. Nullam molestie vehicula ipsum a consequat. Vivamus efficitur metus ut nulla consectetur porta. Proin auctor dui ut orci aliquet, sit amet ultricies justo mattis. Mauris nec massa sit amet metus dignissim placerat elementum a justo. Nunc sit amet facilisis velit, ac varius enim.',
     '/assets/img/tommy.jpg',
     'Acryl',
@@ -43,7 +43,7 @@ export const PAINTINGS: Painting[] = [
   new Painting(
     7,
     'Rolien Schrik',
-    'Tommy on a horse from Peaky Blinders',
+    'Tommy horse',
     'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam. Nullam molestie vehicula ipsum a consequat. Vivamus efficitur metus ut nulla consectetur porta. Proin auctor dui ut orci aliquet, sit amet ultricies justo mattis. Mauris nec massa sit amet metus dignissim placerat elementum a justo. Nunc sit amet facilisis velit, ac varius enim.',
     '/assets/img/tommyhorse.jpg',
     'Acryl',
@@ -56,7 +56,7 @@ export const PAINTINGS: Painting[] = [
   new Painting(
     8,
     'Rolien Schrik',
-    'Car in the Desert',
+    'Dessert car',
     'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam. Nullam molestie vehicula ipsum a consequat. Vivamus efficitur metus ut nulla consectetur porta. Proin auctor dui ut orci aliquet, sit amet ultricies justo mattis. Mauris nec massa sit amet metus dignissim placerat elementum a justo. Nunc sit amet facilisis velit, ac varius enim.',
     '/assets/img/dessertcar.jpg',
     'Oil',

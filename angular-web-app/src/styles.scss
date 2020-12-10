@@ -27,6 +27,10 @@ button::-moz-focus-inner {
   border: 0 !important;
 }
 
+*:focus {
+  outline: none;
+}
+
 /*************************************/
 /**            Sections             **/
 /*************************************/
@@ -70,6 +74,10 @@ button::-moz-focus-inner {
   height: 48px;
 }
 
+.badge {
+  font-size: 100% !important;
+}
+
 /*************************************/
 /**             Cards               **/
 /*************************************/
@@ -82,7 +90,6 @@ button::-moz-focus-inner {
 /*************************************/
 /**             Modal               **/
 /*************************************/
-
 .modal-header {
   border-bottom: none !important;
 }
@@ -97,7 +104,6 @@ button::-moz-focus-inner {
 
 .img-modal {
   max-width: 100%;
-  max-height: 70vh;
 }
 
 /*************************************/
@@ -153,6 +159,38 @@ button::-moz-focus-inner {
   box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
   -webkit-transform: scale(1.7);
   transform: scale(1.7);
+}
+
+// Bootstrap carousel
+.carousel-control-prev {
+  justify-content: flex-start;
+}
+.carousel-control-next {
+  justify-content: flex-end;
+}
+.carousel-control-prev-icon, 
+.carousel-control-next-icon {
+  display: inline-block;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: no-repeat 50%/100% 100%;
+  background-color: $color-secondary;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+
+.carousel-control-next-icon {
+  background-image: url(./assets/img/icons/navigate_next-white-18dp.svg);
+}
+.carousel-control-prev-icon {
+  background-image: url(./assets/img/icons/navigate_before-white-18dp.svg);
+}
+
+.carousel-indicators {
+  bottom: -60px;
+}
+.carousel-indicators li {
+  background-color: $color-secondary;
 }
 
 

@@ -11,7 +11,6 @@ import {Router} from '@angular/router';
 export class CarouselImgComponent implements OnInit {
   @Input() paintingId: number;
   images: string[];
-  selectedImage: string;
 
   carouselConfig: NguCarouselConfig = {
     grid: { xs: 2, sm: 2, md: 3, lg: 3, all: 0 },
@@ -29,10 +28,5 @@ export class CarouselImgComponent implements OnInit {
 
   ngOnInit(): void {
     this.images = this.paintingService.getImagesByPaintingId(this.paintingId);
-    this.selectedImage = this.images[0];
-  }
-
-  setSelectedImage(image: string): void {
-    this.selectedImage = image;
   }
 }

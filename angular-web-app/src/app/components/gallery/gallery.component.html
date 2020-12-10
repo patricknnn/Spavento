@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-xl-10 col-lg-10 col-md-10 col-sm-9 col-9">
     <div class="container">
-      <div class="row">
+      <div appClickOutside (clickOutside)="closeExpansionPanels()" class="row">
         <div class="col-lg-4 col-md-6 col-sm-12 p-0">
           <mat-expansion-panel class="bg-light mat-elevation-z4 mb-2 mr-2">
             <mat-expansion-panel-header>
@@ -10,7 +10,9 @@
                 Category
               </mat-panel-title>
               <mat-panel-description *ngIf="activeFilters.categories.length">
-                ({{ activeFilters.categories.length }})
+                <span class="badge rounded-pill bg-secondary txt-light">{{
+                  activeFilters.categories.length
+                }}</span>
               </mat-panel-description>
             </mat-expansion-panel-header>
             <mat-selection-list
@@ -38,7 +40,9 @@
                 Paint
               </mat-panel-title>
               <mat-panel-description *ngIf="activeFilters.paints.length">
-                ({{ activeFilters.paints.length }})
+                <span class="badge rounded-pill bg-secondary txt-light">{{
+                  activeFilters.paints.length
+                }}</span>
               </mat-panel-description>
             </mat-expansion-panel-header>
             <mat-selection-list
@@ -66,7 +70,9 @@
                 State
               </mat-panel-title>
               <mat-panel-description *ngIf="activeFilters.states.length">
-                ({{ activeFilters.states.length }})
+                <span class="badge rounded-pill bg-secondary txt-light">{{
+                  activeFilters.states.length
+                }}</span>
               </mat-panel-description>
             </mat-expansion-panel-header>
             <mat-selection-list
@@ -90,13 +96,15 @@
   </div>
 
   <div class="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3">
-    <button
-      mat-raised-button
-      class="reset-button bg-light mat-elevation-z4"
-      (click)="resetFilters()"
-    >
-      <mat-icon>replay</mat-icon>
-    </button>
+    <div class="d-flex justify-content-end">
+      <button
+        mat-raised-button
+        class="reset-button bg-light mat-elevation-z4"
+        (click)="resetFilters(); closeExpansionPanels()"
+      >
+        <mat-icon color="primary">replay</mat-icon>
+      </button>
+    </div>
   </div>
 </div>
 
