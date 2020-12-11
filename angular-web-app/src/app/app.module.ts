@@ -33,6 +33,7 @@ import { InfoCardComponent } from './components/info-card/info-card.component';
 import { PaintingCardComponent } from './components/painting-card/painting-card.component';
 import { PageNotFoundComponent } from './components/_pages/page-not-found/page-not-found.component';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
+import { SafePipe } from 'src/safe-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { ClickOutsideDirective } from './directives/click-outside.directive';
     InfoCardComponent,
     PaintingCardComponent,
     ClickOutsideDirective,
+    SafePipe
   ],
   imports: [
     BrowserModule,

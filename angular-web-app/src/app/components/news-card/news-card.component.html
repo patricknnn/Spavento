@@ -61,7 +61,7 @@
   <div class="modal-body">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
           <div class="news-header">
             <img
               class="w-100 rounded mat-elevation-z4"
@@ -70,16 +70,24 @@
             />
           </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-89">
           <div class="d-flex flex-column justify-content-center h-100">
             <h6 class="txt-secondary text-uppercase mt-2">
               {{ newsItem.category }}
             </h6>
             <h3>{{ newsItem.title }}</h3>
-            <p class="txt-dark-muted">
-              by <strong>{{ newsItem.author }}</strong
-              >, {{ formattedDate }}
-            </p>
+            <div class="txt-dark-muted">
+              <hr>
+              <mat-icon class="inline-icon mr-2">today</mat-icon>
+              <span>{{ formattedDate }}</span>
+              <span class="px-2">|</span>
+              <mat-icon class="inline-icon mr-2">person</mat-icon>
+              <span>{{ newsItem.author }}</span>
+              <span class="px-2">|</span>
+              <mat-icon class="inline-icon mr-2">local_offer</mat-icon>
+              <span>{{ newsItem.category }}</span>
+              <hr>
+            </div>
           </div>
         </div>
       </div>
@@ -87,15 +95,10 @@
       <div class="row mt-5">
         <div class="col-md-6">
           <p>{{ newsItem.text }}</p>
-        </div>
-        <div class="col-md-6">
           <p>{{ newsItem.text }}</p>
         </div>
-      </div>
-
-      <div class="row">
-        <div class="col-12">
-          <app-maps></app-maps>
+        <div class="col-md-6">
+          <app-maps [title]="'Location'" [subtitle]="'The event will be here.'" [location]="'Oeverlanden+60,+9606+RR+Kropswolde'"></app-maps>
         </div>
       </div>
     </div>

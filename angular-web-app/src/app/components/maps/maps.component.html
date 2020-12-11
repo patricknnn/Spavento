@@ -3,14 +3,14 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <h3 class="title-underlined">Pay a visit</h3>
-        <p class="txt-dark-muted">You can find us here.</p>
+        <h3 class="title-underlined">{{title}}</h3>
+        <p class="txt-dark-muted">{{subtitle}}</p>
       </div>
     </div>
     <div class="row">
       <div class="col-12">
         <iframe
-          src="https://maps.google.com/maps?q=Oeverlanden+60,+9606+RR+Kropswolde&t=&z=13&ie=UTF8&iwloc=&output=embed"
+          [src]="getUrl() | safe: 'resourceUrl'"
           style="border: 0; width: 100%"
           allowfullscreen
         ></iframe>

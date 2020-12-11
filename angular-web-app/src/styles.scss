@@ -31,6 +31,16 @@ button::-moz-focus-inner {
   outline: none;
 }
 
+.ng-animating {
+  mat-expansion-panel-header {
+    height: 48px;
+  }
+  div.mat-expansion-panel-content {
+    height: 0px;
+    visibility: hidden;
+  }
+}
+
 /*************************************/
 /**            Sections             **/
 /*************************************/
@@ -85,6 +95,12 @@ button::-moz-focus-inner {
 .card-clean {
   box-shadow: none !important;
   background-color: transparent;
+}
+
+.expansion-panel-over {
+  position: absolute !important;
+  z-index: 99 !important;
+  width: 95% !important;
 }
 
 /*************************************/
