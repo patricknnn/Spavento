@@ -31,16 +31,6 @@ button::-moz-focus-inner {
   outline: none;
 }
 
-.ng-animating {
-  mat-expansion-panel-header {
-    height: 48px;
-  }
-  div.mat-expansion-panel-content {
-    height: 0px;
-    visibility: hidden;
-  }
-}
-
 /*************************************/
 /**            Sections             **/
 /*************************************/
@@ -79,14 +69,7 @@ button::-moz-focus-inner {
 /*************************************/
 /**             Buttons             **/
 /*************************************/
-.reset-button {
-  width: 48px;
-  height: 48px;
-}
 
-.badge {
-  font-size: 100% !important;
-}
 
 /*************************************/
 /**             Cards               **/

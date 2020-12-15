@@ -1,124 +1,61 @@
 <!-- Filters -->
 <div id="filterRow" class="row">
-  <div class="col-xl-10 col-lg-10 col-md-10 col-sm-9 col-9">
-    <div class="container">
-      <div appClickOutside (clickOutside)="closeExpansionPanels()" class="row">
-        <div class="col-lg-4 col-md-6 col-sm-12 p-0">
-          <mat-expansion-panel class="bg-light mat-elevation-z4 mr-3">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                <mat-icon class="mr-2">category</mat-icon>
-                Category
-              </mat-panel-title>
-              <mat-panel-description *ngIf="activeFilters.categories.length">
-                <span class="badge rounded-pill bg-secondary txt-light">{{
-                  activeFilters.categories.length
-                }}</span>
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <mat-selection-list
-              #categorylist
-              [(ngModel)]="activeFilters.categories"
-              (ngModelChange)="updateFilters()"
-            >
-              <mat-list-option
-                color="primary"
-                checkboxPosition="after"
-                *ngFor="let category of categories"
-                [value]="category"
-              >
-                {{ category }}
-              </mat-list-option>
-            </mat-selection-list>
-          </mat-expansion-panel>
-        </div>
+  <div class="col-12">
+    <button mat-raised-button [matMenuTriggerFor]="menuCategory" [matBadge]="activeFilters.categories.length"
+      [matBadgeHidden]="activeFilters.categories.length == 0" matBadgePosition="after" matBadgeColor="accent"
+      class="m-2">
+      <mat-icon class="mr-2">category</mat-icon>
+      <span>Category</span>
+    </button>
+    <mat-menu #menuCategory="matMenu">
+      <mat-selection-list #categorylist [(ngModel)]="activeFilters.categories" (ngModelChange)="updateFilters()">
+        <mat-list-option color="primary" checkboxPosition="after" *ngFor="let category of categories"
+          [value]="category">
+          {{ category }}
+        </mat-list-option>
+      </mat-selection-list>
+    </mat-menu>
 
-        <div class="col-lg-4 col-md-6 col-sm-12 p-0">
-          <mat-expansion-panel class="bg-light mat-elevation-z4 mr-3">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                <mat-icon class="mr-2">brush</mat-icon>
-                Paint
-              </mat-panel-title>
-              <mat-panel-description *ngIf="activeFilters.paints.length">
-                <span class="badge rounded-pill bg-secondary txt-light">{{
-                  activeFilters.paints.length
-                }}</span>
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <mat-selection-list
-              #paintlist
-              [(ngModel)]="activeFilters.paints"
-              (ngModelChange)="updateFilters()"
-            >
-              <mat-list-option
-                color="primary"
-                checkboxPosition="after"
-                *ngFor="let paint of paints"
-                [value]="paint"
-              >
-                {{ paint }}
-              </mat-list-option>
-            </mat-selection-list>
-          </mat-expansion-panel>
-        </div>
+    <button mat-raised-button [matMenuTriggerFor]="menuPaint" [matBadge]="activeFilters.paints.length"
+      [matBadgeHidden]="activeFilters.paints.length == 0" matBadgePosition="after" matBadgeColor="accent"
+      class="m-2">
+      <mat-icon class="mr-2">brush</mat-icon>
+      <span>Paint</span>
+    </button>
+    <mat-menu #menuPaint="matMenu">
+      <mat-selection-list #paintlist [(ngModel)]="activeFilters.paints" (ngModelChange)="updateFilters()">
+        <mat-list-option color="primary" checkboxPosition="after" *ngFor="let paint of paints" [value]="paint">
+          {{ paint }}
+        </mat-list-option>
+      </mat-selection-list>
+    </mat-menu>
 
-        <div class="col-lg-4 col-md-6 col-sm-12 p-0">
-          <mat-expansion-panel class="bg-light mat-elevation-z4 mr-3">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                <mat-icon class="mr-2">local_offer</mat-icon>
-                State
-              </mat-panel-title>
-              <mat-panel-description *ngIf="activeFilters.states.length">
-                <span class="badge rounded-pill bg-secondary txt-light">{{
-                  activeFilters.states.length
-                }}</span>
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <mat-selection-list
-              #statelist
-              [(ngModel)]="activeFilters.states"
-              (ngModelChange)="updateFilters()"
-            >
-              <mat-list-option
-                color="primary"
-                checkboxPosition="after"
-                *ngFor="let state of states"
-                [value]="state"
-              >
-                {{ state }}
-              </mat-list-option>
-            </mat-selection-list>
-          </mat-expansion-panel>
-        </div>
-      </div>
-    </div>
-  </div>
+    <button mat-raised-button [matMenuTriggerFor]="menuState" [matBadge]="activeFilters.states.length"
+      [matBadgeHidden]="activeFilters.states.length == 0" matBadgePosition="after" matBadgeColor="accent"
+      class="m-2">
+      <mat-icon class="mr-2">local_offer</mat-icon>
+      <span>State</span>
+    </button>
+    <mat-menu #menuState="matMenu">
+      <mat-selection-list #statelist [(ngModel)]="activeFilters.states" (ngModelChange)="updateFilters()">
+        <mat-list-option color="primary" checkboxPosition="after" *ngFor="let state of states" [value]="state">
+          {{ state }}
+        </mat-list-option>
+      </mat-selection-list>
+    </mat-menu>
 
-  <div class="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3">
-    <div class="d-flex justify-content-end">
-      <button
-        mat-raised-button
-        class="reset-button bg-light mat-elevation-z4"
-        (click)="resetFilters(); closeExpansionPanels()"
-      >
-        <mat-icon color="primary">replay</mat-icon>
-      </button>
-    </div>
+    <button mat-icon-button color="primary" class="m-2" (click)="resetFilters(); closeExpansionPanels()">
+      <mat-icon>replay</mat-icon>
+    </button>
   </div>
 </div>
 
+
 <!-- Gallery-->
 <div #shuffleContainer class="shuffle-container row my-4">
-  <app-painting-card
-    *ngFor="let painting of paintings"
-    class="shuffle-item col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12 my-3"
-    [attr.data-category]="painting.category"
-    [attr.data-paint]="painting.paint"
-    [attr.data-status]="painting.status"
-    [painting]="painting"
-    [fixedHeight]="false"
-  ></app-painting-card>
+  <app-painting-card *ngFor="let painting of paintings"
+    class="shuffle-item col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12 my-3" [attr.data-category]="painting.category"
+    [attr.data-paint]="painting.paint" [attr.data-status]="painting.status" [painting]="painting" [fixedHeight]="false">
+  </app-painting-card>
   <div #shuffleSizer class="sizer-element col-1"></div>
 </div>

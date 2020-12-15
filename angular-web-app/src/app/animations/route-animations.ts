@@ -49,7 +49,6 @@ export const routeAnimations = trigger('routeAnimations', [
     // Before animate
     positionAbsolute,
     hideFooter,
-    hideFilter,
     query(':enter .smallhead', [
       style({ height: mastheadHeight, opacity: 0 })
     ], { optional: true }),
@@ -91,7 +90,6 @@ export const routeAnimations = trigger('routeAnimations', [
         animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({ transform: 'none', opacity: 1 })),
       ], { optional: true }),
     ]),
-    showFilter,
     // Animate child
     query(':enter', animateChild(), { optional: true }),
   ]),
@@ -103,7 +101,6 @@ export const routeAnimations = trigger('routeAnimations', [
     // Before animate
     positionAbsolute,
     hideFooter,
-    hideFilter,
     query(':enter .masthead', [
       style({ height: smallheadHeight, opacity: 0 })
     ], { optional: true }),
@@ -144,7 +141,6 @@ export const routeAnimations = trigger('routeAnimations', [
         animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({ transform: 'none', opacity: 1 })),
       ], { optional: true }),
     ]),
-    showFilter,
     // Animate child
     query(':enter', animateChild(), { optional: true }),
   ]),
@@ -156,7 +152,6 @@ export const routeAnimations = trigger('routeAnimations', [
     // Before animate
     positionAbsolute,
     hideFooter,
-    hideFilter,
     query(':enter .smallhead, :enter .smallhead hr, :enter .smallhead p, :enter .masthead, :enter .masthead hr, :enter .masthead p', [
       style({ opacity: 0 })
     ], { optional: true }),
@@ -192,7 +187,6 @@ export const routeAnimations = trigger('routeAnimations', [
         animate(duration + 'ms cubic-bezier(0.35, 0, 0.25, 1)', style({ transform: 'none', opacity: 1 })),
       ], { optional: true }),
     ]),
-    showFilter,
     // Animate child
     query(':enter', animateChild(), { optional: true }),
   ]),
