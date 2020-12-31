@@ -1,11 +1,11 @@
 <!-- Filters -->
 <div id="filterRow" class="row">
-  <div class="col-12">
+  <div class="col-12 d-flex align-items-center justify-content-center flex-wrap">
     <button mat-raised-button [matMenuTriggerFor]="menuCategory" [matBadge]="activeFilters.categories.length"
       [matBadgeHidden]="activeFilters.categories.length == 0" matBadgePosition="after" matBadgeColor="accent"
       class="m-2">
-      <mat-icon class="mr-2">category</mat-icon>
-      <span>Category</span>
+      <mat-icon class="mr-0 mr-sm-2">category</mat-icon>
+      <span class="d-none d-sm-inline">Category</span>
     </button>
     <mat-menu #menuCategory="matMenu">
       <mat-selection-list #categorylist [(ngModel)]="activeFilters.categories" (ngModelChange)="updateFilters()">
@@ -19,8 +19,8 @@
     <button mat-raised-button [matMenuTriggerFor]="menuPaint" [matBadge]="activeFilters.paints.length"
       [matBadgeHidden]="activeFilters.paints.length == 0" matBadgePosition="after" matBadgeColor="accent"
       class="m-2">
-      <mat-icon class="mr-2">brush</mat-icon>
-      <span>Paint</span>
+      <mat-icon class="mr-0 mr-sm-2">brush</mat-icon>
+      <span class="d-none d-sm-inline">Paint</span>
     </button>
     <mat-menu #menuPaint="matMenu">
       <mat-selection-list #paintlist [(ngModel)]="activeFilters.paints" (ngModelChange)="updateFilters()">
@@ -33,8 +33,8 @@
     <button mat-raised-button [matMenuTriggerFor]="menuState" [matBadge]="activeFilters.states.length"
       [matBadgeHidden]="activeFilters.states.length == 0" matBadgePosition="after" matBadgeColor="accent"
       class="m-2">
-      <mat-icon class="mr-2">local_offer</mat-icon>
-      <span>State</span>
+      <mat-icon class="mr-0 mr-sm-2">local_offer</mat-icon>
+      <span class="d-none d-sm-inline">State</span>
     </button>
     <mat-menu #menuState="matMenu">
       <mat-selection-list #statelist [(ngModel)]="activeFilters.states" (ngModelChange)="updateFilters()">

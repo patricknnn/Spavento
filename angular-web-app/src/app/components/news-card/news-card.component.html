@@ -1,4 +1,4 @@
-<mat-card class="mb-3 p-5">
+<mat-card class="card-clean">
   <div class="container-fluid px-0">
     <div class="row">
       <div [class]="colOne">
@@ -10,9 +10,9 @@
         <h6 class="txt-primary text-uppercase mt-2">
           {{ newsItem.category }}
         </h6>
-        <h3>{{ newsItem.title }}</h3>
+        <h3 class="mb-3">{{ newsItem.title }}</h3>
 
-        <div class="txt-dark-muted">
+        <div class="txt-dark-muted mb-3">
           <hr class="hr-news">
           <mat-icon class="inline-icon mr-2">today</mat-icon>
           <span>{{ formattedDate }}</span>
@@ -25,10 +25,9 @@
           <hr class="hr-news">
         </div>
 
-        <p>{{ newsItem.text }}</p>
-
         <button mat-raised-button color="accent" class="rounded-pill" (click)="openNewsItem(content)">
           Read more
+          <mat-icon>arrow_right_alt</mat-icon>
         </button>
       </div>
     </div>
@@ -36,15 +35,9 @@
 </mat-card>
 
 <!-- Modal -->
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <div></div>
-    <button mat-raised-button color="accent" (click)="modal.close()">
-      <mat-icon>close</mat-icon>
-    </button>
-  </div>
+<ng-template #content>
 
-  <div class="modal-body">
+  <mat-dialog-content>
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-3">
@@ -78,6 +71,8 @@
         <div class="col-md-6">
           <p>{{ newsItem.text }}</p>
           <p>{{ newsItem.text }}</p>
+          <p>{{ newsItem.text }}</p>
+          <p>{{ newsItem.text }}</p>
         </div>
         <div class="col-md-6">
           <app-maps [title]="'Location'" [subtitle]="'The event will be here.'"
@@ -85,6 +80,10 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="modal-footer"></div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
+  </mat-dialog-actions>
+
 </ng-template>

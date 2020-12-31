@@ -22,55 +22,79 @@
     <section class="page-section">
       <div class="container">
         <div class="row">
-          <div class="col-6">
+          <div class="col-12">
             <mat-card class="card-clean">
               <mat-card-content>
                 <h2 class="title-underlined">Details</h2>
 
                 <mat-accordion multi="true">
-                  <mat-expansion-panel class="mat-elevation-z1">
+                  <mat-expansion-panel [expanded]="true" class="mat-elevation-z0">
                     <mat-expansion-panel-header>
-                      <mat-panel-title class="txt-secondary">
-                        <mat-icon class="mr-3">person</mat-icon>
-                        Artist
+                      <mat-panel-title>
+                        <mat-icon color="accent" class="mr-3">person</mat-icon>
+                        <strong>Artist</strong>
                       </mat-panel-title>
                     </mat-expansion-panel-header>
                     <div class="panel-content">{{ painting.artist }}</div>
                   </mat-expansion-panel>
 
-                  <mat-expansion-panel [expanded]="true" class="mat-elevation-z1">
+                  <mat-expansion-panel [expanded]="true" class="mat-elevation-z0">
                     <mat-expansion-panel-header>
                       <mat-panel-title>
-                        <mat-icon class="mr-3">description</mat-icon>
-                        Description
-                      </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <div class="panel-content">{{ painting.description }}</div>
-                  </mat-expansion-panel>
-
-                  <mat-expansion-panel class="mat-elevation-z1">
-                    <mat-expansion-panel-header>
-                      <mat-panel-title>
-                        <mat-icon class="mr-3">palette</mat-icon>
-                        Paint & Category
+                        <mat-icon color="accent" class="mr-3">description</mat-icon>
+                        <strong>Description</strong>
                       </mat-panel-title>
                     </mat-expansion-panel-header>
                     <div class="panel-content">
-                      <p>{{ painting.paint }}</p>
-                      <p>{{ painting.category }}</p>
-                      </div>
+                      {{ painting.description }}
+                    </div>
                   </mat-expansion-panel>
 
-                  <mat-expansion-panel class="mat-elevation-z1">
+                  <mat-expansion-panel class="mat-elevation-z0">
                     <mat-expansion-panel-header>
                       <mat-panel-title>
-                        <mat-icon class="mr-3">more</mat-icon>
-                        Status & Price
+                        <mat-icon color="accent" class="mr-3">palette</mat-icon>
+                        <strong>Paint</strong>
                       </mat-panel-title>
                     </mat-expansion-panel-header>
                     <div class="panel-content">
-                      <p>{{ painting.status }}</p>
-                      <p>&euro; {{ painting.price }}</p>
+                      {{ painting.paint }}
+                    </div>
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel class="mat-elevation-z0">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <mat-icon color="accent" class="mr-3">category</mat-icon>
+                        <strong>Category</strong>
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="panel-content">
+                      {{ painting.category }}
+                    </div>
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel class="mat-elevation-z0">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <mat-icon color="accent" class="mr-3">more</mat-icon>
+                        <strong>Status</strong>
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="panel-content">
+                      {{ painting.status }}
+                    </div>
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel class="mat-elevation-z0">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <mat-icon color="accent" class="mr-3">shopping_bag</mat-icon>
+                        <strong>Price</strong>
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="panel-content">
+                      {{ painting.price }}
                     </div>
                   </mat-expansion-panel>
                 </mat-accordion>

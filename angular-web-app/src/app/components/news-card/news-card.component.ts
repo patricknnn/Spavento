@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MatDialog } from '@angular/material/dialog';
 import { NewsItem } from '../../models/newsitem';
 
 @Component({
@@ -15,7 +15,9 @@ export class NewsCardComponent implements OnInit {
   imageClass = '';
   formattedDate: string;
 
-  constructor(private modalService: NgbModal) {}
+  constructor(
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     if (this.direction == 'col') {
@@ -27,12 +29,29 @@ export class NewsCardComponent implements OnInit {
   }
 
   openNewsItem(content) {
-    this.modalService.open(content, { size: 'xl', scrollable: true });
+    //this.beforeModalOpen();
+    const dialogRef = this.dialog.open(content);
+    dialogRef.afterClosed().subscribe({
+      next() {
+        //this.afterModalClose();
+      },
+    });
+
   }
 
   getDate(): string {
     let date = new Date(this.newsItem.date);
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return date.toLocaleDateString('nl-NL', options);
+  }
+
+  beforeModalOpen(): void {
+    let app = document.getElementById('app-root');
+    app.classList.add('app-root-absolute');
+  }
+
+  afterModalClose(): void {
+    let app = document.getElementById('app-root');
+    app.classList.remove('app-root-absolute');
   }
 }
