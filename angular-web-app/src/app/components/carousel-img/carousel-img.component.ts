@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {NguCarouselConfig} from '@ngu/carousel';
 import {PaintingService} from '../../services/painting.service';
 import {Router} from '@angular/router';
 
@@ -11,15 +10,6 @@ import {Router} from '@angular/router';
 export class CarouselImgComponent implements OnInit {
   @Input() paintingId: number;
   images: string[];
-
-  carouselConfig: NguCarouselConfig = {
-    grid: { xs: 2, sm: 2, md: 3, lg: 3, all: 0 },
-    load: 3,
-    interval: {timing: 4000, initialDelay: 1000},
-    loop: false,
-    touch: true,
-    velocity: 0.2
-  };
 
   constructor(
     private paintingService: PaintingService,
