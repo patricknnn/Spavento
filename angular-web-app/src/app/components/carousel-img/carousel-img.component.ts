@@ -1,7 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {PaintingService} from '../../services/painting.service';
-import {Router} from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, Input, OnInit } from '@angular/core';
+import { PaintingService } from '../../services/painting.service';
+import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
   selector: 'app-carousel-img',
@@ -15,9 +14,8 @@ export class CarouselImgComponent implements OnInit {
 
   constructor(
     private paintingService: PaintingService,
-    private modalService: NgbModal,
-    private router: Router
-  ) {}
+    private modalService: ModalService
+  ) { }
 
   ngOnInit(): void {
     this.images = this.paintingService.getImagesByPaintingId(this.paintingId);
@@ -25,9 +23,6 @@ export class CarouselImgComponent implements OnInit {
 
   openImage(content, image) {
     this.modalImage = image;
-    this.modalService.open(content, {
-      size: 'xl',
-      windowClass: 'transparent-modal',
-    });
+    this.modalService.openModal(content);
   }
 }

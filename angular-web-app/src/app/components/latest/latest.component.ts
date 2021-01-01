@@ -3,7 +3,6 @@ import { PaintingService } from '../../services/painting.service';
 import { Painting } from '../../models/painting';
 import { NguCarouselConfig } from '@ngu/carousel';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-latest',
@@ -24,7 +23,6 @@ export class LatestComponent implements OnInit {
 
   constructor(
     private paintingService: PaintingService,
-    private modalService: NgbModal,
     private router: Router
   ) {
   }
@@ -35,9 +33,5 @@ export class LatestComponent implements OnInit {
 
   goToPaintingDetails(paintingId: number): void {
     this.router.navigate(['/painting', { id: paintingId }]);
-  }
-
-  openImage(content) {
-    this.modalService.open(content, { size: 'xl', windowClass: 'transparent-modal'});
   }
 }

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Painting } from 'src/app/models/painting';
+import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
   selector: 'app-painting-card',
@@ -14,7 +14,7 @@ export class PaintingCardComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private modalService: NgbModal
+    private modalService: ModalService
   ) { }
 
   ngOnInit(): void {
@@ -25,10 +25,7 @@ export class PaintingCardComponent implements OnInit {
   }
 
   openImage(content) {
-    this.modalService.open(content, {
-      size: 'xl',
-      windowClass: 'transparent-modal',
-    });
+    this.modalService.openModal(content);
   }
 
 }

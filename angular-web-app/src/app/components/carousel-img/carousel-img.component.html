@@ -23,16 +23,10 @@
 
 
 <!-- Modal -->
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <div></div>
-    <button mat-raised-button color="accent" (click)="modal.close()">
-      <mat-icon>close</mat-icon>
-    </button>
-  </div>
+<ng-template #content>
 
-  <div class="modal-body">
-    <div class="container">
+  <mat-dialog-content>
+    <div class="container-fluid">
       <div class="row">
         <div class="col-12">
           <div class="d-flex align-items-center justify-content-center">
@@ -41,6 +35,10 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="modal-footer"></div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
+  </mat-dialog-actions>
+
 </ng-template>

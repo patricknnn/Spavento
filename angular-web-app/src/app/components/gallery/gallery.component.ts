@@ -2,7 +2,6 @@ import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, Vie
 import { Painting } from '../../models/painting';
 import { PaintingService } from '../../services/painting.service';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { componentAnimations } from '../../animations/component-animations';
 import Shuffle from 'shufflejs';
 import { MatExpansionPanel } from '@angular/material/expansion';
@@ -32,12 +31,10 @@ export class GalleryComponent implements OnInit, AfterViewInit {
    * Constructor
    * @param paintingService painting service
    * @param router router
-   * @param modalService modal service
    */
   constructor(
     private paintingService: PaintingService,
-    private router: Router,
-    private modalService: NgbModal
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -53,13 +50,6 @@ export class GalleryComponent implements OnInit, AfterViewInit {
 
   goToPaintingDetails(paintingId: number): void {
     this.router.navigate(['/painting', { id: paintingId }]);
-  }
-
-  openImage(content) {
-    this.modalService.open(content, {
-      size: 'xl',
-      windowClass: 'transparent-modal',
-    });
   }
 
   closeExpansionPanels() {
