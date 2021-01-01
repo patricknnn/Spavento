@@ -1,37 +1,12 @@
-<ngu-carousel
-  #latestCarousel
-  [inputs]="carouselConfig"
-  [dataSource]="paintings"
->
-  <div *nguCarouselDef="let painting" class="item p-3">
-    <app-painting-card
-      [painting]="painting"
-      [fixedHeight]="true"
-    ></app-painting-card>
-  </div>
-
-  <button
-    mat-fab
-    NguCarouselNext
-    class="rightRs mat-elevation-z0"
-    [style.opacity]="latestCarousel.isLast ? 0.5 : 1"
-  >
-    <mat-icon>keyboard_arrow_right</mat-icon>
-  </button>
-  <button
-    mat-fab
-    NguCarouselPrev
-    class="leftRs mat-elevation-z0"
-    [style.opacity]="latestCarousel.isFirst ? 0.5 : 1"
-  >
-    <mat-icon>keyboard_arrow_left</mat-icon>
-  </button>
-
-  <!-- <ul class="ngu-points" NguCarouselPoint>
-    <li
-      *ngFor="let j of latestCarousel.pointNumbers"
-      [class.active]="j == latestCarousel.activePoint"
-      (click)="latestCarousel.moveTo(j)"
-    ></li>
-  </ul> -->
-</ngu-carousel>
+<mat-tab-group>
+  <mat-tab *ngFor="let paintingGroup of groupedPaintings" label="Group">
+    <div class="container-fluid">
+      <div class="row">
+        <div *ngFor="let painting of paintingGroup" class="col-4">
+          <app-painting-card [painting]="painting" [fixedHeight]="true">
+          </app-painting-card>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>

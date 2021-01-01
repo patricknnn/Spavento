@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { PaintingService } from '../../services/painting.service';
 import { Painting } from '../../models/painting';
-import { NguCarouselConfig } from '@ngu/carousel';
 import { Router } from '@angular/router';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-latest',
@@ -10,28 +10,54 @@ import { Router } from '@angular/router';
   styleUrls: ['./latest.component.scss'],
 })
 export class LatestComponent implements OnInit {
+  private _mobileQueryListener: () => void;
+  mobileQuery: MediaQueryList;
   paintings: Painting[];
+  groupedPaintings: Painting[];
   painting: Painting;
-  carouselConfig: NguCarouselConfig = {
-    grid: { xs: 1, sm: 2, md: 3, lg: 3, all: 0 },
-    load: 3,
-    interval: { timing: 4000, initialDelay: 1000 },
-    loop: false,
-    touch: true,
-    velocity: 0.2,
-  };
+  smallScreen: boolean;
 
   constructor(
     private paintingService: PaintingService,
-    private router: Router
+    private router: Router,
+    changeDetectorRef: ChangeDetectorRef, 
+    media: MediaMatcher
   ) {
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addEventListener('change', this._mobileQueryListener);
   }
 
   ngOnInit(): void {
-    this.paintings = this.paintingService.getLatestPaintings(5);
+    this.paintings = this.paintingService.getLatestPaintings(6);
+    this.groupPaintings();
+  }
+
+  ngOnDestroy(): void {
+    this.mobileQuery.removeEventListener('change', this._mobileQueryListener);
   }
 
   goToPaintingDetails(paintingId: number): void {
     this.router.navigate(['/painting', { id: paintingId }]);
   }
+
+  groupPaintings(): void {
+    if (this.mobileQuery.matches) { // small
+      this.groupedPaintings = this.group(this.paintings, 1);
+      console.log(this.groupedPaintings);
+      
+    } else { // large
+      this.groupedPaintings = this.group(this.paintings, 3);
+    }
+  }
+
+  group(array, size) {
+    let results = [];
+    results = [];
+    while (array.length) {
+      results.push(array.splice(0, size));
+    }
+    return results;
+  };
+
 }
