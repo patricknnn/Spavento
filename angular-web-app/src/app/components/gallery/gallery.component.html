@@ -55,7 +55,7 @@
 <div #shuffleContainer class="shuffle-container row my-4">
   <app-painting-card *ngFor="let painting of paintings"
     class="shuffle-item col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12 my-3" [attr.data-category]="painting.category"
-    [attr.data-paint]="painting.paint" [attr.data-status]="painting.status" [painting]="painting" [fixedHeight]="false">
+    [attr.data-paint]="painting.paint" [attr.data-status]="painting.status" [painting]="painting">
   </app-painting-card>
   <div #shuffleSizer class="sizer-element col-1"></div>
 </div>

@@ -1,39 +1,18 @@
-<div class="row">
-  <div class="col-12">
-    <mat-card id="featured-card" class="card-clean p-0 mx-4">
-      <img
-        src="{{ painting.thumbnail }}"
-        class="featured-img mat-elevation-z4"
-        alt="{{ painting.title }}"
-      />
-      <mat-card-content class="p-4 text-center">
-        <h2 class="">{{ painting.title }}</h2>
-        <h6 class="font-italic mb-3 txt-primary">By {{ painting.artist}}.</h6>
-        <!-- <p class="pt-2">{{ getTrimmedDescription() }}</p> -->
-        <div class="portfolio-project-buttons">
-          <button
-            mat-fab
-            color="accent"
-            class="mx-2"
-            aria-label="Show image"
-            (click)="openImage(content)"
-          >
-            <mat-icon>search</mat-icon>
-          </button>
-          <button
-            mat-fab
-            color="accent"
-            class="mx-2"
-            aria-label="Show details"
-            (click)="goToPaintingDetails()"
-          >
-            <mat-icon>more_horiz</mat-icon>
-          </button>
-        </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
-</div>
+<mat-card id="featured-card" class="">
+  <img src="{{ painting.thumbnail }}" class="featured-img mat-elevation-z4" alt="{{ painting.title }}" />
+  <mat-card-content class="p-4 text-center">
+    <h2 class="">{{ painting.title }}</h2>
+    <h6 class="font-italic mb-3 txt-primary">By {{ painting.artist}}.</h6>
+    <div class="portfolio-project-buttons">
+      <button mat-fab color="accent" class="mx-2" aria-label="Show image" (click)="openImage(content)">
+        <mat-icon>search</mat-icon>
+      </button>
+      <button mat-fab color="accent" class="mx-2" aria-label="Show details" (click)="goToPaintingDetails()">
+        <mat-icon>more_horiz</mat-icon>
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>
 
 
 <!-- Modal -->

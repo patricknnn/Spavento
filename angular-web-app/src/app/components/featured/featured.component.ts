@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Painting} from '../../models/painting';
-import {Router} from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { Painting } from '../../models/painting';
+import { Router } from '@angular/router';
 import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
@@ -21,7 +21,7 @@ export class FeaturedComponent implements OnInit {
   }
 
   goToPaintingDetails(): void {
-    this.router.navigate(['/painting', {id: this.painting.id}]);
+    this.router.navigate(['/painting', { id: this.painting.id }]);
   }
 
   getTrimmedDescription(): string {

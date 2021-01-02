@@ -1,27 +1,12 @@
-<ngu-carousel
-  #latestCarousel
-  [inputs]="carouselConfig"
-  [dataSource]="news"
->
-  <div *nguCarouselDef="let newsitem" class="item">
-    <div class="wrapper w-100">
-      <app-news-card [newsItem]="newsitem" [direction]="'row'"></app-news-card>
+
+<ngb-carousel *ngIf="newsItems" #newsCarousel>
+  <ng-template ngbSlide *ngFor="let newsItem of newsItems">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12">
+          <app-news-card [newsItem]="newsItem" [direction]="'row'"></app-news-card>
+        </div>
+      </div>
     </div>
-    
-  </div>
-
-  <button mat-fab NguCarouselNext class="rightRs mat-elevation-z0" [style.opacity]="latestCarousel.isLast ? 0.5:1">
-    <mat-icon>keyboard_arrow_right</mat-icon>
-  </button>
-  <button mat-fab NguCarouselPrev class="leftRs mat-elevation-z0" [style.opacity]="latestCarousel.isFirst ? 0.5:1">
-    <mat-icon>keyboard_arrow_left</mat-icon>
-  </button>
-
-  <!-- <ul class="ngu-points" NguCarouselPoint>
-    <li
-      *ngFor="let j of latestCarousel.pointNumbers"
-      [class.active]="j == latestCarousel.activePoint"
-      (click)="latestCarousel.moveTo(j)"
-    ></li>
-  </ul> -->
-</ngu-carousel>
+  </ng-template>
+</ngb-carousel>

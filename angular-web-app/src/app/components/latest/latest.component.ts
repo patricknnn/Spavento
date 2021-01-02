@@ -1,8 +1,8 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PaintingService } from '../../services/painting.service';
 import { Painting } from '../../models/painting';
 import { Router } from '@angular/router';
-import { MediaMatcher } from '@angular/cdk/layout';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-latest',
@@ -10,45 +10,37 @@ import { MediaMatcher } from '@angular/cdk/layout';
   styleUrls: ['./latest.component.scss'],
 })
 export class LatestComponent implements OnInit {
-  private _mobileQueryListener: () => void;
-  mobileQuery: MediaQueryList;
-  paintings: Painting[];
   groupedPaintings: Painting[];
-  painting: Painting;
-  smallScreen: boolean;
+  smallScreen = '(max-width: 767px)';
+  mediumScreen = '(min-width: 768px) and (max-width: 991px)';
+  largeScreen = '(min-width: 992px)';
 
   constructor(
+    private breakpointObserver: BreakpointObserver,
     private paintingService: PaintingService,
     private router: Router,
-    changeDetectorRef: ChangeDetectorRef, 
-    media: MediaMatcher
   ) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addEventListener('change', this._mobileQueryListener);
+    this.breakpointObserver.observe([
+      this.smallScreen,
+      this.mediumScreen,
+      this.largeScreen,
+    ]).subscribe(result => {
+      if (result.breakpoints[this.smallScreen]) { this.groupPaintings(1); }
+      if (result.breakpoints[this.mediumScreen]) { this.groupPaintings(2); }
+      if (result.breakpoints[this.largeScreen]) { this.groupPaintings(3); }
+    });
   }
 
   ngOnInit(): void {
-    this.paintings = this.paintingService.getLatestPaintings(6);
-    this.groupPaintings();
-  }
-
-  ngOnDestroy(): void {
-    this.mobileQuery.removeEventListener('change', this._mobileQueryListener);
   }
 
   goToPaintingDetails(paintingId: number): void {
     this.router.navigate(['/painting', { id: paintingId }]);
   }
 
-  groupPaintings(): void {
-    if (this.mobileQuery.matches) { // small
-      this.groupedPaintings = this.group(this.paintings, 1);
-      console.log(this.groupedPaintings);
-      
-    } else { // large
-      this.groupedPaintings = this.group(this.paintings, 3);
-    }
+  groupPaintings(size: number): void {
+    let paintings = this.paintingService.getLatestPaintings(6);
+    this.groupedPaintings = this.group(paintings, size);
   }
 
   group(array, size) {

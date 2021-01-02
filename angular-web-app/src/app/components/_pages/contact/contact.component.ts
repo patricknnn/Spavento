@@ -28,7 +28,7 @@ export class ContactComponent implements OnInit {
       new Service(
         'pin_drop',
         'Pay a visit',
-        'Oeverlanden 60, 9606RR Kropswolde'
+        'Oeverlanden, Kropswolde'
       )
     ];
   }

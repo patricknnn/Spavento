@@ -16,6 +16,7 @@
             <app-carousel-img [paintingId]="painting.id"></app-carousel-img>
           </div>
         </div>
+
       </div>
     </section>
 
@@ -28,7 +29,7 @@
                 <h2 class="title-underlined">Details</h2>
 
                 <mat-accordion multi="true">
-                  <mat-expansion-panel [expanded]="true" class="mat-elevation-z0">
+                  <mat-expansion-panel [expanded]="true">
                     <mat-expansion-panel-header>
                       <mat-panel-title>
                         <mat-icon color="accent" class="mr-3">person</mat-icon>
@@ -38,7 +39,7 @@
                     <div class="panel-content">{{ painting.artist }}</div>
                   </mat-expansion-panel>
 
-                  <mat-expansion-panel [expanded]="true" class="mat-elevation-z0">
+                  <mat-expansion-panel [expanded]="true">
                     <mat-expansion-panel-header>
                       <mat-panel-title>
                         <mat-icon color="accent" class="mr-3">description</mat-icon>
@@ -50,7 +51,7 @@
                     </div>
                   </mat-expansion-panel>
 
-                  <mat-expansion-panel class="mat-elevation-z0">
+                  <mat-expansion-panel>
                     <mat-expansion-panel-header>
                       <mat-panel-title>
                         <mat-icon color="accent" class="mr-3">palette</mat-icon>
@@ -62,7 +63,7 @@
                     </div>
                   </mat-expansion-panel>
 
-                  <mat-expansion-panel class="mat-elevation-z0">
+                  <mat-expansion-panel>
                     <mat-expansion-panel-header>
                       <mat-panel-title>
                         <mat-icon color="accent" class="mr-3">category</mat-icon>
@@ -74,7 +75,7 @@
                     </div>
                   </mat-expansion-panel>
 
-                  <mat-expansion-panel class="mat-elevation-z0">
+                  <mat-expansion-panel>
                     <mat-expansion-panel-header>
                       <mat-panel-title>
                         <mat-icon color="accent" class="mr-3">more</mat-icon>
@@ -86,7 +87,7 @@
                     </div>
                   </mat-expansion-panel>
 
-                  <mat-expansion-panel class="mat-elevation-z0">
+                  <mat-expansion-panel>
                     <mat-expansion-panel-header>
                       <mat-panel-title>
                         <mat-icon color="accent" class="mr-3">shopping_bag</mat-icon>
@@ -94,7 +95,7 @@
                       </mat-panel-title>
                     </mat-expansion-panel-header>
                     <div class="panel-content">
-                      {{ painting.price }}
+                      &euro; {{ painting.price }}
                     </div>
                   </mat-expansion-panel>
                 </mat-accordion>

@@ -1,13 +1,9 @@
 @import "../../../variables";
 
 .painting-card {
-  height: 30vh;
+  height: 100%;
   width: 100%;
   overflow: hidden;
-}
-
-.painting-card-auto-height {
-  height: auto !important;
 }
 
 .painting-card-img {
@@ -19,7 +15,7 @@
 }
 
 .painting-card img {
-  transition: transform .5s ease;
+  transition: transform 1s ease;
 }
 
 .painting-card-title {

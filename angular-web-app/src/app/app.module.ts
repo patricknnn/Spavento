@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,7 +20,6 @@ import { MapsComponent } from './components/maps/maps.component';
 import { ContactCardComponent } from './components/contact-card/contact-card.component';
 import { SectionTitleCenterComponent } from './components/section-title-center/section-title-center.component';
 import { ServiceCardComponent } from './components/service-card/service-card.component';
-import { NguCarouselModule } from '@ngu/carousel';
 import { SectionTitleComponent } from './components/section-title/section-title.component';
 import { PaintingDetailComponent } from './components/_pages/painting-detail/painting-detail.component';
 import { CarouselImgComponent } from './components/carousel-img/carousel-img.component';
@@ -71,10 +69,9 @@ import { SafePipe } from 'src/safe-pipe.pipe';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    NguCarouselModule,
     NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

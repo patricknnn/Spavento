@@ -10,7 +10,7 @@ import { ModalService } from 'src/app/services/modal.service';
 })
 export class PaintingCardComponent implements OnInit {
   @Input() painting: Painting;
-  @Input() fixedHeight = true;
+  @Input() maxHeight = '100%';
 
   constructor(
     private router: Router,
