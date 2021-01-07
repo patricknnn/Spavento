@@ -66,16 +66,26 @@ button::-moz-focus-inner {
   }
 }
 
+/*************************************/
+/**            Modals               **/
+/*************************************/
 .cdk-overlay-container {
   z-index: 1050 !important;
 }
 
-.app-root-absolute {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
+.cdk-global-scrollblock {
+  position: initial;
   width: 100%;
+  overflow: hidden;
+  padding-right: 17px;
+}
+
+.cdk-global-scrollblock #mainNav {
+  right: 17px;
+}
+
+.cdk-global-scrollblock #site-footer {
+  padding-right: 17px;
 }
 
 /*************************************/
