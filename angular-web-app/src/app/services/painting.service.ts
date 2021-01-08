@@ -8,21 +8,55 @@ import { Painting } from '../models/painting';
 export class PaintingService {
   paintings = PAINTINGS;
 
-  constructor() {}
+  constructor() { }
 
-  getAllPaintings(): Painting[] {
+  public getCategories(): string[] {
+    return [
+      "Portretten",
+      "Natuur",
+      "Dieren",
+      "TV Series",
+      "Algemeen"
+    ];
+  }
+
+  public getStates(): string[] {
+    return [
+      "Beschikbaar",
+      "Niet beschikbaar",
+      "Opdrachten",
+      "Eerdere werken"
+    ];
+  }
+
+  public getPaints(): string[] {
+    return [
+      "Oil",
+      "Acryl",
+      "Water"
+    ];
+  }
+
+  public getMaterials(): string[] {
+    return [
+      "Doek",
+      "Hout",
+    ];
+  }
+
+  public getAllPaintings(): Painting[] {
     return this.paintings;
   }
 
-  getLatestPaintings(amount: number): Painting[] {
+  public getLatestPaintings(amount: number): Painting[] {
     return this.paintings.slice(0, amount);
   }
 
-  getPaintingById(id: number): Painting {
+  public getPaintingById(id: number): Painting {
     return this.paintings.find((x) => x.id === id);
   }
 
-  getImagesByPaintingId(id: number): string[] {
+  public getImagesByPaintingId(id: number): string[] {
     return [
       '../../../assets/img/dessertcar.jpg',
       '../../../assets/img/elephant.jpg',

@@ -4,7 +4,7 @@ export const NEWS: NewsItem[] = [
     new NewsItem(
         "Spavento's upcoming expositions",
         "John Doe",
-        "Expositions",
+        "Exposities",
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis neque id ex volutpat, quis tempus purus finibus. Quisque et vulputate nisi. In semper maximus arcu a auctor. Nullam mi ex, fermentum nec tellus vitae, tincidunt malesuada libero.",
         "../../../assets/img/hooglander.jpg",
         Date.now(),
@@ -13,7 +13,7 @@ export const NEWS: NewsItem[] = [
     new NewsItem(
         "New website is now live",
         "John Doe",
-        "Technology",
+        "Technologie",
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis neque id ex volutpat, quis tempus purus finibus. Quisque et vulputate nisi. In semper maximus arcu a auctor. Nullam mi ex, fermentum nec tellus vitae, tincidunt malesuada libero.",
         "../../../assets/img/dessertcar.jpg",
         Date.now(),

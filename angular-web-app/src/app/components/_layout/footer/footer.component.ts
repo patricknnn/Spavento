@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { FooterContent } from '../../../models/footerContent';
+import { FooterContent } from '../../../models/footercontent';
 import { ContentService } from '../../../services/content.service';
 
 @Component({

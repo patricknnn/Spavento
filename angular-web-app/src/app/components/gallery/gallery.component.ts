@@ -1,29 +1,27 @@
-import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Painting } from '../../models/painting';
 import { PaintingService } from '../../services/painting.service';
 import { Router } from '@angular/router';
-import { componentAnimations } from '../../animations/component-animations';
 import Shuffle from 'shufflejs';
-import { MatExpansionPanel } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.scss'],
-  animations: [componentAnimations],
 })
 export class GalleryComponent implements OnInit, AfterViewInit {
   @ViewChild('shuffleContainer') private shuffleContainer: ElementRef;
   @ViewChild('shuffleSizer') private shuffleSizer: ElementRef;
-  @ViewChildren(MatExpansionPanel) expansionPanels: QueryList<MatExpansionPanel>;
   private shuffleInstance: Shuffle;
   paintings: Painting[];
-  categories = ['TV Series', 'Nature', 'Animals'];
-  paints = ['Oil', 'Acryl', 'Water'];
-  states = ['Sold', 'For Sale'];
+  categories: string[];
+  paints: string[];
+  materials: string[];
+  states: string[];
   activeFilters = {
     categories: [],
     paints: [],
+    materials: [],
     states: [],
   };
 
@@ -39,6 +37,10 @@ export class GalleryComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.paintings = this.paintingService.getAllPaintings();
+    this.categories = this.paintingService.getCategories();
+    this.paints = this.paintingService.getPaints();
+    this.materials = this.paintingService.getMaterials();
+    this.states = this.paintingService.getStates();
   }
 
   ngAfterViewInit(): void {
@@ -52,14 +54,11 @@ export class GalleryComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/painting', { id: paintingId }]);
   }
 
-  closeExpansionPanels() {
-    this.expansionPanels.forEach(p => p.close());
-  }
-
   // Clear filters and reset
   resetFilters(): void {
     this.activeFilters.categories = [];
     this.activeFilters.paints = [];
+    this.activeFilters.materials = [];
     this.activeFilters.states = [];
     this.shuffleInstance.filter();
   }
@@ -75,9 +74,11 @@ export class GalleryComponent implements OnInit, AfterViewInit {
   itemPassesFilters(element): boolean {
     var categories = this.activeFilters.categories;
     var paints = this.activeFilters.paints;
+    var materials = this.activeFilters.materials;
     var states = this.activeFilters.states;
     var category = element.getAttribute('data-category');
     var paint = element.getAttribute('data-paint');
+    var material = element.getAttribute('data-material');
     var state = element.getAttribute('data-status');
     // Categories
     if (categories.length > 0 && !categories.includes(category)) {
@@ -85,6 +86,10 @@ export class GalleryComponent implements OnInit, AfterViewInit {
     }
     // Paints
     if (paints.length > 0 && !paints.includes(paint)) {
+      return false;
+    }
+    // Materials
+    if (materials.length > 0 && !materials.includes(material)) {
       return false;
     }
     // States

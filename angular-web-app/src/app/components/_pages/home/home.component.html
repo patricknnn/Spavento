@@ -1,15 +1,17 @@
 <!-- Header -->
-<app-header [title]="title" [subTitle]="subTitle" [small]="false"></app-header>
+<app-header [title]="pageContent.title" [subTitle]="pageContent.subTitle" [small]="false"></app-header>
 
 <main id="home" class="main main-raised">
   <!-- Services -->
   <section class="page-section bg-light">
     <div class="container">
-      <app-section-title [title]="'Services'" [subTitle]="'What i do'" [text]="
-          'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam.'
-        "></app-section-title>
+      <app-section-title 
+        [title]="pageContent.content.servicesTitle"
+        [subTitle]="pageContent.content.servicesSubTitle" 
+        [text]="pageContent.content.servicesText"
+      ></app-section-title>
       <div class="row">
-        <div *ngFor="let service of services" class="col-lg-4 col-md-6 col-sm-12">
+        <div *ngFor="let service of pageContent.content.services" class="col-lg-4 col-md-6 col-sm-12">
           <!-- Service cards -->
           <app-service-card [service]="service"></app-service-card>
         </div>
@@ -20,7 +22,11 @@
   <!-- Featured -->
   <section class="page-section">
     <div class="container">
-      <app-section-title [title]="'Featured'" [subTitle]="'My personal favorite'"></app-section-title>
+      <app-section-title 
+        [title]="pageContent.content.featuredTitle"
+        [subTitle]="pageContent.content.featuredSubTitle"
+        [text]="pageContent.content.featuredText"
+      ></app-section-title>
     </div>
     <div class="container">
       <div class="row">
@@ -35,7 +41,12 @@
   <!-- Latest News -->
   <section class="page-section bg-light">
     <div class="container">
-      <app-section-title [title]="'Latest News'" [subTitle]="'Stay up to date'" [link]="'/news'"></app-section-title>
+      <app-section-title 
+        [title]="pageContent.content.latestNewsTitle"
+        [subTitle]="pageContent.content.latestNewsSubTitle"
+        [text]="pageContent.content.latestNewsText"
+        [link]="'/news'"
+      ></app-section-title>
       <div class="row">
         <div class="col-12">
           <app-latest-news></app-latest-news>
@@ -47,7 +58,11 @@
   <!-- Latest paintings -->
   <section class="page-section">
     <div class="container">
-      <app-section-title [title]="'Recent work'" [subTitle]="'Take a look at my recent work'" [link]="'/portfolio'">
+      <app-section-title
+        [title]="pageContent.content.latestWorkTitle"
+        [subTitle]="pageContent.content.latestWorkSubTitle"
+        [text]="pageContent.content.latestWorkText"
+        [link]="'/portfolio'">
       </app-section-title>
       <div class="row">
         <div class="col-12">
@@ -61,7 +76,12 @@
   <section class="page-section bg-material-light">
     <div class="container">
       <div class="col-12">
-        <app-call-to-action></app-call-to-action>
+        <app-call-to-action
+          [title]="pageContent.content.ctaTitle"
+          [subTitle]="pageContent.content.ctaSubTitle"
+          [buttonText]="pageContent.content.ctaButtonText"
+          [buttonLink]="pageContent.content.ctaButtonLink"
+        ></app-call-to-action>
       </div>
     </div>
   </section>

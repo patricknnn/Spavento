@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {Service} from '../../../models/service';
-import {Painting} from '../../../models/painting';
-import {PaintingService} from '../../../services/painting.service';
+import { Component, OnInit } from '@angular/core';
+import { Painting } from '../../../models/painting';
+import { PaintingService } from '../../../services/painting.service';
+import { PageContent } from 'src/app/models/pagecontent';
+import { ContentService } from 'src/app/services/content.service';
 
 @Component({
   selector: 'app-home',
@@ -9,35 +10,18 @@ import {PaintingService} from '../../../services/painting.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  services: Service[];
+  pageContent: PageContent;
   featuredPainting: Painting;
-  title = 'Spavento';
-  subTitle = 'Paintings & Artwork';
 
   constructor(
     private paintingService: PaintingService,
-    ) {
+    private contentService: ContentService
+  ) {
   }
 
   ngOnInit(): void {
+    this.pageContent = this.contentService.getPageContent('home');
     this.featuredPainting = this.paintingService.getLatestPaintings(1)[0];
-    this.services = [
-      new Service(
-        'brush',
-        'Custom Work',
-        'Custom paintings made to fit your wishes.'
-      ),
-      new Service(
-        'palette',
-        'Different Styles',
-        'I paint in a variety of different styles, from landscapes to portraits.'
-      ),
-      new Service(
-        'collections',
-        'Expositions',
-        'You can view my work at different expositions.'
-      )
-    ];
   }
 
 }

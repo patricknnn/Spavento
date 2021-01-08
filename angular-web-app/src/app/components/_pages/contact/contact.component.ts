@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Service } from 'src/app/models/service';
+import { PageContent } from 'src/app/models/pagecontent';
+import { ContentService } from 'src/app/services/content.service';
 
 @Component({
   selector: 'app-contact',
@@ -7,30 +8,12 @@ import { Service } from 'src/app/models/service';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
-  title = 'Contact';
-  subTitle = 'Lets get in touch';
-  contactcards: Service[];
+  pageContent: PageContent;
 
-  constructor() { }
+  constructor(private contentService: ContentService) { }
 
   ngOnInit(): void {
-    this.contactcards = [
-      new Service(
-        'phone',
-        'Give a call',
-        '+31 6 12345678'
-      ),
-      new Service(
-        'email',
-        'Send an email',
-        'info@spavento.nl'
-      ),
-      new Service(
-        'pin_drop',
-        'Pay a visit',
-        'Oeverlanden, Kropswolde'
-      )
-    ];
+    this.pageContent = this.contentService.getPageContent('contact');
   }
 
 }

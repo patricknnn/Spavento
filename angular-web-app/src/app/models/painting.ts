@@ -6,9 +6,11 @@ export class Painting {
     public description: string,
     public thumbnail: string,
     public paint: string,
+    public material: string,
     public status: string,
     public price: number,
     public category: string,
+    public size: string,
     public timestampCreated: number,
     public timestampUpdated: number,
   ) {

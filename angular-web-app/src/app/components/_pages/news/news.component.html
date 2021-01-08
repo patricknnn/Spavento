@@ -1,27 +1,47 @@
-
 <!-- Header small -->
-<app-header [title]="title" [subTitle]="subTitle" [small]="true"></app-header>
+<app-header [title]="pageContent.title" [subTitle]="pageContent.subTitle" [small]="true"></app-header>
 
 <!-- Main -->
 <main id="news" class="main main-raised">
   <!-- News -->
   <section class="page-section bg-light">
     <div class="container">
-      <app-section-title
-        [title]="'News'"
-        [subTitle]="'The lastest Spavento news'"
-        [text]="
-          'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam.'
-        "
-      ></app-section-title>
+      <app-section-title [title]="pageContent.content.newsTitle" [subTitle]="pageContent.content.newsSubTitle"
+        [text]="pageContent.content.newsText">
+      </app-section-title>
 
-      <div class="row">
-        <div class="col-12" *ngFor="let item of newsItems">
-          <app-news-card [newsItem]="item"></app-news-card>
-          <div class="content-spacer"></div>
+      <!-- Filters -->
+      <div id="filterRow" class="row">
+        <div class="col-12 d-flex align-items-center justify-content-center flex-wrap">
+          <button mat-raised-button [matMenuTriggerFor]="menuCategory" [matBadge]="activeFilters.categories.length"
+            [matBadgeHidden]="activeFilters.categories.length == 0" matBadgePosition="after" matBadgeColor="accent"
+            class="m-2">
+            <mat-icon class="mr-0 mr-sm-2">category</mat-icon>
+            <span class="d-none d-sm-inline">Categorie</span>
+          </button>
+          <mat-menu #menuCategory="matMenu">
+            <mat-selection-list #categorylist [(ngModel)]="activeFilters.categories" (ngModelChange)="updateFilters()">
+              <mat-list-option color="primary" checkboxPosition="after" *ngFor="let category of categories"
+                [value]="category">
+                {{ category }}
+              </mat-list-option>
+            </mat-selection-list>
+          </mat-menu>
+
+          <button mat-icon-button color="primary" class="m-2" (click)="resetFilters();">
+            <mat-icon>replay</mat-icon>
+          </button>
         </div>
       </div>
+
+      <!-- News items -->
+      <div #shuffleContainer class="shuffle-container row my-4">
+        <app-news-card *ngFor="let item of newsItems" class="shuffle-item col-12 my-3" [newsItem]="item"
+          [attr.data-category]="item.category">
+        </app-news-card>
+        <div #shuffleSizer class="sizer-element col-1"></div>
+      </div>
+
     </div>
   </section>
 </main>
-

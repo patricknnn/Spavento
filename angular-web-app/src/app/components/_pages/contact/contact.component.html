@@ -1,5 +1,5 @@
 <!-- Header small -->
-<app-header [title]="title" [subTitle]="subTitle" [small]="true"></app-header>
+<app-header [title]="pageContent.title" [subTitle]="pageContent.subTitle" [small]="true"></app-header>
 
 <!-- Main -->
 <main id="contact" class="main main-raised">
@@ -7,13 +7,14 @@
   <section class="page-section bg-light">
     <div class="container">
       <app-section-title
-        [title]="'Contact info'"
-        [subTitle]="'How to reach me'"
+        [title]="pageContent.content.contactCardsTitle"
+        [subTitle]="pageContent.content.contactCardsSubTitle"
+        [text]="pageContent.content.contactCardsText"
       ></app-section-title>
 
       <div class="row">
         <div
-          *ngFor="let contactcard of contactcards"
+          *ngFor="let contactcard of pageContent.content.contactCards"
           class="col-lg-4 col-md-6 col-sm-12"
         >
           <!-- Service cards -->
@@ -27,20 +28,15 @@
   <section class="page-section">
     <div class="container">
       <app-section-title
-        [title]="'Contact form'"
-        [subTitle]="'Send a message'"
-        [text]="
-          'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam.'
-        "
+        [title]="pageContent.content.contactFormTitle"
+        [subTitle]="pageContent.content.contactFormSubTitle"
+        [text]="pageContent.content.contactFormText"
       ></app-section-title>
 
       <div class="row">
         <div class="col-12">
           <app-contact-card></app-contact-card>
         </div>
-        <!-- <div class="col-md-6">
-          <app-maps [title]="'Pay a visit'" [subtitle]="'Find us here.'" [location]="'Oeverlanden+60,+9606+RR+Kropswolde'"></app-maps>
-        </div> -->
       </div>
     </div>
   </section>

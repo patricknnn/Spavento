@@ -1,6 +1,6 @@
 
 <!-- Header small -->
-<app-header [title]="title" [subTitle]="subTitle" [small]="true"></app-header>
+<app-header [title]="pageContent.title" [subTitle]="pageContent.subTitle" [small]="true"></app-header>
 
 <!-- Main -->
 <main id="portfolio" class="main main-raised">
@@ -10,9 +10,9 @@
 
     <div class="container">
       <app-section-title
-        [title]="'Portfolio'"
-        [subTitle]="'An overview of my work'"
-        [text]="'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam.'"
+        [title]="pageContent.content.galleryTitle"
+        [subTitle]="pageContent.content.gallerySubTitle"
+        [text]="pageContent.content.galleryText"
       ></app-section-title>
 
       <!-- Gallery -->

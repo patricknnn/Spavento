@@ -13,4 +13,12 @@ export class NewsService {
   getAllNews(): NewsItem[] {
     return this.news;
   }
+
+  getCategories(): string[] {
+    return [
+      "Exposities",
+      "Technologie",
+      "Services"
+    ];
+  }
 }

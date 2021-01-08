@@ -8,8 +8,8 @@
     <!-- Content -->
     <section class="page-section bg-light">
       <div class="container">
-        <app-section-title [title]="painting.title" [subTitle]="'Details of painting'"
-          [text]="'By ' + painting.artist + '.'"></app-section-title>
+        <app-section-title [title]="'Gallerij'" [subTitle]="'Foto'"
+          [text]="'Alle beschikbare fotos zijn hier te vinden.'"></app-section-title>
 
         <div class="row mb-5">
           <div class="col-12">
@@ -22,85 +22,95 @@
 
     <section class="page-section">
       <div class="container">
+        <app-section-title [title]="'Informatie'" [subTitle]="'Meer'"
+          [text]="'Over ' + painting.title + ' van ' + painting.artist + '.'"></app-section-title>
+
         <div class="row">
           <div class="col-12">
-            <mat-card class="card-clean">
-              <mat-card-content>
-                <h2 class="title-underlined">Details</h2>
 
-                <mat-accordion multi="true">
-                  <mat-expansion-panel [expanded]="true">
-                    <mat-expansion-panel-header>
-                      <mat-panel-title>
-                        <mat-icon color="accent" class="mr-3">person</mat-icon>
-                        <strong>Artist</strong>
-                      </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <div class="panel-content">{{ painting.artist }}</div>
-                  </mat-expansion-panel>
+            <mat-accordion multi="true">
+              <mat-expansion-panel [expanded]="true">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <mat-icon color="accent" class="mr-3">person</mat-icon>
+                    <strong>Artiest</strong>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="panel-content">{{ painting.artist }}</div>
+              </mat-expansion-panel>
 
-                  <mat-expansion-panel [expanded]="true">
-                    <mat-expansion-panel-header>
-                      <mat-panel-title>
-                        <mat-icon color="accent" class="mr-3">description</mat-icon>
-                        <strong>Description</strong>
-                      </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <div class="panel-content">
-                      {{ painting.description }}
-                    </div>
-                  </mat-expansion-panel>
+              <mat-expansion-panel [expanded]="true">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <mat-icon color="accent" class="mr-3">description</mat-icon>
+                    <strong>Omschrijving</strong>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="panel-content">
+                  {{ painting.description }}
+                </div>
+              </mat-expansion-panel>
 
-                  <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                      <mat-panel-title>
-                        <mat-icon color="accent" class="mr-3">palette</mat-icon>
-                        <strong>Paint</strong>
-                      </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <div class="panel-content">
-                      {{ painting.paint }}
-                    </div>
-                  </mat-expansion-panel>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <mat-icon color="accent" class="mr-3">palette</mat-icon>
+                    <strong>Verf en materiaal</strong>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="panel-content">
+                  {{ painting.paint }} op {{ painting.material }}
+                </div>
+              </mat-expansion-panel>
 
-                  <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                      <mat-panel-title>
-                        <mat-icon color="accent" class="mr-3">category</mat-icon>
-                        <strong>Category</strong>
-                      </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <div class="panel-content">
-                      {{ painting.category }}
-                    </div>
-                  </mat-expansion-panel>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <mat-icon color="accent" class="mr-3">photo_size_select_actual</mat-icon>
+                    <strong>Afmetingen</strong>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="panel-content">
+                  {{ painting.size }} cm
+                </div>
+              </mat-expansion-panel>
 
-                  <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                      <mat-panel-title>
-                        <mat-icon color="accent" class="mr-3">more</mat-icon>
-                        <strong>Status</strong>
-                      </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <div class="panel-content">
-                      {{ painting.status }}
-                    </div>
-                  </mat-expansion-panel>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <mat-icon color="accent" class="mr-3">category</mat-icon>
+                    <strong>Categorie</strong>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="panel-content">
+                  {{ painting.category }}
+                </div>
+              </mat-expansion-panel>
 
-                  <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                      <mat-panel-title>
-                        <mat-icon color="accent" class="mr-3">shopping_bag</mat-icon>
-                        <strong>Price</strong>
-                      </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <div class="panel-content">
-                      &euro; {{ painting.price }}
-                    </div>
-                  </mat-expansion-panel>
-                </mat-accordion>
-              </mat-card-content>
-            </mat-card>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <mat-icon color="accent" class="mr-3">more</mat-icon>
+                    <strong>Status</strong>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="panel-content">
+                  {{ painting.status }}
+                </div>
+              </mat-expansion-panel>
+
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <mat-icon color="accent" class="mr-3">shopping_bag</mat-icon>
+                    <strong>Prijs</strong>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="panel-content">
+                  &euro; {{ painting.price }}
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
           </div>
 
         </div>

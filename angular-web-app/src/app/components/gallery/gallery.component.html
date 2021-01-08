@@ -5,7 +5,7 @@
       [matBadgeHidden]="activeFilters.categories.length == 0" matBadgePosition="after" matBadgeColor="accent"
       class="m-2">
       <mat-icon class="mr-0 mr-sm-2">category</mat-icon>
-      <span class="d-none d-sm-inline">Category</span>
+      <span class="d-none d-sm-inline">Categorie</span>
     </button>
     <mat-menu #menuCategory="matMenu">
       <mat-selection-list #categorylist [(ngModel)]="activeFilters.categories" (ngModelChange)="updateFilters()">
@@ -17,10 +17,9 @@
     </mat-menu>
 
     <button mat-raised-button [matMenuTriggerFor]="menuPaint" [matBadge]="activeFilters.paints.length"
-      [matBadgeHidden]="activeFilters.paints.length == 0" matBadgePosition="after" matBadgeColor="accent"
-      class="m-2">
+      [matBadgeHidden]="activeFilters.paints.length == 0" matBadgePosition="after" matBadgeColor="accent" class="m-2">
       <mat-icon class="mr-0 mr-sm-2">brush</mat-icon>
-      <span class="d-none d-sm-inline">Paint</span>
+      <span class="d-none d-sm-inline">Verf</span>
     </button>
     <mat-menu #menuPaint="matMenu">
       <mat-selection-list #paintlist [(ngModel)]="activeFilters.paints" (ngModelChange)="updateFilters()">
@@ -30,11 +29,24 @@
       </mat-selection-list>
     </mat-menu>
 
-    <button mat-raised-button [matMenuTriggerFor]="menuState" [matBadge]="activeFilters.states.length"
-      [matBadgeHidden]="activeFilters.states.length == 0" matBadgePosition="after" matBadgeColor="accent"
+    <button mat-raised-button [matMenuTriggerFor]="menuMaterial" [matBadge]="activeFilters.materials.length"
+      [matBadgeHidden]="activeFilters.materials.length == 0" matBadgePosition="after" matBadgeColor="accent"
       class="m-2">
+      <mat-icon class="mr-0 mr-sm-2">photo_filter</mat-icon>
+      <span class="d-none d-sm-inline">Materiaal</span>
+    </button>
+    <mat-menu #menuMaterial="matMenu">
+      <mat-selection-list #materiallist [(ngModel)]="activeFilters.materials" (ngModelChange)="updateFilters()">
+        <mat-list-option color="primary" checkboxPosition="after" *ngFor="let material of materials" [value]="material">
+          {{ material }}
+        </mat-list-option>
+      </mat-selection-list>
+    </mat-menu>
+
+    <button mat-raised-button [matMenuTriggerFor]="menuState" [matBadge]="activeFilters.states.length"
+      [matBadgeHidden]="activeFilters.states.length == 0" matBadgePosition="after" matBadgeColor="accent" class="m-2">
       <mat-icon class="mr-0 mr-sm-2">local_offer</mat-icon>
-      <span class="d-none d-sm-inline">State</span>
+      <span class="d-none d-sm-inline">Status</span>
     </button>
     <mat-menu #menuState="matMenu">
       <mat-selection-list #statelist [(ngModel)]="activeFilters.states" (ngModelChange)="updateFilters()">
@@ -44,7 +56,7 @@
       </mat-selection-list>
     </mat-menu>
 
-    <button mat-icon-button color="primary" class="m-2" (click)="resetFilters(); closeExpansionPanels()">
+    <button mat-icon-button color="primary" class="m-2" (click)="resetFilters();">
       <mat-icon>replay</mat-icon>
     </button>
   </div>
@@ -55,7 +67,8 @@
 <div #shuffleContainer class="shuffle-container row my-4">
   <app-painting-card *ngFor="let painting of paintings"
     class="shuffle-item col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12 my-3" [attr.data-category]="painting.category"
-    [attr.data-paint]="painting.paint" [attr.data-status]="painting.status" [painting]="painting">
+    [attr.data-paint]="painting.paint" [attr.data-material]="painting.material" [attr.data-status]="painting.status"
+    [painting]="painting">
   </app-painting-card>
-  <div #shuffleSizer class="sizer-element col-1"></div>
+  <div #shuffleSizer class="sizer-element col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
 </div>
