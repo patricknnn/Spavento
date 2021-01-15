@@ -1,31 +1,32 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FooterContent } from '../../../models/footercontent';
-import { ContentService } from '../../../services/content.service';
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
 })
-export class FooterComponent implements OnInit, AfterViewInit {
-  content: FooterContent;
+export class FooterComponent implements OnChanges {
+  @Input() footerContent: FooterContent;
 
-  constructor(private contentService: ContentService) { }
+  constructor() { }
 
-  ngOnInit(): void {
-    this.content = this.contentService.getFooterContent();
-  }
-
-  ngAfterViewInit(): void {
-    // init footer margin
-    this.siteFooter();
-    // init on resize
+  ngOnChanges(changes: SimpleChanges): void {
+    // footer on resize
     window.onresize = this.siteFooter;
+
+    // init footer
+    setTimeout(() => {
+      this.siteFooter();
+    }, 1500);
   }
 
   // Add footer margin to content
   siteFooter(): void {
-    const siteFooterHeight = document.getElementById('site-footer').clientHeight;
-    document.getElementById('site-content').style.marginBottom = siteFooterHeight + 'px';
+    let footer = document.getElementById('site-footer');
+    let main = document.getElementById('site-content');
+    if (footer && main) {
+      main.style.marginBottom = footer.clientHeight + 'px';
+    }
   }
 }

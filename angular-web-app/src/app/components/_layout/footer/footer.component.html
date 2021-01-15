@@ -1,23 +1,23 @@
 <!-- Footer-->
-<footer id="site-footer">
+<footer id="site-footer" *ngIf="footerContent">
 
   <div class="pt-5">
     <div class="container">
       <div class="row">
 
         <div class="col-md-6 pb-4">
-          <h4 class="title-underlined">{{ content.aboutTitle }}</h4>
-          <p>{{ content.aboutText }}</p>
+          <h4 class="title-underlined">{{ footerContent.aboutTitle }}</h4>
+          <p>{{ footerContent.aboutText }}</p>
         </div>
 
         <div class="col-md-6 pb-4">
-          <h4 class="title-underlined">{{ content.socialTitle }}</h4>
-          <p>{{ content.socialText }}</p>
+          <h4 class="title-underlined">{{ footerContent.socialTitle }}</h4>
+          <p>{{ footerContent.socialText }}</p>
           <ul class="list-inline">
             <!-- facebook, twitter, instagram -->
-            <li class="list-inline-item"><a href="{{ content.facebookLink }}" target="blank"><img class="social-icon" src="../../../../assets/img/icons/facebook.png" alt=""></a></li>
-            <li class="list-inline-item"><a href="{{ content.twitterLink }}" target="blank"><img class="social-icon" src="../../../../assets/img/icons/twitter.png" alt=""></a></li>
-            <li class="list-inline-item"><a href="{{ content.instagramLink }}" target="blank"><img class="social-icon" src="../../../../assets/img/icons/instagram.png" alt=""></a></li>
+            <li class="list-inline-item"><a href="{{ footerContent.facebookLink }}" target="blank"><img class="social-icon" src="../../../../assets/img/icons/facebook.png" alt=""></a></li>
+            <li class="list-inline-item"><a href="{{ footerContent.twitterLink }}" target="blank"><img class="social-icon" src="../../../../assets/img/icons/twitter.png" alt=""></a></li>
+            <li class="list-inline-item"><a href="{{ footerContent.instagramLink }}" target="blank"><img class="social-icon" src="../../../../assets/img/icons/instagram.png" alt=""></a></li>
           </ul>
         </div>
 
@@ -29,8 +29,8 @@
   <div class="py-3">
     <div class="container">
       <hr>
-      <div class="row d-flex flex-row align-items-center justify-content-center">
-        <div class="text-center">{{ content.footerText }}</div>
+      <div class="row d-flex flex-row align-items-center justify-footerContent-center">
+        <div class="text-center">{{ footerContent.footerText }}</div>
       </div>
     </div>
   </div>

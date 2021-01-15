@@ -26,12 +26,20 @@
 }
 
 .navlink-wrapper {
-  margin: 0 15px;
+  margin: 4px 15px;
+}
+
+.navlink-wrapper a {
+  margin: 0px;
 }
 
 .navlink-expandable {
   background: none !important;
   margin: 0;
+}
+
+.navlink-expandable a {
+  margin: 4px 0px;
 }
 
 .navlink:hover {

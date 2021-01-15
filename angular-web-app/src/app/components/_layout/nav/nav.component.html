@@ -1,5 +1,5 @@
 <!-- Navigation-->
-<nav class="navbar navbar-expand-md fixed-top py-0" id="mainNav">
+<nav *ngIf="navContent" [class.fixed-top]="fixed" [class.navbar-scrolled]="!fixed" class="navbar navbar-expand-md py-0" id="mainNav">
   <div class="container">
     <a class="navbar-brand" routerLink="/home">
       <img src="{{navContent.brandImage}}" alt="logo" class="navbar-brand-img">

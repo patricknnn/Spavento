@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./layout-footer.component.scss']
 })
 export class LayoutFooterComponent implements OnInit {
+  title = "Footer";
+  subTitle = "Layout";
+  text = "Stel hier alles in met betrekking tot de footer op de website.";
 
   constructor() { }
 

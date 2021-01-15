@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Sidenavlink } from 'src/app/models/sidenavlink';
 
 @Component({
@@ -10,7 +11,7 @@ export class SidenavComponent implements OnInit {
   public navlinks: Sidenavlink[];
   public simplebarOptions: object;
 
-  constructor() {
+  constructor(private router: Router) {
     this.navlinks = [
       new Sidenavlink("Dashboard", "dashboard", "/admin/dashboard"),
       new Sidenavlink("Layout", "view_sidebar", "", [
@@ -34,6 +35,12 @@ export class SidenavComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  goToHome(): void {
+    this.router.navigate(['/home']).then(() => {
+      window.location.reload();
+    });
   }
 
 }

@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NavContent } from 'src/app/models/navcontent';
-import { ContentService } from 'src/app/services/content.service';
 
 @Component({
   selector: 'app-nav',
@@ -8,15 +7,13 @@ import { ContentService } from 'src/app/services/content.service';
   styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent implements OnInit {
+  @Input() navContent: NavContent;
+  @Input() fixed: Boolean = true;
   public isMenuCollapsed = true;
-  navContent: NavContent;
 
-  constructor(private contentService: ContentService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    // get content
-    this.navContent = this.contentService.getNavContent();
-
     // Scrolled nav when page is scrolled
     window.addEventListener("scroll", function (e) {
       const nav = document.getElementById("mainNav");

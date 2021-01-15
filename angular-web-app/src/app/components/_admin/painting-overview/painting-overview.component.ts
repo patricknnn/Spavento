@@ -6,7 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./painting-overview.component.scss']
 })
 export class PaintingOverviewComponent implements OnInit {
-
+  title = "Overzicht";
+  subTitle = "Portfolio";
+  text = "Hier is een overzicht van alle portfolio items te vinden.";
+  
   constructor() { }
 
   ngOnInit(): void {

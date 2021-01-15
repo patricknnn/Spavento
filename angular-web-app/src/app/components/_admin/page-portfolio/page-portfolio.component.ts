@@ -6,7 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./page-portfolio.component.scss']
 })
 export class PagePortfolioComponent implements OnInit {
-
+  title = "Portfolio";
+  subTitle = "Pagina";
+  text = "Stel hier alles in met betrekking tot de portfolio pagina op de website.";
+  
   constructor() { }
 
   ngOnInit(): void {

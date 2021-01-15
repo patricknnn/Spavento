@@ -10,8 +10,7 @@ import { SidenavService } from 'src/app/services/sidenav.service';
 export class ToolbarComponent implements OnInit {
 
   constructor(
-    private sidenav: SidenavService,
-    private router: Router
+    private sidenav: SidenavService
   ) { }
 
   ngOnInit(): void {
@@ -19,12 +18,6 @@ export class ToolbarComponent implements OnInit {
 
   toggleSidenav(): void {
     this.sidenav.toggle();
-  }
-
-  goToHome(): void {
-    this.router.navigate(['/home']).then(() => {
-      window.location.reload();
-    });
   }
 
 }
