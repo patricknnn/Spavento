@@ -1,0 +1,17 @@
+.main-toolbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(#eee, 0.5);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  z-index: 99;
+  height: 56px !important;
+}
+
+.brand-img {
+  height: 32px;
+  width: 32px;
+  margin-right: 16px;
+}

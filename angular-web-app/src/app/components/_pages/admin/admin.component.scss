@@ -1,0 +1,29 @@
+@import "../../../../variables.scss";
+
+mat-sidenav {
+  width: 270px !important;
+  color: #fff !important;
+  background: url("../../../../assets/img/material-bg.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+mat-sidenav-content {
+  background: rgb(250, 250, 250);
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #FAFAFA;
+}
+
+.main-sidenav-container {
+  flex: 1;
+}

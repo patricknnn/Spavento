@@ -32,6 +32,20 @@ import { PaintingCardComponent } from './components/painting-card/painting-card.
 import { PageNotFoundComponent } from './components/_pages/page-not-found/page-not-found.component';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { SafePipe } from 'src/safe-pipe.pipe';
+import { DashboardComponent } from './components/_admin/dashboard/dashboard.component';
+import { PaintingOverviewComponent } from './components/_admin/painting-overview/painting-overview.component';
+import { PaintingAddComponent } from './components/_admin/painting-add/painting-add.component';
+import { AdminComponent } from './components/_pages/admin/admin.component';
+import { SidenavComponent } from './components/_admin/sidenav/sidenav.component';
+import { ToolbarComponent } from './components/_admin/toolbar/toolbar.component';
+import { SimplebarAngularModule } from 'simplebar-angular';
+import { PageHomeComponent } from './components/_admin/page-home/page-home.component';
+import { PagePortfolioComponent } from './components/_admin/page-portfolio/page-portfolio.component';
+import { PageNewsComponent } from './components/_admin/page-news/page-news.component';
+import { PageContactComponent } from './components/_admin/page-contact/page-contact.component';
+import { LayoutNavigationComponent } from './components/_admin/layout-navigation/layout-navigation.component';
+import { LayoutHeaderComponent } from './components/_admin/layout-header/layout-header.component';
+import { LayoutFooterComponent } from './components/_admin/layout-footer/layout-footer.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +75,20 @@ import { SafePipe } from 'src/safe-pipe.pipe';
     InfoCardComponent,
     PaintingCardComponent,
     ClickOutsideDirective,
-    SafePipe
+    SafePipe,
+    DashboardComponent,
+    PaintingOverviewComponent,
+    PaintingAddComponent,
+    AdminComponent,
+    SidenavComponent,
+    ToolbarComponent,
+    PageHomeComponent,
+    PagePortfolioComponent,
+    PageNewsComponent,
+    PageContactComponent,
+    LayoutNavigationComponent,
+    LayoutHeaderComponent,
+    LayoutFooterComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +97,7 @@ import { SafePipe } from 'src/safe-pipe.pipe';
     MaterialModule,
     FormsModule,
     NgbModule,
+    SimplebarAngularModule
   ],
   providers: [],
   bootstrap: [AppComponent],

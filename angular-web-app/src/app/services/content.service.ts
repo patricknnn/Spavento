@@ -23,6 +23,7 @@ export class ContentService {
         new NavLink('Portfolio', '/portfolio'),
         new NavLink('Nieuws', '/news'),
         new NavLink('Contact', '/contact'),
+        new NavLink('CMS', '/cms'),
       ],
     );
   }

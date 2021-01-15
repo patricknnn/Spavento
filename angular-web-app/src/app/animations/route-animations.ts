@@ -41,6 +41,16 @@ const showFilter =
  * RouteAnimations
  */
 export const routeAnimations = trigger('routeAnimations', [
+  /**
+   * home <=> admin
+   */
+  transition('home <=> admin', [
+    query(':enter', [
+      style({ opacity: 0 })
+    ], { optional: true }),
+    // Animate child
+    query(':enter', animateChild(), { optional: true }),
+  ]),
 
   /**
    * masthead => smallhead

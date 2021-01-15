@@ -52,6 +52,10 @@ export class PaintingService {
     return this.paintings.slice(0, amount);
   }
 
+  public getFeaturedPainting(): Painting {
+    return this.paintings[0];
+  }
+
   public getPaintingById(id: number): Painting {
     return this.paintings.find((x) => x.id === id);
   }

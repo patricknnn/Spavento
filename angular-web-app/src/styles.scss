@@ -269,6 +269,61 @@ hr.divider {
   padding: 15px !important;
 }
 
+
+/*************************************/
+/**              Admin              **/
+/*************************************/
+.mat-drawer-side {
+  border-right: none !important;
+}
+
+.clearfix {
+  height: 70px;
+}
+
+.sidenavLinkActive {
+  border-radius: 3px !important;
+  background-color: $color-secondary !important;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
+    0 7px 10px -5px rgba($color-secondary, 0.4) !important;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.separator {
+  background-color: rgba(255, 255, 255, 0.3);
+  height: 1px;
+  margin: 0 15px;
+}
+
+.scroll-content-wrapper {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  height: 100%;
+}
+
+.scroll-content {
+  display: flex;
+  min-height: min-content;
+  height: 100%;
+}
+
+.simplebar-scrollbar::before {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+  width: 3px;
+}
+
+.bg-light .simplebar-scrollbar::before {
+  background-color: #191919 !important;
+}
+
+.simplebar-content {
+  min-height: 100%;
+}
+
 /*************************************/
 /**          Color Helpers          **/
 /*************************************/

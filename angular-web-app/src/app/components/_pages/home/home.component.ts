@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.pageContent = this.contentService.getPageContent('home');
-    this.featuredPainting = this.paintingService.getLatestPaintings(1)[0];
+    this.featuredPainting = this.paintingService.getFeaturedPainting();
   }
 
 }
