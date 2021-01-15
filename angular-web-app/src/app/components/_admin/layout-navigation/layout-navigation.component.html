@@ -2,7 +2,7 @@
   <app-section-title [title]="title" [subTitle]="subTitle" [text]="text">
   </app-section-title>
 
-  <div class="row">
+  <div class="row mb-4">
     <div class="col-12">
       <mat-card class="mat-elevation-z4">
         <h4 class="title-underlined">Resultaat</h4>
@@ -11,14 +11,14 @@
     </div>
   </div>
 
-  <div class="row mt-3">
+  <div class="row mb-4">
     <div class="col-12">
       <mat-card class="mat-elevation-z4">
         <h4 class="title-underlined">Instellingen</h4>
-        <form (ngSubmit)="onSubmit()" #navigationForm="ngForm">
+        <form (ngSubmit)="onSubmit()" #navigationForm="ngForm" *ngIf="navContent">
 
-          <div class="form-group">
-            <mat-form-field appearance="fill" class="form-field w-100">
+          <div class="form-group row">
+            <mat-form-field appearance="fill" class="form-field col-12">
               <mat-label>Titel</mat-label>
               <input matInput type="text" id="title" placeholder="Titel" name="title" [(ngModel)]="navContent.brandName"
                 #navTitle="ngModel" required>
@@ -26,8 +26,8 @@
             </mat-form-field>
           </div>
 
-          <div class="form-group">
-            <mat-form-field appearance="fill" class="form-field w-100">
+          <div class="form-group row">
+            <mat-form-field appearance="fill" class="form-field col-12">
               <mat-label>Logo</mat-label>
               <input matInput type="text" id="logo" placeholder="Logo" name="logo" [(ngModel)]="navContent.brandImage"
                 #navLogo="ngModel" required>
@@ -35,16 +35,24 @@
             </mat-form-field>
           </div>
 
-          <div class="form-group">
-            <mat-form-field appearance="fill" class="form-field w-100" *ngFor="let navlink of navContent.navlinks">
-              <mat-label>Navlink</mat-label>
-              <input matInput type="text" id="navLink" placeholder="Navlink" name="navLink" [(ngModel)]="navContent.navlinks.navlink"
-                #navLink="ngModel" required>
-              <mat-hint [hidden]="navLink.valid || navLink.pristine">navLink is verplicht</mat-hint>
+          <div class="form-group row" *ngFor="let navlink of navContent.navLinks; index as i">
+            <mat-form-field appearance="fill" class="form-field col-sm-12 col-md-5">
+              <mat-label>Label</mat-label>
+              <input matInput [(ngModel)]="navlink.label" type="text" [id]="navlink.label" [name]="navlink.label" placeholder="Label" required>
             </mat-form-field>
+            <mat-form-field appearance="fill" class="form-field col-sm-12 col-md-5">
+              <mat-label>Router link</mat-label>
+              <input matInput [(ngModel)]="navlink.routerLink" type="text" [id]="navlink.routerLink" [name]="navlink.routerLink" placeholder="Router link" required>
+            </mat-form-field>
+            <div class="col-sm-12 col-md-2">
+              <div class="form-field form-field-slide">
+                <mat-label>Zichtbaar</mat-label>
+                <mat-slide-toggle [(ngModel)]="navlink.visible" [name]="'visible_' + i" [checked]="navlink.visible" (change)="setVisibility(navlink , $event)" class="slide-toggle-form"></mat-slide-toggle>
+              </div>
+            </div>
           </div>
 
-          <button mat-flat-button color="accent" type="submit" [disabled]="!navigationForm.form.valid">Submit</button>
+          <button mat-flat-button color="accent" type="submit" [disabled]="!navigationForm.form.valid || navigationForm.form.pristine">Opslaan</button>
           <button mat-flat-button color="primary" type="button" class="ml-3" (click)="reset()">Reset</button>
         </form>
       </mat-card>

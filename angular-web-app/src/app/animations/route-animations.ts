@@ -42,12 +42,44 @@ const showFilter =
  */
 export const routeAnimations = trigger('routeAnimations', [
   /**
-   * home <=> admin
+   * => admin
    */
-  transition('home <=> admin', [
+  transition('* => admin', [
+    positionAbsolute,
+    query(':leave', [
+      style({ opacity: 1 })
+    ], { optional: true }),
     query(':enter', [
       style({ opacity: 0 })
     ], { optional: true }),
+    group([
+      query(':leave', [
+        animate(duration + 'ms ease', style({ opacity: 0 }))
+      ], { optional: true }),
+      query(':enter', [
+        animate(duration + 'ms ease', style({ opacity: 1 }))
+      ], { optional: true }),
+    ]),
+    // Animate child
+    query(':enter', animateChild(), { optional: true }),
+  ]),
+
+  /**
+   * <= admin
+   */
+  transition('admin => *', [
+    positionAbsolute,
+    query(':leave', [
+      style({ opacity: 1 })
+    ], { optional: true }),
+    query(':enter', [
+      style({ opacity: 0 })
+    ], { optional: true }),
+    group([
+      query(':leave', [
+        animate(duration + 'ms ease', style({ opacity: 0 }))
+      ], { optional: true }),
+    ]),
     // Animate child
     query(':enter', animateChild(), { optional: true }),
   ]),

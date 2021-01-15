@@ -14,6 +14,7 @@ export class SidenavComponent implements OnInit {
   constructor(private router: Router) {
     this.navlinks = [
       new Sidenavlink("Dashboard", "dashboard", "/admin/dashboard"),
+      new Sidenavlink("Algemeen", "photo_filter", "/admin/general"),
       new Sidenavlink("Layout", "view_sidebar", "", [
         new Sidenavlink("Navigatie", "explore", "/admin/layout-navigation"),
         new Sidenavlink("Header", "panorama", "/admin/layout-header"),
@@ -29,7 +30,10 @@ export class SidenavComponent implements OnInit {
         new Sidenavlink("Overzicht", "library_books", "/admin/portfolio-overview"),
         new Sidenavlink("Toevoegen", "library_add", "/admin/portfolio-add"),
       ]),
-
+      new Sidenavlink("Nieuws", "library_books", "", [
+        new Sidenavlink("Overzicht", "library_books", "/admin/news-overview"),
+        new Sidenavlink("Toevoegen", "library_add", "/admin/news-add"),
+      ]),
     ];
     this.simplebarOptions = { autoHide: true };
   }

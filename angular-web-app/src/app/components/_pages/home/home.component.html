@@ -6,12 +6,12 @@
   <section class="page-section bg-light">
     <div class="container">
       <app-section-title 
-        [title]="pageContent.content.servicesTitle"
-        [subTitle]="pageContent.content.servicesSubTitle" 
-        [text]="pageContent.content.servicesText"
+        [title]="pageContent.content.servicesContent.title"
+        [subTitle]="pageContent.content.servicesContent.subTitle" 
+        [text]="pageContent.content.servicesContent.text"
       ></app-section-title>
       <div class="row">
-        <div *ngFor="let service of pageContent.content.services" class="col-lg-4 col-md-6 col-sm-12">
+        <div *ngFor="let service of pageContent.content.servicesContent.services" class="col-lg-4 col-md-6 col-sm-12">
           <!-- Service cards -->
           <app-service-card [service]="service"></app-service-card>
         </div>
@@ -23,16 +23,19 @@
   <section class="page-section">
     <div class="container">
       <app-section-title 
-        [title]="pageContent.content.featuredTitle"
-        [subTitle]="pageContent.content.featuredSubTitle"
-        [text]="pageContent.content.featuredText"
+        [title]="pageContent.content.featuredContent.title"
+        [subTitle]="pageContent.content.featuredContent.subTitle"
+        [text]="pageContent.content.featuredContent.text"
       ></app-section-title>
     </div>
     <div class="container">
       <div class="row">
         <div class="col-12">
           <!-- <app-featured [painting]="featuredPainting"></app-featured> -->
-          <app-painting-card [painting]="featuredPainting" [maxHeight]="'60vh'"></app-painting-card>
+          <app-painting-card 
+            [painting]="pageContent.content.featuredContent.painting" 
+            [maxHeight]="pageContent.content.featuredContent.maxHeight"
+          ></app-painting-card>
         </div>
       </div>
     </div>
@@ -42,10 +45,10 @@
   <section class="page-section bg-light">
     <div class="container">
       <app-section-title 
-        [title]="pageContent.content.latestNewsTitle"
-        [subTitle]="pageContent.content.latestNewsSubTitle"
-        [text]="pageContent.content.latestNewsText"
-        [link]="'/news'"
+        [title]="pageContent.content.latestNewsContent.title"
+        [subTitle]="pageContent.content.latestNewsContent.subTitle"
+        [text]="pageContent.content.latestNewsContent.text"
+        [link]="pageContent.content.latestNewsContent.link"
       ></app-section-title>
       <div class="row">
         <div class="col-12">
@@ -59,10 +62,10 @@
   <section class="page-section">
     <div class="container">
       <app-section-title
-        [title]="pageContent.content.latestWorkTitle"
-        [subTitle]="pageContent.content.latestWorkSubTitle"
-        [text]="pageContent.content.latestWorkText"
-        [link]="'/portfolio'">
+        [title]="pageContent.content.latestWorkContent.title"
+        [subTitle]="pageContent.content.latestWorkContent.subTitle"
+        [text]="pageContent.content.latestWorkContent.text"
+        [link]="pageContent.content.latestWorkContent.link">
       </app-section-title>
       <div class="row">
         <div class="col-12">
@@ -77,10 +80,11 @@
     <div class="container">
       <div class="col-12">
         <app-call-to-action
-          [title]="pageContent.content.ctaTitle"
-          [subTitle]="pageContent.content.ctaSubTitle"
-          [buttonText]="pageContent.content.ctaButtonText"
-          [buttonLink]="pageContent.content.ctaButtonLink"
+          [title]="pageContent.content.ctaContent.title"
+          [subTitle]="pageContent.content.ctaContent.subTitle"
+          [buttonText]="pageContent.content.ctaContent.btnText"
+          [buttonLink]="pageContent.content.ctaContent.btnLink"
+          [image]="pageContent.content.ctaContent.image"
         ></app-call-to-action>
       </div>
     </div>

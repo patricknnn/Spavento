@@ -325,6 +325,33 @@ hr.divider {
 }
 
 /*************************************/
+/**              Forms              **/
+/*************************************/
+.form-field-slide {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding-bottom: 1.34375em;
+  border-radius: 4px 4px 0 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+  padding: .75em .75em 0 .75em;
+  background-color: rgba(0, 0, 0, 0.04);
+  height: fit-content;
+
+  mat-label {
+    color: rgba(0, 0, 0, 0.6);
+    white-space: nowrap;
+    font-size: 12px;
+    line-height: 12px;
+    margin-bottom: 5px;
+  }
+
+  .mat-slide-toggle {
+    margin-bottom: 5px;
+  }
+}
+
+/*************************************/
 /**          Color Helpers          **/
 /*************************************/
 

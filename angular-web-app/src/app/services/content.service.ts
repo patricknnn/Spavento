@@ -1,15 +1,24 @@
 import { Injectable } from '@angular/core';
+import { ContactFormContent } from '../models/contactformcontent';
+import { CtaContent } from '../models/ctacontent';
+import { FeaturedContent } from '../models/featuredcontent';
 import { FooterContent } from '../models/footercontent';
+import { GalleryContent } from '../models/gallerycontent';
+import { LatestNewsContent } from '../models/latestnewscontent';
+import { LatestWorkContent } from '../models/latestworkcontent';
 import { NavContent } from '../models/navcontent';
 import { NavLink } from '../models/navlink';
+import { NewsContent } from '../models/newscontent';
 import { PageContent } from '../models/pagecontent';
 import { Service } from '../models/service';
+import { ServiceContent } from '../models/servicecontent';
+import { PaintingService } from './painting.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ContentService {
-  constructor() { }
+  constructor(private paintingService: PaintingService) { }
 
   /**
    * Layout content
@@ -19,11 +28,11 @@ export class ContentService {
       '/assets/img/favicon/favicon-96x96.png',
       'Spavento',
       [
-        new NavLink('Home', '/home'),
-        new NavLink('Portfolio', '/portfolio'),
-        new NavLink('Nieuws', '/news'),
-        new NavLink('Contact', '/contact'),
-        new NavLink('CMS', '/cms'),
+        new NavLink('Home', '/home', true),
+        new NavLink('Portfolio', '/portfolio', true),
+        new NavLink('Nieuws', '/news', true),
+        new NavLink('Contact', '/contact', true),
+        new NavLink('CMS', '/cms', true),
       ],
     );
   }
@@ -50,10 +59,7 @@ export class ContentService {
           'Spavento',
           'Paintings & Artwork',
           {
-            servicesTitle: 'Diensten',
-            servicesSubTitle: 'Ons aanbod aan',
-            servicesText: 'We zijn erg flexibel in wat we doen, van maatwerk tot verschillende stylen.',
-            services: [
+            servicesContent: new ServiceContent('Diensten', 'Ons aanbod aan', 'We zijn erg flexibel in wat we doen, van maatwerk tot verschillende stylen.', [
               new Service(
                 'brush',
                 'Opdrachten',
@@ -69,20 +75,11 @@ export class ContentService {
                 'Exposities',
                 'Bewonder ons werk op exposities.'
               )
-            ],
-            featuredTitle: 'Uitgelicht',
-            featuredSubTitle: 'In de spotlight',
-            featuredText: 'Het volgende schilderij verdient speciale aandacht.',
-            latestNewsTitle: 'Laatste nieuws',
-            latestNewsSubTitle: 'blijf op de hoogte',
-            latestNewsText: 'Alle nieuws rondom Spavento is te zien op de nieuws pagina.',
-            latestWorkTitle: 'Laatste werk',
-            latestWorkSubTitle: 'Bewonder ons',
-            latestWorkText: 'Een overzicht van al ons werk is te zien op de portfolio pagina.',
-            ctaTitle: 'Bekijk ons portfolio',
-            ctaSubTitle: 'Bewonder ons werk',
-            ctaButtonText: 'Bekijk!',
-            ctaButtonLink: '/portfolio',
+            ]),
+            featuredContent: new FeaturedContent('Uitgelicht', 'In de spotlight', 'Het volgende schilderij verdient speciale aandacht.', '60vh', this.paintingService.getFeaturedPainting()),
+            latestNewsContent: new LatestNewsContent('Laatste nieuws', 'blijf op de hoogte', 'Alle nieuws rondom Spavento is te zien op de nieuws pagina.', '/news', 3),
+            latestWorkContent: new LatestWorkContent('Laatste werk', 'Bewonder ons', 'Een overzicht van al ons werk is te zien op de portfolio pagina.', '/portfolio', 6),
+            ctaContent: new CtaContent('Bekijk ons portfolio', 'Bewonder ons werk', '', 'Bekijk!', '/portfolio', ''),
           }
         );
       case 'portfolio':
@@ -90,9 +87,7 @@ export class ContentService {
           'Portfolio',
           'Een overzicht van mijn werk',
           {
-            galleryTitle: 'Gallerij',
-            gallerySubTitle: 'Bewonder mijn werk',
-            galleryText: 'Filter de gallerij items op door middel van onderstaande filters en open een item om de details te tonen.'
+            galleryContent: new GalleryContent('Gallerij', 'Bewonder mijn werk', 'Filter de gallerij items op door middel van onderstaande filters en open een item om de details te tonen.', '100%'),
           }
         );
       case 'news':
@@ -100,9 +95,7 @@ export class ContentService {
           'Nieuws',
           'Blijf op de hoogte',
           {
-            newsTitle: 'Laatste nieuws',
-            newsSubTitle: 'Hier vind je het',
-            newsText: 'Filter nieuws items op categorie en klik op meer lezen om details te tonen.'
+            newsContent: new NewsContent('Laatste nieuws','Hier vind je het','Filter nieuws items op categorie en klik op meer lezen om details te tonen.'),
           }
         );
       case 'contact':
@@ -110,10 +103,7 @@ export class ContentService {
           'Contact',
           'Zo zijn we te bereiken',
           {
-            contactCardsTitle: 'Contact',
-            contactCardsSubTitle: 'Vind op de volgende manieren',
-            contactCardsText: 'U kunt ons bellen, mailen of bezoeken.',
-            contactCards: [
+            contactCardsContent: new ServiceContent('Contact', 'Vind op de volgende manieren', 'U kunt ons bellen, mailen of bezoeken.', [
               new Service(
                 'phone',
                 'Bel ons',
@@ -129,10 +119,8 @@ export class ContentService {
                 'Bezoek ons',
                 'Oeverlanden, Kropswolde'
               )
-            ],
-            contactFormTitle: 'Formulier',
-            contactFormSubTitle: 'Contact',
-            contactFormText: 'Vul onderstaand contactformulier in en u zult zo spoedig mogelijk iets van ons horen',
+            ]),
+            contactFormContent: new ContactFormContent('Formulier', 'Contact', 'Vul onderstaand contactformulier in en u zult zo spoedig mogelijk iets van ons horen'),
           }
         );
       default:

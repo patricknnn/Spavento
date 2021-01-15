@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { fadeAnimation } from 'src/app/animations/fade-animation';
 import { SidenavService } from 'src/app/services/sidenav.service';
+import 'simplebar';
+import 'simplebar/dist/simplebar.css';
 
 @Component({
   selector: 'app-admin',

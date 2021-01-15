@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -46,6 +46,9 @@ import { PageContactComponent } from './components/_admin/page-contact/page-cont
 import { LayoutNavigationComponent } from './components/_admin/layout-navigation/layout-navigation.component';
 import { LayoutHeaderComponent } from './components/_admin/layout-header/layout-header.component';
 import { LayoutFooterComponent } from './components/_admin/layout-footer/layout-footer.component';
+import { GeneralComponent } from './components/_admin/general/general.component';
+import { NewsAddComponent } from './components/_admin/news-add/news-add.component';
+import { NewsOverviewComponent } from './components/_admin/news-overview/news-overview.component';
 
 @NgModule({
   declarations: [
@@ -88,17 +91,21 @@ import { LayoutFooterComponent } from './components/_admin/layout-footer/layout-
     PageContactComponent,
     LayoutNavigationComponent,
     LayoutHeaderComponent,
-    LayoutFooterComponent
+    LayoutFooterComponent,
+    GeneralComponent,
+    NewsAddComponent,
+    NewsOverviewComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    SimplebarAngularModule,
     MaterialModule,
     FormsModule,
     NgbModule,
-    SimplebarAngularModule
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [],
   bootstrap: [AppComponent],
 })

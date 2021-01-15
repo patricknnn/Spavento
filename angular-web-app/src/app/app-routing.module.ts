@@ -18,6 +18,9 @@ import { PageNewsComponent } from './components/_admin/page-news/page-news.compo
 import { PageContactComponent } from './components/_admin/page-contact/page-contact.component';
 import { PaintingOverviewComponent } from './components/_admin/painting-overview/painting-overview.component';
 import { PaintingAddComponent } from './components/_admin/painting-add/painting-add.component';
+import { GeneralComponent } from './components/_admin/general/general.component';
+import { NewsOverviewComponent } from './components/_admin/news-overview/news-overview.component';
+import { NewsAddComponent } from './components/_admin/news-add/news-add.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -31,6 +34,7 @@ const routes: Routes = [
   // admin
   { path: 'admin', component: AdminComponent, data: { animation: 'admin' }, children: [
       { path: 'dashboard', component: DashboardComponent },
+      { path: 'general', component: GeneralComponent },
       { path: 'layout-navigation', component: LayoutNavigationComponent },
       { path: 'layout-header', component: LayoutHeaderComponent },
       { path: 'layout-footer', component: LayoutFooterComponent },
@@ -40,6 +44,8 @@ const routes: Routes = [
       { path: 'page-contact', component: PageContactComponent },
       { path: 'portfolio-overview', component: PaintingOverviewComponent },
       { path: 'portfolio-add', component: PaintingAddComponent },
+      { path: 'news-overview', component: NewsOverviewComponent },
+      { path: 'news-add', component: NewsAddComponent },
   ]},
   // page not found
   { path: 'page-not-found', component: PageNotFoundComponent, data: { animation: '404' } },

@@ -10,6 +10,7 @@ export class CallToActionComponent implements OnInit {
   @Input() subTitle: string;
   @Input() buttonText: string;
   @Input() buttonLink: string;
+  @Input() image: string;
 
   constructor() { }
 

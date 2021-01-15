@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Painting } from '../../models/painting';
 import { PaintingService } from '../../services/painting.service';
 import { Router } from '@angular/router';
@@ -10,6 +10,7 @@ import Shuffle from 'shufflejs';
   styleUrls: ['./gallery.component.scss'],
 })
 export class GalleryComponent implements OnInit, AfterViewInit {
+  @Input() maxHeight: string = '100%';
   @ViewChild('shuffleContainer') private shuffleContainer: ElementRef;
   @ViewChild('shuffleSizer') private shuffleSizer: ElementRef;
   private shuffleInstance: Shuffle;

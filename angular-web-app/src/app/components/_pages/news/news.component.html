@@ -6,9 +6,11 @@
   <!-- News -->
   <section class="page-section bg-light">
     <div class="container">
-      <app-section-title [title]="pageContent.content.newsTitle" [subTitle]="pageContent.content.newsSubTitle"
-        [text]="pageContent.content.newsText">
-      </app-section-title>
+      <app-section-title 
+        [title]="pageContent.content.newsContent.title" 
+        [subTitle]="pageContent.content.newsContent.subTitle"
+        [text]="pageContent.content.newsContent.text"
+      ></app-section-title>
 
       <!-- Filters -->
       <div id="filterRow" class="row">

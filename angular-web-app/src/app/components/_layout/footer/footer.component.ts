@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { FooterContent } from '../../../models/footercontent';
+import { FooterContent } from 'src/app/models/footercontent';
 
 @Component({
   selector: 'app-footer',
@@ -8,6 +8,8 @@ import { FooterContent } from '../../../models/footercontent';
 })
 export class FooterComponent implements OnChanges {
   @Input() footerContent: FooterContent;
+  @Input() fixed: boolean = true;
+  @Input() elevated: boolean = false;
 
   constructor() { }
 

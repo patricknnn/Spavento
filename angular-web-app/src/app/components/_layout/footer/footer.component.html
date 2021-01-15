@@ -1,5 +1,5 @@
 <!-- Footer-->
-<footer id="site-footer" *ngIf="footerContent">
+<footer id="site-footer" *ngIf="footerContent" [class.footer-fixed]="fixed" [class.mat-elevation-z4]="elevated">
 
   <div class="pt-5">
     <div class="container">
@@ -30,7 +30,7 @@
     <div class="container">
       <hr>
       <div class="row d-flex flex-row align-items-center justify-footerContent-center">
-        <div class="text-center">{{ footerContent.footerText }}</div>
+        <div class="text-center w-100">{{ footerContent.footerText }}</div>
       </div>
     </div>
   </div>

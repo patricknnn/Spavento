@@ -16,12 +16,11 @@
   <!-- Links -->
   <div class="d-flex flex-column scroll-content-wrapper">
     <ngx-simplebar [options]="simplebarOptions" class="d-flex flex-column scroll-content">
-
       <mat-accordion>
         <div *ngFor="let navlink of navlinks" class="navlink-wrapper">
           <!-- Without children -->
-          <a mat-list-item *ngIf="!navlink.children" routerLink="{{navlink.routerLink}}" routerLinkActive="sidenavLinkActive"
-            class="navlink txt-light mb-2">
+          <a mat-list-item *ngIf="!navlink.children" routerLink="{{navlink.routerLink}}"
+            routerLinkActive="sidenavLinkActive" class="navlink txt-light mb-2">
             <mat-icon class="material-icons-filled">{{navlink.icon}}</mat-icon>
             <span class="pl-4">{{navlink.text}}</span>
           </a>
@@ -43,10 +42,9 @@
           </mat-expansion-panel>
         </div>
       </mat-accordion>
-
     </ngx-simplebar>
   </div>
-
+  
   <!-- Sidebar bottom section -->
   <div class="d-flex flex-column flex-shrink-0 py-2">
     <!-- Seperator -->
@@ -54,7 +52,7 @@
     <div class="navlink-wrapper">
       <a mat-list-item (click)="goToHome()" class="navlink txt-light">
         <mat-icon class="material-icons-outlined">play_circle_outline</mat-icon>
-        <span class="pl-2">View site</span>
+        <span class="pl-2">Naar site</span>
       </a>
     </div>
   </div>

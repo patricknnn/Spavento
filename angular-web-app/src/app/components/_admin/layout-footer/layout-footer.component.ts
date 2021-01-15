@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FooterContent } from 'src/app/models/footercontent';
+import { ContentService } from 'src/app/services/content.service';
 
 @Component({
   selector: 'app-layout-footer',
@@ -9,10 +11,20 @@ export class LayoutFooterComponent implements OnInit {
   title = "Footer";
   subTitle = "Layout";
   text = "Stel hier alles in met betrekking tot de footer op de website.";
+  footerContent: FooterContent;
 
-  constructor() { }
+  constructor(private contentService: ContentService) { }
 
   ngOnInit(): void {
+    this.footerContent = this.contentService.getFooterContent();
+  }
+
+  onSubmit() {
+    // Handle submit
+  }
+
+  reset(): void {
+    this.footerContent = this.contentService.getFooterContent();
   }
 
 }

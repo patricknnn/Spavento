@@ -19,7 +19,7 @@
     <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto my-2 my-lg-0">
         <li *ngFor="let navLink of navContent.navLinks" class="nav-item">
-          <a class="nav-link nav-link-fade-up" data-toggle="collapse" data-target="#navbarResponsive.show"
+          <a *ngIf="navLink.visible" class="nav-link nav-link-fade-up" data-toggle="collapse" data-target="#navbarResponsive.show"
             routerLink="{{navLink.routerLink}}" routerLinkActive="router-link-active" (click)="closeMenu()">
             {{navLink.label}}
           </a>

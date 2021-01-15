@@ -27,4 +27,8 @@ export class LayoutNavigationComponent implements OnInit {
     this.navContent = this.contentService.getNavContent();
   }
 
+  setVisibility(navlink, e): void {
+    e.checked ? navlink.visible = true : navlink.visible = false;
+  }
+
 }
