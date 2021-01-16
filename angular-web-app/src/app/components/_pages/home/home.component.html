@@ -1,17 +1,17 @@
 <!-- Header -->
-<app-header [title]="pageContent.title" [subTitle]="pageContent.subTitle" [small]="false"></app-header>
+<app-header [title]="pageTitle.title" [subTitle]="pageTitle.subTitle" [small]="false"></app-header>
 
 <main id="home" class="main main-raised">
   <!-- Services -->
   <section class="page-section bg-light">
     <div class="container">
       <app-section-title 
-        [title]="pageContent.content.servicesContent.title"
-        [subTitle]="pageContent.content.servicesContent.subTitle" 
-        [text]="pageContent.content.servicesContent.text"
+        [title]="services.title"
+        [subTitle]="services.subTitle" 
+        [text]="services.text"
       ></app-section-title>
       <div class="row">
-        <div *ngFor="let service of pageContent.content.servicesContent.services" class="col-lg-4 col-md-6 col-sm-12">
+        <div *ngFor="let service of services.services" class="col-lg-4 col-md-6 col-sm-12">
           <!-- Service cards -->
           <app-service-card [service]="service"></app-service-card>
         </div>
@@ -23,9 +23,9 @@
   <section class="page-section">
     <div class="container">
       <app-section-title 
-        [title]="pageContent.content.featuredContent.title"
-        [subTitle]="pageContent.content.featuredContent.subTitle"
-        [text]="pageContent.content.featuredContent.text"
+        [title]="featured.title"
+        [subTitle]="featured.subTitle"
+        [text]="featured.text"
       ></app-section-title>
     </div>
     <div class="container">
@@ -33,8 +33,8 @@
         <div class="col-12">
           <!-- <app-featured [painting]="featuredPainting"></app-featured> -->
           <app-painting-card 
-            [painting]="pageContent.content.featuredContent.painting" 
-            [maxHeight]="pageContent.content.featuredContent.maxHeight"
+            [painting]="featured.painting" 
+            [maxHeight]="featured.maxHeight"
           ></app-painting-card>
         </div>
       </div>
@@ -45,10 +45,10 @@
   <section class="page-section bg-light">
     <div class="container">
       <app-section-title 
-        [title]="pageContent.content.latestNewsContent.title"
-        [subTitle]="pageContent.content.latestNewsContent.subTitle"
-        [text]="pageContent.content.latestNewsContent.text"
-        [link]="pageContent.content.latestNewsContent.link"
+        [title]="latestNews.title"
+        [subTitle]="latestNews.subTitle"
+        [text]="latestNews.text"
+        [link]="latestNews.link"
       ></app-section-title>
       <div class="row">
         <div class="col-12">
@@ -62,10 +62,10 @@
   <section class="page-section">
     <div class="container">
       <app-section-title
-        [title]="pageContent.content.latestWorkContent.title"
-        [subTitle]="pageContent.content.latestWorkContent.subTitle"
-        [text]="pageContent.content.latestWorkContent.text"
-        [link]="pageContent.content.latestWorkContent.link">
+        [title]="latestWork.title"
+        [subTitle]="latestWork.subTitle"
+        [text]="latestWork.text"
+        [link]="latestWork.link">
       </app-section-title>
       <div class="row">
         <div class="col-12">
@@ -80,11 +80,11 @@
     <div class="container">
       <div class="col-12">
         <app-call-to-action
-          [title]="pageContent.content.ctaContent.title"
-          [subTitle]="pageContent.content.ctaContent.subTitle"
-          [buttonText]="pageContent.content.ctaContent.btnText"
-          [buttonLink]="pageContent.content.ctaContent.btnLink"
-          [image]="pageContent.content.ctaContent.image"
+          [title]="cta.title"
+          [subTitle]="cta.subTitle"
+          [buttonText]="cta.btnText"
+          [buttonLink]="cta.btnLink"
+          [image]="cta.image"
         ></app-call-to-action>
       </div>
     </div>

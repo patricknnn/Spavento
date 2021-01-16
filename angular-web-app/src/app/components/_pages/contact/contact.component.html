@@ -1,5 +1,5 @@
 <!-- Header small -->
-<app-header [title]="pageContent.title" [subTitle]="pageContent.subTitle" [small]="true"></app-header>
+<app-header [title]="pageTitle.title" [subTitle]="pageTitle.subTitle" [small]="true"></app-header>
 
 <!-- Main -->
 <main id="contact" class="main main-raised">
@@ -7,13 +7,13 @@
   <section class="page-section bg-light">
     <div class="container">
       <app-section-title
-        [title]="pageContent.content.contactCardsContent.title"
-        [subTitle]="pageContent.content.contactCardsContent.subTitle"
-        [text]="pageContent.content.contactCardsContent.text"
+        [title]="contactCards.title"
+        [subTitle]="contactCards.subTitle"
+        [text]="contactCards.text"
       ></app-section-title>
 
       <div class="row">
-        <div *ngFor="let contactcard of pageContent.content.contactCardsContent.services" class="col-lg-4 col-md-6 col-sm-12">
+        <div *ngFor="let contactcard of contactCards.services" class="col-lg-4 col-md-6 col-sm-12">
           <!-- Service cards -->
           <app-service-card [service]="contactcard"></app-service-card>
         </div>
@@ -25,9 +25,9 @@
   <section class="page-section">
     <div class="container">
       <app-section-title
-        [title]="pageContent.content.contactFormContent.title"
-        [subTitle]="pageContent.content.contactFormContent.subTitle"
-        [text]="pageContent.content.contactFormContent.text"
+        [title]="contactForm.title"
+        [subTitle]="contactForm.subTitle"
+        [text]="contactForm.text"
       ></app-section-title>
 
       <div class="row">

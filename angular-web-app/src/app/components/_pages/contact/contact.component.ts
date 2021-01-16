@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PageContent } from 'src/app/models/pagecontent';
+import { ContactFormContent } from 'src/app/models/contactformcontent';
+import { PageTitle } from 'src/app/models/pagetitle';
+import { ServiceContent } from 'src/app/models/servicecontent';
 import { ContentService } from 'src/app/services/content.service';
 
 @Component({
@@ -8,12 +10,16 @@ import { ContentService } from 'src/app/services/content.service';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
-  pageContent: PageContent;
+  pageTitle: PageTitle;
+  contactCards: ServiceContent;
+  contactForm: ContactFormContent;
 
   constructor(private contentService: ContentService) { }
 
   ngOnInit(): void {
-    this.pageContent = this.contentService.getPageContent('contact');
+    this.pageTitle = this.contentService.getPageTitle('contact');
+    this.contactCards = this.contentService.getContactCardsContent();
+    this.contactForm = this.contentService.getContactFormContent();
   }
 
 }

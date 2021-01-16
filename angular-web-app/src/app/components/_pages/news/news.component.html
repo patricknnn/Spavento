@@ -1,5 +1,5 @@
 <!-- Header small -->
-<app-header [title]="pageContent.title" [subTitle]="pageContent.subTitle" [small]="true"></app-header>
+<app-header [title]="pageTitle.title" [subTitle]="pageTitle.subTitle" [small]="true"></app-header>
 
 <!-- Main -->
 <main id="news" class="main main-raised">
@@ -7,9 +7,9 @@
   <section class="page-section bg-light">
     <div class="container">
       <app-section-title 
-        [title]="pageContent.content.newsContent.title" 
-        [subTitle]="pageContent.content.newsContent.subTitle"
-        [text]="pageContent.content.newsContent.text"
+        [title]="newsContent.title" 
+        [subTitle]="newsContent.subTitle"
+        [text]="newsContent.text"
       ></app-section-title>
 
       <!-- Filters -->

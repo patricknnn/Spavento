@@ -5,6 +5,6 @@ export class CtaContent {
         public text: string,
         public btnText: string,
         public btnLink: string,
-        public background: string,
+        public image: string,
     ) { }
 }

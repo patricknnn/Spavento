@@ -1,5 +1,5 @@
 <!-- Header small -->
-<app-header [title]="title" [subTitle]="subTitle" [small]="true"></app-header>
+<app-header [title]="pageTitle.title" [subTitle]="pageTitle.subTitle" [small]="true"></app-header>
 
 <!-- Main -->
 <main id="404" class="main main-raised">
@@ -7,24 +7,12 @@
   <section class="page-section bg-light">
     <div class="container">
       <div class="row">
-        <div
-          class="col-12 d-flex w-100 align-items-center justify-content-center"
-        >
-          <button
-            mat-raised-button
-            color="accent"
-            class="rounded-pill mr-5"
-            (click)="goBack()"
-          >
-            Back
+        <div class="col-12 d-flex w-100 align-items-center justify-content-center">
+          <button mat-raised-button color="accent" class="rounded-pill mr-5" (click)="goBack()">
+            {{content.btnBackText}}
           </button>
-          <button
-            mat-raised-button
-            color="accent"
-            class="rounded-pill"
-            (click)="goToHome()"
-          >
-            Home
+          <button mat-raised-button color="accent" class="rounded-pill" routerLink="{{content.btnHomeLink}}">
+            {{content.btnHomeText}}
           </button>
         </div>
       </div>

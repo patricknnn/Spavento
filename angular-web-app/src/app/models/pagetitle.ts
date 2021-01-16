@@ -1,8 +1,7 @@
-export class PageContent {
+export class PageTitle {
   constructor(
     public title: string,
     public subTitle: string,
-    public content: any,
   ) {
   }
 }

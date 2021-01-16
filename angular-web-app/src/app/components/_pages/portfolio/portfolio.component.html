@@ -1,6 +1,6 @@
 
 <!-- Header small -->
-<app-header [title]="pageContent.title" [subTitle]="pageContent.subTitle" [small]="true"></app-header>
+<app-header [title]="pageTitle.title" [subTitle]="pageTitle.subTitle" [small]="true"></app-header>
 
 <!-- Main -->
 <main id="portfolio" class="main main-raised">
@@ -10,13 +10,13 @@
 
     <div class="container">
       <app-section-title
-        [title]="pageContent.content.galleryContent.title"
-        [subTitle]="pageContent.content.galleryContent.subTitle"
-        [text]="pageContent.content.galleryContent.text"
+        [title]="galleryContent.title"
+        [subTitle]="galleryContent.subTitle"
+        [text]="galleryContent.text"
       ></app-section-title>
 
       <!-- Gallery -->
-      <app-gallery [maxHeight]="pageContent.content.galleryContent.maxHeight"></app-gallery>
+      <app-gallery [maxHeight]="galleryContent.maxHeight"></app-gallery>
 
     </div>
   </section>

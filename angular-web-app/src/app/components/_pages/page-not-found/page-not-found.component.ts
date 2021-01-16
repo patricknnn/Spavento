@@ -1,27 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+import { PageTitle } from 'src/app/models/pagetitle';
+import { ContentService } from 'src/app/services/content.service';
+import { PageNotFoundContent } from 'src/app/models/pagenotfoundcontent';
 
 @Component({
   selector: 'app-page-not-found',
   templateUrl: './page-not-found.component.html',
-  styleUrls: ['./page-not-found.component.scss']
+  styleUrls: ['./page-not-found.component.scss'],
 })
 export class PageNotFoundComponent implements OnInit {
-  title = "Whoops, 404"
-  subTitle = "Sorry, the page you are looking for does not exist."
+  pageTitle: PageTitle;
+  content: PageNotFoundContent;
 
-  constructor(private location: Location, private router: Router) { }
+  constructor(
+    private contentService: ContentService,
+    private location: Location
+  ) {}
 
   ngOnInit(): void {
+    this.pageTitle = this.contentService.getPageTitle('404');
+    this.content = this.contentService.getPageNotFoundContent();
   }
 
   goBack(): void {
     this.location.back();
   }
-
-  goToHome(): void {
-    this.router.navigate(["home"]);
-  }
-
 }

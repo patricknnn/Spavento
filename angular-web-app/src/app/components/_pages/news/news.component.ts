@@ -1,20 +1,28 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { NewsItem } from 'src/app/models/newsitem';
 import { NewsService } from '../../../services/news.service';
 import Shuffle from 'shufflejs';
 import { ContentService } from 'src/app/services/content.service';
-import { PageContent } from 'src/app/models/pagecontent';
+import { PageTitle } from 'src/app/models/pagetitle';
+import { NewsContent } from 'src/app/models/newscontent';
 
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',
-  styleUrls: ['./news.component.scss']
+  styleUrls: ['./news.component.scss'],
 })
 export class NewsComponent implements OnInit, AfterViewInit {
   @ViewChild('shuffleContainer') private shuffleContainer: ElementRef;
   @ViewChild('shuffleSizer') private shuffleSizer: ElementRef;
-  pageContent: PageContent;
   private shuffleInstance: Shuffle;
+  pageTitle: PageTitle;
+  newsContent: NewsContent;
   newsItems: NewsItem[];
   categories: string[];
   activeFilters = {
@@ -24,10 +32,11 @@ export class NewsComponent implements OnInit, AfterViewInit {
   constructor(
     private newsService: NewsService,
     private contentService: ContentService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.pageContent = this.contentService.getPageContent('news');
+    this.pageTitle = this.contentService.getPageTitle('news');
+    this.newsContent = this.contentService.getNewsContent();
     this.newsItems = this.newsService.getAllNews();
     this.categories = this.newsService.getCategories();
   }
@@ -35,7 +44,7 @@ export class NewsComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.shuffleInstance = new Shuffle(this.shuffleContainer.nativeElement, {
       itemSelector: '.shuffle-item',
-      sizer: this.shuffleSizer.nativeElement
+      sizer: this.shuffleSizer.nativeElement,
     });
   }
 
@@ -62,5 +71,4 @@ export class NewsComponent implements OnInit, AfterViewInit {
     }
     return true;
   }
-
 }

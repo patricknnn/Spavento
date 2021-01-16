@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import { PageContent } from 'src/app/models/pagecontent';
+import { Component, OnInit } from '@angular/core';
+import { GalleryContent } from 'src/app/models/gallerycontent';
+import { PageTitle } from 'src/app/models/pagetitle';
 import { ContentService } from 'src/app/services/content.service';
 
 @Component({
@@ -8,12 +9,13 @@ import { ContentService } from 'src/app/services/content.service';
   styleUrls: ['./portfolio.component.scss'],
 })
 export class PortfolioComponent implements OnInit {
-  pageContent: PageContent;
+  pageTitle: PageTitle;
+  galleryContent: GalleryContent;
 
-  constructor(private contentService: ContentService) {
-  }
+  constructor(private contentService: ContentService) {}
 
   ngOnInit(): void {
-    this.pageContent = this.contentService.getPageContent('portfolio');
+    this.pageTitle = this.contentService.getPageTitle('portfolio');
+    this.galleryContent = this.contentService.getGalleryContent();
   }
 }
