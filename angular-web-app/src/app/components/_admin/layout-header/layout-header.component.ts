@@ -17,6 +17,10 @@ export class LayoutHeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.headerContent = this.contentService.getHeaderContent();
+    let header = document.getElementById('header');
+    if (header) {
+      header.classList.add('mat-elevation-z4');
+    }
   }
 
   setBoolean(input, e): void {

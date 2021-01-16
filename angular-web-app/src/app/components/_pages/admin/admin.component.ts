@@ -50,7 +50,7 @@ export class AdminComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     this.sidenavService.setSidenav(this.sidenav);
     let nav = document.getElementById('mainNav');
-    let footer = document.getElementById('site-footer');
+    let footer = document.getElementsByClassName('footer-fixed')[0];
     if (nav && footer) {
       nav.classList.add('d-none');
       footer.classList.add('d-none');

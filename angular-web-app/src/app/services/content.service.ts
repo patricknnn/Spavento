@@ -116,9 +116,9 @@ export class ContentService {
       'Bekijk ons portfolio',
       'Bewonder ons werk',
       '',
-      'Bekijk!',
+      'Breng mij daar!',
       '/portfolio',
-      'src/assets/img/material-bg.jpg'
+      '../../../../assets/img/material-bg-light.jpg'
     );
   }
 
