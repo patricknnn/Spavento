@@ -20,7 +20,7 @@ import { PaintingService } from './painting.service';
   providedIn: 'root',
 })
 export class ContentService {
-  constructor(private paintingService: PaintingService) {}
+  constructor(private paintingService: PaintingService) { }
 
   /**
    * Layout content
