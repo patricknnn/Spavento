@@ -8,8 +8,8 @@
       <app-section-title 
         [title]="services.title"
         [subTitle]="services.subTitle" 
-        [text]="services.text"
-      ></app-section-title>
+        [text]="services.text">
+      </app-section-title>
       <div class="row">
         <div *ngFor="let service of services.services" class="col-lg-4 col-md-6 col-sm-12">
           <!-- Service cards -->
@@ -25,8 +25,8 @@
       <app-section-title 
         [title]="featured.title"
         [subTitle]="featured.subTitle"
-        [text]="featured.text"
-      ></app-section-title>
+        [text]="featured.text">
+      </app-section-title>
     </div>
     <div class="container">
       <div class="row">
@@ -34,8 +34,8 @@
           <!-- <app-featured [painting]="featuredPainting"></app-featured> -->
           <app-painting-card 
             [painting]="featured.painting" 
-            [maxHeight]="featured.maxHeight"
-          ></app-painting-card>
+            [maxHeight]="featured.maxHeight">
+          </app-painting-card>
         </div>
       </div>
     </div>
@@ -48,8 +48,8 @@
         [title]="latestNews.title"
         [subTitle]="latestNews.subTitle"
         [text]="latestNews.text"
-        [link]="latestNews.link"
-      ></app-section-title>
+        [link]="latestNews.link">
+      </app-section-title>
       <div class="row">
         <div class="col-12">
           <app-latest-news></app-latest-news>
@@ -76,16 +76,15 @@
   </section>
 
   <!-- CTA -->
-  <section class="page-section bg-material-light">
+  <section class="page-section" [style.backgroundImage]="'url(' + cta.image + ')'">
     <div class="container">
       <div class="col-12">
         <app-call-to-action
           [title]="cta.title"
           [subTitle]="cta.subTitle"
           [buttonText]="cta.btnText"
-          [buttonLink]="cta.btnLink"
-          [image]="cta.image"
-        ></app-call-to-action>
+          [buttonLink]="cta.btnLink">
+        </app-call-to-action>
       </div>
     </div>
   </section>

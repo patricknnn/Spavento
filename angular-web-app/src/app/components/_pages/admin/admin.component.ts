@@ -1,5 +1,10 @@
 import { MediaMatcher } from '@angular/cdk/layout';
-import { AfterViewInit, ChangeDetectorRef, OnDestroy, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  OnDestroy,
+  ViewChild,
+} from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { fadeAnimation } from 'src/app/animations/fade-animation';
@@ -11,7 +16,7 @@ import 'simplebar/dist/simplebar.css';
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss'],
-  animations: [fadeAnimation]
+  animations: [fadeAnimation],
 })
 export class AdminComponent implements OnInit, AfterViewInit, OnDestroy {
   title = 'Material Admin';
@@ -24,7 +29,7 @@ export class AdminComponent implements OnInit, AfterViewInit, OnDestroy {
    * Constructor
    * @param changeDetectorRef Change detector
    * @param media Media
-   * @param sidenavService Sidenav service 
+   * @param sidenavService Sidenav service
    */
   constructor(
     changeDetectorRef: ChangeDetectorRef,
@@ -33,27 +38,30 @@ export class AdminComponent implements OnInit, AfterViewInit, OnDestroy {
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 768px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addEventListener<"change">("change", this._mobileQueryListener);
+    this.mobileQuery.addEventListener<'change'>(
+      'change',
+      this._mobileQueryListener
+    );
     this.simplebarOptions = { autoHide: false };
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     this.sidenavService.setSidenav(this.sidenav);
-    let nav = document.getElementById("mainNav");
-    if (nav) {
-      nav.classList.add("d-none");
-    }
-    let footer = document.getElementById("site-footer");
-    if (footer) {
-      footer.classList.add("d-none");
+    let nav = document.getElementById('mainNav');
+    let footer = document.getElementById('site-footer');
+    if (nav && footer) {
+      nav.classList.add('d-none');
+      footer.classList.add('d-none');
     }
   }
 
   ngOnDestroy(): void {
-    this.mobileQuery.removeEventListener<"change">("change", this._mobileQueryListener);
+    this.mobileQuery.removeEventListener<'change'>(
+      'change',
+      this._mobileQueryListener
+    );
   }
 
   public getRouterOutletState(outlet) {

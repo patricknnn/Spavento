@@ -288,6 +288,10 @@ hr.divider {
     0 7px 10px -5px rgba($color-secondary, 0.4) !important;
 }
 
+.navlink-expandable .mat-expansion-panel-body {
+  padding-bottom: 0px !important;
+}
+
 .spacer {
   flex: 1 1 auto;
 }
@@ -331,7 +335,7 @@ hr.divider {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  padding-bottom: 1.34375em;
+  margin-bottom: 1.34375em;
   border-radius: 4px 4px 0 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.42);
   padding: .75em .75em 0 .75em;

@@ -4,6 +4,7 @@ import { CtaContent } from '../models/ctacontent';
 import { FeaturedContent } from '../models/featuredcontent';
 import { FooterContent } from '../models/footercontent';
 import { GalleryContent } from '../models/gallerycontent';
+import { HeaderContent } from '../models/headercontent';
 import { LatestNewsContent } from '../models/latestnewscontent';
 import { LatestWorkContent } from '../models/latestworkcontent';
 import { NavContent } from '../models/navcontent';
@@ -44,6 +45,16 @@ export class ContentService {
       'twitter.com',
       'instagram.com'
     );
+  }
+  public getHeaderContent(): HeaderContent {
+    return new HeaderContent(
+      true,
+      true,
+      true,
+      'Spavento',
+      'Paintings & Artwork',
+      '../../../../assets/img/dessertcar.jpg',
+    )
   }
 
   /**
@@ -107,7 +118,7 @@ export class ContentService {
       '',
       'Bekijk!',
       '/portfolio',
-      ''
+      'src/assets/img/material-bg.jpg'
     );
   }
 
