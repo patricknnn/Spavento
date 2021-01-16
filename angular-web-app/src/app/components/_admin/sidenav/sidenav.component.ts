@@ -25,6 +25,7 @@ export class SidenavComponent implements OnInit {
         new Sidenavlink("Portfolio", "collections", "/admin/page-portfolio"),
         new Sidenavlink("Nieuws", "library_books", "/admin/page-news"),
         new Sidenavlink("Contact", "perm_contact_calendar", "/admin/page-contact"),
+        new Sidenavlink("404", "explore_off", "/admin/page-not-found")
       ]),
       new Sidenavlink("Portfolio", "collections", "", [
         new Sidenavlink("Overzicht", "library_books", "/admin/portfolio-overview"),

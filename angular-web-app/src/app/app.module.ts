@@ -49,6 +49,14 @@ import { LayoutFooterComponent } from './components/_admin/layout-footer/layout-
 import { GeneralComponent } from './components/_admin/general/general.component';
 import { NewsAddComponent } from './components/_admin/news-add/news-add.component';
 import { NewsOverviewComponent } from './components/_admin/news-overview/news-overview.component';
+import { CompServicesComponent } from './components/_admin/comp-services/comp-services.component';
+import { CompFeaturesComponent } from './components/_admin/comp-features/comp-features.component';
+import { CompLatestNewsComponent } from './components/_admin/comp-latest-news/comp-latest-news.component';
+import { CompLatestWorkComponent } from './components/_admin/comp-latest-work/comp-latest-work.component';
+import { CompCtaComponent } from './components/_admin/comp-cta/comp-cta.component';
+import { CompContactCardsComponent } from './components/_admin/comp-contact-cards/comp-contact-cards.component';
+import { CompContactFormComponent } from './components/_admin/comp-contact-form/comp-contact-form.component';
+import { PageNotFoundAdminComponent } from './components/_admin/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +102,15 @@ import { NewsOverviewComponent } from './components/_admin/news-overview/news-ov
     LayoutFooterComponent,
     GeneralComponent,
     NewsAddComponent,
-    NewsOverviewComponent
+    NewsOverviewComponent,
+    CompServicesComponent,
+    CompFeaturesComponent,
+    CompLatestNewsComponent,
+    CompLatestWorkComponent,
+    CompCtaComponent,
+    CompContactCardsComponent,
+    CompContactFormComponent,
+    PageNotFoundAdminComponent
   ],
   imports: [
     BrowserModule,

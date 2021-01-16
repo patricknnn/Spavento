@@ -1,0 +1,21 @@
+<div class="container-fluid pt-5">
+    <app-section-title 
+      [title]="title"
+      [subTitle]="subTitle"
+      [text]="text">
+    </app-section-title>
+  
+    <div class="row mb-4">
+        <div class="col-12">
+            <mat-card class="mat-elevation-z4">
+                <h4 class="title-underlined">Resultaat</h4>
+                <div class="d-flex flex-column scroll-content-wrapper" style="height: 500px; padding-bottom: 20px;">
+                    <ngx-simplebar class="d-flex flex-column scroll-content">
+                       <app-page-not-found></app-page-not-found> 
+                    </ngx-simplebar>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>
+  

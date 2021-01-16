@@ -21,6 +21,7 @@ import { PaintingAddComponent } from './components/_admin/painting-add/painting-
 import { GeneralComponent } from './components/_admin/general/general.component';
 import { NewsOverviewComponent } from './components/_admin/news-overview/news-overview.component';
 import { NewsAddComponent } from './components/_admin/news-add/news-add.component';
+import { PageNotFoundAdminComponent } from './components/_admin/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -42,6 +43,7 @@ const routes: Routes = [
       { path: 'page-portfolio', component: PagePortfolioComponent },
       { path: 'page-news', component: PageNewsComponent },
       { path: 'page-contact', component: PageContactComponent },
+      { path: 'page-not-found', component: PageNotFoundAdminComponent },
       { path: 'portfolio-overview', component: PaintingOverviewComponent },
       { path: 'portfolio-add', component: PaintingAddComponent },
       { path: 'news-overview', component: NewsOverviewComponent },
