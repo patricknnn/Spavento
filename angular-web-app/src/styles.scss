@@ -56,6 +56,8 @@ button::-moz-focus-inner {
 
 .page-section {
   padding: 6rem 0;
+  background-position: center;
+  background-size: cover;
 
   &:first-child {
     border-top-left-radius: inherit;

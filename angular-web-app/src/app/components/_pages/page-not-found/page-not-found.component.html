@@ -6,11 +6,18 @@
   <!-- News -->
   <section class="page-section bg-light">
     <div class="container">
+      <app-section-title 
+        [title]="content.title" 
+        [subTitle]="content.subTitle" 
+        [text]="content.text">
+      </app-section-title>
       <div class="row">
-        <div class="col-12 d-flex w-100 align-items-center justify-content-center">
+        <div class="col-12">
           <button mat-raised-button color="accent" class="rounded-pill mr-5" (click)="goBack()">
             {{content.btnBackText}}
           </button>
+        </div>
+        <div class="col-12 mt-3">
           <button mat-raised-button color="accent" class="rounded-pill" routerLink="{{content.btnHomeLink}}">
             {{content.btnHomeText}}
           </button>

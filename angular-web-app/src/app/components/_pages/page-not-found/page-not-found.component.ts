@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { PageTitle } from 'src/app/models/pagetitle';
 import { ContentService } from 'src/app/services/content.service';
@@ -10,17 +10,21 @@ import { PageNotFoundContent } from 'src/app/models/pagenotfoundcontent';
   styleUrls: ['./page-not-found.component.scss'],
 })
 export class PageNotFoundComponent implements OnInit {
-  pageTitle: PageTitle;
-  content: PageNotFoundContent;
+  @Input() pageTitle: PageTitle;
+  @Input() content: PageNotFoundContent;
 
   constructor(
     private contentService: ContentService,
     private location: Location
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.pageTitle = this.contentService.getPageTitle('404');
-    this.content = this.contentService.getPageNotFoundContent();
+    if (!this.pageTitle) {
+      this.pageTitle = this.contentService.getPageTitle('404');
+    }
+    if (!this.content) {
+      this.content = this.contentService.getPageNotFoundContent();
+    }
   }
 
   goBack(): void {
