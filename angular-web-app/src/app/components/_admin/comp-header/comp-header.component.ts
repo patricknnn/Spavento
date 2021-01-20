@@ -8,11 +8,13 @@ import { ContentService } from 'src/app/services/content.service';
   styleUrls: ['./comp-header.component.scss']
 })
 export class CompHeaderComponent implements OnInit {
-  @Input() pageTitle: PageTitle;
+  @Input() page: string;
+  pageTitle: PageTitle;
 
   constructor(private contentService: ContentService) { }
 
   ngOnInit(): void {
+    this.reset();
   }
 
   onSubmit() {
@@ -20,7 +22,9 @@ export class CompHeaderComponent implements OnInit {
   }
 
   reset(): void {
-    this.pageTitle = this.contentService.getPageTitle('home');
+    if (this.page) {
+      this.pageTitle = this.contentService.getPageTitle(this.page);
+    }
   }
 
 }
