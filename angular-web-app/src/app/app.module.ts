@@ -57,6 +57,7 @@ import { CompCtaComponent } from './components/_admin/comp-cta/comp-cta.componen
 import { CompContactCardsComponent } from './components/_admin/comp-contact-cards/comp-contact-cards.component';
 import { CompContactFormComponent } from './components/_admin/comp-contact-form/comp-contact-form.component';
 import { PageNotFoundAdminComponent } from './components/_admin/page-not-found/page-not-found.component';
+import { CompHeaderComponent } from './components/_admin/comp-header/comp-header.component';
 
 @NgModule({
   declarations: [
@@ -110,7 +111,8 @@ import { PageNotFoundAdminComponent } from './components/_admin/page-not-found/p
     CompCtaComponent,
     CompContactCardsComponent,
     CompContactFormComponent,
-    PageNotFoundAdminComponent
+    PageNotFoundAdminComponent,
+    CompHeaderComponent
   ],
   imports: [
     BrowserModule,

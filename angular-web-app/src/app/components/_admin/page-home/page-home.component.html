@@ -1,12 +1,105 @@
 <div class="container-fluid pt-5">
-  <app-section-title 
-    [title]="title"
-    [subTitle]="subTitle"
-    [text]="text">
+  <app-section-title [title]="title" [subTitle]="subTitle" [text]="text">
   </app-section-title>
 
-  <div class="row">
+  <!-- Page preview -->
+  <!-- <div class="row mb-4">
     <div class="col-12">
+      <mat-card class="mat-elevation-z4">
+        <h4 class="title-underlined">Resultaat</h4>
+        <div class="d-flex flex-column scroll-content-wrapper" style="height: 500px; padding-bottom: 20px;">
+          <ngx-simplebar class="d-flex flex-column scroll-content">
+            <app-home></app-home>>
+          </ngx-simplebar>
+          <div class="icon-scroll" style="bottom: 70px;"></div>
+        </div>
+      </mat-card>
     </div>
-  </div>
+  </div> -->
+
+  <mat-accordion>
+
+    <!-- Header -->
+    <mat-expansion-panel [expanded]="panelStep === 0" (opened)="setStep(0)">
+      <mat-expansion-panel-header class="title-header">
+        <mat-panel-title>
+          <h4 class="title-underlined mb-0 mt-2">Header</h4>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-comp-header></app-comp-header>
+      <mat-action-row>
+        <button mat-raised-button color="accent" (click)="nextStep()">Volgende</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <!-- Services -->
+    <mat-expansion-panel [expanded]="panelStep === 1" (opened)="setStep(1)">
+      <mat-expansion-panel-header class="title-header">
+        <mat-panel-title>
+          <h4 class="title-underlined mb-0 mt-2">Diensten</h4>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-comp-services></app-comp-services>
+      <mat-action-row>
+        <button mat-raised-button color="primary" (click)="prevStep()">Vorige</button>
+        <button mat-raised-button color="accent" (click)="nextStep()">Volgende</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <!-- Featured -->
+    <mat-expansion-panel [expanded]="panelStep === 2" (opened)="setStep(2)">
+      <mat-expansion-panel-header class="title-header">
+        <mat-panel-title>
+          <h4 class="title-underlined mb-0 mt-2">Uitgelicht</h4>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-comp-features></app-comp-features>
+      <mat-action-row>
+        <button mat-raised-button color="primary" (click)="prevStep()">Vorige</button>
+        <button mat-raised-button color="accent" (click)="nextStep()">Volgende</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <!-- News -->
+    <mat-expansion-panel [expanded]="panelStep === 3" (opened)="setStep(3)">
+      <mat-expansion-panel-header class="title-header">
+        <mat-panel-title>
+          <h4 class="title-underlined mb-0 mt-2">Laatste nieuws</h4>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-comp-latest-news></app-comp-latest-news>
+      <mat-action-row>
+        <button mat-raised-button color="primary" (click)="prevStep()">Vorige</button>
+        <button mat-raised-button color="accent" (click)="nextStep()">Volgende</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <!-- Paintings -->
+    <mat-expansion-panel [expanded]="panelStep === 4" (opened)="setStep(4)">
+      <mat-expansion-panel-header class="title-header">
+        <mat-panel-title>
+          <h4 class="title-underlined mb-0 mt-2">Laatste werk</h4>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-comp-latest-work></app-comp-latest-work>
+      <mat-action-row>
+        <button mat-raised-button color="primary" (click)="prevStep()">Vorige</button>
+        <button mat-raised-button color="accent" (click)="nextStep()">Volgende</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <!-- CTA -->
+    <mat-expansion-panel [expanded]="panelStep === 5" (opened)="setStep(5)">
+      <mat-expansion-panel-header class="title-header">
+        <mat-panel-title>
+          <h4 class="title-underlined mb-0 mt-2">Call to action</h4>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-comp-cta></app-comp-cta>
+      <mat-action-row>
+        <button mat-raised-button color="primary" (click)="prevStep()">Vorige</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+  </mat-accordion>
 </div>

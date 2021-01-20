@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FeaturedContent } from 'src/app/models/featuredcontent';
+import { ContentService } from 'src/app/services/content.service';
 
 @Component({
   selector: 'app-comp-features',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./comp-features.component.scss']
 })
 export class CompFeaturesComponent implements OnInit {
+  featured: FeaturedContent;
 
-  constructor() { }
+  constructor(private contentService: ContentService) { }
 
   ngOnInit(): void {
+    this.reset();
+  }
+
+  reset(): void {
+    this.featured = this.contentService.getFeaturedContent();
   }
 
 }

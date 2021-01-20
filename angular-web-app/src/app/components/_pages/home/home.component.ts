@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CtaContent } from 'src/app/models/ctacontent';
 import { FeaturedContent } from 'src/app/models/featuredcontent';
 import { LatestNewsContent } from 'src/app/models/latestnewscontent';
@@ -13,12 +13,12 @@ import { ContentService } from 'src/app/services/content.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  pageTitle: PageTitle;
-  services: ServiceContent;
-  featured: FeaturedContent;
-  latestNews: LatestNewsContent;
-  latestWork: LatestWorkContent;
-  cta: CtaContent;
+  @Input() pageTitle: PageTitle;
+  @Input() services: ServiceContent;
+  @Input() featured: FeaturedContent;
+  @Input() latestNews: LatestNewsContent;
+  @Input() latestWork: LatestWorkContent;
+  @Input() cta: CtaContent;
 
   constructor(
     private contentService: ContentService
@@ -26,12 +26,24 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.pageTitle = this.contentService.getPageTitle('home');
-    this.services = this.contentService.getServicesContent();
-    this.featured = this.contentService.getFeaturedContent();
-    this.latestNews = this.contentService.getLatestNewsContent();
-    this.latestWork = this.contentService.getLatestWorkContent();
-    this.cta = this.contentService.getCtaContent();
+    if(!this.pageTitle) {
+      this.pageTitle = this.contentService.getPageTitle('home');
+    }
+    if (!this.services) {
+      this.services = this.contentService.getServicesContent();
+    }
+    if (!this.featured) {
+      this.featured = this.contentService.getFeaturedContent();
+    }
+    if (!this.latestNews) {
+      this.latestNews = this.contentService.getLatestNewsContent();
+    }
+    if (!this.latestWork) {
+      this.latestWork = this.contentService.getLatestWorkContent();
+    }
+    if (!this.cta) {
+      this.cta = this.contentService.getCtaContent();
+    }
   }
 
 }

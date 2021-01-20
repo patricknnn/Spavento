@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LatestNewsContent } from 'src/app/models/latestnewscontent';
+import { ContentService } from 'src/app/services/content.service';
 
 @Component({
   selector: 'app-comp-latest-news',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./comp-latest-news.component.scss']
 })
 export class CompLatestNewsComponent implements OnInit {
+  latestNews: LatestNewsContent;
 
-  constructor() { }
+  constructor(private contentService: ContentService) { }
 
   ngOnInit(): void {
+    this.reset();
+  }
+
+  reset(): void {
+    this.latestNews = this.contentService.getLatestNewsContent();
   }
 
 }
