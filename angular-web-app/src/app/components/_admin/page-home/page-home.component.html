@@ -1,5 +1,5 @@
-<div class="container-fluid pt-5">
-  <app-section-title [title]="title" [subTitle]="subTitle" [text]="text">
+<div class="container-fluid py-5">
+  <app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [modal]="content">
   </app-section-title>
 
   <!-- Page preview -->
@@ -9,7 +9,7 @@
         <h4 class="title-underlined">Resultaat</h4>
         <div class="d-flex flex-column scroll-content-wrapper" style="height: 500px; padding-bottom: 20px;">
           <ngx-simplebar class="d-flex flex-column scroll-content">
-            <app-home></app-home>>
+            <app-home></app-home>
           </ngx-simplebar>
           <div class="icon-scroll" style="bottom: 70px;"></div>
         </div>
@@ -103,3 +103,17 @@
 
   </mat-accordion>
 </div>
+
+
+<!-- Page preview -->
+<ng-template #content>
+
+  <mat-dialog-content>
+    <app-home></app-home>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
+  </mat-dialog-actions>
+
+</ng-template>

@@ -14,8 +14,11 @@ export class PageNotFoundAdminComponent implements OnInit {
   text = "Indien een pagina niet wordt gevonden zal een gebruiker deze pagina zien.";
   pageTitle: PageTitle;
   pageContent: PageNotFoundContent;
+  panelStep: number;
 
-  constructor(private contentService: ContentService) { }
+  constructor(
+    private contentService: ContentService
+  ) { }
 
   ngOnInit(): void {
     this.reset();
@@ -28,6 +31,18 @@ export class PageNotFoundAdminComponent implements OnInit {
   reset(): void {
     this.pageTitle = this.contentService.getPageTitle('404');
     this.pageContent = this.contentService.getPageNotFoundContent();
+  }
+
+  setStep(i: number) {
+    this.panelStep = i;
+  }
+
+  nextStep() {
+    this.panelStep++;
+  }
+
+  prevStep() {
+    this.panelStep--;
   }
 
 }

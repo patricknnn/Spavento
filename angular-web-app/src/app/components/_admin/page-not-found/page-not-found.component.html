@@ -1,90 +1,136 @@
-<div class="container-fluid pt-5">
-    <app-section-title [title]="title" [subTitle]="subTitle" [text]="text">
-    </app-section-title>
+<div class="container-fluid py-5">
+  <app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [modal]="content">
+  </app-section-title>
 
-    <div class="row mb-4">
-        <div class="col-12">
+  <mat-accordion>
+    <!-- Header -->
+    <mat-expansion-panel [expanded]="panelStep === 0" (opened)="setStep(0)">
+      <mat-expansion-panel-header class="title-header">
+        <mat-panel-title>
+          <h4 class="title-underlined mb-0 mt-2">Header</h4>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-comp-header [page]="'404'"></app-comp-header>
+      <mat-action-row>
+        <button mat-raised-button color="accent" (click)="nextStep()">Volgende</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <!-- Links -->
+    <mat-expansion-panel [expanded]="panelStep === 1" (opened)="setStep(1)">
+      <mat-expansion-panel-header class="title-header">
+        <mat-panel-title>
+          <h4 class="title-underlined mb-0 mt-2">Knoppen</h4>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="container-fluid">
+        <div class="row mb-4">
+          <div class="col-12">
             <mat-card class="mat-elevation-z4">
-                <h4 class="title-underlined">Resultaat</h4>
-                <div class="d-flex flex-column scroll-content-wrapper" style="height: 500px; padding-bottom: 20px;">
-                    <ngx-simplebar class="d-flex flex-column scroll-content">
-                        <app-page-not-found [pageTitle]="pageTitle" [content]="pageContent"></app-page-not-found>
-                    </ngx-simplebar>
-                    <div class="icon-scroll" style="bottom: 70px;"></div>
+              <div class="container">
+                <app-section-title [title]="pageContent.title" [subTitle]="pageContent.subTitle"
+                  [text]="pageContent.text">
+                </app-section-title>
+                <div class="row">
+                  <div class="col-xs-12 col-sm-6 d-flex align-items-center justify-content-center">
+                    <button mat-raised-button color="accent" class="rounded-pill mt-3">
+                      <mat-icon>reply</mat-icon>
+                      {{pageContent.btnBackText}}
+                    </button>
+                  </div>
+                  <div class="col-xs-12 col-sm-6 d-flex align-items-center justify-content-center">
+                    <button mat-raised-button color="accent" class="rounded-pill mt-3"
+                      routerLink="{{pageContent.btnHomeLink}}">
+                      <mat-icon>home</mat-icon>
+                      {{pageContent.btnHomeText}}
+                    </button>
+                  </div>
                 </div>
+              </div>
             </mat-card>
+          </div>
         </div>
-    </div>
 
-    <div class="row mb-4">
-        <div class="col-12">
+        <div class="row mb-4">
+          <div class="col-12">
             <mat-card class="mat-elevation-z4">
-                <h4 class="title-underlined">Instellingen</h4>
-                <form (ngSubmit)="onSubmit()" #headerForm="ngForm">
+              <h4 class="title-underlined">Instellingen</h4>
+              <form (ngSubmit)="onSubmit()" #headerForm="ngForm">
 
-                    <div class="form-group row">
-                        <mat-form-field appearance="fill" class="form-field col-sm-12 col-md-6">
-                            <mat-label>Pagina titel</mat-label>
-                            <input matInput type="text" id="pageTitle" placeholder="Titel" name="pageTitle"
-                                [(ngModel)]="pageTitle.title" #pageTitleInput="ngModel" required>
-                            <mat-hint [hidden]="pageTitleInput.valid || pageTitleInput.pristine">Titel is verplicht </mat-hint>
-                        </mat-form-field>
-                        <mat-form-field appearance="fill" class="form-field col-sm-12 col-md-6">
-                            <mat-label>Pagina subtitel</mat-label>
-                            <input matInput type="text" id="pageSubTitle" placeholder="Subtitel" name="pageSubTitle"
-                                [(ngModel)]="pageTitle.subTitle" #pageSubTitleInput="ngModel" required>
-                            <mat-hint [hidden]="pageSubTitleInput.valid || pageSubTitleInput.pristine">Subtitel is verplicht</mat-hint>
-                        </mat-form-field>
-                    </div>
+                <div class="form-group row">
+                  <mat-form-field appearance="fill" class="form-field col-sm-12 col-md-6">
+                    <mat-label>Content titel</mat-label>
+                    <input matInput type="text" id="contentTitle" placeholder="Titel" name="contentTitle"
+                      [(ngModel)]="pageContent.title" #contentTitleInput="ngModel" required>
+                    <mat-hint [hidden]="contentTitleInput.valid || contentTitleInput.pristine">Titel is verplicht
+                    </mat-hint>
+                  </mat-form-field>
 
-                    <div class="form-group row">
-                        <mat-form-field appearance="fill" class="form-field col-sm-12 col-md-6">
-                            <mat-label>Content titel</mat-label>
-                            <input matInput type="text" id="contentTitle" placeholder="Titel" name="contentTitle"
-                                [(ngModel)]="pageContent.title" #contentTitleInput="ngModel" required>
-                            <mat-hint [hidden]="contentTitleInput.valid || contentTitleInput.pristine">Titel is verplicht</mat-hint>
-                        </mat-form-field>
+                  <mat-form-field appearance="fill" class="form-field col-sm-12 col-md-6">
+                    <mat-label>Content subtitel</mat-label>
+                    <input matInput type="text" id="contentSubTitle" placeholder="Subtitel" name="contentSubTitle"
+                      [(ngModel)]="pageContent.subTitle" #contentSubTitleInput="ngModel" required>
+                    <mat-hint [hidden]="contentSubTitleInput.valid || contentSubTitleInput.pristine">Subtitel is
+                      verplicht
+                    </mat-hint>
+                  </mat-form-field>
 
-                        <mat-form-field appearance="fill" class="form-field col-sm-12 col-md-6">
-                            <mat-label>Content subtitel</mat-label>
-                            <input matInput type="text" id="contentSubTitle" placeholder="Subtitel" name="contentSubTitle"
-                                [(ngModel)]="pageContent.subTitle" #contentSubTitleInput="ngModel" required>
-                            <mat-hint [hidden]="contentSubTitleInput.valid || contentSubTitleInput.pristine">Subtitel is verplicht</mat-hint>
-                        </mat-form-field>
+                  <mat-form-field appearance="fill" class="form-field col-12">
+                    <mat-label>Content text</mat-label>
+                    <textarea rows="1" matInput type="text" id="contentText" placeholder="Text" name="contentText"
+                      [(ngModel)]="pageContent.text" #contentTextInput="ngModel" required> </textarea>
+                    <mat-hint [hidden]="contentTextInput.valid || contentTextInput.pristine">Text is verplicht
+                    </mat-hint>
+                  </mat-form-field>
+                </div>
 
-                        <mat-form-field appearance="fill" class="form-field col-12">
-                            <mat-label>Content text</mat-label>
-                            <textarea rows="1" matInput type="text" id="contentText" placeholder="Text" name="contentText"
-                                [(ngModel)]="pageContent.text" #contentTextInput="ngModel" required> </textarea>
-                            <mat-hint [hidden]="contentTextInput.valid || contentTextInput.pristine">Text is verplicht</mat-hint>
-                        </mat-form-field>
-                    </div>
+                <div class="form-group row">
+                  <mat-form-field appearance="fill" class="form-field col-sm-12 col-md-6">
+                    <mat-label>Vorige knop label</mat-label>
+                    <input matInput type="text" id="backBtnLabel" placeholder="Label" name="backBtnLabel"
+                      [(ngModel)]="pageContent.btnBackText" #backBtnLabelInput="ngModel" required>
+                    <mat-hint [hidden]="backBtnLabelInput.valid || backBtnLabelInput.pristine">Label is verplicht
+                    </mat-hint>
+                  </mat-form-field>
 
-                    <div class="form-group row">
-                        <mat-form-field appearance="fill" class="form-field col-sm-12 col-md-6">
-                            <mat-label>Vorige knop label</mat-label>
-                            <input matInput type="text" id="backBtnLabel" placeholder="Label" name="backBtnLabel"
-                                [(ngModel)]="pageContent.btnBackText" #backBtnLabelInput="ngModel" required>
-                            <mat-hint [hidden]="backBtnLabelInput.valid || backBtnLabelInput.pristine">Label is verplicht</mat-hint>
-                        </mat-form-field>
+                  <mat-form-field appearance="fill" class="form-field col-sm-12 col-md-6">
+                    <mat-label>Home knop label</mat-label>
+                    <input matInput type="text" id="homeBtnLabel" placeholder="Label" name="homeBtnLabel"
+                      [(ngModel)]="pageContent.btnHomeText" #homeBtnLabelInput="ngModel" required>
+                    <mat-hint [hidden]="homeBtnLabelInput.valid || homeBtnLabelInput.pristine">Label is verplicht
+                    </mat-hint>
+                  </mat-form-field>
+                </div>
 
-                        <mat-form-field appearance="fill" class="form-field col-sm-12 col-md-6">
-                            <mat-label>Home knop label</mat-label>
-                            <input matInput type="text" id="homeBtnLabel" placeholder="Label" name="homeBtnLabel"
-                                [(ngModel)]="pageContent.btnHomeText" #homeBtnLabelInput="ngModel" required>
-                            <mat-hint [hidden]="homeBtnLabelInput.valid || homeBtnLabelInput.pristine">Label is verplicht</mat-hint>
-                        </mat-form-field>
-                    </div>
-
-
-
-                    <button mat-flat-button color="accent" type="submit"
-                        [disabled]="!headerForm.form.valid || headerForm.form.pristine">Opslaan</button>
-                    <button mat-flat-button color="primary" type="button" class="ml-3" (click)="reset()">Reset</button>
-                </form>
+                <button mat-flat-button color="accent" type="submit"
+                  [disabled]="!headerForm.form.valid || headerForm.form.pristine">Opslaan</button>
+                <button mat-flat-button color="primary" type="button" class="ml-3" (click)="reset()">Reset</button>
+              </form>
             </mat-card>
 
+          </div>
         </div>
-    </div>
+      </div>
 
+      <mat-action-row>
+        <button mat-raised-button color="primary" (click)="prevStep()">Vorige</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+  </mat-accordion>
 </div>
+
+
+<!-- Page preview -->
+<ng-template #content>
+
+  <mat-dialog-content>
+    <app-page-not-found [pageTitle]="pageTitle" [content]="pageContent"></app-page-not-found>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
+  </mat-dialog-actions>
+
+</ng-template>

@@ -3,5 +3,6 @@ export class ContactFormContent {
         public title: string,
         public subTitle: string,
         public text: string,
+        public active: boolean
     ) { }
 }

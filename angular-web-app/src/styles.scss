@@ -115,6 +115,10 @@ mat-card {
   width: 95% !important;
 }
 
+.mat-expansion-panel-header.title-header {
+  height: 100px !important;
+}
+
 /*************************************/
 /**             Modal               **/
 /*************************************/
@@ -133,6 +137,16 @@ mat-card {
 .img-modal {
   max-width: 100%;
 }
+
+
+/*************************************/
+/**             Images              **/
+/*************************************/
+.img-dropdown {
+  height: 40px;
+  width: 40px;
+}
+
 
 /*************************************/
 /**             Carousel            **/

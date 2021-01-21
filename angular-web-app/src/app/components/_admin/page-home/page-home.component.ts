@@ -9,7 +9,7 @@ export class PageHomeComponent implements OnInit {
   title = "Home";
   subTitle = "Pagina";
   text = "Stel hier alles in met betrekking tot de home pagina op de website.";
-  panelStep = 0;
+  panelStep: number;
 
   constructor() { }
 

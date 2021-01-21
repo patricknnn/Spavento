@@ -11,8 +11,8 @@ export class ModalService {
     public dialog: MatDialog,
   ) {  }
 
-  public openModal(content) {
-    this.dialogRef = this.dialog.open(content);
+  public openModal(content, options?) {
+    this.dialogRef = this.dialog.open(content, options);
   }
 
 }

@@ -16,8 +16,16 @@ export class CompLatestNewsComponent implements OnInit {
     this.reset();
   }
 
+  onSubmit() {
+    // Handle submit
+  }
+
   reset(): void {
     this.latestNews = this.contentService.getLatestNewsContent();
+  }
+
+  setActive(input, e): void {
+    e.checked ? input = true : input = false;
   }
 
 }

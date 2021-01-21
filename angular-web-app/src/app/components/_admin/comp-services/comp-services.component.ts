@@ -24,4 +24,8 @@ export class CompServicesComponent implements OnInit {
     this.services = this.contentService.getServicesContent();
   }
 
+  setActive(input, e): void {
+    e.checked ? input = true : input = false;
+  }
+
 }

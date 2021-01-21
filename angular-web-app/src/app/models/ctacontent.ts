@@ -6,5 +6,6 @@ export class CtaContent {
         public btnText: string,
         public btnLink: string,
         public image: string,
+        public active: boolean
     ) { }
 }

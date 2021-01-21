@@ -16,6 +16,10 @@ export class CompCtaComponent implements OnInit {
     this.reset();
   }
 
+  onSubmit() {
+    console.log(this.cta);
+  }
+
   reset(): void {
     this.cta = this.contentService.getCtaContent();
   }

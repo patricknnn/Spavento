@@ -1,12 +1,50 @@
-<div class="container-fluid pt-5">
-  <app-section-title 
-    [title]="title"
-    [subTitle]="subTitle"
-    [text]="text">
+<div class="container-fluid py-5">
+  <app-section-title [title]="title" [subTitle]="subTitle" [text]="text">
   </app-section-title>
 
-  <div class="row">
+  <!-- Page preview -->
+  <!-- <div class="row mb-4">
     <div class="col-12">
+      <mat-card class="mat-elevation-z4">
+        <h4 class="title-underlined">Resultaat</h4>
+        <div class="d-flex flex-column scroll-content-wrapper" style="height: 500px; padding-bottom: 20px;">
+          <ngx-simplebar class="d-flex flex-column scroll-content">
+            <app-home></app-home>
+          </ngx-simplebar>
+          <div class="icon-scroll" style="bottom: 70px;"></div>
+        </div>
+      </mat-card>
     </div>
-  </div>
+  </div> -->
+
+  <mat-accordion>
+
+    <!-- Header -->
+    <mat-expansion-panel [expanded]="panelStep === 0" (opened)="setStep(0)">
+      <mat-expansion-panel-header class="title-header">
+        <mat-panel-title>
+          <h4 class="title-underlined mb-0 mt-2">Header</h4>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-comp-header [page]="'news'"></app-comp-header>
+      <mat-action-row>
+        <button mat-raised-button color="accent" (click)="nextStep()">Volgende</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <!-- Newsitems -->
+    <mat-expansion-panel [expanded]="panelStep === 1" (opened)="setStep(1)">
+      <mat-expansion-panel-header class="title-header">
+        <mat-panel-title>
+          <h4 class="title-underlined mb-0 mt-2">Nieuws</h4>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      
+      <mat-action-row>
+        <button mat-raised-button color="primary" (click)="prevStep()">Vorige</button>
+        <!-- <button mat-raised-button color="accent" (click)="nextStep()">Volgende</button> -->
+      </mat-action-row>
+    </mat-expansion-panel>
+
+  </mat-accordion>
 </div>

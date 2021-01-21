@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { NewsItem } from 'src/app/models/newsitem';
 import { NewsService } from 'src/app/services/news.service';
 
@@ -7,7 +7,8 @@ import { NewsService } from 'src/app/services/news.service';
   templateUrl: './latest-news.component.html',
   styleUrls: ['./latest-news.component.scss']
 })
-export class LatestNewsComponent implements OnInit {
+export class LatestNewsComponent implements OnInit, OnChanges {
+  @Input() amount: number = 3;
   newsItems: NewsItem[];
 
   constructor(
@@ -15,7 +16,11 @@ export class LatestNewsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.newsItems = this.newsService.getAllNews();
+    this.newsItems = this.newsService.getLatestNews(this.amount);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.ngOnInit();
   }
 
 }

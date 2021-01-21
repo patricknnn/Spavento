@@ -16,8 +16,16 @@ export class CompLatestWorkComponent implements OnInit {
     this.reset();
   }
 
+  onSubmit() {
+    // Handle submit
+  }
+
   reset(): void {
     this.latestWork = this.contentService.getLatestWorkContent();
+  }
+
+  setActive(input, e): void {
+    e.checked ? input = true : input = false;
   }
 
 }

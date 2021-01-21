@@ -16,4 +16,8 @@ export class CompContactFormComponent implements OnInit {
   reset(): void {
   }
 
+  setActive(input, e): void {
+    e.checked ? input = true : input = false;
+  }
+
 }
