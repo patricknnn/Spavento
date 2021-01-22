@@ -2,11 +2,8 @@
   <div class="row mb-4">
     <div class="col-12">
       <mat-card class="mat-elevation-z4">
-        <div class="container">
-          <app-section-title 
-            [title]="latestWork.title"
-            [subTitle]="latestWork.subTitle"
-            [text]="latestWork.text"
+        <div *ngIf="latestWork.active" class="container-fluid">
+          <app-section-title [title]="latestWork.title" [subTitle]="latestWork.subTitle" [text]="latestWork.text"
             [link]="latestWork.link">
           </app-section-title>
           <div class="row">
@@ -14,6 +11,12 @@
               <app-latest [amount]="latestWork.amount"></app-latest>
             </div>
           </div>
+        </div>
+        <!-- Not visible -->
+        <div *ngIf="!latestWork.active" class="w-100 text-center">
+          <ngb-alert [dismissible]="false" class="mb-0">
+            <strong>Niet</strong> zichtbaar op de website.
+          </ngb-alert>
         </div>
       </mat-card>
     </div>

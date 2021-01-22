@@ -9,7 +9,7 @@ export class PageContactComponent implements OnInit {
   title = "Contact";
   subTitle = "Pagina";
   text = "Stel hier alles in met betrekking tot de contact pagina op de website.";
-  panelStep: number;
+  panelStep = -1;;
 
   constructor() { }
 

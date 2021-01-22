@@ -14,7 +14,7 @@ export class PageNotFoundAdminComponent implements OnInit {
   text = "Indien een pagina niet wordt gevonden zal een gebruiker deze pagina zien.";
   pageTitle: PageTitle;
   pageContent: PageNotFoundContent;
-  panelStep: number;
+  panelStep = -1;;
 
   constructor(
     private contentService: ContentService

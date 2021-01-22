@@ -2,12 +2,18 @@
   <div class="row mb-4">
     <div class="col-12">
       <mat-card class="mat-elevation-z4">
-        <div class="container p-5" [style.backgroundImage]="'url(' + cta.image + ')'">
+        <div *ngIf="cta.active" class="container-fluid p-5" [style.backgroundImage]="'url(' + cta.image + ')'">
           <div class="col-12">
             <app-call-to-action [title]="cta.title" [subTitle]="cta.subTitle" [buttonText]="cta.btnText"
               [buttonLink]="cta.btnLink">
             </app-call-to-action>
           </div>
+        </div>
+        <!-- Not visible -->
+        <div *ngIf="!cta.active" class="w-100 text-center">
+          <ngb-alert [dismissible]="false" class="mb-0">
+            <strong>Niet</strong> zichtbaar op de website.
+          </ngb-alert>
         </div>
       </mat-card>
     </div>

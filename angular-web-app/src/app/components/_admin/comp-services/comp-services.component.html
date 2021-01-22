@@ -2,12 +2,20 @@
   <div class="row mb-4">
     <div class="col-12">
       <mat-card class="mat-elevation-z4">
-        <app-section-title [title]="services.title" [subTitle]="services.subTitle" [text]="services.text">
-        </app-section-title>
-        <div class="row">
-          <div *ngFor="let service of services.services" class="col-lg-4 col-md-6 col-sm-12">
-            <app-service-card [service]="service"></app-service-card>
-          </div>
+        <div *ngIf="services.active">
+          <app-section-title [title]="services.title" [subTitle]="services.subTitle" [text]="services.text">
+          </app-section-title>
+          <div class="row">
+            <div *ngFor="let service of services.services" class="col-lg-4 col-md-6 col-sm-12">
+              <app-service-card [service]="service"></app-service-card>
+            </div>
+          </div>          
+        </div>
+        <!-- Not visible -->
+        <div *ngIf="!services.active" class="w-100 text-center">
+          <ngb-alert [dismissible]="false" class="mb-0">
+            <strong>Niet</strong> zichtbaar op de website.
+          </ngb-alert>
         </div>
       </mat-card>
     </div>

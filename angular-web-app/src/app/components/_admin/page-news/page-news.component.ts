@@ -9,7 +9,7 @@ export class PageNewsComponent implements OnInit {
   title = "Nieuws";
   subTitle = "Pagina";
   text = "Stel hier alles in met betrekking tot de nieuws pagina op de website.";
-  panelStep: number;
+  panelStep = -1;;
 
   constructor() { }
 

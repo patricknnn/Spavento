@@ -9,7 +9,7 @@ export class PagePortfolioComponent implements OnInit {
   title = "Portfolio";
   subTitle = "Pagina";
   text = "Stel hier alles in met betrekking tot de portfolio pagina op de website.";
-  panelStep: number;
+  panelStep = -1;;
 
   constructor() { }
 
