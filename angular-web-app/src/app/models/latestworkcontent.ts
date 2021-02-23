@@ -6,5 +6,6 @@ export class LatestWorkContent {
         public text: string,
         public link: string,
         public amount: number,
+        public active: boolean
     ) { }
 }

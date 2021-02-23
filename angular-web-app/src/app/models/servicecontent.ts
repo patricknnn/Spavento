@@ -6,5 +6,6 @@ export class ServiceContent {
         public subTitle: string,
         public text: string,
         public services: Service[],
+        public active: boolean
     ) { }
 }

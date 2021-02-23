@@ -7,5 +7,6 @@ export class FeaturedContent {
         public text: string,
         public maxHeight: string,
         public painting: Painting,
+        public active: boolean
     ) { }
 }

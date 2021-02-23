@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ContentService } from 'src/app/services/content.service';
 
 @Component({
   selector: 'app-comp-contact-form',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompContactFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(private contentService: ContentService) { }
 
   ngOnInit(): void {
+  }
+
+  reset(): void {
+  }
+
+  setActive(input, e): void {
+    e.checked ? input = true : input = false;
   }
 
 }

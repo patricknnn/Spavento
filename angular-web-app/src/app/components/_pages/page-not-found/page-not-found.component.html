@@ -3,15 +3,25 @@
 
 <!-- Main -->
 <main id="404" class="main main-raised">
-  <!-- News -->
+
+  <!-- Buttons -->
   <section class="page-section bg-light">
     <div class="container">
+      <app-section-title 
+        [title]="content.title" 
+        [subTitle]="content.subTitle" 
+        [text]="content.text">
+      </app-section-title>
       <div class="row">
-        <div class="col-12 d-flex w-100 align-items-center justify-content-center">
-          <button mat-raised-button color="accent" class="rounded-pill mr-5" (click)="goBack()">
+        <div class="col-xs-12 col-sm-6 d-flex align-items-center justify-content-center">
+          <button mat-raised-button color="accent" class="rounded-pill mt-3" (click)="goBack()">
+            <mat-icon>reply</mat-icon>
             {{content.btnBackText}}
           </button>
-          <button mat-raised-button color="accent" class="rounded-pill" routerLink="{{content.btnHomeLink}}">
+        </div>
+        <div class="col-xs-12 col-sm-6 d-flex align-items-center justify-content-center">
+          <button mat-raised-button color="accent" class="rounded-pill mt-3" routerLink="{{content.btnHomeLink}}">
+            <mat-icon>home</mat-icon>
             {{content.btnHomeText}}
           </button>
         </div>

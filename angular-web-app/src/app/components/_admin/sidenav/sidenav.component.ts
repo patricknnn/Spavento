@@ -14,7 +14,7 @@ export class SidenavComponent implements OnInit {
   constructor(private router: Router) {
     this.navlinks = [
       new Sidenavlink("Dashboard", "dashboard", "/admin/dashboard"),
-      new Sidenavlink("Algemeen", "photo_filter", "/admin/general"),
+      new Sidenavlink("Algemeen", "settings_applications", "/admin/general"),
       new Sidenavlink("Layout", "view_sidebar", "", [
         new Sidenavlink("Navigatie", "explore", "/admin/layout-navigation"),
         new Sidenavlink("Header", "panorama", "/admin/layout-header"),

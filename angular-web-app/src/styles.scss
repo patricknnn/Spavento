@@ -56,6 +56,8 @@ button::-moz-focus-inner {
 
 .page-section {
   padding: 6rem 0;
+  background-position: center;
+  background-size: cover;
 
   &:first-child {
     border-top-left-radius: inherit;
@@ -113,6 +115,10 @@ mat-card {
   width: 95% !important;
 }
 
+.mat-expansion-panel-header.title-header {
+  height: 100px !important;
+}
+
 /*************************************/
 /**             Modal               **/
 /*************************************/
@@ -131,6 +137,16 @@ mat-card {
 .img-modal {
   max-width: 100%;
 }
+
+
+/*************************************/
+/**             Images              **/
+/*************************************/
+.img-dropdown {
+  height: 40px;
+  width: 40px;
+}
+
 
 /*************************************/
 /**             Carousel            **/
@@ -431,6 +447,50 @@ hr.divider {
 .txt-dark-muted {
   color: $color-txt-dark-muted !important;
 }
+
+
+/***************/
+/* Scroll icon */
+/***************/
+.icon-scroll,
+.icon-scroll:before {
+  position: absolute;
+  left: 50%;
+}
+.icon-scroll {
+  width: 30px;
+  height: 55px;
+  margin-left: -15px;
+  bottom: 10px;
+  margin-top: -25px;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  border: 1px solid #fff;
+  border-radius: 25px;
+}
+.icon-scroll:before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  margin-left: -4px;
+  top: 8px;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-name: scroll;
+}
+
+@keyframes scroll {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+}
+
 
 /***************/
 /* Burger menu */

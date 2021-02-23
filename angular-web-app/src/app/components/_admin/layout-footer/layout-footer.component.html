@@ -18,39 +18,36 @@
         <form (ngSubmit)="onSubmit()" #footerForm="ngForm">
 
           <div class="form-group row">
-            <mat-form-field appearance="fill" class="form-field col-12">
-              <mat-label>Over titel</mat-label>
-              <input matInput type="text" id="aboutTitle" placeholder="Titel" name="aboutTitle" [(ngModel)]="footerContent.aboutTitle"
-                #aboutTitle="ngModel" required>
-              <mat-hint [hidden]="aboutTitle.valid || aboutTitle.pristine">Titel is verplicht</mat-hint>
-            </mat-form-field>
-          </div>
-
-          <div class="form-group row">
-            <mat-form-field appearance="fill" class="form-field col-12">
-              <mat-label>Over tekst</mat-label>
-              <textarea matInput type="text" id="aboutText" placeholder="Tekst" name="aboutText" [(ngModel)]="footerContent.aboutText"
-                #aboutText="ngModel" required> </textarea>
-              <mat-hint [hidden]="aboutText.valid || aboutText.pristine">Over tekst is verplicht</mat-hint>
-            </mat-form-field>
-          </div>
-
-          <div class="form-group row">
-            <mat-form-field appearance="fill" class="form-field col-12">
-              <mat-label>Social media titel</mat-label>
-              <input matInput type="text" id="socialTitle" placeholder="Titel" name="socialTitle" [(ngModel)]="footerContent.socialTitle"
-                #socialTitle="ngModel" required>
-              <mat-hint [hidden]="socialTitle.valid || socialTitle.pristine">Social media titel is verplicht</mat-hint>
-            </mat-form-field>
-          </div>
-
-          <div class="form-group row">
-            <mat-form-field appearance="fill" class="form-field col-12">
-              <mat-label>Social media tekst</mat-label>
-              <input matInput type="text" id="socialText" placeholder="Tekst" name="socialText" [(ngModel)]="footerContent.socialText"
-                #socialText="ngModel" required>
-              <mat-hint [hidden]="socialText.valid || socialText.pristine">Social media tekst is verplicht</mat-hint>
-            </mat-form-field>
+            <div class="col-sm-12 col-md-6">
+              <mat-form-field appearance="fill" class="form-field w-100">
+                <mat-label>Over titel</mat-label>
+                <input matInput type="text" id="aboutTitle" placeholder="Titel" name="aboutTitle" [(ngModel)]="footerContent.aboutTitle"
+                  #aboutTitle="ngModel" required>
+                <mat-hint [hidden]="aboutTitle.valid || aboutTitle.pristine">Titel is verplicht</mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="fill" class="form-field w-100">
+                <mat-label>Over tekst</mat-label>
+                <textarea matInput rows="3"
+                  [(ngModel)]="footerContent.aboutText" name="aboutText" id="aboutText" type="text"
+                  #aboutText="ngModel" required> </textarea>
+                <mat-hint [hidden]="aboutText.valid || aboutText.pristine">Over tekst is verplicht</mat-hint>
+              </mat-form-field>              
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <mat-form-field appearance="fill" class="form-field w-100">
+                <mat-label>Social media titel</mat-label>
+                <input matInput type="text" id="socialTitle" placeholder="Titel" name="socialTitle" [(ngModel)]="footerContent.socialTitle"
+                  #socialTitle="ngModel" required>
+                <mat-hint [hidden]="socialTitle.valid || socialTitle.pristine">Social media titel is verplicht</mat-hint>
+              </mat-form-field>
+              <mat-form-field appearance="fill" class="form-field w-100">
+                <mat-label>Social media tekst</mat-label>
+                <textarea matInput rows="3"
+                  [(ngModel)]="footerContent.socialText" name="socialText" id="socialText" type="text"
+                  #socialText="ngModel" required> </textarea>
+                <mat-hint [hidden]="socialText.valid || socialText.pristine">Social media tekst is verplicht</mat-hint>
+              </mat-form-field>            
+            </div>
           </div>
 
           <div class="form-group row">

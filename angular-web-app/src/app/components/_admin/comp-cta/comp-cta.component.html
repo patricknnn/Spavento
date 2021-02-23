@@ -1,1 +1,94 @@
-<p>comp-cta works!</p>
+<div class="container-fluid">
+  <div class="row mb-4">
+    <div class="col-12">
+      <mat-card class="mat-elevation-z4">
+        <div *ngIf="cta.active" class="container-fluid p-5" [style.backgroundImage]="'url(' + cta.image + ')'">
+          <div class="col-12">
+            <app-call-to-action [title]="cta.title" [subTitle]="cta.subTitle" [buttonText]="cta.btnText"
+              [buttonLink]="cta.btnLink">
+            </app-call-to-action>
+          </div>
+        </div>
+        <!-- Not visible -->
+        <div *ngIf="!cta.active" class="w-100 text-center">
+          <ngb-alert [dismissible]="false" class="mb-0">
+            <strong>Niet</strong> zichtbaar op de website.
+          </ngb-alert>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-12">
+      <mat-card class="mat-elevation-z4">
+
+        <form (ngSubmit)="onSubmit()" #matForm="ngForm">
+
+          <div class="form-group row">
+            <div class="col-sm-12 col-md-10 d-flex align-items-center">
+              <h4 class="title-underlined">Instellingen</h4>
+            </div>
+            <div class="col-sm-12 col-md-2 d-flex align-items-start justify-content-end">
+              <button mat-mini-fab type="button"
+                (click)="cta.active = !cta.active; cta.active ? matForm.form.enable() : matForm.form.disable(); matForm.form.markAsTouched()"
+                [color]="cta.active ? 'accent' : 'primary'" [attr.aria-label]="'Hide component'"
+                [attr.aria-pressed]="cta.active">
+                <mat-icon>{{cta.active ? 'visibility' : 'visibility_off'}}</mat-icon>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <mat-form-field appearance="fill" class="form-field col-sm-12 col-md-6">
+              <mat-label>Content titel</mat-label>
+              <input matInput type="text" id="contentTitle" placeholder="Titel" name="contentTitle"
+                [(ngModel)]="cta.title" #contentTitleInput="ngModel" required>
+              <mat-hint [hidden]="contentTitleInput.valid || contentTitleInput.pristine">Titel is
+                verplicht</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="form-field col-sm-12 col-md-6">
+              <mat-label>Content subtitel</mat-label>
+              <input matInput type="text" id="contentSubTitle" placeholder="Subtitel" name="contentSubTitle"
+                [(ngModel)]="cta.subTitle" #contentSubTitleInput="ngModel" required>
+              <mat-hint [hidden]="contentSubTitleInput.valid || contentSubTitleInput.pristine">Subtitel is verplicht
+              </mat-hint>
+            </mat-form-field>
+          </div>
+
+          <div class="form-group row">
+            <mat-form-field appearance="fill" class="form-field col-12">
+              <mat-label>Achtergrond</mat-label>
+              <input matInput type="text" id="contentImage" placeholder="Image" name="contentImage"
+                [(ngModel)]="cta.image">
+            </mat-form-field>
+          </div>
+
+          <div class="form-group row">
+            <mat-form-field appearance="fill" class="form-field col-xs-12 col-sm-6">
+              <mat-label>Knop label</mat-label>
+              <input matInput type="text" id="contentBtnLabel" placeholder="Label" name="contentBtnLabel"
+                [(ngModel)]="cta.btnText" #contentBtnLabelInput="ngModel" required>
+              <mat-hint [hidden]="contentBtnLabelInput.valid || contentBtnLabelInput.pristine">Label is verplicht
+              </mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="form-field col-xs-12 col-sm-6">
+              <mat-label>Knop link</mat-label>
+              <input matInput type="text" id="contentBtnLink" placeholder="Link" name="contentBtnLink"
+                [(ngModel)]="cta.btnLink" #contentBtnLinkInput="ngModel" required>
+              <mat-hint [hidden]="contentBtnLinkInput.valid || contentBtnLinkInput.pristine">Link is verplicht
+              </mat-hint>
+            </mat-form-field>
+          </div>
+
+
+          <button mat-flat-button color="accent" type="submit" [disabled]="!matForm.form.touched">Opslaan</button>
+          <button mat-flat-button color="primary" type="button" class="ml-3"
+            (click)="reset(); matForm.form.markAsUntouched();cta.active ? matForm.form.enable() : matForm.form.disable();">Reset</button>
+        </form>
+      </mat-card>
+
+    </div>
+  </div>
+
+</div>

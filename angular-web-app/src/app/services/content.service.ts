@@ -20,7 +20,7 @@ import { PaintingService } from './painting.service';
   providedIn: 'root',
 })
 export class ContentService {
-  constructor(private paintingService: PaintingService) {}
+  constructor(private paintingService: PaintingService) { }
 
   /**
    * Layout content
@@ -77,7 +77,8 @@ export class ContentService {
           'Exposities',
           'Bewonder ons werk op exposities.'
         ),
-      ]
+      ],
+      true
     );
   }
 
@@ -87,7 +88,8 @@ export class ContentService {
       'In de spotlight',
       'Het volgende schilderij verdient speciale aandacht.',
       '60vh',
-      this.paintingService.getFeaturedPainting()
+      this.paintingService.getFeaturedPainting(),
+      true
     );
   }
 
@@ -97,7 +99,8 @@ export class ContentService {
       'blijf op de hoogte',
       'Alle nieuws rondom Spavento is te zien op de nieuws pagina.',
       '/news',
-      3
+      3,
+      true
     );
   }
 
@@ -107,7 +110,8 @@ export class ContentService {
       'Bewonder ons',
       'Een overzicht van al ons werk is te zien op de portfolio pagina.',
       '/portfolio',
-      6
+      6,
+      true
     );
   }
 
@@ -118,7 +122,8 @@ export class ContentService {
       '',
       'Breng mij daar!',
       '/portfolio',
-      '../../../../assets/img/material-bg-light.jpg'
+      '../../../../assets/img/material-bg-light.jpg',
+      true
     );
   }
 
@@ -148,7 +153,8 @@ export class ContentService {
         new Service('phone', 'Bel ons', '+31 6 12345678'),
         new Service('email', 'Stuur een email', 'info@spavento.nl'),
         new Service('pin_drop', 'Bezoek ons', 'Oeverlanden, Kropswolde'),
-      ]
+      ],
+      true
     );
   }
 
@@ -156,7 +162,8 @@ export class ContentService {
     return new ContactFormContent(
       'Formulier',
       'Contact',
-      'Vul onderstaand contactformulier in en u zult zo spoedig mogelijk iets van ons horen'
+      'Vul onderstaand contactformulier in en u zult zo spoedig mogelijk iets van ons horen',
+      true
     );
   }
 
