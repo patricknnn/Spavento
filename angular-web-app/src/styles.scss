@@ -373,6 +373,21 @@ hr.divider {
 }
 
 /*************************************/
+/**             Tables              **/
+/*************************************/
+.table-responsive {
+  max-height: 300px;
+}
+
+td.mat-cell {
+  white-space: nowrap;
+  padding: 0 5px !important;
+}
+
+.img-table {
+  max-width: 100px;
+}
+/*************************************/
 /**          Color Helpers          **/
 /*************************************/
 

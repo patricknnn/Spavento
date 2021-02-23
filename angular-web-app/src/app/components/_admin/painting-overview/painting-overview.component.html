@@ -1,12 +1,79 @@
 <div class="container-fluid pt-5">
-  <app-section-title 
-    [title]="title"
-    [subTitle]="subTitle"
-    [text]="text">
+  <app-section-title [title]="title" [subTitle]="subTitle" [text]="text">
   </app-section-title>
 
   <div class="row">
     <div class="col-12">
+
+      <!-- Table Filter -->
+      <mat-form-field color="accent" class="w-100">
+        <button mat-button matPrefix mat-icon-button>
+          <mat-icon>search</mat-icon>
+        </button>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Animals" #input>
+        <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear"
+          (click)="input.value=''; resetFilter()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <!-- Elevation -->
+      <div class="mat-elevation-z8">
+        <!-- Table -->
+        <div class="table-responsive">
+          <table mat-table [dataSource]="dataSource" class="w-100" matSort matSortActive="created"
+            matSortDirection="desc">
+            <ng-container matColumnDef="thumbnail" sticky>
+              <th mat-header-cell *matHeaderCellDef> </th>
+              <td mat-cell *matCellDef="let painting">
+                <img src="{{ painting.thumbnail }}" alt="{{ painting.title }}" class="rounded img-thumbnail img-table" height="50px">
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="title">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+              <td mat-cell *matCellDef="let painting"> {{ painting.title }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="artist">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Artist </th>
+              <td mat-cell *matCellDef="let painting"> {{ painting.artist }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="paint">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Paint </th>
+              <td mat-cell *matCellDef="let painting"> {{ painting.paint }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="created">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Created </th>
+              <td mat-cell *matCellDef="let painting"> {{ painting.timestampCreated | date }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="active">
+              <th mat-header-cell *matHeaderCellDef> Active </th>
+              <td mat-cell *matCellDef="let painting">
+                <mat-slide-toggle checked="{{ painting.active }}"></mat-slide-toggle>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="6">No data matching the filter "{{input.value}}"</td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- Paginator -->
+        <mat-paginator [pageSizeOptions]="[5, 10, 25]" [length]="paintings.length" class="mb-5">
+        </mat-paginator>
+
+      </div>
+
     </div>
   </div>
 </div>

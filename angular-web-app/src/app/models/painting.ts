@@ -11,6 +11,7 @@ export class Painting {
     public price: number,
     public category: string,
     public size: string,
+    public active: boolean,
     public timestampCreated: number,
     public timestampUpdated: number,
   ) {
