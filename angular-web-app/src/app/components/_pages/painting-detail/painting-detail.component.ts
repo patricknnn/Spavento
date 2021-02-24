@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Painting } from '../../../models/painting';
 import { PaintingService } from '../../../services/painting.service';
@@ -11,7 +11,7 @@ import { PaintingService } from '../../../services/painting.service';
 export class PaintingDetailComponent implements OnInit {
   title = '';
   subTitle = 'Schilderij informatie';
-  painting: Painting;
+  @Input() painting: Painting;
 
   constructor(
     private router: Router,
@@ -20,11 +20,13 @@ export class PaintingDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.painting = this.paintingService.getPaintingById(
-      +this.route.snapshot.paramMap.get('id')
-    );
     if (!this.painting) {
-      this.goTo404();
+      this.painting = this.paintingService.getPaintingById(
+        +this.route.snapshot.paramMap.get('id')
+      );
+      if (!this.painting) {
+        this.goTo404();
+      }
     }
   }
 

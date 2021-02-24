@@ -1,9 +1,13 @@
+import { ComponentPortal } from '@angular/cdk/portal';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { Painting } from 'src/app/models/painting';
+import { ModalService } from 'src/app/services/modal.service';
 import { PaintingService } from 'src/app/services/painting.service';
+import { PaintingDetailComponent } from '../../_pages/painting-detail/painting-detail.component';
 
 @Component({
   selector: 'app-painting-overview',
@@ -15,6 +19,7 @@ export class PaintingOverviewComponent implements OnInit {
   subTitle = 'Portfolio';
   text = 'Hier is een overzicht van alle portfolio items te vinden.';
   paintings: Painting[];
+  modalPainting: Painting;
   dataSource: any;
   displayedColumns: string[] = [
     'thumbnail',
@@ -22,13 +27,18 @@ export class PaintingOverviewComponent implements OnInit {
     'artist',
     'paint',
     'created',
-    'active'
+    'active',
+    'options',
   ];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private paintingService: PaintingService) {}
+  constructor(
+    private paintingService: PaintingService,
+    private modalService: ModalService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.paintings = this.paintingService.getAllPaintings();
@@ -40,6 +50,9 @@ export class PaintingOverviewComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
+  /**
+   * Apply filter to the table view
+   */
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -49,10 +62,30 @@ export class PaintingOverviewComponent implements OnInit {
     }
   }
 
+  /**
+   * Reset the table view filter
+   */
   resetFilter(): void {
     this.dataSource.filter = null;
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+/**
+ * 
+ * @param painting Modal painting
+ */
+  setModalPainting(painting: Painting): void {
+    //this.router.navigate(['/painting', { id: paintingId }]);
+    this.modalPainting = painting;
+  }
+
+  /**
+   * Open modal
+   * @param content Modal content
+   */
+  openModal(content) {
+    this.modalService.openModal(content);
   }
 }
