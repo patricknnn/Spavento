@@ -1,12 +1,153 @@
 <div class="container-fluid pt-5">
-  <app-section-title 
-    [title]="title"
-    [subTitle]="subTitle"
-    [text]="text">
+  <app-section-title [title]="title" [subTitle]="subTitle" [text]="text">
   </app-section-title>
 
   <div class="row">
     <div class="col-12">
+      <mat-card class="mat-elevation-z8">
+        <mat-card-content>
+
+          <mat-vertical-stepper [linear]="isLinear" color="accent" #stepper>
+            <form #paintingDetailsForm="ngForm" *ngIf="painting">
+
+              <mat-step>
+                <ng-template matStepLabel>Details</ng-template>
+
+                <div class="form-group row">
+                  <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+                    <mat-label>Titel</mat-label>
+                    <input matInput id="title" placeholder="Titel" name="title" [(ngModel)]="painting.title"
+                      #title="ngModel" required>
+                    <mat-hint [hidden]="title.valid || title.pristine">Titel is verplicht</mat-hint>
+                  </mat-form-field>
+                  <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+                    <mat-label>Artiest</mat-label>
+                    <input matInput id="artist" placeholder="Artiest" name="artist" [(ngModel)]="painting.artist"
+                      #artist="ngModel" required>
+                    <mat-hint [hidden]="artist.valid || artist.pristine">Artiest is verplicht</mat-hint>
+                  </mat-form-field>
+                </div>
+
+                <div class="form-group row">
+                  <mat-form-field [appearance]="formStyle" [color]="formColor" [color]="formColor"
+                    class="form-field col-12">
+                    <mat-label>Omschrijving</mat-label>
+                    <textarea matInput id="description" placeholder="Omschrijving" name="description"
+                      [(ngModel)]="painting.description" #description="ngModel" required></textarea>
+                    <mat-hint [hidden]="description.valid || description.pristine">Omschrijving is verplicht</mat-hint>
+                  </mat-form-field>
+                </div>
+
+                <div class="form-group row">
+                  <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+                    <mat-label>Verf</mat-label>
+                    <mat-select id="paint" name="paint" [(ngModel)]="painting.paint" #paint="ngModel" required>
+                      <mat-option *ngFor="let paint of paints" [value]="paint">
+                        {{paint}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-hint [hidden]="paint.valid || paint.pristine">Verf is verplicht</mat-hint>
+                  </mat-form-field>
+                  <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+                    <mat-label>Materiaal</mat-label>
+                    <mat-select id="material" name="material" [(ngModel)]="painting.material" #material="ngModel"
+                      required>
+                      <mat-option *ngFor="let material of materials" [value]="material">
+                        {{material}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-hint [hidden]="material.valid || material.pristine">Matriaal is verplicht</mat-hint>
+                  </mat-form-field>
+                </div>
+
+                <div class="form-group row">
+                  <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+                    <mat-label>Categorie</mat-label>
+                    <mat-select id="category" name="category" [(ngModel)]="painting.category" #category="ngModel"
+                      required>
+                      <mat-option *ngFor="let category of categories" [value]="category">
+                        {{category}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-hint [hidden]="category.valid || category.pristine">Categorie is verplicht</mat-hint>
+                  </mat-form-field>
+                  <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+                    <mat-label>Status</mat-label>
+                    <mat-select id="state" name="state" [(ngModel)]="painting.state" #state="ngModel" required>
+                      <mat-option *ngFor="let state of states" [value]="state">
+                        {{state}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-hint [hidden]="state.valid || state.pristine">Status is verplicht</mat-hint>
+                  </mat-form-field>
+                </div>
+
+                <div class="form-group row">
+                  <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+                    <mat-label>Prijs</mat-label>
+                    <input matInput id="price" placeholder="Prijs" name="price" [(ngModel)]="painting.price"
+                      #price="ngModel">
+                  </mat-form-field>
+                  <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-3">
+                    <mat-label>Lengte</mat-label>
+                    <input matInput id="length" placeholder="Lengte" name="length" [(ngModel)]="painting.length"
+                      #length="ngModel">
+                  </mat-form-field>
+                  <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-3">
+                    <mat-label>Breedte</mat-label>
+                    <input matInput id="width" placeholder="Breedte" name="width" [(ngModel)]="painting.width"
+                      #width="ngModel">
+                  </mat-form-field>
+                </div>
+
+                <div>
+                  <button mat-button matStepperNext>Volgende</button>
+                </div>
+              </mat-step>
+
+              <mat-step>
+                <ng-template matStepLabel>Afbeeldingen</ng-template>
+                <mat-form-field>
+                  <mat-label>Address</mat-label>
+                  <input matInput placeholder="Ex. 1 Main St, New York, NY" required>
+                </mat-form-field>
+                <div>
+                  <button mat-button matStepperPrevious>Vorige</button>
+                  <button mat-button matStepperNext>Volgende</button>
+                </div>
+              </mat-step>
+
+              <mat-step>
+                <ng-template matStepLabel>Opslaan</ng-template>
+                <p>Schilderij opslaan?</p>
+                <div>
+                  <button mat-raised-button class="m-2" matStepperPrevious>Vorige</button>
+                  <button mat-raised-button color="primary" class="m-2" (click)="resetStepper(confirmModal)">Reset</button>
+                  <button mat-raised-button color="accent" class="m-2">Opslaan</button>
+                </div>
+              </mat-step>
+            </form>
+          </mat-vertical-stepper>
+
+        </mat-card-content>
+      </mat-card>
     </div>
   </div>
 </div>
+
+
+
+
+<!-- Confirm reset -->
+<ng-template #confirmModal>
+  <mat-dialog-content>
+    <h1 mat-dialog-title>Bevestig</h1>
+    <p>Weet je zeker dat je het formulier wil leeg maken?</p>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="false">Nee</button>
+    <button mat-button color="primary" [mat-dialog-close]="true">Reset</button>
+  </mat-dialog-actions>
+
+</ng-template>

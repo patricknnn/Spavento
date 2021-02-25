@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatVerticalStepper } from '@angular/material/stepper';
+import { Painting } from 'src/app/models/painting';
+import { ModalService } from 'src/app/services/modal.service';
+import { PaintingService } from 'src/app/services/painting.service';
 
 @Component({
   selector: 'app-painting-add',
@@ -8,11 +12,32 @@ import { Component, OnInit } from '@angular/core';
 export class PaintingAddComponent implements OnInit {
   title = "Toevoegen";
   subTitle = "Portfolio";
-  text = "Gebruik deze pagina om items aan het portfolio toe te voegen.";
-  
-  constructor() { }
+  text = "Gebruik deze pagina om een schilderij toe te voegen aan het portfolio.";
+  formStyle = "standard";
+  formColor = "accent";
+  @ViewChild('stepper') stepper;
+  isLinear = false;
+  painting = new Painting(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+  categories: string[];
+  states: string[];
+  paints: string[];
+  materials: string[];
 
-  ngOnInit(): void {
+  constructor(private paintingService: PaintingService, private modalService: ModalService) { }
+
+  ngOnInit() {
+    this.categories = this.paintingService.getCategories();
+    this.states = this.paintingService.getStates();
+    this.paints = this.paintingService.getPaints();
+    this.materials = this.paintingService.getMaterials();
   }
 
+  resetStepper(content) {
+    const dialogRef = this.modalService.confirmModal(content);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.stepper.reset();
+      }
+    });
+  }
 }

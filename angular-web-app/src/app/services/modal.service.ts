@@ -15,4 +15,9 @@ export class ModalService {
     this.dialogRef = this.dialog.open(content, options);
   }
 
+  public confirmModal(message) {
+    this.dialogRef = this.dialog.open(message);
+    return this.dialogRef;
+  }
+
 }

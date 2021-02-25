@@ -1,4 +1,3 @@
-import { ComponentPortal } from '@angular/cdk/portal';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -7,7 +6,6 @@ import { Router } from '@angular/router';
 import { Painting } from 'src/app/models/painting';
 import { ModalService } from 'src/app/services/modal.service';
 import { PaintingService } from 'src/app/services/painting.service';
-import { PaintingDetailComponent } from '../../_pages/painting-detail/painting-detail.component';
 
 @Component({
   selector: 'app-painting-overview',
@@ -36,8 +34,7 @@ export class PaintingOverviewComponent implements OnInit {
 
   constructor(
     private paintingService: PaintingService,
-    private modalService: ModalService,
-    private router: Router
+    private modalService: ModalService
   ) {}
 
   ngOnInit(): void {
