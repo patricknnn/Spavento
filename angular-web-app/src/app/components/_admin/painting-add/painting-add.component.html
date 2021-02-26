@@ -4,13 +4,13 @@
 
   <div class="row">
     <div class="col-12">
-      <mat-card class="mat-elevation-z8">
-        <mat-card-content>
 
-          <mat-vertical-stepper [linear]="isLinear" color="accent" #stepper>
-            <form #paintingDetailsForm="ngForm" *ngIf="painting">
+      <mat-vertical-stepper [linear]="isLinear" color="accent" #stepper class="bg-light">
+        <form #paintingDetailsForm="ngForm" *ngIf="painting">
 
-              <mat-step>
+          <mat-step>
+            <mat-card class="mat-elevation-z8 mt-3">
+              <mat-card-content>
                 <ng-template matStepLabel>Details</ng-template>
 
                 <div class="form-group row">
@@ -100,37 +100,41 @@
                   </mat-form-field>
                 </div>
 
-                <div>
-                  <button mat-button matStepperNext>Volgende</button>
-                </div>
-              </mat-step>
+              </mat-card-content>
+            </mat-card>
+            <div class="mt-5">
+              <button mat-button matStepperNext>Volgende</button>
+            </div>
+          </mat-step>
 
-              <mat-step>
-                <ng-template matStepLabel>Afbeeldingen</ng-template>
-                <mat-form-field>
-                  <mat-label>Address</mat-label>
-                  <input matInput placeholder="Ex. 1 Main St, New York, NY" required>
-                </mat-form-field>
-                <div>
-                  <button mat-button matStepperPrevious>Vorige</button>
-                  <button mat-button matStepperNext>Volgende</button>
-                </div>
-              </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Afbeeldingen</ng-template>
+            <app-modal-selectfile></app-modal-selectfile>
+            <div class="mt-5">
+              <button mat-button matStepperPrevious>Vorige</button>
+              <button mat-button matStepperNext>Volgende</button>
+            </div>
+          </mat-step>
 
-              <mat-step>
+          <mat-step>
+            <mat-card class="mat-elevation-z8 mt-3">
+              <mat-card-content>
                 <ng-template matStepLabel>Opslaan</ng-template>
-                <p>Schilderij opslaan?</p>
-                <div>
-                  <button mat-raised-button class="m-2" matStepperPrevious>Vorige</button>
-                  <button mat-raised-button color="primary" class="m-2" (click)="resetStepper(confirmModal)">Reset</button>
-                  <button mat-raised-button color="accent" class="m-2">Opslaan</button>
-                </div>
-              </mat-step>
-            </form>
-          </mat-vertical-stepper>
+                <p *ngIf="paintingDetailsForm.valid">Schilderij opslaan?</p>
+                <p *ngIf="!paintingDetailsForm.valid">Vul eerst alle verplichte velden in.</p>
+              </mat-card-content>
+            </mat-card>
+            <div class="mt-5">
+              <button mat-raised-button class="m-2" matStepperPrevious>Vorige</button>
+              <button mat-raised-button color="primary" class="m-2" (click)="resetStepper(confirmModal)">Reset</button>
+              <button mat-raised-button color="accent" [disabled]="!paintingDetailsForm.valid"
+                class="m-2">Opslaan</button>
+            </div>
+          </mat-step>
+        </form>
+      </mat-vertical-stepper>
 
-        </mat-card-content>
-      </mat-card>
+
     </div>
   </div>
 </div>
@@ -142,7 +146,7 @@
 <ng-template #confirmModal>
   <mat-dialog-content>
     <h1 mat-dialog-title>Bevestig</h1>
-    <p>Weet je zeker dat je het formulier wil leeg maken?</p>
+    <p>Weet je zeker dat je het formulier leeg wil maken?</p>
   </mat-dialog-content>
 
   <mat-dialog-actions align="end">

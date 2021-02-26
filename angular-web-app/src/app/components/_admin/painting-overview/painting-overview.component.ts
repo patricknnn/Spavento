@@ -35,7 +35,7 @@ export class PaintingOverviewComponent implements OnInit {
   constructor(
     private paintingService: PaintingService,
     private modalService: ModalService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.paintings = this.paintingService.getAllPaintings();
@@ -69,10 +69,10 @@ export class PaintingOverviewComponent implements OnInit {
     }
   }
 
-/**
- * 
- * @param painting Modal painting
- */
+  /**
+   * 
+   * @param painting Modal painting
+   */
   setModalPainting(painting: Painting): void {
     //this.router.navigate(['/painting', { id: paintingId }]);
     this.modalPainting = painting;

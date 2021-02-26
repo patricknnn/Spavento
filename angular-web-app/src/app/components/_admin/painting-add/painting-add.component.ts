@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatVerticalStepper } from '@angular/material/stepper';
 import { Painting } from 'src/app/models/painting';
 import { ModalService } from 'src/app/services/modal.service';
 import { PaintingService } from 'src/app/services/painting.service';

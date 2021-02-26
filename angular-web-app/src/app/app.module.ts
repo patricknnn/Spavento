@@ -58,6 +58,12 @@ import { CompContactCardsComponent } from './components/_admin/comp-contact-card
 import { CompContactFormComponent } from './components/_admin/comp-contact-form/comp-contact-form.component';
 import { PageNotFoundAdminComponent } from './components/_admin/page-not-found/page-not-found.component';
 import { CompHeaderComponent } from './components/_admin/comp-header/comp-header.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { environment } from 'src/environments/environment';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import { ModalSelectfileComponent } from './components/_admin/modal-selectfile/modal-selectfile.component';
 
 @NgModule({
   declarations: [
@@ -112,7 +118,8 @@ import { CompHeaderComponent } from './components/_admin/comp-header/comp-header
     CompContactCardsComponent,
     CompContactFormComponent,
     PageNotFoundAdminComponent,
-    CompHeaderComponent
+    CompHeaderComponent,
+    ModalSelectfileComponent
   ],
   imports: [
     BrowserModule,
@@ -122,8 +129,12 @@ import { CompHeaderComponent } from './components/_admin/comp-header/comp-header
     MaterialModule,
     FormsModule,
     NgbModule,
+    NgxDropzoneModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireStorageModule,
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent],
 })
