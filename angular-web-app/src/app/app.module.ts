@@ -63,7 +63,9 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
 import { NgxDropzoneModule } from 'ngx-dropzone';
-import { ModalSelectfileComponent } from './components/_admin/modal-selectfile/modal-selectfile.component';
+import { ManagerFilesComponent } from './components/_admin/manager-files/manager-files.component';
+import { ManagerUsersComponent } from './components/_admin/manager-users/manager-users.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -119,7 +121,8 @@ import { ModalSelectfileComponent } from './components/_admin/modal-selectfile/m
     CompContactFormComponent,
     PageNotFoundAdminComponent,
     CompHeaderComponent,
-    ModalSelectfileComponent
+    ManagerFilesComponent,
+    ManagerUsersComponent
   ],
   imports: [
     BrowserModule,
@@ -130,6 +133,7 @@ import { ModalSelectfileComponent } from './components/_admin/modal-selectfile/m
     FormsModule,
     NgbModule,
     NgxDropzoneModule,
+    SweetAlert2Module.forRoot({provideSwal: () => import('sweetalert2/dist/sweetalert2.js')}),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireStorageModule,

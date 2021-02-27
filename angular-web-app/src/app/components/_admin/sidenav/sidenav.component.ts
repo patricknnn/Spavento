@@ -15,6 +15,10 @@ export class SidenavComponent implements OnInit {
     this.navlinks = [
       new Sidenavlink("Dashboard", "dashboard", "/admin/dashboard"),
       new Sidenavlink("Algemeen", "settings_applications", "/admin/general"),
+      new Sidenavlink("Beheer", "assignment_turned_in", "", [
+        new Sidenavlink("Bestanden", "library_add_check", "/admin/manager-files"),
+        new Sidenavlink("Gebruikers", "verified_user", "/admin/manager-users"),
+      ]),
       new Sidenavlink("Layout", "view_sidebar", "", [
         new Sidenavlink("Navigatie", "explore", "/admin/layout-navigation"),
         new Sidenavlink("Header", "panorama", "/admin/layout-header"),

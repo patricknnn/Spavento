@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Painting } from 'src/app/models/painting';
-import { ModalService } from 'src/app/services/modal.service';
 import { PaintingService } from 'src/app/services/painting.service';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-painting-add',
@@ -14,15 +14,15 @@ export class PaintingAddComponent implements OnInit {
   text = "Gebruik deze pagina om een schilderij toe te voegen aan het portfolio.";
   formStyle = "standard";
   formColor = "accent";
-  @ViewChild('stepper') stepper;
   isLinear = false;
+  @ViewChild("stepper") stepper;
   painting = new Painting(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
   categories: string[];
   states: string[];
   paints: string[];
   materials: string[];
 
-  constructor(private paintingService: PaintingService, private modalService: ModalService) { }
+  constructor(private paintingService: PaintingService) { }
 
   ngOnInit() {
     this.categories = this.paintingService.getCategories();
@@ -31,11 +31,28 @@ export class PaintingAddComponent implements OnInit {
     this.materials = this.paintingService.getMaterials();
   }
 
-  resetStepper(content) {
-    const dialogRef = this.modalService.confirmModal(content);
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
+  resetForm() {
+    Swal.fire({
+      title: 'Formulier leeg maken?',
+      text: 'Alle reeds ingevoerde data zal worden verwijderd!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Reset',
+      cancelButtonText: 'Annuleer',
+    }).then((result) => {
+      if (result.value) {
         this.stepper.reset();
+        Swal.fire(
+          'Succes!',
+          'Formulier is leeg gemaakt!',
+          'success'
+        );
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Geannuleerd', 
+          'Formulier is niet leeg gemaakt!', 
+          'error'
+        );
       }
     });
   }

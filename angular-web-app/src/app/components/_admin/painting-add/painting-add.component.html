@@ -126,7 +126,7 @@
             </mat-card>
             <div class="mt-5">
               <button mat-raised-button class="m-2" matStepperPrevious>Vorige</button>
-              <button mat-raised-button color="primary" class="m-2" (click)="resetStepper(confirmModal)">Reset</button>
+              <button mat-raised-button color="primary" class="m-2" (click)="resetForm()">Reset</button>
               <button mat-raised-button color="accent" [disabled]="!paintingDetailsForm.valid"
                 class="m-2">Opslaan</button>
             </div>
@@ -138,20 +138,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-<!-- Confirm reset -->
-<ng-template #confirmModal>
-  <mat-dialog-content>
-    <h1 mat-dialog-title>Bevestig</h1>
-    <p>Weet je zeker dat je het formulier leeg wil maken?</p>
-  </mat-dialog-content>
-
-  <mat-dialog-actions align="end">
-    <button mat-button [mat-dialog-close]="false">Nee</button>
-    <button mat-button color="primary" [mat-dialog-close]="true">Reset</button>
-  </mat-dialog-actions>
-
-</ng-template>

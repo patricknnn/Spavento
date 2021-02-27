@@ -22,6 +22,8 @@ import { GeneralComponent } from './components/_admin/general/general.component'
 import { NewsOverviewComponent } from './components/_admin/news-overview/news-overview.component';
 import { NewsAddComponent } from './components/_admin/news-add/news-add.component';
 import { PageNotFoundAdminComponent } from './components/_admin/page-not-found/page-not-found.component';
+import { ManagerFilesComponent } from './components/_admin/manager-files/manager-files.component';
+import { ManagerUsersComponent } from './components/_admin/manager-users/manager-users.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -36,6 +38,8 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent, data: { animation: 'admin' }, children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'general', component: GeneralComponent },
+      { path: 'manager-files', component: ManagerFilesComponent },
+      { path: 'manager-users', component: ManagerUsersComponent },
       { path: 'layout-navigation', component: LayoutNavigationComponent },
       { path: 'layout-header', component: LayoutHeaderComponent },
       { path: 'layout-footer', component: LayoutFooterComponent },
