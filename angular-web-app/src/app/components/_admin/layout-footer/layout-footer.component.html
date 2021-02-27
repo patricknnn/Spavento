@@ -6,54 +6,104 @@
     <div class="col-12">
       <mat-card class="mat-elevation-z4">
         <h4 class="title-underlined">Resultaat</h4>
-        <app-footer [footerContent]="footerContent" [fixed]=false [elevated]=true></app-footer>
+        <app-footer
+          [footerContent]="footerContent"
+          [fixed]="false"
+          [elevated]="true"
+        ></app-footer>
       </mat-card>
     </div>
   </div>
 
-  <div class="row mb-4">
+  <div class="row mb-5">
     <div class="col-12">
       <mat-card class="mat-elevation-z4">
         <h4 class="title-underlined">Instellingen</h4>
         <form (ngSubmit)="onSubmit()" #footerForm="ngForm">
-
           <div class="form-group row">
             <div class="col-sm-12 col-md-6">
               <mat-form-field appearance="fill" class="form-field w-100">
                 <mat-label>Over titel</mat-label>
-                <input matInput type="text" id="aboutTitle" placeholder="Titel" name="aboutTitle" [(ngModel)]="footerContent.aboutTitle"
-                  #aboutTitle="ngModel" required>
-                <mat-hint [hidden]="aboutTitle.valid || aboutTitle.pristine">Titel is verplicht</mat-hint>
+                <input
+                  matInput
+                  type="text"
+                  id="aboutTitle"
+                  placeholder="Titel"
+                  name="aboutTitle"
+                  [(ngModel)]="footerContent.aboutTitle"
+                  #aboutTitle="ngModel"
+                  required
+                />
+                <mat-hint [hidden]="aboutTitle.valid || aboutTitle.pristine"
+                  >Titel is verplicht</mat-hint
+                >
               </mat-form-field>
               <mat-form-field appearance="fill" class="form-field w-100">
                 <mat-label>Over tekst</mat-label>
-                <textarea matInput rows="3"
-                  [(ngModel)]="footerContent.aboutText" name="aboutText" id="aboutText" type="text"
-                  #aboutText="ngModel" required> </textarea>
-                <mat-hint [hidden]="aboutText.valid || aboutText.pristine">Over tekst is verplicht</mat-hint>
-              </mat-form-field>              
+                <textarea
+                  matInput
+                  rows="3"
+                  [(ngModel)]="footerContent.aboutText"
+                  name="aboutText"
+                  id="aboutText"
+                  type="text"
+                  #aboutText="ngModel"
+                  required
+                >
+                </textarea>
+                <mat-hint [hidden]="aboutText.valid || aboutText.pristine"
+                  >Over tekst is verplicht</mat-hint
+                >
+              </mat-form-field>
             </div>
             <div class="col-sm-12 col-md-6">
               <mat-form-field appearance="fill" class="form-field w-100">
                 <mat-label>Social media titel</mat-label>
-                <input matInput type="text" id="socialTitle" placeholder="Titel" name="socialTitle" [(ngModel)]="footerContent.socialTitle"
-                  #socialTitle="ngModel" required>
-                <mat-hint [hidden]="socialTitle.valid || socialTitle.pristine">Social media titel is verplicht</mat-hint>
+                <input
+                  matInput
+                  type="text"
+                  id="socialTitle"
+                  placeholder="Titel"
+                  name="socialTitle"
+                  [(ngModel)]="footerContent.socialTitle"
+                  #socialTitle="ngModel"
+                  required
+                />
+                <mat-hint [hidden]="socialTitle.valid || socialTitle.pristine"
+                  >Social media titel is verplicht
+                </mat-hint>
               </mat-form-field>
               <mat-form-field appearance="fill" class="form-field w-100">
                 <mat-label>Social media tekst</mat-label>
-                <textarea matInput rows="3"
-                  [(ngModel)]="footerContent.socialText" name="socialText" id="socialText" type="text"
-                  #socialText="ngModel" required> </textarea>
-                <mat-hint [hidden]="socialText.valid || socialText.pristine">Social media tekst is verplicht</mat-hint>
-              </mat-form-field>            
+                <textarea
+                  matInput
+                  rows="3"
+                  [(ngModel)]="footerContent.socialText"
+                  name="socialText"
+                  id="socialText"
+                  type="text"
+                  #socialText="ngModel"
+                  required
+                >
+                </textarea>
+                <mat-hint [hidden]="socialText.valid || socialText.pristine"
+                  >Social media tekst is verplicht</mat-hint
+                >
+              </mat-form-field>
             </div>
           </div>
 
           <div class="form-group row">
             <mat-form-field appearance="fill" class="form-field col-12">
               <mat-label>Facebook link</mat-label>
-              <input matInput type="text" id="facebookLink" placeholder="Tekst" name="facebookLink" [(ngModel)]="footerContent.facebookLink">
+              <input
+                matInput
+                type="text"
+                id="facebookLink"
+                placeholder="Tekst"
+                name="facebookLink"
+                [(ngModel)]="footerContent.facebookLink"
+              />
               <mat-hint>Plak hier de link naar de facebook pagina</mat-hint>
             </mat-form-field>
           </div>
@@ -61,33 +111,71 @@
           <div class="form-group row">
             <mat-form-field appearance="fill" class="form-field col-12">
               <mat-label>Instagram link</mat-label>
-              <input matInput type="text" id="instaLink" placeholder="Tekst" name="instaLink" [(ngModel)]="footerContent.instagramLink">
-                <mat-hint>Plak hier de link naar de instagram pagina</mat-hint>
+              <input
+                matInput
+                type="text"
+                id="instaLink"
+                placeholder="Tekst"
+                name="instaLink"
+                [(ngModel)]="footerContent.instagramLink"
+              />
+              <mat-hint>Plak hier de link naar de instagram pagina</mat-hint>
             </mat-form-field>
           </div>
 
           <div class="form-group row">
             <mat-form-field appearance="fill" class="form-field col-12">
               <mat-label>Twitter link</mat-label>
-              <input matInput type="text" id="twitterLink" placeholder="Tekst" name="twitterLink" [(ngModel)]="footerContent.twitterLink">
-                <mat-hint>Plak hier de link naar de twitter pagina</mat-hint>
+              <input
+                matInput
+                type="text"
+                id="twitterLink"
+                placeholder="Tekst"
+                name="twitterLink"
+                [(ngModel)]="footerContent.twitterLink"
+              />
+              <mat-hint>Plak hier de link naar de twitter pagina</mat-hint>
             </mat-form-field>
           </div>
 
           <div class="form-group row">
             <mat-form-field appearance="fill" class="form-field col-12">
               <mat-label>Footer tekst</mat-label>
-              <input matInput type="text" id="footerText" placeholder="Tekst" name="footerText" [(ngModel)]="footerContent.footerText"
-                #footerText="ngModel" required>
-              <mat-hint [hidden]="footerText.valid || footerText.pristine">Footer text is verplicht</mat-hint>
+              <input
+                matInput
+                type="text"
+                id="footerText"
+                placeholder="Tekst"
+                name="footerText"
+                [(ngModel)]="footerContent.footerText"
+                #footerText="ngModel"
+                required
+              />
+              <mat-hint [hidden]="footerText.valid || footerText.pristine"
+                >Footer text is verplicht</mat-hint
+              >
             </mat-form-field>
           </div>
 
-          <button mat-flat-button color="accent" type="submit" [disabled]="!footerForm.form.valid || footerForm.form.pristine">Opslaan</button>
-          <button mat-flat-button color="primary" type="button" class="ml-3" (click)="reset()">Reset</button>
+          <button
+            mat-flat-button
+            color="accent"
+            type="submit"
+            [disabled]="!footerForm.form.valid || footerForm.form.pristine"
+          >
+            Opslaan
+          </button>
+          <button
+            mat-flat-button
+            color="primary"
+            type="button"
+            class="ml-3"
+            (click)="reset()"
+          >
+            Reset
+          </button>
         </form>
       </mat-card>
-
     </div>
   </div>
 </div>

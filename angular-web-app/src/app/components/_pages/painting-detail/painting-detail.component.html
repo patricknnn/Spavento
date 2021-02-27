@@ -13,21 +13,20 @@
 
         <div class="row mb-5">
           <div class="col-12">
-            <app-carousel-img [paintingId]="painting.id"></app-carousel-img>
+            <app-carousel-img [images]="painting.images"></app-carousel-img>
           </div>
         </div>
-
       </div>
     </section>
 
     <section class="page-section">
       <div class="container">
         <app-section-title [title]="'Informatie'" [subTitle]="'Meer'"
-          [text]="'Over ' + painting.title + ' van ' + painting.artist + '.'"></app-section-title>
+          [text]="'Over ' + painting.title + ' van ' + painting.artist + '.'">
+        </app-section-title>
 
         <div class="row">
           <div class="col-12">
-
             <mat-accordion multi="true">
               <mat-expansion-panel [expanded]="true">
                 <mat-expansion-panel-header>
@@ -106,13 +105,10 @@
                     <strong>Prijs</strong>
                   </mat-panel-title>
                 </mat-expansion-panel-header>
-                <div class="panel-content">
-                  &euro; {{ painting.price }}
-                </div>
+                <div class="panel-content">&euro; {{ painting.price }}</div>
               </mat-expansion-panel>
             </mat-accordion>
           </div>
-
         </div>
       </div>
     </section>

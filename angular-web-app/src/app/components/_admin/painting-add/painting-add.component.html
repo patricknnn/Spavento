@@ -2,139 +2,123 @@
   <app-section-title [title]="title" [subTitle]="subTitle" [text]="text">
   </app-section-title>
 
-  <div class="row">
+  <div class="row mb-5">
     <div class="col-12">
+      <mat-card class="mat-elevation-z4">
+        <form *ngIf="painting" (ngSubmit)="onSubmit()" #addPaintingForm="ngForm">
 
-      <mat-vertical-stepper [linear]="isLinear" color="accent" #stepper class="bg-light">
-        <form #paintingDetailsForm="ngForm" *ngIf="painting">
+          <div class="form-group row">
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+              <mat-label>Titel</mat-label>
+              <input matInput id="title" placeholder="Titel" name="title" [(ngModel)]="painting.title" #title="ngModel"
+                required />
+              <mat-hint [hidden]="title.valid || title.pristine">Titel is verplicht</mat-hint>
+            </mat-form-field>
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+              <mat-label>Artiest</mat-label>
+              <input matInput id="artist" placeholder="Artiest" name="artist" [(ngModel)]="painting.artist"
+                #artist="ngModel" required />
+              <mat-hint [hidden]="artist.valid || artist.pristine">Artiest is verplicht</mat-hint>
+            </mat-form-field>
+          </div>
 
-          <mat-step>
-            <mat-card class="mat-elevation-z8 mt-3">
-              <mat-card-content>
-                <ng-template matStepLabel>Details</ng-template>
+          <div class="form-group row">
+            <mat-form-field [appearance]="formStyle" [color]="formColor" [color]="formColor" class="form-field col-12">
+              <mat-label>Omschrijving</mat-label>
+              <textarea matInput id="description" placeholder="Omschrijving" name="description"
+                [(ngModel)]="painting.description" #description="ngModel" required></textarea>
+              <mat-hint [hidden]="description.valid || description.pristine">Omschrijving is verplicht</mat-hint>
+            </mat-form-field>
+          </div>
 
-                <div class="form-group row">
-                  <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
-                    <mat-label>Titel</mat-label>
-                    <input matInput id="title" placeholder="Titel" name="title" [(ngModel)]="painting.title"
-                      #title="ngModel" required>
-                    <mat-hint [hidden]="title.valid || title.pristine">Titel is verplicht</mat-hint>
-                  </mat-form-field>
-                  <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
-                    <mat-label>Artiest</mat-label>
-                    <input matInput id="artist" placeholder="Artiest" name="artist" [(ngModel)]="painting.artist"
-                      #artist="ngModel" required>
-                    <mat-hint [hidden]="artist.valid || artist.pristine">Artiest is verplicht</mat-hint>
-                  </mat-form-field>
-                </div>
+          <div class="form-group row">
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+              <mat-label>Verf</mat-label>
+              <mat-select id="paint" name="paint" [(ngModel)]="painting.paint" #paint="ngModel" required>
+                <mat-option *ngFor="let paint of paints" [value]="paint">
+                  {{ paint }}
+                </mat-option>
+              </mat-select>
+              <mat-hint [hidden]="paint.valid || paint.pristine">Verf is verplicht</mat-hint>
+            </mat-form-field>
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+              <mat-label>Materiaal</mat-label>
+              <mat-select id="material" name="material" [(ngModel)]="painting.material" #material="ngModel" required>
+                <mat-option *ngFor="let material of materials" [value]="material">
+                  {{ material }}
+                </mat-option>
+              </mat-select>
+              <mat-hint [hidden]="material.valid || material.pristine">Matriaal is verplicht</mat-hint>
+            </mat-form-field>
+          </div>
 
-                <div class="form-group row">
-                  <mat-form-field [appearance]="formStyle" [color]="formColor" [color]="formColor"
-                    class="form-field col-12">
-                    <mat-label>Omschrijving</mat-label>
-                    <textarea matInput id="description" placeholder="Omschrijving" name="description"
-                      [(ngModel)]="painting.description" #description="ngModel" required></textarea>
-                    <mat-hint [hidden]="description.valid || description.pristine">Omschrijving is verplicht</mat-hint>
-                  </mat-form-field>
-                </div>
+          <div class="form-group row">
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+              <mat-label>Categorie</mat-label>
+              <mat-select id="category" name="category" [(ngModel)]="painting.category" #category="ngModel" required>
+                <mat-option *ngFor="let category of categories" [value]="category">
+                  {{ category }}
+                </mat-option>
+              </mat-select>
+              <mat-hint [hidden]="category.valid || category.pristine">Categorie is verplicht</mat-hint>
+            </mat-form-field>
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+              <mat-label>Status</mat-label>
+              <mat-select id="state" name="state" [(ngModel)]="painting.state" #state="ngModel" required>
+                <mat-option *ngFor="let state of states" [value]="state">
+                  {{ state }}
+                </mat-option>
+              </mat-select>
+              <mat-hint [hidden]="state.valid || state.pristine">Status is verplicht</mat-hint>
+            </mat-form-field>
+          </div>
 
-                <div class="form-group row">
-                  <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
-                    <mat-label>Verf</mat-label>
-                    <mat-select id="paint" name="paint" [(ngModel)]="painting.paint" #paint="ngModel" required>
-                      <mat-option *ngFor="let paint of paints" [value]="paint">
-                        {{paint}}
-                      </mat-option>
-                    </mat-select>
-                    <mat-hint [hidden]="paint.valid || paint.pristine">Verf is verplicht</mat-hint>
-                  </mat-form-field>
-                  <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
-                    <mat-label>Materiaal</mat-label>
-                    <mat-select id="material" name="material" [(ngModel)]="painting.material" #material="ngModel"
-                      required>
-                      <mat-option *ngFor="let material of materials" [value]="material">
-                        {{material}}
-                      </mat-option>
-                    </mat-select>
-                    <mat-hint [hidden]="material.valid || material.pristine">Matriaal is verplicht</mat-hint>
-                  </mat-form-field>
-                </div>
+          <div class="form-group row">
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+              <mat-label>Prijs</mat-label>
+              <input matInput id="price" placeholder="Prijs" name="price" [(ngModel)]="painting.price"
+                #price="ngModel" />
+            </mat-form-field>
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-3">
+              <mat-label>Lengte</mat-label>
+              <input matInput id="length" placeholder="Lengte" name="length" [(ngModel)]="painting.length"
+                #length="ngModel" />
+            </mat-form-field>
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-3">
+              <mat-label>Breedte</mat-label>
+              <input matInput id="width" placeholder="Breedte" name="width" [(ngModel)]="painting.width"
+                #width="ngModel" />
+            </mat-form-field>
+          </div>
 
-                <div class="form-group row">
-                  <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
-                    <mat-label>Categorie</mat-label>
-                    <mat-select id="category" name="category" [(ngModel)]="painting.category" #category="ngModel"
-                      required>
-                      <mat-option *ngFor="let category of categories" [value]="category">
-                        {{category}}
-                      </mat-option>
-                    </mat-select>
-                    <mat-hint [hidden]="category.valid || category.pristine">Categorie is verplicht</mat-hint>
-                  </mat-form-field>
-                  <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
-                    <mat-label>Status</mat-label>
-                    <mat-select id="state" name="state" [(ngModel)]="painting.state" #state="ngModel" required>
-                      <mat-option *ngFor="let state of states" [value]="state">
-                        {{state}}
-                      </mat-option>
-                    </mat-select>
-                    <mat-hint [hidden]="state.valid || state.pristine">Status is verplicht</mat-hint>
-                  </mat-form-field>
-                </div>
-
-                <div class="form-group row">
-                  <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
-                    <mat-label>Prijs</mat-label>
-                    <input matInput id="price" placeholder="Prijs" name="price" [(ngModel)]="painting.price"
-                      #price="ngModel">
-                  </mat-form-field>
-                  <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-3">
-                    <mat-label>Lengte</mat-label>
-                    <input matInput id="length" placeholder="Lengte" name="length" [(ngModel)]="painting.length"
-                      #length="ngModel">
-                  </mat-form-field>
-                  <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-3">
-                    <mat-label>Breedte</mat-label>
-                    <input matInput id="width" placeholder="Breedte" name="width" [(ngModel)]="painting.width"
-                      #width="ngModel">
-                  </mat-form-field>
-                </div>
-
-              </mat-card-content>
-            </mat-card>
-            <div class="mt-5">
-              <button mat-button matStepperNext>Volgende</button>
+          <div class="form-group row">
+            <div class="col-12">
+              <ngx-dropzone (change)="onFileSelect($event)" class="mat-dropzone">
+                <ngx-dropzone-label class="d-flex align-items-center">
+                  <mat-icon class="mr-2">upload</mat-icon>
+                  Kies afbeeldingen
+                </ngx-dropzone-label>
+                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let file of selectedFiles"
+                  [file]="file" [removable]="true" (removed)="onFileRemove(file)">
+                  <ngx-dropzone-label>{{ file.name }} ({{ file.type }})</ngx-dropzone-label>
+                </ngx-dropzone-image-preview>
+              </ngx-dropzone>
             </div>
-          </mat-step>
+          </div>
 
-          <mat-step>
-            <ng-template matStepLabel>Afbeeldingen</ng-template>
-            <app-modal-selectfile></app-modal-selectfile>
-            <div class="mt-5">
-              <button mat-button matStepperPrevious>Vorige</button>
-              <button mat-button matStepperNext>Volgende</button>
+          <div class="row">
+            <div class="col-12">
+              <button mat-flat-button color="primary" type="button" class="mr-2" (click)="resetForm()">
+                reset
+              </button>
+              <button mat-flat-button color="accent" type="submit" [disabled]="!addPaintingForm.valid">
+                opslaan
+              </button>
             </div>
-          </mat-step>
+          </div>
 
-          <mat-step>
-            <mat-card class="mat-elevation-z8 mt-3">
-              <mat-card-content>
-                <ng-template matStepLabel>Opslaan</ng-template>
-                <p *ngIf="paintingDetailsForm.valid">Schilderij opslaan?</p>
-                <p *ngIf="!paintingDetailsForm.valid">Vul eerst alle verplichte velden in.</p>
-              </mat-card-content>
-            </mat-card>
-            <div class="mt-5">
-              <button mat-raised-button class="m-2" matStepperPrevious>Vorige</button>
-              <button mat-raised-button color="primary" class="m-2" (click)="resetForm()">Reset</button>
-              <button mat-raised-button color="accent" [disabled]="!paintingDetailsForm.valid"
-                class="m-2">Opslaan</button>
-            </div>
-          </mat-step>
         </form>
-      </mat-vertical-stepper>
-
-
+      </mat-card>
     </div>
   </div>
 </div>

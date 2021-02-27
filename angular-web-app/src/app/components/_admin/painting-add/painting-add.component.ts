@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FileUpload } from 'src/app/models/fileupload';
 import { Painting } from 'src/app/models/painting';
 import { PaintingService } from 'src/app/services/painting.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
@@ -13,11 +14,11 @@ export class PaintingAddComponent implements OnInit {
   subTitle = 'Portfolio';
   text =
     'Gebruik deze pagina om een schilderij toe te voegen aan het portfolio.';
-  formStyle = 'standard';
+  formStyle = 'fill';
   formColor = 'accent';
-  isLinear = false;
-  @ViewChild('stepper') stepper;
+  @ViewChild('addPaintingForm') addPaintingForm;
   painting = new Painting(
+    null,
     null,
     null,
     null,
@@ -38,14 +39,28 @@ export class PaintingAddComponent implements OnInit {
   states: string[];
   paints: string[];
   materials: string[];
+  selectedFiles: File[] = [];
+  currentFileUpload: FileUpload;
 
-  constructor(private paintingService: PaintingService) {}
+  constructor(private paintingService: PaintingService) { }
 
   ngOnInit() {
     this.categories = this.paintingService.getCategories();
     this.states = this.paintingService.getStates();
     this.paints = this.paintingService.getPaints();
     this.materials = this.paintingService.getMaterials();
+  }
+
+  onSubmit() {
+    console.log('submitting');
+  }
+
+  onFileSelect(event): void {
+    this.selectedFiles.push(...event.addedFiles);
+  }
+
+  onFileRemove(event): void {
+    this.selectedFiles.splice(this.selectedFiles.indexOf(event), 1);
   }
 
   resetForm() {
@@ -58,7 +73,7 @@ export class PaintingAddComponent implements OnInit {
       cancelButtonText: 'Annuleer',
     }).then((result) => {
       if (result.value) {
-        this.stepper.reset();
+        this.addPaintingForm.reset();
         Swal.fire({
           title: 'Gelukt!',
           text: 'Formulier leeg gemaakt.',

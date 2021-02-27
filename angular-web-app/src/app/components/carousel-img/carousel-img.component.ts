@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PaintingService } from '../../services/painting.service';
 import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
@@ -8,17 +7,14 @@ import { ModalService } from 'src/app/services/modal.service';
   styleUrls: ['./carousel-img.component.scss']
 })
 export class CarouselImgComponent implements OnInit {
-  @Input() paintingId: number;
-  images: string[];
+  @Input() images: string[];
   modalImage: string;
 
   constructor(
-    private paintingService: PaintingService,
     private modalService: ModalService
   ) { }
 
   ngOnInit(): void {
-    this.images = this.paintingService.getImagesByPaintingId(this.paintingId);
   }
 
   openImage(content, image) {

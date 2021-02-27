@@ -5,6 +5,7 @@ export class Painting {
     public title: string,
     public description: string,
     public thumbnail: string,
+    public images: string[],
     public paint: string,
     public material: string,
     public status: string,
