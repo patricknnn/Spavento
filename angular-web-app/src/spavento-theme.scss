@@ -114,14 +114,10 @@ $spavento-accent: (
     )
 );
 
-
-
-
-
 // Light theme.
 $light-primary: mat-palette($spavento-primary);
 $light-accent:  mat-palette($spavento-secondary);
-$light-warn:    mat-palette($spavento-accent);
+$light-warn:    mat-palette($mat-red);
 $light-theme:   mat-light-theme((
   color: (
     primary: $light-primary,
@@ -133,7 +129,7 @@ $light-theme:   mat-light-theme((
 // Dark theme.
 $dark-primary: mat-palette($spavento-primary);
 $dark-accent:  mat-palette($spavento-secondary);
-$dark-warn:    mat-palette($spavento-accent);
+$dark-warn:    mat-palette($mat-red);
 $dark-theme:   mat-dark-theme((
   color: (
     primary: $dark-primary,

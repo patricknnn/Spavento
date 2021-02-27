@@ -99,6 +99,13 @@ export class ManagerFilesComponent implements OnInit {
   onUploadComplete(): void {
     this.uploadCount++;
     if (this.uploadCount == this.selectedFiles.length) {
+      Swal.fire({
+        title: 'Gelukt!',
+        text: this.uploadCount + ' bestand(en) geupload.',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1500
+      });
       this.selectedFiles = [];
       this.uploadCount = 0;
       this.percentage = 0;
@@ -109,7 +116,7 @@ export class ManagerFilesComponent implements OnInit {
   deleteFileUpload(fileUpload: FileUpload): void {
     Swal.fire({
       title: 'Bestand verwijderen?',
-      text: 'HEt bestand kan niet worden hersteld!',
+      text: 'Dit kan niet ondaan gemaakt worden.',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Verwijderen',
@@ -117,17 +124,21 @@ export class ManagerFilesComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.uploadService.deleteFile(fileUpload);
-        Swal.fire(
-          'Verwijderd!',
-          fileUpload.name + ' is verwijderd!',
-          'success'
-        );
+        Swal.fire({
+          title: 'Gelukt!',
+          text: 'Bestand verwijderd.',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 1500
+        });
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire(
-          'Geannuleerd', 
-          fileUpload.name + ' is niet verwijderd!', 
-          'error'
-        );
+        Swal.fire({
+          title: 'Geannuleerd!',
+          text: 'Bestand niet verwijderd.',
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 1500
+        });
       }
     });
   }

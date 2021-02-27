@@ -6,23 +6,40 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 @Component({
   selector: 'app-painting-add',
   templateUrl: './painting-add.component.html',
-  styleUrls: ['./painting-add.component.scss']
+  styleUrls: ['./painting-add.component.scss'],
 })
 export class PaintingAddComponent implements OnInit {
-  title = "Toevoegen";
-  subTitle = "Portfolio";
-  text = "Gebruik deze pagina om een schilderij toe te voegen aan het portfolio.";
-  formStyle = "standard";
-  formColor = "accent";
+  title = 'Toevoegen';
+  subTitle = 'Portfolio';
+  text =
+    'Gebruik deze pagina om een schilderij toe te voegen aan het portfolio.';
+  formStyle = 'standard';
+  formColor = 'accent';
   isLinear = false;
-  @ViewChild("stepper") stepper;
-  painting = new Painting(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+  @ViewChild('stepper') stepper;
+  painting = new Painting(
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  );
   categories: string[];
   states: string[];
   paints: string[];
   materials: string[];
 
-  constructor(private paintingService: PaintingService) { }
+  constructor(private paintingService: PaintingService) {}
 
   ngOnInit() {
     this.categories = this.paintingService.getCategories();
@@ -42,17 +59,21 @@ export class PaintingAddComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.stepper.reset();
-        Swal.fire(
-          'Succes!',
-          'Formulier is leeg gemaakt!',
-          'success'
-        );
+        Swal.fire({
+          title: 'Gelukt!',
+          text: 'Formulier leeg gemaakt.',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 1500
+        });
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire(
-          'Geannuleerd', 
-          'Formulier is niet leeg gemaakt!', 
-          'error'
-        );
+        Swal.fire({
+          title: 'Geannuleerd!',
+          text: 'Formulier niet leeg gemaakt.',
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 1500
+        });
       }
     });
   }
