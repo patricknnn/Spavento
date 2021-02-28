@@ -82,7 +82,7 @@ export class ManagerFilesComponent implements OnInit {
     if (this.selectedFiles.length) {
       this.selectedFiles.forEach((file) => {
         this.currentFileUpload = new FileUpload(file);
-        this.uploadService.pushFileToStorage(this.currentFileUpload).subscribe(
+        this.uploadService.pushFileToStorageAndReturnPercentage(this.currentFileUpload).subscribe(
           (percentage) => {
             percentage == 100
               ? this.onUploadComplete()

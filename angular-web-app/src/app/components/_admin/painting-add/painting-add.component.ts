@@ -1,5 +1,6 @@
 import { UrlResolver } from '@angular/compiler';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
 import { FileUpload } from 'src/app/models/fileupload';
 import { Painting } from 'src/app/models/painting';
 import { FileUploadService } from 'src/app/services/file-upload.service';
@@ -44,9 +45,8 @@ export class PaintingAddComponent implements OnInit {
   paints: string[];
   materials: string[];
   selectedFiles: File[] = [];
-  currentFileUpload: FileUpload;
   fileUrls: string[] = [];
-  percentage = 0;
+  percentage:  Observable<number>;
   uploadCount = 0;
 
   /**
@@ -57,7 +57,7 @@ export class PaintingAddComponent implements OnInit {
     private paintingService: PaintingService,
     private uploadService: FileUploadService,
     private modalService: ModalService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.categories = this.paintingService.getCategories();
@@ -96,43 +96,30 @@ export class PaintingAddComponent implements OnInit {
    */
   uploadFiles(): void {
     if (this.selectedFiles.length) {
-      this.selectedFiles.forEach((file) => {
-        this.currentFileUpload = new FileUpload(file);
-        // Upload file
-        this.uploadService.pushFileToStorage(this.currentFileUpload).subscribe(
-          (percentage) => {
-            percentage == 100
-              ? this.onUploadComplete()
-              : (this.percentage = Math.round(percentage ? percentage : 0));
-          },
-          (error) => {
-            console.log(error);
+      // loop files
+      this.selectedFiles.forEach((file, i) => {
+        // Upload file and subscribe to url result
+        const { downloadUrl, uploadProgress } = this.uploadService.pushFileToStorageAndReturnMetadata(new FileUpload(file));
+        this.percentage = uploadProgress;
+        downloadUrl.subscribe((downloadUrl) => {
+          // add url to array
+          this.fileUrls.push(downloadUrl);
+          this.uploadCount ++;
+          // check if all files uploaded
+          if (this.uploadCount == this.selectedFiles.length) {
+            this.selectThumbnail();
           }
-        );
-        // Get download url
-        this.uploadService
-          .getDownloadUrl(this.currentFileUpload.file.name)
-          .subscribe((url) => {
-            this.fileUrls.push(url);
-          });
+        });
       });
     }
   }
 
-  /**
-   * Handles upload completion
-   */
-  onUploadComplete(): void {
-    // continue to next upload
-    this.uploadCount++;
-    // on all uploads complete
-    if (this.uploadCount == this.selectedFiles.length) {
-      // pick main image
-      this.selectThumbnail();
-    }
-  }
 
+  /**
+   * Handles submit completion
+   */
   onSubmitComplete(): void {
+    this.clearFormData();
     Swal.fire({
       title: 'Gelukt!',
       text: 'Schilderij opgeslagen.',
@@ -140,12 +127,11 @@ export class PaintingAddComponent implements OnInit {
       showConfirmButton: false,
       timer: 1500,
     });
-    this.selectedFiles = [];
-    this.uploadCount = 0;
-    this.percentage = 0;
-    this.currentFileUpload = null;
   }
 
+  /**
+   * Lets user select thumbnail image
+   */
   selectThumbnail(): void {
     console.log(this.fileUrls);
     this.modalService.openModal(this.modalContent);
@@ -165,7 +151,7 @@ export class PaintingAddComponent implements OnInit {
       cancelButtonText: 'Annuleer',
     }).then((result) => {
       if (result.value) {
-        this.addPaintingForm.reset();
+        this.clearFormData();
         Swal.fire({
           title: 'Gelukt!',
           text: 'Formulier leeg gemaakt.',
@@ -183,5 +169,15 @@ export class PaintingAddComponent implements OnInit {
         });
       }
     });
+  }
+
+  /**
+   * Clears form data
+   */
+  clearFormData(): void {
+    this.addPaintingForm.reset();
+    this.selectedFiles = [];
+    this.uploadCount = 0;
+    this.percentage = null;
   }
 }
