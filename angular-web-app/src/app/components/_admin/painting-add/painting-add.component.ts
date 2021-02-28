@@ -1,6 +1,9 @@
+import { UrlResolver } from '@angular/compiler';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FileUpload } from 'src/app/models/fileupload';
 import { Painting } from 'src/app/models/painting';
+import { FileUploadService } from 'src/app/services/file-upload.service';
+import { ModalService } from 'src/app/services/modal.service';
 import { PaintingService } from 'src/app/services/painting.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
@@ -13,10 +16,11 @@ export class PaintingAddComponent implements OnInit {
   title = 'Toevoegen';
   subTitle = 'Portfolio';
   text =
-    'Gebruik deze pagina om een schilderij toe te voegen aan het portfolio.';
+    'Gebruik onderstaand formulier om een schilderij toe te voegen aan het portfolio.';
   formStyle = 'fill';
   formColor = 'accent';
   @ViewChild('addPaintingForm') addPaintingForm;
+  @ViewChild('modalContent') modalContent;
   painting = new Painting(
     null,
     null,
@@ -41,8 +45,19 @@ export class PaintingAddComponent implements OnInit {
   materials: string[];
   selectedFiles: File[] = [];
   currentFileUpload: FileUpload;
+  fileUrls: string[] = [];
+  percentage = 0;
+  uploadCount = 0;
 
-  constructor(private paintingService: PaintingService) { }
+  /**
+   * Constructor
+   * @param paintingService painting service
+   */
+  constructor(
+    private paintingService: PaintingService,
+    private uploadService: FileUploadService,
+    private modalService: ModalService
+  ) {}
 
   ngOnInit() {
     this.categories = this.paintingService.getCategories();
@@ -51,18 +66,95 @@ export class PaintingAddComponent implements OnInit {
     this.materials = this.paintingService.getMaterials();
   }
 
+  /**
+   * Handles form submit
+   */
   onSubmit() {
     console.log('submitting');
+    // Upload images and wait for response
   }
 
+  /**
+   * Handles file select
+   * @param event File select event
+   */
   onFileSelect(event): void {
     this.selectedFiles.push(...event.addedFiles);
+    this.uploadFiles();
   }
 
+  /**
+   * Handles file remove
+   * @param event File remove event
+   */
   onFileRemove(event): void {
     this.selectedFiles.splice(this.selectedFiles.indexOf(event), 1);
   }
 
+  /**
+   * Uploads files
+   */
+  uploadFiles(): void {
+    if (this.selectedFiles.length) {
+      this.selectedFiles.forEach((file) => {
+        this.currentFileUpload = new FileUpload(file);
+        // Upload file
+        this.uploadService.pushFileToStorage(this.currentFileUpload).subscribe(
+          (percentage) => {
+            percentage == 100
+              ? this.onUploadComplete()
+              : (this.percentage = Math.round(percentage ? percentage : 0));
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+        // Get download url
+        this.uploadService
+          .getDownloadUrl(this.currentFileUpload.file.name)
+          .subscribe((url) => {
+            this.fileUrls.push(url);
+          });
+      });
+    }
+  }
+
+  /**
+   * Handles upload completion
+   */
+  onUploadComplete(): void {
+    // continue to next upload
+    this.uploadCount++;
+    // on all uploads complete
+    if (this.uploadCount == this.selectedFiles.length) {
+      // pick main image
+      this.selectThumbnail();
+    }
+  }
+
+  onSubmitComplete(): void {
+    Swal.fire({
+      title: 'Gelukt!',
+      text: 'Schilderij opgeslagen.',
+      icon: 'success',
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    this.selectedFiles = [];
+    this.uploadCount = 0;
+    this.percentage = 0;
+    this.currentFileUpload = null;
+  }
+
+  selectThumbnail(): void {
+    console.log(this.fileUrls);
+    this.modalService.openModal(this.modalContent);
+  }
+
+  /**
+   * Clears form of data
+   * Asks user for confirmation
+   */
   resetForm() {
     Swal.fire({
       title: 'Formulier leeg maken?',
@@ -79,7 +171,7 @@ export class PaintingAddComponent implements OnInit {
           text: 'Formulier leeg gemaakt.',
           icon: 'success',
           showConfirmButton: false,
-          timer: 1500
+          timer: 1500,
         });
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire({
@@ -87,7 +179,7 @@ export class PaintingAddComponent implements OnInit {
           text: 'Formulier niet leeg gemaakt.',
           icon: 'error',
           showConfirmButton: false,
-          timer: 1500
+          timer: 1500,
         });
       }
     });
