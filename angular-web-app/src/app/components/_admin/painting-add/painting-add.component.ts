@@ -22,31 +22,14 @@ export class PaintingAddComponent implements OnInit {
   formColor = 'accent';
   @ViewChild('addPaintingForm') addPaintingForm;
   @ViewChild('modalContent') modalContent;
-  painting = new Painting(
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  );
+  painting: Painting;
   categories: string[];
   states: string[];
   paints: string[];
   materials: string[];
-  selectedFiles: File[] = [];
-  fileUrls: string[] = [];
-  percentage:  Observable<number>;
+  selectedFiles: File[];
+  fileUrls: string[];
+  percentage: Observable<number>;
   uploadCount = 0;
 
   /**
@@ -64,6 +47,7 @@ export class PaintingAddComponent implements OnInit {
     this.states = this.paintingService.getStates();
     this.paints = this.paintingService.getPaints();
     this.materials = this.paintingService.getMaterials();
+    this.resetFormData();
   }
 
   /**
@@ -104,7 +88,7 @@ export class PaintingAddComponent implements OnInit {
         downloadUrl.subscribe((downloadUrl) => {
           // add url to array
           this.fileUrls.push(downloadUrl);
-          this.uploadCount ++;
+          this.uploadCount++;
           // check if all files uploaded
           if (this.uploadCount == this.selectedFiles.length) {
             this.selectThumbnail();
@@ -119,7 +103,7 @@ export class PaintingAddComponent implements OnInit {
    * Handles submit completion
    */
   onSubmitComplete(): void {
-    this.clearFormData();
+    this.resetFormData();
     Swal.fire({
       title: 'Gelukt!',
       text: 'Schilderij opgeslagen.',
@@ -151,7 +135,7 @@ export class PaintingAddComponent implements OnInit {
       cancelButtonText: 'Annuleer',
     }).then((result) => {
       if (result.value) {
-        this.clearFormData();
+        this.resetFormData();
         Swal.fire({
           title: 'Gelukt!',
           text: 'Formulier leeg gemaakt.',
@@ -174,10 +158,32 @@ export class PaintingAddComponent implements OnInit {
   /**
    * Clears form data
    */
-  clearFormData(): void {
-    this.addPaintingForm.reset();
+  resetFormData(): void {
+    this.painting = new Painting(
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    );
     this.selectedFiles = [];
     this.uploadCount = 0;
     this.percentage = null;
+    this.selectedFiles = [];
+    this.fileUrls = [];
+    if (this.addPaintingForm) {
+      this.addPaintingForm.reset();
+    }
   }
 }
