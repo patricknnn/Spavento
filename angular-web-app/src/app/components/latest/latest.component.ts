@@ -38,7 +38,7 @@ export class LatestComponent implements OnInit, OnChanges {
 
   // Fetch paintings and group them
   groupPaintings(size: number): void {
-    let paintings = this.paintingService.getLatestPaintings(this.amount);
+    let paintings = this.paintingService.getLatest(this.amount);
     this.groupedPaintings = this.group(paintings, size);
   }
 

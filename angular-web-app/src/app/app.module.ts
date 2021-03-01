@@ -133,7 +133,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     FormsModule,
     NgbModule,
     NgxDropzoneModule,
-    SweetAlert2Module.forRoot({provideSwal: () => import('sweetalert2/dist/sweetalert2.js')}),
+    SweetAlert2Module.forRoot({ provideSwal: () => import('sweetalert2/dist/sweetalert2.js') }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireStorageModule,

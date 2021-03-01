@@ -2,10 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 import { Painting } from 'src/app/models/painting';
 import { ModalService } from 'src/app/services/modal.service';
 import { PaintingService } from 'src/app/services/painting.service';
+import { SwalService } from 'src/app/services/swal.service';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-painting-overview',
@@ -13,10 +15,14 @@ import { PaintingService } from 'src/app/services/painting.service';
   styleUrls: ['./painting-overview.component.scss'],
 })
 export class PaintingOverviewComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
   title = 'Overzicht';
   subTitle = 'Portfolio';
   text = 'Hier is een overzicht van alle portfolio items te vinden.';
   paintings: Painting[];
+  currentPainting: Painting;
+  currentIndex = -1;
   modalPainting: Painting;
   dataSource: any;
   displayedColumns: string[] = [
@@ -29,22 +35,55 @@ export class PaintingOverviewComponent implements OnInit {
     'options',
   ];
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-
   constructor(
     private paintingService: PaintingService,
+    private swalService: SwalService,
     private modalService: ModalService
   ) { }
 
   ngOnInit(): void {
-    this.paintings = this.paintingService.getAllPaintings();
-    this.dataSource = new MatTableDataSource(this.paintings);
+    this.retrievePaintings();
   }
 
-  ngAfterViewInit(): void {
+  initTable(): void {
+    this.dataSource = new MatTableDataSource(this.paintings);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  refreshList(): void {
+    this.currentPainting = undefined;
+    this.currentIndex = -1;
+    this.retrievePaintings();
+  }
+
+  retrievePaintings(): void {
+    this.paintingService.getAll().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(data => {
+      this.paintings = data;
+      this.initTable();
+    });
+  }
+
+  deletePainting(key): void {
+    this.swalService.warningSwal("Dit kan niet worden terug gedraaid").then((result) => {
+      if (result.value) {
+        this.paintingService.delete(key)
+          .then(() => {
+            this.swalService.successSwal("Schilderij verwijderd")
+          })
+          .catch((err) => {
+            this.swalService.errorSwal(err)
+          });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        this.swalService.errorSwal("Schilderij niet verwijderd");
+      }
+    });
   }
 
   /**

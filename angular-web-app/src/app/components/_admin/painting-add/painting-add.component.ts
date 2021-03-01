@@ -1,11 +1,11 @@
-import { UrlResolver } from '@angular/compiler';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { SwalComponent, SwalPortalTargets } from '@sweetalert2/ngx-sweetalert2';
 import { Observable } from 'rxjs';
 import { FileUpload } from 'src/app/models/fileupload';
 import { Painting } from 'src/app/models/painting';
 import { FileUploadService } from 'src/app/services/file-upload.service';
-import { ModalService } from 'src/app/services/modal.service';
 import { PaintingService } from 'src/app/services/painting.service';
+import { SwalService } from 'src/app/services/swal.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
@@ -14,23 +14,34 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./painting-add.component.scss'],
 })
 export class PaintingAddComponent implements OnInit {
+  @ViewChild('addPaintingForm') addPaintingForm;
+  @ViewChild('thumbnailSwal') thumbnailSwal!: SwalComponent;
+  @ViewChild('thumbnailOptions') thumbnailOptions: any;
   title = 'Toevoegen';
   subTitle = 'Portfolio';
-  text =
-    'Gebruik onderstaand formulier om een schilderij toe te voegen aan het portfolio.';
+  text = 'Gebruik onderstaand formulier om een schilderij toe te voegen aan het portfolio.';
   formStyle = 'fill';
   formColor = 'accent';
-  @ViewChild('addPaintingForm') addPaintingForm;
-  @ViewChild('modalContent') modalContent;
   painting: Painting;
   categories: string[];
   states: string[];
   paints: string[];
   materials: string[];
   selectedFiles: File[];
-  fileUrls: string[];
   percentage: Observable<number>;
   uploadCount = 0;
+  formDisabled: boolean;
+  focusAnimation = () => {
+    const popup = Swal.getPopup();
+    popup.classList.remove('swal2-show');
+    setTimeout(() => {
+      popup.classList.add('focus-animation');
+    });
+    setTimeout(() => {
+      popup.classList.remove('focus-animation');
+    }, 500);
+    return false;
+  };
 
   /**
    * Constructor
@@ -39,7 +50,8 @@ export class PaintingAddComponent implements OnInit {
   constructor(
     private paintingService: PaintingService,
     private uploadService: FileUploadService,
-    private modalService: ModalService
+    private swalService: SwalService,
+    public readonly swalTargets: SwalPortalTargets
   ) { }
 
   ngOnInit() {
@@ -54,9 +66,35 @@ export class PaintingAddComponent implements OnInit {
    * Handles form submit
    */
   onSubmit() {
-    console.log('submitting');
-    // Upload images and wait for response
+    // disable form
+    this.formDisabled = true;
+    // loading swal
+    this.swalService.loadingSwal("Afbeeldingen opslaan");
+    // Upload files
+    if (this.selectedFiles.length) {
+      this.selectedFiles.forEach((file) => {
+        const { downloadUrl, uploadProgress } = this.uploadService.pushFileToStorageAndReturnMetadata(new FileUpload(file));
+        this.percentage = uploadProgress;
+        downloadUrl.subscribe((downloadUrl) => {
+          // add url to painting
+          this.painting.images.push(downloadUrl);
+          this.uploadCount++;
+          // check if all files uploaded
+          if (this.uploadCount == this.selectedFiles.length) {
+            this.thumbnailSwal.fire().then((result) => {
+              // save painting
+              this.swalService.loadingSwal("Schilderij opslaan");
+              this.paintingService.create(this.painting).then(() => {
+                this.resetFormData();
+                this.swalService.successSwal("Schilderij opgeslagen");
+              });
+            });
+          }
+        });
+      });
+    }
   }
+
 
   /**
    * Handles file select
@@ -64,7 +102,6 @@ export class PaintingAddComponent implements OnInit {
    */
   onFileSelect(event): void {
     this.selectedFiles.push(...event.addedFiles);
-    this.uploadFiles();
   }
 
   /**
@@ -76,49 +113,18 @@ export class PaintingAddComponent implements OnInit {
   }
 
   /**
-   * Uploads files
+   * Sets painting thumbnail
+   * @param event Click event
+   * @param url Url of image
    */
-  uploadFiles(): void {
-    if (this.selectedFiles.length) {
-      // loop files
-      this.selectedFiles.forEach((file, i) => {
-        // Upload file and subscribe to url result
-        const { downloadUrl, uploadProgress } = this.uploadService.pushFileToStorageAndReturnMetadata(new FileUpload(file));
-        this.percentage = uploadProgress;
-        downloadUrl.subscribe((downloadUrl) => {
-          // add url to array
-          this.fileUrls.push(downloadUrl);
-          this.uploadCount++;
-          // check if all files uploaded
-          if (this.uploadCount == this.selectedFiles.length) {
-            this.selectThumbnail();
-          }
-        });
-      });
-    }
-  }
-
-
-  /**
-   * Handles submit completion
-   */
-  onSubmitComplete(): void {
-    this.resetFormData();
-    Swal.fire({
-      title: 'Gelukt!',
-      text: 'Schilderij opgeslagen.',
-      icon: 'success',
-      showConfirmButton: false,
-      timer: 1500,
+  setThumbnail(event, url): void {
+    // set correct url
+    this.painting.thumbnail = url;
+    // add class to selected element
+    this.thumbnailOptions.nativeElement.querySelectorAll('.selected').forEach((option) => {
+      option.classList.remove('selected');
     });
-  }
-
-  /**
-   * Lets user select thumbnail image
-   */
-  selectThumbnail(): void {
-    console.log(this.fileUrls);
-    this.modalService.openModal(this.modalContent);
+    event.target.parentElement.classList.add('selected');
   }
 
   /**
@@ -126,31 +132,12 @@ export class PaintingAddComponent implements OnInit {
    * Asks user for confirmation
    */
   resetForm() {
-    Swal.fire({
-      title: 'Formulier leeg maken?',
-      text: 'Alle reeds ingevoerde data zal worden verwijderd!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Reset',
-      cancelButtonText: 'Annuleer',
-    }).then((result) => {
+    this.swalService.warningSwal("Alle reeds ingevoerde data zal worden verwijderd").then((result) => {
       if (result.value) {
         this.resetFormData();
-        Swal.fire({
-          title: 'Gelukt!',
-          text: 'Formulier leeg gemaakt.',
-          icon: 'success',
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        this.swalService.successSwal("Formulier leeg gemaakt");
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire({
-          title: 'Geannuleerd!',
-          text: 'Formulier niet leeg gemaakt.',
-          icon: 'error',
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        this.swalService.errorSwal("Formulier niet leeg gemaakt");
       }
     });
   }
@@ -161,11 +148,11 @@ export class PaintingAddComponent implements OnInit {
   resetFormData(): void {
     this.painting = new Painting(
       null,
+      "Rolien Schrik",
       null,
       null,
       null,
-      null,
-      null,
+      [],
       null,
       null,
       null,
@@ -181,9 +168,10 @@ export class PaintingAddComponent implements OnInit {
     this.uploadCount = 0;
     this.percentage = null;
     this.selectedFiles = [];
-    this.fileUrls = [];
+    this.formDisabled = false;
     if (this.addPaintingForm) {
       this.addPaintingForm.reset();
     }
   }
 }
+

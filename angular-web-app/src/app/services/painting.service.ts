@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { PAINTINGS } from '../../mock-paintings';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { PAINTINGS } from 'src/mock-paintings';
 import { Painting } from '../models/painting';
 
 @Injectable({
@@ -8,7 +9,37 @@ import { Painting } from '../models/painting';
 export class PaintingService {
   paintings = PAINTINGS;
 
-  constructor() { }
+  private dbPath = '/paintings';
+  paintingsRef: AngularFireList<Painting>;
+
+  constructor(private db: AngularFireDatabase) { 
+    this.paintingsRef = db.list(this.dbPath);
+  }
+
+  public getAll(): AngularFireList<Painting> {
+    return this.paintingsRef;
+  }
+
+  public create(painting: Painting): any {
+    return this.paintingsRef.push(painting);
+  }
+
+  public update(key: string, value: any): Promise<void> {
+    return this.paintingsRef.update(key, value);
+  }
+
+  public delete(key: string): Promise<void> {
+    return this.paintingsRef.remove(key);
+  }
+
+  public deleteAll(): Promise<void> {
+    return this.paintingsRef.remove();
+  }
+
+
+
+
+
 
   public getCategories(): string[] {
     return [
@@ -48,11 +79,11 @@ export class PaintingService {
     return this.paintings;
   }
 
-  public getLatestPaintings(amount: number): Painting[] {
+  public getLatest(amount: number): Painting[] {
     return this.paintings.slice(0, amount);
   }
 
-  public getFeaturedPainting(): Painting {
+  public getFeatured(): Painting {
     return this.paintings[0];
   }
 

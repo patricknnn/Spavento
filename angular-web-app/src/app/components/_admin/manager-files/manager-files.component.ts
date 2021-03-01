@@ -14,7 +14,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 })
 export class ManagerFilesComponent implements OnInit {
   title = 'Bestanden';
-  subTitle = 'Manager';
+  subTitle = 'Beheer';
   text =
     'Hier is een overzicht van alle bestanden op de server te vinden. Om bestanden toe te voegen kan je gebruik maken van het upload formulier.';
   fileUploads: any[];

@@ -88,7 +88,7 @@ export class ContentService {
       'In de spotlight',
       'Het volgende schilderij verdient speciale aandacht.',
       '60vh',
-      this.paintingService.getFeaturedPainting(),
+      this.paintingService.getFeatured(),
       true
     );
   }
