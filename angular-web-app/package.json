@@ -32,7 +32,6 @@
     "ngx-dropzone": "^3.0.0",
     "rxjs": "~6.6.3",
     "shufflejs": "^5.2.3",
-    "simplebar-angular": "^2.3.0",
     "sweetalert2": "^10.15.5",
     "tslib": "^2.1.0",
     "zone.js": "~0.10.3"

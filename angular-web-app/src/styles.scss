@@ -77,6 +77,12 @@ button::-moz-focus-inner {
   }
 }
 
+@media (max-width: 575px) {
+  .shuffle-container .row > [class*="col-"] {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+}
 
 /*************************************/
 /**            Sections             **/
@@ -394,6 +400,7 @@ hr.divider {
   display: flex;
   min-height: min-content;
   height: 100%;
+  overflow: scroll;
 }
 
 .simplebar-scrollbar::before {

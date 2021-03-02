@@ -9,8 +9,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { fadeAnimation } from 'src/app/animations/fade-animation';
 import { SidenavService } from 'src/app/services/sidenav.service';
-import 'simplebar';
-import 'simplebar/dist/simplebar.css';
 
 @Component({
   selector: 'app-admin',
@@ -23,7 +21,6 @@ export class AdminComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('sidenav') public sidenav: MatSidenav;
   private _mobileQueryListener: () => void;
   mobileQuery: MediaQueryList;
-  public simplebarOptions: object;
 
   /**
    * Constructor
@@ -42,7 +39,6 @@ export class AdminComponent implements OnInit, AfterViewInit, OnDestroy {
       'change',
       this._mobileQueryListener
     );
-    this.simplebarOptions = { autoHide: false };
   }
 
   ngOnInit(): void {}

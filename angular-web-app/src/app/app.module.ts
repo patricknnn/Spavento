@@ -38,7 +38,6 @@ import { PaintingAddComponent } from './components/_admin/painting-add/painting-
 import { AdminComponent } from './components/_pages/admin/admin.component';
 import { SidenavComponent } from './components/_admin/sidenav/sidenav.component';
 import { ToolbarComponent } from './components/_admin/toolbar/toolbar.component';
-import { SimplebarAngularModule } from 'simplebar-angular';
 import { PageHomeComponent } from './components/_admin/page-home/page-home.component';
 import { PagePortfolioComponent } from './components/_admin/page-portfolio/page-portfolio.component';
 import { PageNewsComponent } from './components/_admin/page-news/page-news.component';
@@ -128,7 +127,6 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SimplebarAngularModule,
     MaterialModule,
     FormsModule,
     NgbModule,

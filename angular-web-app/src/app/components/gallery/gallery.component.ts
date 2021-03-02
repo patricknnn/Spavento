@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Painting } from '../../models/painting';
 import { PaintingService } from '../../services/painting.service';
 import { Router } from '@angular/router';
@@ -12,8 +12,8 @@ import { map } from 'rxjs/operators';
 })
 export class GalleryComponent implements OnInit {
   @Input() maxHeight: string = '100%';
-  @ViewChild('shuffleContainer') private shuffleContainer: ElementRef;
-  @ViewChild('shuffleSizer') private shuffleSizer: ElementRef;
+  private shuffleContainer: HTMLElement;
+  private shuffleSizer: HTMLElement;
   private shuffleInstance: Shuffle;
   paintings: Painting[];
   categories: string[];
@@ -54,14 +54,19 @@ export class GalleryComponent implements OnInit {
       )
     ).subscribe(data => {
       this.paintings = data;
-
-      if (this.shuffleContainer && this.shuffleSizer) {
-        this.shuffleInstance = new Shuffle(this.shuffleContainer.nativeElement, {
-          itemSelector: '.shuffle-item',
-          sizer: this.shuffleSizer.nativeElement
-        });
-      }
+      //this.initShuffle();
     });
+  }
+
+  initShuffle(): void {
+    this.shuffleContainer = document.getElementById("shuffleContainer");
+    this.shuffleSizer = document.getElementById("shuffleSizer");
+    if (this.shuffleContainer && this.shuffleSizer) {
+      this.shuffleInstance = new Shuffle(this.shuffleContainer, {
+        itemSelector: '.shuffle-item',
+        sizer: this.shuffleSizer
+      });
+    }
   }
 
   goToPaintingDetails(paintingId: number): void {
