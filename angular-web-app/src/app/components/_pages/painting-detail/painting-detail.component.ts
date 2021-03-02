@@ -17,16 +17,12 @@ export class PaintingDetailComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private paintingService: PaintingService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     if (!this.painting) {
-      this.painting = this.paintingService.getPaintingById(
-        +this.route.snapshot.paramMap.get('id')
-      );
-      if (!this.painting) {
-        this.goTo404();
-      }
+      this.paintingService.getByKey(this.route.snapshot.paramMap.get('key'));
+      this.goTo404();
     }
   }
 

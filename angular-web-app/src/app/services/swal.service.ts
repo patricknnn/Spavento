@@ -5,35 +5,37 @@ import Swal, { SweetAlertResult } from 'sweetalert2/dist/sweetalert2.js';
   providedIn: 'root'
 })
 export class SwalService {
+  showClass = { popup: 'animate__animated animate__bounceIn animate__faster' };
+  hideClass = { popup: 'animate__animated animate__bounceOut animate__faster' };
   focusAnimation = () => {
     const popup = Swal.getPopup();
-    popup.classList.remove('swal2-show');
+    popup.classList.remove('animate__bounceIn');
     setTimeout(() => {
-      popup.classList.add('focus-animation');
+      popup.classList.add('animate__headShake');
     });
     setTimeout(() => {
-      popup.classList.remove('focus-animation');
+      popup.classList.remove('animate__headShake');
     }, 500);
     return false;
   };
 
   constructor() { }
 
-
   /**
-   * Fires loading sweet alert
+   * Fires warning swal
    * @param msg Message to display
    * @returns Promise<SweetAlertResult<any>>
    */
-  loadingSwal(msg?: string): Promise<SweetAlertResult<any>> {
+  promptSwal(msg?: string): Promise<SweetAlertResult<any>> {
     return Swal.fire({
-      allowEscapeKey: true,
-      showConfirmButton: false,
-      title: msg,
-      icon: 'info',
-      didOpen: () => {
-        Swal.showLoading();
-      },
+      title: 'Let op!',
+      text: msg,
+      icon: 'warning',
+      showClass: this.showClass,
+      hideClass: this.hideClass,
+      showCancelButton: true,
+      confirmButtonText: 'Oke',
+      cancelButtonText: 'Annuleer',
       allowOutsideClick: this.focusAnimation,
     });
   }
@@ -41,13 +43,14 @@ export class SwalService {
   /**
    * Fires succes sweet alert
    * @param msg Message to display
-   * @returns Promise<SweetAlertResult<any>>
    */
-  successSwal(msg?: string): Promise<SweetAlertResult<any>> {
-    return Swal.fire({
+  successSwal(msg?: string): void {
+    Swal.fire({
       title: 'Gelukt!',
       text: msg,
       icon: 'success',
+      showClass: this.showClass,
+      hideClass: this.hideClass,
       showConfirmButton: false,
       timer: 1500,
     });
@@ -56,31 +59,67 @@ export class SwalService {
   /**
    * Fires error sweet alert
    * @param msg Message to display
-   * @returns Promise<SweetAlertResult<any>>
    */
-  errorSwal(msg?: string): Promise<SweetAlertResult<any>> {
-    return Swal.fire({
+  errorSwal(msg?: string): void {
+    Swal.fire({
       title: 'Mislukt!',
       text: msg,
       icon: 'error',
+      showClass: this.showClass,
+      hideClass: this.hideClass,
       showConfirmButton: false,
       timer: 1500,
     });
   }
 
   /**
-   * Fires warning swal
+   * Fires error sweet alert
    * @param msg Message to display
-   * @returns Promise<SweetAlertResult<any>>
    */
-  warningSwal(msg?: string): Promise<SweetAlertResult<any>> {
-    return Swal.fire({
+  warningSwal(msg?: string): void {
+    Swal.fire({
       title: 'Let op!',
       text: msg,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Oke',
-      cancelButtonText: 'Annuleer'
+      icon: 'error',
+      showClass: this.showClass,
+      hideClass: this.hideClass,
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  }
+
+  /**
+   * Fires cancel swal
+   * @param msg Message to display
+   */
+  cancelSwal(msg?: string): void {
+    Swal.fire({
+      title: 'Geannuleerd!',
+      text: msg,
+      icon: 'error',
+      showClass: this.showClass,
+      hideClass: this.hideClass,
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  }
+
+  /**
+   * Fires loading sweet alert
+   * @param msg Message to display
+   */
+  loadingSwal(msg?: string): void {
+    Swal.fire({
+      title: msg,
+      icon: 'info',
+      showClass: this.showClass,
+      hideClass: this.hideClass,
+      allowEscapeKey: false,
+      showConfirmButton: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+      allowOutsideClick: this.focusAnimation,
     });
   }
 }

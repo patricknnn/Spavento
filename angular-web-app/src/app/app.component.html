@@ -2,11 +2,7 @@
 <app-nav [navContent]="navContent" [fixed]="true"></app-nav>
 
 <!-- Site content -->
-<div
-  id="site-content"
-  class="theme-light"
-  [@routeAnimations]="prepareRoute(outlet)"
->
+<div id="site-content" class="theme-light" [@routeAnimations]="prepareRoute(outlet)">
   <!-- Router outlet -->
   <router-outlet #outlet="outlet"></router-outlet>
 </div>

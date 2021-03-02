@@ -44,7 +44,7 @@
                         <ng-container matColumnDef="options">
                             <th mat-header-cell *matHeaderCellDef> Opties </th>
                             <td mat-cell *matCellDef="let fileUpload">
-                                <button mat-icon-button color="warn" (click)="deleteFileUpload(fileUpload)">
+                                <button mat-icon-button color="primary" (click)="deleteFileUpload(fileUpload)">
                                     <mat-icon>delete</mat-icon>
                                 </button>
                             </td>
@@ -70,7 +70,7 @@
 
             <div class="row my-5">
                 <div class="col-12">
-                    <ngx-dropzone (change)="onFileSelect($event)">
+                    <ngx-dropzone (change)="onFileSelect($event)" class="mat-dropzone">
                         <ngx-dropzone-label>Drop of klik hier om te uploaden! </ngx-dropzone-label>
                         <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview"
                             *ngFor="let file of selectedFiles" [file]="file" [removable]="true"

@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { map } from 'rxjs/operators';
 import { FileUpload } from 'src/app/models/fileupload';
 import { FileUploadService } from 'src/app/services/file-upload.service';
+import { SwalService } from 'src/app/services/swal.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
@@ -28,7 +29,7 @@ export class ManagerFilesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private uploadService: FileUploadService) {}
+  constructor(private uploadService: FileUploadService, private swalService: SwalService) { }
 
   ngOnInit(): void {
     this.uploadService
@@ -99,13 +100,7 @@ export class ManagerFilesComponent implements OnInit {
   onUploadComplete(): void {
     this.uploadCount++;
     if (this.uploadCount == this.selectedFiles.length) {
-      Swal.fire({
-        title: 'Gelukt!',
-        text: this.uploadCount + ' bestand(en) geupload.',
-        icon: 'success',
-        showConfirmButton: false,
-        timer: 1500
-      });
+      this.swalService.successSwal(this.uploadCount + " bestand(en) toegevoegd");
       this.selectedFiles = [];
       this.uploadCount = 0;
       this.percentage = 0;
@@ -114,31 +109,12 @@ export class ManagerFilesComponent implements OnInit {
   }
 
   deleteFileUpload(fileUpload: FileUpload): void {
-    Swal.fire({
-      title: 'Bestand verwijderen?',
-      text: 'Dit kan niet ondaan gemaakt worden.',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Verwijderen',
-      cancelButtonText: 'Cancel',
-    }).then((result) => {
+    this.swalService.promptSwal("Dit kan niet worden terug gedraaid").then((result) => {
       if (result.value) {
         this.uploadService.deleteFile(fileUpload);
-        Swal.fire({
-          title: 'Gelukt!',
-          text: 'Bestand verwijderd.',
-          icon: 'success',
-          showConfirmButton: false,
-          timer: 1500
-        });
+        this.swalService.successSwal("Bestand verwijderd");
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire({
-          title: 'Geannuleerd!',
-          text: 'Bestand niet verwijderd.',
-          icon: 'error',
-          showConfirmButton: false,
-          timer: 1500
-        });
+        this.swalService.cancelSwal("Bestand niet verwijderd");
       }
     });
   }

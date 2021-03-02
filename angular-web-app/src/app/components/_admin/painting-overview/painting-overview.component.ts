@@ -71,7 +71,7 @@ export class PaintingOverviewComponent implements OnInit {
   }
 
   deletePainting(key): void {
-    this.swalService.warningSwal("Dit kan niet worden terug gedraaid").then((result) => {
+    this.swalService.promptSwal("Dit kan niet worden terug gedraaid").then((result) => {
       if (result.value) {
         this.paintingService.delete(key)
           .then(() => {
@@ -81,7 +81,7 @@ export class PaintingOverviewComponent implements OnInit {
             this.swalService.errorSwal(err)
           });
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        this.swalService.errorSwal("Schilderij niet verwijderd");
+        this.swalService.cancelSwal("Schilderij niet verwijderd");
       }
     });
   }

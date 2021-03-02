@@ -14,7 +14,6 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./painting-add.component.scss'],
 })
 export class PaintingAddComponent implements OnInit {
-  @ViewChild('addPaintingForm') addPaintingForm;
   @ViewChild('thumbnailSwal') thumbnailSwal!: SwalComponent;
   @ViewChild('thumbnailOptions') thumbnailOptions: any;
   title = 'Toevoegen';
@@ -132,12 +131,12 @@ export class PaintingAddComponent implements OnInit {
    * Asks user for confirmation
    */
   resetForm() {
-    this.swalService.warningSwal("Alle reeds ingevoerde data zal worden verwijderd").then((result) => {
+    this.swalService.promptSwal("Alle reeds ingevoerde data zal worden verwijderd").then((result) => {
       if (result.value) {
         this.resetFormData();
         this.swalService.successSwal("Formulier leeg gemaakt");
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        this.swalService.errorSwal("Formulier niet leeg gemaakt");
+        this.swalService.cancelSwal("Formulier niet leeg gemaakt");
       }
     });
   }
@@ -146,32 +145,33 @@ export class PaintingAddComponent implements OnInit {
    * Clears form data
    */
   resetFormData(): void {
-    this.painting = new Painting(
-      null,
-      "Rolien Schrik",
-      null,
-      null,
-      null,
-      [],
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null
-    );
+    this.painting = this.getMockPainting();
+    //this.painting = new Painting(null, "Rolien Schrik", null, null, null, [], null, null, null, null, null, null, null, null, null, null);
     this.selectedFiles = [];
     this.uploadCount = 0;
     this.percentage = null;
-    this.selectedFiles = [];
     this.formDisabled = false;
-    if (this.addPaintingForm) {
-      this.addPaintingForm.reset();
-    }
+  }
+
+  getMockPainting(): Painting {
+    return new Painting(
+      null,
+      'Rolien Schrik',
+      'Dessert car',
+      'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam. Nullam molestie vehicula ipsum a consequat. Vivamus efficitur metus ut nulla consectetur porta. Proin auctor dui ut orci aliquet, sit amet ultricies justo mattis. Mauris nec massa sit amet metus dignissim placerat elementum a justo. Nunc sit amet facilisis velit, ac varius enim.',
+      null,
+      [],
+      'Oil',
+      'Doek',
+      'Beschikbaar',
+      250,
+      'Algemeen',
+      200,
+      100,
+      true,
+      Date.now(),
+      null,
+    );
   }
 }
 

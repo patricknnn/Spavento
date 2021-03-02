@@ -1,6 +1,6 @@
 <mat-card [ngStyle]="{'max-height': maxHeight}" class="painting-card p-0">
   <!-- Image -->
-  <img class="painting-card-img" src="{{ painting.thumbnail }}" alt="" />
+  <img class="painting-card-img" [src]="painting.thumbnail" alt="" />
 
   <!-- Caption -->
   <div class="painting-card-caption p-3">
@@ -13,7 +13,7 @@
       <button mat-fab color="accent" class="mx-2" aria-label="Show image" (click)="openImage(content)">
         <mat-icon>search</mat-icon>
       </button>
-      <button mat-fab color="accent" class="mx-2" aria-label="Show details" (click)="goToPaintingDetails(painting.id)">
+      <button mat-fab color="accent" class="mx-2" aria-label="Show details" (click)="goToPaintingDetails(painting.key)">
         <mat-icon>more_horiz</mat-icon>
       </button>
     </div>
@@ -29,7 +29,7 @@
       <div class="row">
         <div class="col-12">
           <div class="d-flex align-items-center justify-content-center">
-            <img class="img-modal" src="{{ painting.thumbnail }}" alt="" />
+            <img class="img-modal" [src]="painting.thumbnail" alt="" />
           </div>
         </div>
       </div>

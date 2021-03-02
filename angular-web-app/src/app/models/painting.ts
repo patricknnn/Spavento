@@ -1,6 +1,6 @@
 export class Painting {
   constructor(
-    public id: number,
+    public key: string,
     public artist: string,
     public title: string,
     public description: string,

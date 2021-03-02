@@ -21,7 +21,7 @@ export class FeaturedComponent implements OnInit {
   }
 
   goToPaintingDetails(): void {
-    this.router.navigate(['/painting', { id: this.painting.id }]);
+    this.router.navigate(['/painting', { key: this.painting.key }]);
   }
 
   getTrimmedDescription(): string {

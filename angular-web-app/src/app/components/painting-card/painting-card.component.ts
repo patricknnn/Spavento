@@ -20,8 +20,8 @@ export class PaintingCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  goToPaintingDetails(paintingId: number): void {
-    this.router.navigate(['/painting', { id: paintingId }]);
+  goToPaintingDetails(key: string): void {
+    this.router.navigate(['/painting', { key: key }]);
   }
 
   openImage(content) {
