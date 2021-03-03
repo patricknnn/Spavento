@@ -1,10 +1,7 @@
 import { NavLink } from "./navlink";
 
-export class NavContent {
-  constructor(
-    public brandImage: string,
-    public brandName: string,
-    public navLinks: NavLink[],
-  ) {
-  }
+export default class NavContent {
+  brandImage?: string;
+  brandName?: string;
+  navLinks?: NavLink[];
 }

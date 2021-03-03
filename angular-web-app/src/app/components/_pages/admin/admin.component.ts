@@ -41,7 +41,7 @@ export class AdminComponent implements OnInit, AfterViewInit, OnDestroy {
     );
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   ngAfterViewInit(): void {
     this.sidenavService.setSidenav(this.sidenav);

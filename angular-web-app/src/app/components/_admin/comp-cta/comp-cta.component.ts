@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CtaContent } from 'src/app/models/ctacontent';
+import CtaContent from 'src/app/models/ctacontent';
 import { ContentService } from 'src/app/services/content.service';
 
 @Component({

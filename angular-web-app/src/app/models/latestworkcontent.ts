@@ -1,11 +1,9 @@
 
-export class LatestWorkContent {
-    constructor(
-        public title: string,
-        public subTitle: string,
-        public text: string,
-        public link: string,
-        public amount: number,
-        public active: boolean
-    ) { }
+export default class LatestWorkContent {
+    title?: string;
+    subTitle?: string;
+    text?: string;
+    link?: string;
+    amount?: number;
+    active?: boolean;
 }

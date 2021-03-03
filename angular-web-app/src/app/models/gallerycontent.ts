@@ -1,8 +1,6 @@
-export class GalleryContent {
-    constructor(
-        public title: string,
-        public subTitle: string,
-        public text: string,
-        public maxHeight: string,
-    ) { }
+export default class GalleryContent {
+    title?: string;
+    subTitle?: string;
+    text?: string;
+    maxHeight?: string;
 }

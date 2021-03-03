@@ -5,7 +5,7 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { HeaderContent } from 'src/app/models/headercontent';
+import HeaderContent from 'src/app/models/headercontent';
 import { ContentService } from 'src/app/services/content.service';
 
 @Component({
@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit, OnChanges {
   titleDisplay: string;
   headerContent: HeaderContent;
 
-  constructor(private contentService: ContentService) {}
+  constructor(private contentService: ContentService) { }
 
   ngOnInit(): void {
     this.headerContent = this.contentService.getHeaderContent();

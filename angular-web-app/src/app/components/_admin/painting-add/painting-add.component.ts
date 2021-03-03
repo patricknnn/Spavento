@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SwalComponent, SwalPortalTargets } from '@sweetalert2/ngx-sweetalert2';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { Observable } from 'rxjs';
 import { FileUpload } from 'src/app/models/fileupload';
-import { Painting } from 'src/app/models/painting';
+import Painting from 'src/app/models/painting';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 import { PaintingService } from 'src/app/services/painting.service';
 import { SwalService } from 'src/app/services/swal.service';
@@ -49,8 +49,7 @@ export class PaintingAddComponent implements OnInit {
   constructor(
     private paintingService: PaintingService,
     private uploadService: FileUploadService,
-    private swalService: SwalService,
-    public readonly swalTargets: SwalPortalTargets
+    private swalService: SwalService
   ) { }
 
   ngOnInit() {
@@ -80,18 +79,29 @@ export class PaintingAddComponent implements OnInit {
           this.uploadCount++;
           // check if all files uploaded
           if (this.uploadCount == this.selectedFiles.length) {
-            this.thumbnailSwal.fire().then((result) => {
-              // save painting
-              this.swalService.loadingSwal("Schilderij opslaan");
-              this.paintingService.create(this.painting).then(() => {
-                this.resetFormData();
-                this.swalService.successSwal("Schilderij opgeslagen");
+            if (this.uploadCount == 1) {
+              // set thumbnail
+              this.painting.thumbnail = this.painting.images[0];
+              this.savePainting();
+            } else {
+              // let user choose thumbnail
+              this.thumbnailSwal.fire().then((result) => {
+                // save painting
+                this.savePainting();
               });
-            });
+            }
           }
         });
       });
     }
+  }
+
+  savePainting(): void {
+    this.swalService.loadingSwal("Schilderij opslaan");
+    this.paintingService.create(this.painting).then(() => {
+      this.resetFormData();
+      this.swalService.successSwal("Schilderij opgeslagen");
+    });
   }
 
 
@@ -154,24 +164,18 @@ export class PaintingAddComponent implements OnInit {
   }
 
   getMockPainting(): Painting {
-    return new Painting(
-      null,
-      'Rolien Schrik',
-      'Dessert car',
-      'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam. Nullam molestie vehicula ipsum a consequat. Vivamus efficitur metus ut nulla consectetur porta. Proin auctor dui ut orci aliquet, sit amet ultricies justo mattis. Mauris nec massa sit amet metus dignissim placerat elementum a justo. Nunc sit amet facilisis velit, ac varius enim.',
-      null,
-      [],
-      'Oil',
-      'Doek',
-      'Beschikbaar',
-      250,
-      'Algemeen',
-      200,
-      100,
-      true,
-      Date.now(),
-      null,
-    );
+    let painting = new Painting();
+    painting.artist =  'Rolien Schrik';
+    painting.title =  'Dessert car';
+    painting.description =  'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam. Nullam molestie vehicula ipsum a consequat. Vivamus efficitur metus ut nulla consectetur porta. Proin auctor dui ut orci aliquet, sit amet ultricies justo mattis. Mauris nec massa sit amet metus dignissim placerat elementum a justo. Nunc sit amet facilisis velit, ac varius enim.';
+    painting.material = 'Doek';
+    painting.paint = 'Oil';
+    painting.status = 'Beschikbaar';
+    painting.category = 'Nature';
+    painting.length = 100;
+    painting.width = 200;
+    painting.images = [];
+    return painting;
   }
 }
 

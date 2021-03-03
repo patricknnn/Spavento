@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Painting } from 'src/app/models/painting';
+import Painting from 'src/app/models/painting';
 import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
@@ -20,8 +20,8 @@ export class PaintingCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  goToPaintingDetails(key: string): void {
-    this.router.navigate(['/painting', { key: key }]);
+  goToPaintingDetails(paintingId: string): void {
+    this.router.navigate(['/painting', { id: paintingId }]);
   }
 
   openImage(content) {

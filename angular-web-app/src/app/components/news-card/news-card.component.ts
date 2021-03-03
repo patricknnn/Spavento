@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalService } from 'src/app/services/modal.service';
-import { NewsItem } from '../../models/newsitem';
+import NewsItem from '../../models/newsitem';
 
 @Component({
   selector: 'app-news-card',

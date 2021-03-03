@@ -1,10 +1,8 @@
-export class HeaderContent {
-    constructor(
-        public small: boolean,
-        public typing: boolean,
-        public paralax: boolean,
-        public defaultTitle: string,
-        public defaultSubtitle: string,
-        public defaultImage: string,
-    ) { }
+export default class HeaderContent {
+    small?: boolean;
+    typing?: boolean;
+    paralax?: boolean;
+    defaultTitle?: string;
+    defaultSubtitle?: string;
+    defaultImage?: string;
 }

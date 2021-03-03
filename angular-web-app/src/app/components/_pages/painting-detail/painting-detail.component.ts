@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Painting } from '../../../models/painting';
+import Painting from '../../../models/painting';
 import { PaintingService } from '../../../services/painting.service';
 
 @Component({
@@ -21,7 +21,7 @@ export class PaintingDetailComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.painting) {
-      this.paintingService.getByKey(this.route.snapshot.paramMap.get('key'));
+      this.paintingService.getById(this.route.snapshot.paramMap.get('id'));
       this.goTo404();
     }
   }

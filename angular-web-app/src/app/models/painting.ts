@@ -1,21 +1,18 @@
-export class Painting {
-  constructor(
-    public key: string,
-    public artist: string,
-    public title: string,
-    public description: string,
-    public thumbnail: string,
-    public images: string[],
-    public paint: string,
-    public material: string,
-    public status: string,
-    public price: number,
-    public category: string,
-    public length: number,
-    public width: number,
-    public active: boolean,
-    public timestampCreated: number,
-    public timestampUpdated: number,
-  ) {
-  }
+export default class Painting {
+  id?: string;
+  artist?: string;
+  title?: string;
+  description?: string;
+  thumbnail?: string;
+  images?: string[];
+  paint?: string;
+  material?: string;
+  status?: string;
+  price?: number;
+  category?: string;
+  length?: number;
+  width?: number;
+  active?: boolean;
+  timestampCreated?: number;
+  timestampUpdated?: number;
 }

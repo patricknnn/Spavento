@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ContactForm } from '../../models/contactform';
+import ContactForm from '../../models/contactform';
 
 @Component({
   selector: 'app-contact-card',
@@ -9,7 +9,7 @@ import { ContactForm } from '../../models/contactform';
 export class ContactCardComponent implements OnInit {
   submitted = false;
   appearance = "standard";
-  model = new ContactForm("", "", "", "");
+  model = new ContactForm();
   subjects = ['Question', 'Other'];
 
   constructor() { }
@@ -22,7 +22,7 @@ export class ContactCardComponent implements OnInit {
   }
 
   resetForm() {
-    this.model = new ContactForm("", "", "", "");
+    this.model = new ContactForm();
   }
 
 }

@@ -33,7 +33,7 @@ export class ManagerFilesComponent implements OnInit {
 
   ngOnInit(): void {
     this.uploadService
-      .getFiles(6)
+      .getFiles(99)
       .snapshotChanges()
       .pipe(
         map((changes) =>

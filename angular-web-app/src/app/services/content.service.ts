@@ -1,197 +1,134 @@
 import { Injectable } from '@angular/core';
-import { ContactFormContent } from '../models/contactformcontent';
-import { CtaContent } from '../models/ctacontent';
-import { FeaturedContent } from '../models/featuredcontent';
-import { FooterContent } from '../models/footercontent';
-import { GalleryContent } from '../models/gallerycontent';
-import { HeaderContent } from '../models/headercontent';
-import { LatestNewsContent } from '../models/latestnewscontent';
-import { LatestWorkContent } from '../models/latestworkcontent';
-import { NavContent } from '../models/navcontent';
+import ContactFormContent from '../models/contactformcontent';
+import CtaContent from '../models/ctacontent';
+import FeaturedContent from '../models/featuredcontent';
+import FooterContent from '../models/footercontent';
+import GalleryContent from '../models/gallerycontent';
+import HeaderContent from '../models/headercontent';
+import LatestNewsContent from '../models/latestnewscontent';
+import LatestWorkContent from '../models/latestworkcontent';
+import NavContent from '../models/navcontent';
 import { NavLink } from '../models/navlink';
-import { NewsContent } from '../models/newscontent';
-import { PageNotFoundContent } from '../models/pagenotfoundcontent';
-import { PageTitle } from '../models/pagetitle';
-import { Service } from '../models/service';
-import { ServiceContent } from '../models/servicecontent';
-import { PaintingService } from './painting.service';
+import NewsContent from '../models/newscontent';
+import PageNotFoundContent from '../models/pagenotfoundcontent';
+import PageTitle from '../models/pagetitle';
+import ServiceContent from '../models/servicecontent';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ContentService {
-  constructor(private paintingService: PaintingService) { }
+  constructor() { }
 
   /**
    * Layout content
    */
   public getNavContent(): NavContent {
-    return new NavContent('/assets/img/favicon/favicon-96x96.png', 'Spavento', [
+    let content = new NavContent();
+    content.brandImage = '/assets/img/favicon/favicon-96x96.png';
+    content.brandName = 'Spavento';
+    content.navLinks = [
       new NavLink('Home', '/home', true),
       new NavLink('Portfolio', '/portfolio', true),
       new NavLink('Nieuws', '/news', true),
       new NavLink('Contact', '/contact', true),
       new NavLink('CMS', '/cms', true),
-    ]);
+    ];
+    return content;
   }
   public getFooterContent(): FooterContent {
-    return new FooterContent(
-      '© 2020 Spavento Paintings',
-      'Over',
-      'Lorem ipsum dolor sit amet consectetur adip elit. Maiores deleniti explicabo voluptatem quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus.',
-      'Social media',
-      'Volg ons om up to date te blijven',
-      'facebook.com',
-      'twitter.com',
-      'instagram.com'
-    );
+    let content = new FooterContent();
+    content.footerText = '© 2020 Spavento Paintings';
+    content.aboutTitle = 'Over';
+    content.aboutText = 'Lorem ipsum dolor sit amet consectetur adip elit. Maiores deleniti explicabo voluptatem quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus.';
+    content.socialTitle = 'Social media';
+    content.socialText = 'Volg ons om up to date te blijven';
+    content.facebookLink = 'facebook.com';
+    content.twitterLink = 'twitter.com';
+    content.instagramLink = 'instagram.com';
+    return content;
   }
+
   public getHeaderContent(): HeaderContent {
-    return new HeaderContent(
-      true,
-      true,
-      true,
-      'Spavento',
-      'Paintings & Artwork',
-      '../../../../assets/img/dessertcar.jpg',
-    )
+    let content = new HeaderContent();
+    content.paralax = true;
+    content.typing = true;
+    content.small = true;
+    content.defaultImage = '../../../../assets/img/dessertcar.jpg';
+    content.defaultTitle = 'Spavento';
+    content.defaultSubtitle = 'Paintings & Artwork';
+    return content;
   }
 
   /**
    * Page content
    */
   public getServicesContent(): ServiceContent {
-    return new ServiceContent(
-      'Diensten',
-      'Ons aanbod aan',
-      'We zijn erg flexibel in wat we doen, van maatwerk tot verschillende stylen.',
-      [
-        new Service('brush', 'Opdrachten', 'Schilderijen in opdracht.'),
-        new Service(
-          'palette',
-          'Verschillende Stylen',
-          'Schilderijen in verschillende stylen.'
-        ),
-        new Service(
-          'collections',
-          'Exposities',
-          'Bewonder ons werk op exposities.'
-        ),
-      ],
-      true
-    );
+    return new ServiceContent();
   }
 
   public getFeaturedContent(): FeaturedContent {
-    return new FeaturedContent(
-      'Uitgelicht',
-      'In de spotlight',
-      'Het volgende schilderij verdient speciale aandacht.',
-      '60vh',
-      this.paintingService.getFeatured(),
-      true
-    );
+    return new FeaturedContent();
   }
 
   public getLatestNewsContent(): LatestNewsContent {
-    return new LatestNewsContent(
-      'Laatste nieuws',
-      'blijf op de hoogte',
-      'Alle nieuws rondom Spavento is te zien op de nieuws pagina.',
-      '/news',
-      3,
-      true
-    );
+    return new LatestNewsContent();
   }
 
   public getLatestWorkContent(): LatestWorkContent {
-    return new LatestWorkContent(
-      'Laatste werk',
-      'Bewonder ons',
-      'Een overzicht van al ons werk is te zien op de portfolio pagina.',
-      '/portfolio',
-      6,
-      true
-    );
+    return new LatestWorkContent();
   }
 
   public getCtaContent(): CtaContent {
-    return new CtaContent(
-      'Bekijk ons portfolio',
-      'Bewonder ons werk',
-      '',
-      'Breng mij daar!',
-      '/portfolio',
-      '../../../../assets/img/material-bg-light.jpg',
-      true
-    );
+    return new CtaContent();
   }
 
   public getGalleryContent(): GalleryContent {
-    return new GalleryContent(
-      'Gallerij',
-      'Bewonder mijn werk',
-      'Filter de gallerij items op door middel van onderstaande filters en open een item om de details te tonen.',
-      '100%'
-    );
+    return new GalleryContent();
   }
 
   public getNewsContent(): NewsContent {
-    return new NewsContent(
-      'Laatste nieuws',
-      'Hier vind je het',
-      'Filter nieuws items op categorie en klik op meer lezen om details te tonen.'
-    );
+    return new NewsContent();
   }
 
   public getContactCardsContent(): ServiceContent {
-    return new ServiceContent(
-      'Contact',
-      'Vind op de volgende manieren',
-      'U kunt ons bellen, mailen of bezoeken.',
-      [
-        new Service('phone', 'Bel ons', '+31 6 12345678'),
-        new Service('email', 'Stuur een email', 'info@spavento.nl'),
-        new Service('pin_drop', 'Bezoek ons', 'Oeverlanden, Kropswolde'),
-      ],
-      true
-    );
+    return new ServiceContent();
   }
 
   public getContactFormContent(): ContactFormContent {
-    return new ContactFormContent(
-      'Formulier',
-      'Contact',
-      'Vul onderstaand contactformulier in en u zult zo spoedig mogelijk iets van ons horen',
-      true
-    );
+    return new ContactFormContent();
   }
 
   public getPageNotFoundContent(): PageNotFoundContent {
-    return new PageNotFoundContent(
-      'Links',
-      'Handige',
-      'Probeer het later nog eens of maak gebruik van onderstaande knoppen',
-      'Naar homepage',
-      '/home',
-      'Vorige pagina',
-    )
+    return new PageNotFoundContent()
   }
 
   public getPageTitle(page: string): PageTitle {
+    let content = new PageTitle();
     switch (page) {
       case 'home':
-        return new PageTitle('Spavento', 'Paintings & Artwork');
+        content.title = 'Spavento';
+        content.subTitle = 'Paintings & Artwork';
+        return content;
       case 'portfolio':
-        return new PageTitle('Portfolio', 'Een overzicht van mijn werk');
+        content.title = 'Portfolio';
+        content.subTitle = 'Een overzicht van mijn werk';
+        return content;
       case 'news':
-        return new PageTitle('Nieuws', 'Blijf op de hoogte');
+        content.title = 'Nieuws';
+        content.subTitle = 'Blijf op de hoogte';
+        return content;
       case 'contact':
-        return new PageTitle('Contact', 'Zo zijn we te bereiken');
+        content.title = 'Contact';
+        content.subTitle = 'Zo bereik je ons';
+        return content;
       case '404':
-        return new PageTitle('Ojee, een 404', 'De pagina die je zoekt bestaat niet meer');
+        content.title = 'Cockie, een 404';
+        content.subTitle = 'Pagina niet gevonden jong kerol.';
+        return content;
       default:
         break;
     }
+    return content;
   }
 }

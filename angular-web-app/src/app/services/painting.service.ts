@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-import { DataSnapshot } from '@angular/fire/database/interfaces';
-import { Painting } from '../models/painting';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import Painting from '../models/painting';
 
 @Injectable({
   providedIn: 'root',
@@ -9,49 +8,48 @@ import { Painting } from '../models/painting';
 export class PaintingService {
 
   private dbPath = '/paintings';
-  paintingsRef: AngularFireList<Painting>;
+  paintingsRef: AngularFirestoreCollection<Painting>;
 
-  constructor(private db: AngularFireDatabase) {
-    this.paintingsRef = db.list(this.dbPath);
+  constructor(private db: AngularFirestore) {
+    this.paintingsRef = db.collection(this.dbPath);
   }
 
-  public getAll(): AngularFireList<Painting> {
+  public getAll(): AngularFirestoreCollection<Painting> {
     return this.paintingsRef;
   }
 
   public create(painting: Painting): any {
-    return this.paintingsRef.push(painting);
+    return this.paintingsRef.add({ ...painting });
   }
 
-  public update(key: string, value: any): Promise<void> {
-    return this.paintingsRef.update(key, value);
+  public update(id: string, data: any): Promise<void> {
+    return this.paintingsRef.doc(id).update(data);
   }
 
-  public delete(key: string): Promise<void> {
-    return this.paintingsRef.remove(key);
+  public delete(id: string): Promise<void> {
+    return this.paintingsRef.doc(id).delete();
   }
 
-  public deleteAll(): Promise<void> {
-    return this.paintingsRef.remove();
+  public getById(id: string): AngularFirestoreDocument<Painting> {
+    return this.paintingsRef.doc(id);
   }
 
-
-
-
-  public getByKey(key: string) {
-    return this.paintingsRef.query.equalTo(key).limitToFirst(1).on("value", function(snapshot) {
-      return snapshot;
-    });
+  public getLatest(amount: number): any {
+    return this.db.collection(this.dbPath, ref => ref
+      .orderBy('timestampCreated')
+      .limit(amount));
   }
 
-  public getLatest(amount: number): Promise<DataSnapshot> {
-    return this.db.database.ref(this.dbPath).orderByChild("timestampCreated").limitToFirst(amount).once("value", function(snap) {
-      return snap;
-    });
+  public searchByTitle(param: string) {
+    return this.db.collection(this.dbPath, ref => ref
+      .where('title', '>=', param)
+      .where('title', '<=', param + '\uf8ff'));
   }
 
-  public getFeatured(): Painting {
-    return this.paintingsRef[0];
+  public searchByDescription(param: string) {
+    return this.db.collection(this.dbPath, ref => ref
+      .where('description', '>=', param)
+      .where('description', '<=', param + '\uf8ff'));
   }
 
 

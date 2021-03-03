@@ -1,8 +1,5 @@
-export class Service {
-  constructor(
-    public icon: string,
-    public title: string,
-    public description: string
-  ) {
-  }
+export default class Service {
+  icon?: string;
+  title?: string;
+  description?: string;
 }

@@ -1,8 +1,6 @@
-export class ContactFormContent {
-    constructor(
-        public title: string,
-        public subTitle: string,
-        public text: string,
-        public active: boolean
-    ) { }
+export default class ContactFormContent {
+    title?: string;
+    subTitle?: string;
+    text?: string;
+    active?: boolean;
 }

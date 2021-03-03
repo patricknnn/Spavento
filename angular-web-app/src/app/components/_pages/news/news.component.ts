@@ -1,26 +1,21 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
-import { NewsItem } from 'src/app/models/newsitem';
+import { Component, OnInit } from '@angular/core';
+import NewsItem from 'src/app/models/newsitem';
 import { NewsService } from '../../../services/news.service';
 import Shuffle from 'shufflejs';
 import { ContentService } from 'src/app/services/content.service';
-import { PageTitle } from 'src/app/models/pagetitle';
-import { NewsContent } from 'src/app/models/newscontent';
+import PageTitle from 'src/app/models/pagetitle';
+import NewsContent from 'src/app/models/newscontent';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.scss'],
 })
-export class NewsComponent implements OnInit, AfterViewInit {
-  @ViewChild('shuffleContainer') private shuffleContainer: ElementRef;
-  @ViewChild('shuffleSizer') private shuffleSizer: ElementRef;
-  private shuffleInstance: Shuffle;
+export class NewsComponent implements OnInit {
+  shuffleContainer: HTMLElement;
+  shuffleSizer: HTMLElement;
+  shuffleInstance: Shuffle;
   pageTitle: PageTitle;
   newsContent: NewsContent;
   newsItems: NewsItem[];
@@ -32,20 +27,37 @@ export class NewsComponent implements OnInit, AfterViewInit {
   constructor(
     private newsService: NewsService,
     private contentService: ContentService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.pageTitle = this.contentService.getPageTitle('news');
     this.newsContent = this.contentService.getNewsContent();
-    this.newsItems = this.newsService.getAllNews();
     this.categories = this.newsService.getCategories();
+    this.retrieveNews();
   }
 
-  ngAfterViewInit(): void {
-    this.shuffleInstance = new Shuffle(this.shuffleContainer.nativeElement, {
-      itemSelector: '.shuffle-item',
-      sizer: this.shuffleSizer.nativeElement,
+  retrieveNews(): void {
+    this.newsService.getAll().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.newsItems = data;
+      this.initShuffle();
     });
+  }
+
+  initShuffle(): void {
+    this.shuffleContainer = document.getElementById("shuffleContainer");
+    this.shuffleSizer = document.getElementById("shuffleSizer");
+    if (this.shuffleContainer && this.shuffleSizer) {
+      this.shuffleInstance = new Shuffle(this.shuffleContainer, {
+        itemSelector: '.shuffle-item',
+        sizer: this.shuffleSizer
+      });
+    }
   }
 
   // Clear filters and reset

@@ -138,12 +138,12 @@
               <mat-select
                 id="contentPainting"
                 name="contentPainting"
-                [(ngModel)]="featured.painting"
+                [(ngModel)]="featured.paintingId"
                 #contentPaintingInput="ngModel"
                 required
               >
                 <mat-option
-                  *ngFor="let painting of paintingList"
+                  *ngFor="let painting of paintings"
                   [value]="painting"
                 >
                   <img

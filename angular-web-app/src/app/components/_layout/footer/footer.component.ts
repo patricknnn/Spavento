@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { FooterContent } from 'src/app/models/footercontent';
+import FooterContent from 'src/app/models/footercontent';
 
 @Component({
   selector: 'app-footer',

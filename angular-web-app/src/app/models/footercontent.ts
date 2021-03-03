@@ -1,13 +1,10 @@
-export class FooterContent {
-  constructor(
-    public footerText: string,
-    public aboutTitle: string,
-    public aboutText: string,
-    public socialTitle: string,
-    public socialText: string,
-    public facebookLink: string,
-    public twitterLink: string,
-    public instagramLink: string,
-  ) {
-  }
+export default class FooterContent {
+  footerText?: string;
+  aboutTitle?: string;
+  aboutText?: string;
+  socialTitle?: string;
+  socialText?: string;
+  facebookLink?: string;
+  twitterLink?: string;
+  instagramLink?: string;
 }

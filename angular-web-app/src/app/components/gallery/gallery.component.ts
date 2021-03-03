@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { Painting } from '../../models/painting';
+import { Component, Input, OnInit } from '@angular/core';
+import Painting from '../../models/painting';
 import { PaintingService } from '../../services/painting.service';
 import { Router } from '@angular/router';
 import Shuffle from 'shufflejs';
@@ -12,9 +12,9 @@ import { map } from 'rxjs/operators';
 })
 export class GalleryComponent implements OnInit {
   @Input() maxHeight: string = '100%';
-  private shuffleContainer: HTMLElement;
-  private shuffleSizer: HTMLElement;
-  private shuffleInstance: Shuffle;
+  shuffleContainer: HTMLElement;
+  shuffleSizer: HTMLElement;
+  shuffleInstance: Shuffle;
   paintings: Painting[];
   categories: string[];
   paints: string[];
@@ -45,28 +45,27 @@ export class GalleryComponent implements OnInit {
     this.states = this.paintingService.getStates();
   }
 
-  retrievePaintings(): void {
-    this.paintingService.getAll().snapshotChanges().pipe(
+  async retrievePaintings(): Promise<any> {
+    await this.paintingService.getAll().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
-          ({ key: c.payload.key, ...c.payload.val() })
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
         )
       )
     ).subscribe(data => {
       this.paintings = data;
-      //this.initShuffle();
+      console.log('init shuffle');
+      this.initShuffle();
     });
   }
 
   initShuffle(): void {
     this.shuffleContainer = document.getElementById("shuffleContainer");
     this.shuffleSizer = document.getElementById("shuffleSizer");
-    if (this.shuffleContainer && this.shuffleSizer) {
-      this.shuffleInstance = new Shuffle(this.shuffleContainer, {
-        itemSelector: '.shuffle-item',
-        sizer: this.shuffleSizer
-      });
-    }
+    this.shuffleInstance = new Shuffle(this.shuffleContainer, {
+      itemSelector: '.shuffle-item',
+      sizer: this.shuffleSizer
+    });
   }
 
   goToPaintingDetails(paintingId: number): void {

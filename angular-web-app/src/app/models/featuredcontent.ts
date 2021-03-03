@@ -1,12 +1,9 @@
-import { Painting } from "./painting";
 
-export class FeaturedContent {
-    constructor(
-        public title: string,
-        public subTitle: string,
-        public text: string,
-        public maxHeight: string,
-        public painting: Painting,
-        public active: boolean
-    ) { }
+export default class FeaturedContent {
+    title?: string;
+    subTitle?: string;
+    text?: string;
+    maxHeight?: string;
+    paintingId?: string;
+    active?: boolean
 }

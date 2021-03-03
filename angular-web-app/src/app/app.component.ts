@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { routeAnimations } from './animations/route-animations';
 import { RouterOutlet } from '@angular/router';
 import { ContentService } from './services/content.service';
-import { NavContent } from './models/navcontent';
-import { FooterContent } from './models/footercontent';
+import NavContent from './models/navcontent';
+import FooterContent from './models/footercontent';
 
 @Component({
   selector: 'app-root',

@@ -1,7 +1,5 @@
-export class NewsContent {
-    constructor(
-        public title: string,
-        public subTitle: string,
-        public text: string,
-    ) { }
+export default class NewsContent {
+    title?: string;
+    subTitle?: string;
+    text?: string;
 }

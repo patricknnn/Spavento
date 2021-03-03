@@ -6,11 +6,8 @@
   <!-- Contact -->
   <section class="page-section bg-light">
     <div class="container">
-      <app-section-title
-        [title]="contactCards.title"
-        [subTitle]="contactCards.subTitle"
-        [text]="contactCards.text"
-      ></app-section-title>
+      <app-section-title [title]="contactCards.title" [subTitle]="contactCards.subTitle" [text]="contactCards.text">
+      </app-section-title>
 
       <div class="row">
         <div *ngFor="let contactcard of contactCards.services" class="col-lg-4 col-md-6 col-sm-12">
@@ -24,11 +21,8 @@
   <!-- Form -->
   <section class="page-section">
     <div class="container">
-      <app-section-title
-        [title]="contactForm.title"
-        [subTitle]="contactForm.subTitle"
-        [text]="contactForm.text"
-      ></app-section-title>
+      <app-section-title [title]="contactForm.title" [subTitle]="contactForm.subTitle" [text]="contactForm.text">
+      </app-section-title>
 
       <div class="row">
         <div class="col-12">

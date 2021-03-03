@@ -1,9 +1,6 @@
-export class ContactForm {
-    constructor(
-      public name: string,
-      public email: string,
-      public subject: string,
-      public text: string
-    ) {  }
-
-  }
+export default class ContactForm {
+  name?: string;
+  email?: string;
+  subject?: string;
+  text?: string;
+}

@@ -1,11 +1,9 @@
-export class CtaContent {
-    constructor(
-        public title: string,
-        public subTitle: string,
-        public text: string,
-        public btnText: string,
-        public btnLink: string,
-        public image: string,
-        public active: boolean
-    ) { }
+export default class CtaContent {
+    title?: string;
+    subTitle?: string;
+    text?: string;
+    btnText?: string;
+    btnLink?: string;
+    image?: string;
+    active?: boolean;
 }

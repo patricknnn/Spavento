@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { NewsItem } from 'src/app/models/newsitem';
+import NewsItem from 'src/app/models/newsitem';
 import { NewsService } from 'src/app/services/news.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class LatestNewsComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit(): void {
-    this.newsItems = this.newsService.getLatestNews(this.amount);
+    this.newsItems = this.newsService.getLatest(this.amount);
   }
 
   ngOnChanges(changes: SimpleChanges): void {

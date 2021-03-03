@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PageNotFoundContent } from 'src/app/models/pagenotfoundcontent';
-import { PageTitle } from 'src/app/models/pagetitle';
+import PageNotFoundContent from 'src/app/models/pagenotfoundcontent';
+import PageTitle from 'src/app/models/pagetitle';
 import { ContentService } from 'src/app/services/content.service';
 
 @Component({

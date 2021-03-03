@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { PageTitle } from 'src/app/models/pagetitle';
+import PageTitle from 'src/app/models/pagetitle';
 import { ContentService } from 'src/app/services/content.service';
-import { PageNotFoundContent } from 'src/app/models/pagenotfoundcontent';
+import PageNotFoundContent from 'src/app/models/pagenotfoundcontent';
 
 @Component({
   selector: 'app-page-not-found',

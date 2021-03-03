@@ -1,8 +1,9 @@
 <!-- Navigation-->
-<nav *ngIf="navContent" [class.fixed-top]="fixed" [class.navbar-scrolled]="!fixed" class="navbar navbar-expand-md py-0" id="mainNav">
+<nav *ngIf="navContent" [class.fixed-top]="fixed" [class.navbar-scrolled]="!fixed" class="navbar navbar-expand-md py-0"
+  id="mainNav">
   <div class="container">
     <a class="navbar-brand" routerLink="/home">
-      <img src="{{navContent.brandImage}}" alt="logo" class="navbar-brand-img">
+      <img [src]="navContent.brandImage" alt="logo" class="navbar-brand-img">
       <span class="ml-2">{{navContent.brandName}}</span>
     </a>
 
@@ -19,8 +20,9 @@
     <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto my-2 my-lg-0">
         <li *ngFor="let navLink of navContent.navLinks" class="nav-item">
-          <a *ngIf="navLink.visible" class="nav-link nav-link-fade-up" data-toggle="collapse" data-target="#navbarResponsive.show"
-            routerLink="{{navLink.routerLink}}" routerLinkActive="router-link-active" (click)="closeMenu()">
+          <a *ngIf="navLink.visible" class="nav-link nav-link-fade-up" data-toggle="collapse"
+            data-target="#navbarResponsive.show" routerLink="{{navLink.routerLink}}"
+            routerLinkActive="router-link-active" (click)="closeMenu()">
             {{navLink.label}}
           </a>
         </li>
