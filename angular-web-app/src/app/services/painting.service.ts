@@ -40,7 +40,7 @@ export class PaintingService {
       .limit(amount));
   }
 
-  public searchByTitle(param: string) {
+  public searchByTitle(param: string): any {
     return this.db.collection(this.dbPath, ref => ref
       .where('title', '>=', param)
       .where('title', '<=', param + '\uf8ff'));

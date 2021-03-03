@@ -6,11 +6,8 @@
   <!-- News -->
   <section class="page-section bg-light">
     <div class="container">
-      <app-section-title 
-        [title]="newsContent.title" 
-        [subTitle]="newsContent.subTitle"
-        [text]="newsContent.text"
-      ></app-section-title>
+      <app-section-title [title]="newsContent.title" [subTitle]="newsContent.subTitle" [text]="newsContent.text">
+      </app-section-title>
 
       <!-- Filters -->
       <div id="filterRow" class="row">
@@ -22,7 +19,7 @@
             <span class="d-none d-sm-inline">Categorie</span>
           </button>
           <mat-menu #menuCategory="matMenu">
-            <mat-selection-list #categorylist [(ngModel)]="activeFilters.categories" (ngModelChange)="updateFilters()">
+            <mat-selection-list #categorylist [(ngModel)]="activeFilters.categories" (ngModelChange)="applyFilters()">
               <mat-list-option color="primary" checkboxPosition="after" *ngFor="let category of categories"
                 [value]="category">
                 {{ category }}
@@ -30,18 +27,19 @@
             </mat-selection-list>
           </mat-menu>
 
-          <button mat-icon-button color="primary" class="m-2" (click)="resetFilters();">
+          <button mat-icon-button color="primary" class="m-2" (click)="resetFilters()">
             <mat-icon>replay</mat-icon>
           </button>
         </div>
       </div>
 
       <!-- News items -->
-      <div #shuffleContainer class="shuffle-container row my-4">
-        <app-news-card *ngFor="let item of newsItems" class="shuffle-item col-12 my-3" [newsItem]="item"
+      <div id="resultsContainer" class="results-container row my-4" *ngIf="filteredNewsItems">
+        <app-news-card *ngFor="let item of filteredNewsItems; let gridIdx = index;" class="col-12 col-md-4 my-3"
+          [newsItem]="item" [ngClass]="{'animate__animated animate__bounceIn animate__faster': filterApplied}"
+          [ngStyle]="(filterApplied)?{ 'animation-delay': (150 + gridIdx * 1000 / filteredPaintings.length ) + 'ms' }:{}"
           [attr.data-category]="item.category">
         </app-news-card>
-        <div #shuffleSizer class="sizer-element col-1"></div>
       </div>
 
     </div>

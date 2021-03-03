@@ -64,43 +64,61 @@ export class ContentService {
    * Page content
    */
   public getServicesContent(): ServiceContent {
-    return new ServiceContent();
+    let content = new ServiceContent();
+    content.active = true;
+    content.title = "Diensten";
+    content.subTitle = "Mijn aanbod aan";
+    content.text = "Neem gerust contact op voor meer informatie";
+    return content;
   }
 
   public getFeaturedContent(): FeaturedContent {
-    return new FeaturedContent();
+    let content = new FeaturedContent();
+    return content;
   }
 
   public getLatestNewsContent(): LatestNewsContent {
-    return new LatestNewsContent();
+    let content = new LatestNewsContent();
+    return content;
   }
 
   public getLatestWorkContent(): LatestWorkContent {
-    return new LatestWorkContent();
+    let content = new LatestWorkContent();
+    return content;
   }
 
   public getCtaContent(): CtaContent {
-    return new CtaContent();
+    let content = new CtaContent();
+    return content;
   }
 
   public getGalleryContent(): GalleryContent {
-    return new GalleryContent();
+    let content = new GalleryContent();
+    content.title = "Gallerij";
+    content.subTitle = "Schilderij";
+    content.text = "Een overzicht van mijn werk";
+    content.maxHeight = "250px";
+    return content;
   }
 
   public getNewsContent(): NewsContent {
-    return new NewsContent();
+    let content = new NewsContent();
+    return content;
   }
 
   public getContactCardsContent(): ServiceContent {
-    return new ServiceContent();
+    let content = new ServiceContent();
+    return content;
   }
 
   public getContactFormContent(): ContactFormContent {
-    return new ContactFormContent();
+    let content = new ContactFormContent();
+    return content;
   }
 
   public getPageNotFoundContent(): PageNotFoundContent {
-    return new PageNotFoundContent()
+    let content = new PageNotFoundContent();
+    return content;
   }
 
   public getPageTitle(page: string): PageTitle {

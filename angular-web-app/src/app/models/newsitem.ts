@@ -7,4 +7,5 @@ export default class NewsItem {
   image?: string;
   date?: number;
   location?: string;
+  active?: boolean;
 }

@@ -1,13 +1,151 @@
 <div class="container-fluid pt-5">
-    <app-section-title 
-      [title]="title"
-      [subTitle]="subTitle"
-      [text]="text">
-    </app-section-title>
-  
-    <div class="row">
-      <div class="col-12">
+  <app-section-title [title]="title" [subTitle]="subTitle" [text]="text">
+  </app-section-title>
+
+  <div class="row">
+    <div class="col-12">
+
+      <div *ngIf="newsItems">
+
+        <!-- Table Filter -->
+        <mat-form-field color="accent" class="w-100">
+          <button mat-button matPrefix mat-icon-button>
+            <mat-icon>search</mat-icon>
+          </button>
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Technologie" #input>
+          <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear"
+            (click)="input.value=''; resetFilter()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <!-- Elevation -->
+        <div class="mat-elevation-z8">
+          <!-- Table -->
+          <div class="table-responsive">
+            <table mat-table [dataSource]="dataSource" class="w-100" matSort matSortActive="created"
+              matSortDirection="desc">
+              <ng-container matColumnDef="image" sticky>
+                <th mat-header-cell *matHeaderCellDef> Afbeelding </th>
+                <td mat-cell *matCellDef="let item">
+                  <img [src]="item.image" class="rounded img-table mat-elevation-z2">
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Titel </th>
+                <td mat-cell *matCellDef="let item"> {{ item.title }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="author">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Auteur </th>
+                <td mat-cell *matCellDef="let item"> {{ item.author }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="category">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Categorie </th>
+                <td mat-cell *matCellDef="let item"> {{ item.category }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="created">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Toegevoegd </th>
+                <td mat-cell *matCellDef="let item"> {{ item.timestampCreated | date }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="active">
+                <th mat-header-cell *matHeaderCellDef> Actief </th>
+                <td mat-cell *matCellDef="let item">
+                  <mat-slide-toggle checked="{{ item.active }}"></mat-slide-toggle>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="options">
+                <th mat-header-cell *matHeaderCellDef> Opties </th>
+                <td mat-cell *matCellDef="let item">
+                  <button mat-icon-button color="accent" (click)="setModalitem(item); openModal(modalContent)"
+                    class="mr-2">
+                    <mat-icon>visibility</mat-icon>
+                  </button>
+                  <button mat-icon-button color="accent" class="mr-2">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button mat-icon-button color="primary" (click)="deleteItem(item.key)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+              <!-- Row shown when there is no matching data. -->
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="7">Geen data beschikbaar.</td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- Paginator -->
+          <mat-paginator [pageSizeOptions]="[10, 25, 50]" [length]="newsItems.length" class="mb-5">
+          </mat-paginator>
+
+        </div>
+
       </div>
+
     </div>
   </div>
-  
+</div>
+
+
+<!-- Modal -->
+<ng-template #content>
+
+  <mat-dialog-content>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="news-header">
+            <img class="w-100 rounded mat-elevation-z4" [src]="modalItem.image" alt="news" />
+          </div>
+        </div>
+        <div class="col-md-89">
+          <div class="d-flex flex-column justify-content-center h-100">
+            <h6 class="txt-secondary text-uppercase mt-2">
+              {{ modalItem.category }}
+            </h6>
+            <h3>{{ modalItem.title }}</h3>
+            <div class="txt-dark-muted">
+              <hr class="hr-news">
+              <mat-icon class="inline-icon mr-2">today</mat-icon>
+              <span>{{ modalItem.date | date}}</span>
+              <span class="px-2">|</span>
+              <mat-icon class="inline-icon mr-2">person</mat-icon>
+              <span>{{ modalItem.author }}</span>
+              <span class="px-2">|</span>
+              <mat-icon class="inline-icon mr-2">local_offer</mat-icon>
+              <span>{{ modalItem.category }}</span>
+              <hr class="hr-news">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-12">
+          <p>{{ newsItem.text }}</p>
+        </div>
+        <!-- <div class="col-md-4">
+          <app-maps [title]="'Location'" [subtitle]="'The event will be here.'"
+            [location]="'Oeverlanden+60,+9606+RR+Kropswolde'"></app-maps>
+        </div> -->
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
+  </mat-dialog-actions>
+
+</ng-template>

@@ -1,5 +1,5 @@
 <!-- Filters -->
-<div id="filterRow" class="row">
+<div id="filterRow" class="row" *ngIf="paintings">
   <div class="col-12 d-flex align-items-center justify-content-center flex-wrap">
     <button mat-raised-button [matMenuTriggerFor]="menuCategory" [matBadge]="activeFilters.categories.length"
       [matBadgeHidden]="activeFilters.categories.length == 0" matBadgePosition="after" matBadgeColor="accent"
@@ -8,7 +8,7 @@
       <span class="d-none d-sm-inline">Categorie</span>
     </button>
     <mat-menu #menuCategory="matMenu">
-      <mat-selection-list #categorylist [(ngModel)]="activeFilters.categories" (ngModelChange)="updateFilters()">
+      <mat-selection-list #categorylist [(ngModel)]="activeFilters.categories" (ngModelChange)="applyFilters()">
         <mat-list-option color="primary" checkboxPosition="after" *ngFor="let category of categories"
           [value]="category">
           {{ category }}
@@ -22,7 +22,7 @@
       <span class="d-none d-sm-inline">Verf</span>
     </button>
     <mat-menu #menuPaint="matMenu">
-      <mat-selection-list #paintlist [(ngModel)]="activeFilters.paints" (ngModelChange)="updateFilters()">
+      <mat-selection-list #paintlist [(ngModel)]="activeFilters.paints" (ngModelChange)="applyFilters()">
         <mat-list-option color="primary" checkboxPosition="after" *ngFor="let paint of paints" [value]="paint">
           {{ paint }}
         </mat-list-option>
@@ -36,7 +36,7 @@
       <span class="d-none d-sm-inline">Materiaal</span>
     </button>
     <mat-menu #menuMaterial="matMenu">
-      <mat-selection-list #materiallist [(ngModel)]="activeFilters.materials" (ngModelChange)="updateFilters()">
+      <mat-selection-list #materiallist [(ngModel)]="activeFilters.materials" (ngModelChange)="applyFilters()">
         <mat-list-option color="primary" checkboxPosition="after" *ngFor="let material of materials" [value]="material">
           {{ material }}
         </mat-list-option>
@@ -49,7 +49,7 @@
       <span class="d-none d-sm-inline">Status</span>
     </button>
     <mat-menu #menuState="matMenu">
-      <mat-selection-list #statelist [(ngModel)]="activeFilters.states" (ngModelChange)="updateFilters()">
+      <mat-selection-list #statelist [(ngModel)]="activeFilters.states" (ngModelChange)="applyFilters()">
         <mat-list-option color="primary" checkboxPosition="after" *ngFor="let state of states" [value]="state">
           {{ state }}
         </mat-list-option>
@@ -62,13 +62,11 @@
   </div>
 </div>
 
-
-<!-- Gallery-->
-<div #shuffleContainer id="shuffleContainer" class="shuffle-container row my-4">
-  <app-painting-card *ngFor="let painting of paintings"
-    class="shuffle-item col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12 my-3" [attr.data-category]="painting.category"
-    [attr.data-paint]="painting.paint" [attr.data-material]="painting.material" [attr.data-status]="painting.status"
-    [painting]="painting" [maxHeight]="maxHeight">
+<!-- Gallery -->
+<div id="resultsContainer" class="results-container row my-4" *ngIf="filteredPaintings">
+  <app-painting-card *ngFor="let painting of filteredPaintings; let gridIdx = index;" class="col-12 col-md-4 my-3"
+    [ngClass]="{'animate__animated animate__bounceIn animate__faster': filterApplied}"
+    [attr.data-category]="painting.category" [attr.data-paint]="painting.paint" [attr.data-material]="painting.material"
+    [attr.data-status]="painting.status" [painting]="painting" [maxHeight]="maxHeight">
   </app-painting-card>
-  <div #shuffleSizer id="shuffleSizer" class="sizer-element col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
 </div>

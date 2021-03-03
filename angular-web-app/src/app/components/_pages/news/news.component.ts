@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import NewsItem from 'src/app/models/newsitem';
 import { NewsService } from '../../../services/news.service';
-import Shuffle from 'shufflejs';
 import { ContentService } from 'src/app/services/content.service';
 import PageTitle from 'src/app/models/pagetitle';
 import NewsContent from 'src/app/models/newscontent';
@@ -13,12 +12,11 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./news.component.scss'],
 })
 export class NewsComponent implements OnInit {
-  shuffleContainer: HTMLElement;
-  shuffleSizer: HTMLElement;
-  shuffleInstance: Shuffle;
   pageTitle: PageTitle;
   newsContent: NewsContent;
   newsItems: NewsItem[];
+  filteredNewsItems: NewsItem[];
+  filterApplied: boolean;
   categories: string[];
   activeFilters = {
     categories: [],
@@ -30,10 +28,11 @@ export class NewsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.retrieveNews();
     this.pageTitle = this.contentService.getPageTitle('news');
     this.newsContent = this.contentService.getNewsContent();
     this.categories = this.newsService.getCategories();
-    this.retrieveNews();
+    this.filterApplied = true;
   }
 
   retrieveNews(): void {
@@ -45,42 +44,31 @@ export class NewsComponent implements OnInit {
       )
     ).subscribe(data => {
       this.newsItems = data;
-      this.initShuffle();
+      this.resetFilters();
     });
   }
 
-  initShuffle(): void {
-    this.shuffleContainer = document.getElementById("shuffleContainer");
-    this.shuffleSizer = document.getElementById("shuffleSizer");
-    if (this.shuffleContainer && this.shuffleSizer) {
-      this.shuffleInstance = new Shuffle(this.shuffleContainer, {
-        itemSelector: '.shuffle-item',
-        sizer: this.shuffleSizer
-      });
+  // Apply filter
+  applyFilters() {
+    this.filteredNewsItems = this.newsItems.filter((item: NewsItem) => {
+      let result = this.itemPassesFilters(item);
+      return result;
+    });
+  }
+
+  // Check if item passes current filters
+  itemPassesFilters(item: NewsItem): boolean {
+    var categories = this.activeFilters.categories;
+    // Categories
+    if (categories.length > 0 && !categories.includes(item.category)) {
+      return false;
     }
+    return true;
   }
 
   // Clear filters and reset
   resetFilters(): void {
     this.activeFilters.categories = [];
-    this.shuffleInstance.filter();
-  }
-
-  updateFilters() {
-    // Apply filter
-    this.shuffleInstance.filter((element: Element) => {
-      return this.itemPassesFilters(element);
-    });
-  }
-
-  // Check if item passes current filters
-  itemPassesFilters(element): boolean {
-    var categories = this.activeFilters.categories;
-    var category = element.getAttribute('data-category');
-    // Categories
-    if (categories.length > 0 && !categories.includes(category)) {
-      return false;
-    }
-    return true;
+    this.filteredNewsItems = this.newsItems;
   }
 }

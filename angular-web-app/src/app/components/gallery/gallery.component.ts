@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import Painting from '../../models/painting';
 import { PaintingService } from '../../services/painting.service';
 import { Router } from '@angular/router';
-import Shuffle from 'shufflejs';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -12,10 +11,9 @@ import { map } from 'rxjs/operators';
 })
 export class GalleryComponent implements OnInit {
   @Input() maxHeight: string = '100%';
-  shuffleContainer: HTMLElement;
-  shuffleSizer: HTMLElement;
-  shuffleInstance: Shuffle;
   paintings: Painting[];
+  filteredPaintings: Painting[];
+  filterApplied: boolean;
   categories: string[];
   paints: string[];
   materials: string[];
@@ -43,10 +41,11 @@ export class GalleryComponent implements OnInit {
     this.paints = this.paintingService.getPaints();
     this.materials = this.paintingService.getMaterials();
     this.states = this.paintingService.getStates();
+    this.filterApplied = true;
   }
 
-  async retrievePaintings(): Promise<any> {
-    await this.paintingService.getAll().snapshotChanges().pipe(
+  retrievePaintings(): void {
+    this.paintingService.getAll().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({ id: c.payload.doc.id, ...c.payload.doc.data() })
@@ -54,22 +53,45 @@ export class GalleryComponent implements OnInit {
       )
     ).subscribe(data => {
       this.paintings = data;
-      console.log('init shuffle');
-      this.initShuffle();
+      this.resetFilters();
     });
   }
 
-  initShuffle(): void {
-    this.shuffleContainer = document.getElementById("shuffleContainer");
-    this.shuffleSizer = document.getElementById("shuffleSizer");
-    this.shuffleInstance = new Shuffle(this.shuffleContainer, {
-      itemSelector: '.shuffle-item',
-      sizer: this.shuffleSizer
-    });
-  }
 
-  goToPaintingDetails(paintingId: number): void {
+  goToPaintingDetails(paintingId: string): void {
     this.router.navigate(['/painting', { id: paintingId }]);
+  }
+
+  // Apply filter
+  applyFilters() {
+    this.filteredPaintings = this.paintings.filter((painting: Painting) => {
+      return this.itemPassesFilters(painting);
+    });
+  }
+
+  // Check if item passes current filters
+  itemPassesFilters(painting: Painting): boolean {
+    var categories = this.activeFilters.categories;
+    var paints = this.activeFilters.paints;
+    var materials = this.activeFilters.materials;
+    var states = this.activeFilters.states;
+    // Categories
+    if (categories.length > 0 && !categories.includes(painting.category)) {
+      return false;
+    }
+    // Paints
+    if (paints.length > 0 && !paints.includes(painting.paint)) {
+      return false;
+    }
+    // Materials
+    if (materials.length > 0 && !materials.includes(painting.material)) {
+      return false;
+    }
+    // States
+    if (states.length > 0 && !states.includes(painting.status)) {
+      return false;
+    }
+    return true;
   }
 
   // Clear filters and reset
@@ -78,43 +100,7 @@ export class GalleryComponent implements OnInit {
     this.activeFilters.paints = [];
     this.activeFilters.materials = [];
     this.activeFilters.states = [];
-    this.shuffleInstance.filter();
-  }
-
-  updateFilters() {
-    // Apply filter
-    this.shuffleInstance.filter((element: Element) => {
-      return this.itemPassesFilters(element);
-    });
-  }
-
-  // Check if item passes current filters
-  itemPassesFilters(element): boolean {
-    var categories = this.activeFilters.categories;
-    var paints = this.activeFilters.paints;
-    var materials = this.activeFilters.materials;
-    var states = this.activeFilters.states;
-    var category = element.getAttribute('data-category');
-    var paint = element.getAttribute('data-paint');
-    var material = element.getAttribute('data-material');
-    var state = element.getAttribute('data-status');
-    // Categories
-    if (categories.length > 0 && !categories.includes(category)) {
-      return false;
-    }
-    // Paints
-    if (paints.length > 0 && !paints.includes(paint)) {
-      return false;
-    }
-    // Materials
-    if (materials.length > 0 && !materials.includes(material)) {
-      return false;
-    }
-    // States
-    if (states.length > 0 && !states.includes(state)) {
-      return false;
-    }
-    return true;
+    this.filteredPaintings = this.paintings;
   }
 
 }
