@@ -17,12 +17,11 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 export class NewsOverviewComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('modalContent') modalContent;
   title = 'Overzicht';
   subTitle = 'Nieuws';
   text = 'Hier is een overzicht van alle nieuws items te vinden.';
   newsItems: NewsItem[];
-  currentItem: NewsItem;
-  currentIndex = -1;
   modalItem: NewsItem;
   dataSource: any;
   displayedColumns: string[] = [
@@ -32,6 +31,7 @@ export class NewsOverviewComponent implements OnInit {
     'category',
     'created',
     'active',
+    'options'
   ];
 
   constructor(
@@ -41,7 +41,7 @@ export class NewsOverviewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.retrieveNewsItems();
+    this.retrieveItems();
   }
 
   initTable(): void {
@@ -50,13 +50,8 @@ export class NewsOverviewComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  refreshList(): void {
-    this.currentItem = undefined;
-    this.currentIndex = -1;
-    this.retrieveNewsItems();
-  }
 
-  retrieveNewsItems(): void {
+  retrieveItems(): void {
     this.newsService.getAll().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
@@ -69,7 +64,7 @@ export class NewsOverviewComponent implements OnInit {
     });
   }
 
-  deleteNewsItem(key): void {
+  deleteItem(key): void {
     this.swalService.promptSwal("Dit kan niet worden terug gedraaid").then((result) => {
       if (result.value) {
         this.newsService.delete(key)
@@ -107,19 +102,8 @@ export class NewsOverviewComponent implements OnInit {
     }
   }
 
-  /**
-   * 
-   * @param item Modal item
-   */
-  setModalItem(item: NewsItem): void {
+  openModalItem(item: NewsItem): void {
     this.modalItem = item;
-  }
-
-  /**
-   * Open modal
-   * @param content Modal content
-   */
-  openModal(content) {
-    this.modalService.openModal(content);
+    this.modalService.openModal(this.modalContent);
   }
 }

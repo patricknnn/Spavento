@@ -8,4 +8,6 @@ export default class NewsItem {
   date?: number;
   location?: string;
   active?: boolean;
+  timestampCreated?: number;
+  timestampUpdated?: number;
 }

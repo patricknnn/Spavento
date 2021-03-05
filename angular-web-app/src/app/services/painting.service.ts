@@ -19,10 +19,12 @@ export class PaintingService {
   }
 
   public create(painting: Painting): any {
+    painting.timestampCreated = Date.now();
     return this.paintingsRef.add({ ...painting });
   }
 
   public update(id: string, data: any): Promise<void> {
+    data.timestampUpdated = Date.now();
     return this.paintingsRef.doc(id).update(data);
   }
 

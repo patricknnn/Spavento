@@ -19,11 +19,12 @@ export class NewsService {
   }
 
   public create(item: NewsItem): any {
-    item.date = Date.now();
+    item.timestampCreated = Date.now();
     return this.newsRef.add({ ...item });
   }
 
   public update(id: string, data: any): Promise<void> {
+    data.timestampUpdated = Date.now();
     return this.newsRef.doc(id).update(data);
   }
 

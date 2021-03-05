@@ -60,6 +60,16 @@
               </mat-form-field>
             </div>
 
+            <div class="form-group row">
+              <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+                <mat-label>Datum</mat-label>
+                <input matInput id="date" placeholder="Datum" name="date" [(ngModel)]="newsItem.date"
+                  [disabled]="formDisabled" [matDatepicker]="datePicker" #date="ngModel" />
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #datePicker></mat-datepicker>
+              </mat-form-field>
+            </div>
+
           </mat-card-content>
         </mat-card>
 
@@ -73,7 +83,7 @@
           <mat-card-content>
             <div class="form-group row">
               <div class="col-12">
-                <ngx-dropzone (change)="onFileSelect($event)" class="mat-dropzone">
+                <ngx-dropzone [multiple]="false" (change)="onFileSelect($event)" class="mat-dropzone">
                   <ngx-dropzone-label class="d-flex align-items-center">
                     <mat-icon class="mr-2">upload</mat-icon>
                     Kies afbeelding

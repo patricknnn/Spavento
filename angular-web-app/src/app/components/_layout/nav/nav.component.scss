@@ -1,7 +1,7 @@
 @import "../../../../variables";
 
 #mainNav {
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  box-shadow: 0 16px 24px 2px rgb(0 0 0 / 14%), 0 6px 30px 5px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
   background-color: $color-light;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
@@ -81,7 +81,7 @@
   }
 
   #mainNav.navbar-scrolled {
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    box-shadow: 0 16px 24px 2px rgb(0 0 0 / 14%), 0 6px 30px 5px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
     background-color: $color-light;
   }
   #mainNav.navbar-scrolled .navbar-brand {

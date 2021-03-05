@@ -63,14 +63,14 @@
               <ng-container matColumnDef="options">
                 <th mat-header-cell *matHeaderCellDef> Opties </th>
                 <td mat-cell *matCellDef="let item">
-                  <button mat-icon-button color="accent" (click)="setModalitem(item); openModal(modalContent)"
+                  <button mat-icon-button color="accent" (click)="openModalItem(item);"
                     class="mr-2">
                     <mat-icon>visibility</mat-icon>
                   </button>
                   <button mat-icon-button color="accent" class="mr-2">
                     <mat-icon>edit</mat-icon>
                   </button>
-                  <button mat-icon-button color="primary" (click)="deleteItem(item.key)">
+                  <button mat-icon-button color="primary" (click)="deleteItem(item.id)">
                     <mat-icon>delete</mat-icon>
                   </button>
                 </td>
@@ -100,7 +100,7 @@
 
 
 <!-- Modal -->
-<ng-template #content>
+<ng-template #modalContent>
 
   <mat-dialog-content>
     <div class="container-fluid">
@@ -134,7 +134,7 @@
 
       <div class="row mt-5">
         <div class="col-12">
-          <p>{{ newsItem.text }}</p>
+          <p>{{ modalItem.text }}</p>
         </div>
         <!-- <div class="col-md-4">
           <app-maps [title]="'Location'" [subtitle]="'The event will be here.'"

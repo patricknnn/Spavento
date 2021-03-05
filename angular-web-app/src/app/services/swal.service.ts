@@ -5,11 +5,11 @@ import Swal, { SweetAlertResult } from 'sweetalert2/dist/sweetalert2.js';
   providedIn: 'root'
 })
 export class SwalService {
-  showClass = { popup: 'animate__animated animate__bounceIn animate__faster' };
-  hideClass = { popup: 'animate__animated animate__bounceOut animate__faster' };
+  showClass = { popup: 'animate__animated animate__zoomIn animate__faster' };
+  hideClass = { popup: 'animate__animated animate__zoomOut animate__faster' };
   focusAnimation = () => {
     const popup = Swal.getPopup();
-    popup.classList.remove('animate__bounceIn');
+    popup.classList.remove('animate__zoomIn');
     setTimeout(() => {
       popup.classList.add('animate__headShake');
     });

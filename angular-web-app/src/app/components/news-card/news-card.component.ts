@@ -24,6 +24,8 @@ export class NewsCardComponent implements OnInit {
       this.imageClass = 'img-news-small';
     }
     this.formattedDate = this.getDate();
+    console.log(this.newsItem.date);
+    
   }
 
   openNewsItem(content): void {

@@ -53,15 +53,21 @@
             <h3>{{ newsItem.title }}</h3>
             <div class="txt-dark-muted">
               <hr class="hr-news">
-              <mat-icon class="inline-icon mr-2">today</mat-icon>
-              <span>{{ formattedDate }}</span>
-              <span class="px-2">|</span>
-              <mat-icon class="inline-icon mr-2">person</mat-icon>
-              <span>{{ newsItem.author }}</span>
-              <span class="px-2">|</span>
-              <mat-icon class="inline-icon mr-2">local_offer</mat-icon>
-              <span>{{ newsItem.category }}</span>
-              <hr class="hr-news">
+              <div *ngIf="newsItem.date">
+                <mat-icon class="inline-icon mr-2">today</mat-icon>
+                <span>{{ newsItem.date | date}}</span>
+                <span class="px-2">|</span>
+              </div>
+              <div *ngIf="newsItem.author">
+                <mat-icon class="inline-icon mr-2">person</mat-icon>
+                <span>{{ newsItem.author }}</span>
+                <span class="px-2">|</span>
+              </div>
+              <div *ngIf="newsItem.category">
+                <mat-icon class="inline-icon mr-2">local_offer</mat-icon>
+                <span>{{ newsItem.category }}</span>
+                <hr class="hr-news">
+              </div>
             </div>
           </div>
         </div>
