@@ -1,4 +1,5 @@
 export default class CtaContent {
+    id?: string;
     title?: string;
     subTitle?: string;
     text?: string;

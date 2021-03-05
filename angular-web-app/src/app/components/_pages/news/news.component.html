@@ -35,9 +35,8 @@
 
       <!-- News items -->
       <div id="resultsContainer" class="results-container row my-4" *ngIf="filteredNewsItems">
-        <app-news-card *ngFor="let item of filteredNewsItems; let gridIdx = index;" class="col-12 col-md-4 my-3"
+        <app-news-card *ngFor="let item of filteredNewsItems" class="col-12 my-3"
           [newsItem]="item" [ngClass]="{'animate__animated animate__bounceIn animate__faster': filterApplied}"
-          [ngStyle]="(filterApplied)?{ 'animation-delay': (150 + gridIdx * 1000 / filteredPaintings.length ) + 'ms' }:{}"
           [attr.data-category]="item.category">
         </app-news-card>
       </div>

@@ -1,4 +1,5 @@
 export default class FooterContent {
+  id?: string;
   footerText?: string;
   aboutTitle?: string;
   aboutText?: string;

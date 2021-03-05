@@ -21,6 +21,8 @@ export class PaintingCardComponent implements OnInit {
   }
 
   goToPaintingDetails(paintingId: string): void {
+    console.log(paintingId);
+    
     this.router.navigate(['/painting', { id: paintingId }]);
   }
 

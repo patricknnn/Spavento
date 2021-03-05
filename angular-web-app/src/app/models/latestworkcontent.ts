@@ -1,5 +1,6 @@
 
 export default class LatestWorkContent {
+    id?: string;
     title?: string;
     subTitle?: string;
     text?: string;

@@ -64,7 +64,7 @@
 
 <!-- Gallery -->
 <div id="resultsContainer" class="results-container row my-4" *ngIf="filteredPaintings">
-  <app-painting-card *ngFor="let painting of filteredPaintings; let gridIdx = index;" class="col-12 col-md-4 my-3"
+  <app-painting-card *ngFor="let painting of filteredPaintings" class="col-12 col-md-4 my-3"
     [ngClass]="{'animate__animated animate__bounceIn animate__faster': filterApplied}"
     [attr.data-category]="painting.category" [attr.data-paint]="painting.paint" [attr.data-material]="painting.material"
     [attr.data-status]="painting.status" [painting]="painting" [maxHeight]="maxHeight">

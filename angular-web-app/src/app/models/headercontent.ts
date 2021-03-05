@@ -1,4 +1,5 @@
 export default class HeaderContent {
+    id?: string;
     small?: boolean;
     typing?: boolean;
     paralax?: boolean;

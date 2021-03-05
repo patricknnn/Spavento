@@ -7,7 +7,7 @@ import NewsItem from 'src/app/models/newsitem';
 import { ModalService } from 'src/app/services/modal.service';
 import { NewsService } from 'src/app/services/news.service';
 import { SwalService } from 'src/app/services/swal.service';
-import Swal from 'sweetalert2';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-news-overview',

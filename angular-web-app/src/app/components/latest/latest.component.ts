@@ -28,7 +28,7 @@ export class LatestComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.ngOnInit();
+    this.observeBreakpoints();
   }
 
   // Open details page
@@ -63,5 +63,5 @@ export class LatestComponent implements OnInit, OnChanges {
       if (result.breakpoints[this.largeScreen]) { this.groupPaintings(3); }
     });
   }
-
+  
 }

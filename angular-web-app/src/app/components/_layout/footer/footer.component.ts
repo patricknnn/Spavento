@@ -18,9 +18,7 @@ export class FooterComponent implements OnChanges {
     window.onresize = this.siteFooter;
 
     // init footer
-    setTimeout(() => {
-      this.siteFooter();
-    }, 1500);
+    setTimeout(this.siteFooter, 1500);
   }
 
   // Add footer margin to content

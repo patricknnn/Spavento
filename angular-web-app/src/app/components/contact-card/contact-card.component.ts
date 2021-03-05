@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { SwalService } from 'src/app/services/swal.service';
 import ContactForm from '../../models/contactform';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-contact-card',
@@ -12,7 +14,9 @@ export class ContactCardComponent implements OnInit {
   model = new ContactForm();
   subjects = ['Question', 'Other'];
 
-  constructor() { }
+  constructor(
+    private swalService: SwalService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -22,7 +26,14 @@ export class ContactCardComponent implements OnInit {
   }
 
   resetForm() {
-    this.model = new ContactForm();
+    this.swalService.promptSwal("Alle ingevoerde data zal worden verwijderd").then((result) => {
+      if (result.value) {
+        this.model = new ContactForm();
+        this.swalService.successSwal("Formulier leeg gemaakt");
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        this.swalService.cancelSwal("Formulier niet leeg gemaakt");
+      }
+    });
   }
 
 }

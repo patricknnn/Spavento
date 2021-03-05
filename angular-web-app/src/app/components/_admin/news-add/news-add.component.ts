@@ -4,7 +4,7 @@ import NewsItem from 'src/app/models/newsitem';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 import { NewsService } from 'src/app/services/news.service';
 import { SwalService } from 'src/app/services/swal.service';
-import Swal from 'sweetalert2';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-news-add',
@@ -46,7 +46,7 @@ export class NewsAddComponent implements OnInit {
     // loading swal
     this.swalService.loadingSwal("Nieuws item opslaan");
     // Upload files
-    if (this.selectedFiles.length == 1) {
+    if (this.selectedFiles.length <= 1) {
       const { downloadUrl, uploadProgress } = this.uploadService.pushFileToStorageAndReturnMetadata(new FileUpload(this.selectedFiles[0]));
       downloadUrl.subscribe((downloadUrl) => {
         // add url to painting
@@ -104,6 +104,8 @@ export class NewsAddComponent implements OnInit {
    */
   resetFormData(): void {
     this.newsItem = new NewsItem();
+    this.newsItem.author = "Rolien Schrik";
+    this.newsItem.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque orci elit, tincidunt in egestas ut, condimentum vitae urna. Aenean ullamcorper est sit amet mattis interdum. Vestibulum dictum tortor dictum orci mollis facilisis. Pellentesque augue purus, scelerisque sit amet luctus eget, fringilla elementum sapien. Nam consectetur est at tortor viverra, eu bibendum justo placerat. Aenean non sodales erat, eget ullamcorper eros. Donec ut laoreet augue."; 
     this.selectedFiles = [];
     this.formDisabled = false;
   }
