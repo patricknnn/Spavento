@@ -1,4 +1,4 @@
-import NewsItem from "./app/models/newsitem";
+import { NewsItem } from "./app/models/newsitem";
 
 export const NEWS: NewsItem[] = [
     new NewsItem(

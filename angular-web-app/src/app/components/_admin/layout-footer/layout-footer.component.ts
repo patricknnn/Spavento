@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import FooterContent from 'src/app/models/footercontent';
+import { FooterContent } from 'src/app/models/footercontent';
 import { ContentService } from 'src/app/services/content.service';
 
 @Component({

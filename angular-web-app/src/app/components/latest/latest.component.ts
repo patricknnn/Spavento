@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { PaintingService } from '../../services/painting.service';
-import Painting from '../../models/painting';
+import { Painting } from '../../models/painting';
 import { Router } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
 

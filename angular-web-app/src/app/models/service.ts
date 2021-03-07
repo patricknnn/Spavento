@@ -1,4 +1,4 @@
-export default class Service {
+export class Service {
   icon?: string;
   title?: string;
   description?: string;

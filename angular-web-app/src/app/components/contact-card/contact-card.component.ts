@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SwalService } from 'src/app/services/swal.service';
-import ContactForm from '../../models/contactform';
+import { ContactForm } from '../../models/contactform';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
@@ -21,8 +21,8 @@ export class ContactCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit() { 
-    this.submitted = true; 
+  onSubmit() {
+    this.submitted = true;
   }
 
   resetForm() {

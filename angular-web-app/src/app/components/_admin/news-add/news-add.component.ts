@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FileUpload } from 'src/app/models/fileupload';
-import NewsItem from 'src/app/models/newsitem';
+import { NewsItem } from 'src/app/models/newsitem';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 import { NewsService } from 'src/app/services/news.service';
 import { SwalService } from 'src/app/services/swal.service';
@@ -105,7 +105,7 @@ export class NewsAddComponent implements OnInit {
   resetFormData(): void {
     this.newsItem = new NewsItem();
     this.newsItem.author = "Rolien Schrik";
-    this.newsItem.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque orci elit, tincidunt in egestas ut, condimentum vitae urna. Aenean ullamcorper est sit amet mattis interdum. Vestibulum dictum tortor dictum orci mollis facilisis. Pellentesque augue purus, scelerisque sit amet luctus eget, fringilla elementum sapien. Nam consectetur est at tortor viverra, eu bibendum justo placerat. Aenean non sodales erat, eget ullamcorper eros. Donec ut laoreet augue."; 
+    this.newsItem.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque orci elit, tincidunt in egestas ut, condimentum vitae urna. Aenean ullamcorper est sit amet mattis interdum. Vestibulum dictum tortor dictum orci mollis facilisis. Pellentesque augue purus, scelerisque sit amet luctus eget, fringilla elementum sapien. Nam consectetur est at tortor viverra, eu bibendum justo placerat. Aenean non sodales erat, eget ullamcorper eros. Donec ut laoreet augue.";
     this.selectedFiles = [];
     this.formDisabled = false;
   }

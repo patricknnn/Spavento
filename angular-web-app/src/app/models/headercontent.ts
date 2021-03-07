@@ -1,5 +1,6 @@
-export default class HeaderContent {
-    id?: string;
+import { FirebaseEntity } from "./firebaseentity";
+
+export class HeaderContent extends FirebaseEntity {
     small?: boolean;
     typing?: boolean;
     paralax?: boolean;

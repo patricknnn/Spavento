@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import CtaContent from 'src/app/models/ctacontent';
-import FeaturedContent from 'src/app/models/featuredcontent';
-import LatestNewsContent from 'src/app/models/latestnewscontent';
-import LatestWorkContent from 'src/app/models/latestworkcontent';
-import PageTitle from 'src/app/models/pagetitle';
-import ServiceContent from 'src/app/models/servicecontent';
+import { CtaContent } from 'src/app/models/ctacontent';
+import { FeaturedContent } from 'src/app/models/featuredcontent';
+import { LatestNewsContent } from 'src/app/models/latestnewscontent';
+import { LatestWorkContent } from 'src/app/models/latestworkcontent';
+import { PageTitle } from 'src/app/models/pagetitle';
+import { ServiceContent } from 'src/app/models/servicecontent';
 import { ContentService } from 'src/app/services/content.service';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import LatestNewsContent from 'src/app/models/latestnewscontent';
+import { LatestNewsContent } from 'src/app/models/latestnewscontent';
 import { ContentService } from 'src/app/services/content.service';
 
 @Component({

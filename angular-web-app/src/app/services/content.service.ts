@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
-import ContactFormContent from '../models/contactformcontent';
-import CtaContent from '../models/ctacontent';
-import FeaturedContent from '../models/featuredcontent';
-import FooterContent from '../models/footercontent';
-import GalleryContent from '../models/gallerycontent';
-import HeaderContent from '../models/headercontent';
-import LatestNewsContent from '../models/latestnewscontent';
-import LatestWorkContent from '../models/latestworkcontent';
-import NavContent from '../models/navcontent';
+import { ContactFormContent } from '../models/contactformcontent';
+import { CtaContent } from '../models/ctacontent';
+import { FeaturedContent } from '../models/featuredcontent';
+import { FooterContent } from '../models/footercontent';
+import { GalleryContent } from '../models/gallerycontent';
+import { HeaderContent } from '../models/headercontent';
+import { LatestNewsContent } from '../models/latestnewscontent';
+import { LatestWorkContent } from '../models/latestworkcontent';
+import { NavContent } from '../models/navcontent';
 import { NavLink } from '../models/navlink';
-import NewsContent from '../models/newscontent';
-import PageNotFoundContent from '../models/pagenotfoundcontent';
-import PageTitle from '../models/pagetitle';
-import ServiceContent from '../models/servicecontent';
+import { NewsContent } from '../models/newscontent';
+import { PageNotFoundContent } from '../models/pagenotfoundcontent';
+import { PageTitle } from '../models/pagetitle';
+import { ServiceContent } from '../models/servicecontent';
 
 @Injectable({
   providedIn: 'root',

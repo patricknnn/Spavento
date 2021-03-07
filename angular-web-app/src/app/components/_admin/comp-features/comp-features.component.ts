@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
-import FeaturedContent from 'src/app/models/featuredcontent';
-import Painting from 'src/app/models/painting';
+import { FeaturedContent } from 'src/app/models/featuredcontent';
+import { Painting } from 'src/app/models/painting';
 import { ContentService } from 'src/app/services/content.service';
 import { PaintingService } from 'src/app/services/painting.service';
 

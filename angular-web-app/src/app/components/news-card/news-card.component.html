@@ -15,7 +15,7 @@
         <div class="txt-dark-muted mb-3">
           <hr class="hr-news">
           <mat-icon class="inline-icon mr-2">today</mat-icon>
-          <span>{{ formattedDate }}</span>
+          <span>{{ newsItem.date | date}}</span>
           <span class="px-2">|</span>
           <mat-icon class="inline-icon mr-2">person</mat-icon>
           <span>{{ newsItem.author }}</span>

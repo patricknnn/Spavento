@@ -1,7 +1,7 @@
+import { FirebaseEntity } from "./firebaseentity";
 import { NavLink } from "./navlink";
 
-export default class NavContent {
-  id?: string;
+export class NavContent extends FirebaseEntity {
   brandImage?: string;
   brandName?: string;
   navLinks?: NavLink[];

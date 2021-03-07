@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import PageTitle from 'src/app/models/pagetitle';
+import { PageTitle } from 'src/app/models/pagetitle';
 import { ContentService } from 'src/app/services/content.service';
 
 @Component({

@@ -1,7 +1,7 @@
-import Service from "./service"
+import { FirebaseEntity } from "./firebaseentity";
+import { Service } from "./service"
 
-export default class ServiceContent {
-    id?: string;
+export class ServiceContent extends FirebaseEntity {
     title?: string;
     subTitle?: string;
     text?: string;

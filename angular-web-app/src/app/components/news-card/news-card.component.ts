@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalService } from 'src/app/services/modal.service';
-import NewsItem from '../../models/newsitem';
+import { NewsItem } from '../../models/newsitem';
 
 @Component({
   selector: 'app-news-card',
@@ -13,7 +13,6 @@ export class NewsCardComponent implements OnInit {
   colOne = 'col-md-3';
   colTwo = 'col-md-9';
   imageClass = '';
-  formattedDate: string;
 
   constructor(private modalService: ModalService) { }
 
@@ -23,7 +22,6 @@ export class NewsCardComponent implements OnInit {
       this.colTwo = 'col-12';
       this.imageClass = 'img-news-small';
     }
-    this.formattedDate = this.getDate();
     console.log(this.newsItem.date);
     
   }
@@ -31,12 +29,4 @@ export class NewsCardComponent implements OnInit {
   openNewsItem(content): void {
     this.modalService.openModal(content);
   }
-
-  getDate(): string {
-    let date = new Date(this.newsItem.date);
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return date.toLocaleDateString('nl-NL', options);
-  }
-
-
 }

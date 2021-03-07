@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { map } from 'rxjs/operators';
-import NewsItem from 'src/app/models/newsitem';
+import { NewsItem } from 'src/app/models/newsitem';
 import { ModalService } from 'src/app/services/modal.service';
 import { NewsService } from 'src/app/services/news.service';
 import { SwalService } from 'src/app/services/swal.service';

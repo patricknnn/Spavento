@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import Painting from '../../models/painting';
+import { Painting } from '../../models/painting';
 import { PaintingService } from '../../services/painting.service';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';

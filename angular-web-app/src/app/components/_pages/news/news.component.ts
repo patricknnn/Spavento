@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import NewsItem from 'src/app/models/newsitem';
+import { NewsItem } from 'src/app/models/newsitem';
 import { NewsService } from '../../../services/news.service';
 import { ContentService } from 'src/app/services/content.service';
-import PageTitle from 'src/app/models/pagetitle';
-import NewsContent from 'src/app/models/newscontent';
+import { PageTitle } from 'src/app/models/pagetitle';
+import { NewsContent } from 'src/app/models/newscontent';
 import { map } from 'rxjs/operators';
 
 @Component({

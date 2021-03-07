@@ -1,5 +1,6 @@
-export default class ContactFormContent {
-    id?: string;
+import { FirebaseEntity } from "./firebaseentity";
+
+export class ContactFormContent extends FirebaseEntity {
     title?: string;
     subTitle?: string;
     text?: string;

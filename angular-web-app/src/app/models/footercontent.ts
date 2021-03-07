@@ -1,5 +1,6 @@
-export default class FooterContent {
-  id?: string;
+import { FirebaseEntity } from "./firebaseentity";
+
+export class FooterContent extends FirebaseEntity {
   footerText?: string;
   aboutTitle?: string;
   aboutText?: string;

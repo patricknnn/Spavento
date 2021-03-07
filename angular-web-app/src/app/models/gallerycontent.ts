@@ -1,5 +1,6 @@
-export default class GalleryContent {
-    id?: string;
+import { FirebaseEntity } from "./firebaseentity";
+
+export class GalleryContent extends FirebaseEntity {
     title?: string;
     subTitle?: string;
     text?: string;

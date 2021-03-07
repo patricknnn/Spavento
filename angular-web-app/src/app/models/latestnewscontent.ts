@@ -1,6 +1,6 @@
+import { FirebaseEntity } from "./firebaseentity";
 
-export default class LatestNewsContent {
-    id?: string;
+export class LatestNewsContent extends FirebaseEntity {
     title?: string;
     subTitle?: string;
     text?: string;

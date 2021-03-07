@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import ContactFormContent from 'src/app/models/contactformcontent';
-import PageTitle from 'src/app/models/pagetitle';
-import ServiceContent from 'src/app/models/servicecontent';
+import { ContactFormContent } from 'src/app/models/contactformcontent';
+import { PageTitle } from 'src/app/models/pagetitle';
+import { ServiceContent } from 'src/app/models/servicecontent';
 import { ContentService } from 'src/app/services/content.service';
 
 @Component({

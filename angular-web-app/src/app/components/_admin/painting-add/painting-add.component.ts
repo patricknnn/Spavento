@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { Observable } from 'rxjs';
 import { FileUpload } from 'src/app/models/fileupload';
-import Painting from 'src/app/models/painting';
+import { Painting } from 'src/app/models/painting';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 import { PaintingService } from 'src/app/services/painting.service';
 import { SwalService } from 'src/app/services/swal.service';
@@ -165,9 +165,9 @@ export class PaintingAddComponent implements OnInit {
 
   getMockPainting(): Painting {
     let painting = new Painting();
-    painting.artist =  'Rolien Schrik';
-    painting.title =  'Dessert car';
-    painting.description =  'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam. Nullam molestie vehicula ipsum a consequat. Vivamus efficitur metus ut nulla consectetur porta. Proin auctor dui ut orci aliquet, sit amet ultricies justo mattis. Mauris nec massa sit amet metus dignissim placerat elementum a justo. Nunc sit amet facilisis velit, ac varius enim.';
+    painting.artist = 'Rolien Schrik';
+    painting.title = 'Dessert car';
+    painting.description = 'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam. Nullam molestie vehicula ipsum a consequat. Vivamus efficitur metus ut nulla consectetur porta. Proin auctor dui ut orci aliquet, sit amet ultricies justo mattis. Mauris nec massa sit amet metus dignissim placerat elementum a justo. Nunc sit amet facilisis velit, ac varius enim.';
     painting.material = 'Doek';
     painting.paint = 'Oil';
     painting.status = 'Beschikbaar';

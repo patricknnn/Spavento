@@ -5,7 +5,7 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import HeaderContent from 'src/app/models/headercontent';
+import { HeaderContent } from 'src/app/models/headercontent';
 import { ContentService } from 'src/app/services/content.service';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import Painting from 'src/app/models/painting';
+import { Painting } from 'src/app/models/painting';
 import { ModalService } from 'src/app/services/modal.service';
 
 @Component({

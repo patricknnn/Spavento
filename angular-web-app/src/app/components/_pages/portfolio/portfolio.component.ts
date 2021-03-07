@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import GalleryContent from 'src/app/models/gallerycontent';
-import PageTitle from 'src/app/models/pagetitle';
+import { GalleryContent } from 'src/app/models/gallerycontent';
+import { PageTitle } from 'src/app/models/pagetitle';
 import { ContentService } from 'src/app/services/content.service';
 
 @Component({
