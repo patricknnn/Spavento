@@ -21,7 +21,7 @@ export class CompLatestNewsComponent implements OnInit {
   }
 
   reset(): void {
-    this.latestNews = this.contentService.getLatestNewsContent();
+    this.latestNews = this.contentService.getLatestNewsContent()[0];
   }
 
   setActive(input, e): void {

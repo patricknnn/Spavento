@@ -17,8 +17,8 @@ export class AppComponent {
   footerContent: FooterContent;
 
   constructor(private contentService: ContentService) {
-    this.navContent = this.contentService.getNavContent();
-    this.footerContent = this.contentService.getFooterContent();
+    this.navContent = this.contentService.getNavContent()[0];
+    this.footerContent = this.contentService.getFooterContent()[0];
   }
 
   prepareRoute(outlet: RouterOutlet): any {

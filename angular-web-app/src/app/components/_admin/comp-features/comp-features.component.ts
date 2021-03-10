@@ -40,7 +40,7 @@ export class CompFeaturesComponent implements OnInit {
   }
 
   reset(): void {
-    this.featured = this.contentService.getFeaturedContent();
+    this.featured = this.contentService.getFeaturedContent()[0];
     this.retrievePaintings();
   }
 

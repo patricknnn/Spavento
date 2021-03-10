@@ -16,7 +16,7 @@ export class LayoutHeaderComponent implements OnInit {
   constructor(private contentService: ContentService) { }
 
   ngOnInit(): void {
-    this.headerContent = this.contentService.getHeaderContent();
+    this.reset();
     let header = document.getElementById('header');
     if (header) {
       header.classList.add('mat-elevation-z4');
@@ -32,6 +32,6 @@ export class LayoutHeaderComponent implements OnInit {
   }
 
   reset(): void {
-    this.headerContent = this.contentService.getHeaderContent();
+    this.headerContent = this.contentService.getHeaderContent()[0];
   }
 }

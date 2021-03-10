@@ -17,9 +17,9 @@ export class ContactComponent implements OnInit {
   constructor(private contentService: ContentService) { }
 
   ngOnInit(): void {
-    this.pageTitle = this.contentService.getPageTitle('contact');
-    this.contactCards = this.contentService.getContactCardsContent();
-    this.contactForm = this.contentService.getContactFormContent();
+    this.pageTitle = this.contentService.getPageTitle('contact')[0];
+    this.contactCards = this.contentService.getContactCardsContent()[0];
+    this.contactForm = this.contentService.getContactFormContent()[0];
   }
 
 }

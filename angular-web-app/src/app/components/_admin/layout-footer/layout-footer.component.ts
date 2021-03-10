@@ -16,7 +16,7 @@ export class LayoutFooterComponent implements OnInit {
   constructor(private contentService: ContentService) { }
 
   ngOnInit(): void {
-    this.footerContent = this.contentService.getFooterContent();
+    this.reset();
   }
 
   onSubmit() {
@@ -24,7 +24,7 @@ export class LayoutFooterComponent implements OnInit {
   }
 
   reset(): void {
-    this.footerContent = this.contentService.getFooterContent();
+    this.footerContent = this.contentService.getFooterContent()[0];
   }
 
 }

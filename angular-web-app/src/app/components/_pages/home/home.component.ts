@@ -27,22 +27,22 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.pageTitle) {
-      this.pageTitle = this.contentService.getPageTitle('home');
+      this.pageTitle = this.contentService.getPageTitle('home')[0];
     }
     if (!this.services) {
-      this.services = this.contentService.getServicesContent();
+      this.services = this.contentService.getServicesContent()[0];
     }
     if (!this.featured) {
-      this.featured = this.contentService.getFeaturedContent();
+      this.featured = this.contentService.getFeaturedContent()[0];
     }
     if (!this.latestNews) {
-      this.latestNews = this.contentService.getLatestNewsContent();
+      this.latestNews = this.contentService.getLatestNewsContent()[0];
     }
     if (!this.latestWork) {
-      this.latestWork = this.contentService.getLatestWorkContent();
+      this.latestWork = this.contentService.getLatestWorkContent()[0];
     }
     if (!this.cta) {
-      this.cta = this.contentService.getCtaContent();
+      this.cta = this.contentService.getCtaContent()[0];
     }
   }
 

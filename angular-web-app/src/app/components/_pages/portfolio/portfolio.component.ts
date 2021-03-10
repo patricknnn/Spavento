@@ -15,7 +15,7 @@ export class PortfolioComponent implements OnInit {
   constructor(private contentService: ContentService) { }
 
   ngOnInit(): void {
-    this.pageTitle = this.contentService.getPageTitle('portfolio');
-    this.galleryContent = this.contentService.getGalleryContent();
+    this.pageTitle = this.contentService.getPageTitle('portfolio')[0];
+    this.galleryContent = this.contentService.getGalleryContent()[0];
   }
 }

@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit, OnChanges {
   constructor(private contentService: ContentService) { }
 
   ngOnInit(): void {
-    this.headerContent = this.contentService.getHeaderContent();
+    this.headerContent = this.contentService.getHeaderContent()[0];
     // Set defaults if none provided
     this.setDefaults();
     // Init desired effects

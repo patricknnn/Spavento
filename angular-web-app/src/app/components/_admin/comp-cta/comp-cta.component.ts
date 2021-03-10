@@ -21,7 +21,7 @@ export class CompCtaComponent implements OnInit {
   }
 
   reset(): void {
-    this.cta = this.contentService.getCtaContent();
+    this.cta = this.contentService.getCtaContent()[0];
   }
 
 }

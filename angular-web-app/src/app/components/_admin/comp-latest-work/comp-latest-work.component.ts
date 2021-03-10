@@ -21,7 +21,7 @@ export class CompLatestWorkComponent implements OnInit {
   }
 
   reset(): void {
-    this.latestWork = this.contentService.getLatestWorkContent();
+    this.latestWork = this.contentService.getLatestWorkContent()[0];
   }
 
   setActive(input, e): void {

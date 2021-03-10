@@ -29,8 +29,8 @@ export class NewsComponent implements OnInit {
 
   ngOnInit(): void {
     this.retrieveNews();
-    this.pageTitle = this.contentService.getPageTitle('news');
-    this.newsContent = this.contentService.getNewsContent();
+    this.pageTitle = this.contentService.getPageTitle('news')[0];
+    this.newsContent = this.contentService.getNewsContent()[0];
     this.categories = this.newsService.getCategories();
     this.filterApplied = true;
   }

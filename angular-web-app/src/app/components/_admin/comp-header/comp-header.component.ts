@@ -23,7 +23,7 @@ export class CompHeaderComponent implements OnInit {
 
   reset(): void {
     if (this.page) {
-      this.pageTitle = this.contentService.getPageTitle(this.page);
+      this.pageTitle = this.contentService.getPageTitle(this.page)[0];
     }
   }
 

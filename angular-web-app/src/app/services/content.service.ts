@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { ContactFormContent } from '../models/contactformcontent';
 import { CtaContent } from '../models/ctacontent';
 import { FeaturedContent } from '../models/featuredcontent';
@@ -8,7 +9,6 @@ import { HeaderContent } from '../models/headercontent';
 import { LatestNewsContent } from '../models/latestnewscontent';
 import { LatestWorkContent } from '../models/latestworkcontent';
 import { NavContent } from '../models/navcontent';
-import { NavLink } from '../models/navlink';
 import { NewsContent } from '../models/newscontent';
 import { PageNotFoundContent } from '../models/pagenotfoundcontent';
 import { PageTitle } from '../models/pagetitle';
@@ -18,135 +18,243 @@ import { ServiceContent } from '../models/servicecontent';
   providedIn: 'root',
 })
 export class ContentService {
-  constructor() { }
+  private navPath = '/nav';
+  private footerPath = '/footer';
+  private headerPath = '/header';
+  private servicesPath = '/services';
+  private featuredPath = '/featured';
+  private latestnewsPath = '/featured';
+  private latestworkPath = '/featured';
+  private ctaPath = '/featured';
+  private galleryPath = '/featured';
+  private newsPath = '/news';
+  private contactcardsPath = '/news';
+  private contactFormPath = '/news';
+  private pagenotfoundPath = '/news';
+  private homeTitlePath = '/hometitle';
+  private portfolioTitlePath = '/portfoliotitle';
+  private newsTitlePath = '/newstitle';
+  private contactTitlePath = '/contacttitle';
+  private pnfTitlePath = '/pnftitle';
+
+  navRef: AngularFirestoreCollection<NavContent>;
+  footerRef: AngularFirestoreCollection<FooterContent>;
+  headerRef: AngularFirestoreCollection<HeaderContent>;
+  servicesRef: AngularFirestoreCollection<ServiceContent>;
+  featuredRef: AngularFirestoreCollection<FeaturedContent>;
+  latestnewsRef: AngularFirestoreCollection<LatestNewsContent>;
+  latestworkRef: AngularFirestoreCollection<LatestWorkContent>;
+  ctaRef: AngularFirestoreCollection<CtaContent>;
+  galleryRef: AngularFirestoreCollection<GalleryContent>;
+  newsRef: AngularFirestoreCollection<NewsContent>;
+  contactcardsRef: AngularFirestoreCollection<ServiceContent>;
+  contactformRef: AngularFirestoreCollection<ContactFormContent>;
+  pagenotfoundRef: AngularFirestoreCollection<PageNotFoundContent>;
+  hometitleRef: AngularFirestoreCollection<PageTitle>;
+  portfoliotitleRef: AngularFirestoreCollection<PageTitle>;
+  nestitleRef: AngularFirestoreCollection<PageTitle>;
+  contacttitleRef: AngularFirestoreCollection<PageTitle>;
+  pnftitleRef: AngularFirestoreCollection<PageTitle>;
+
+  constructor(private db: AngularFirestore) {
+    this.navRef = db.collection(this.navPath);
+    this.footerRef = db.collection(this.footerPath);
+    this.headerRef = db.collection(this.headerPath);
+  }
 
   /**
    * Layout content
    */
-  public getNavContent(): NavContent {
-    let content = new NavContent();
-    content.brandImage = '/assets/img/favicon/favicon-96x96.png';
-    content.brandName = 'Spavento';
-    content.navLinks = [
-      new NavLink('Home', '/home', true),
-      new NavLink('Portfolio', '/portfolio', true),
-      new NavLink('Nieuws', '/news', true),
-      new NavLink('Contact', '/contact', true),
-      new NavLink('CMS', '/cms', true),
-    ];
-    return content;
+  public getNavContent(): AngularFirestoreCollection<NavContent> {
+    return this.db.collection(this.navPath, ref => ref
+      .orderBy('timestampCreated')
+      .limit(1));
   }
-  public getFooterContent(): FooterContent {
-    let content = new FooterContent();
-    content.footerText = '© 2020 Spavento Paintings';
-    content.aboutTitle = 'Over';
-    content.aboutText = 'Lorem ipsum dolor sit amet consectetur adip elit. Maiores deleniti explicabo voluptatem quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus.';
-    content.socialTitle = 'Social media';
-    content.socialText = 'Volg ons om up to date te blijven';
-    content.facebookLink = 'facebook.com';
-    content.twitterLink = 'twitter.com';
-    content.instagramLink = 'instagram.com';
-    return content;
+  public saveNavContent(data: NavContent): any {
+    data.timestampCreated = Date.now();
+    data.navLinks = this.firebaseSerialize(data.navLinks);
+    return this.navRef.add({ ...data });
   }
 
-  public getHeaderContent(): HeaderContent {
-    let content = new HeaderContent();
-    content.paralax = true;
-    content.typing = true;
-    content.small = true;
-    content.defaultImage = '../../../../assets/img/dessertcar.jpg';
-    content.defaultTitle = 'Spavento';
-    content.defaultSubtitle = 'Paintings & Artwork';
-    return content;
+  // Footer
+  public getFooterContent(): AngularFirestoreCollection<FooterContent> {
+    return this.db.collection(this.footerPath, ref => ref
+      .orderBy('timestampCreated')
+      .limit(1));
+  }
+  public saveFooterContent(data: FooterContent): any {
+    data.timestampCreated = Date.now();
+    return this.footerRef.add({ ...data });
+  }
+
+  // Header
+  public getHeaderContent(): AngularFirestoreCollection<HeaderContent> {
+    return this.db.collection(this.headerPath, ref => ref
+      .orderBy('timestampCreated')
+      .limit(1));
+  }
+  public saveHeaderContent(data: HeaderContent): any {
+    data.timestampCreated = Date.now();
+    return this.headerRef.add({ ...data });
   }
 
   /**
    * Page content
    */
-  public getServicesContent(): ServiceContent {
-    let content = new ServiceContent();
-    content.active = true;
-    content.title = "Diensten";
-    content.subTitle = "Mijn aanbod aan";
-    content.text = "Neem gerust contact op voor meer informatie";
-    return content;
+  public getServicesContent(): AngularFirestoreCollection<ServiceContent> {
+    return this.db.collection(this.servicesPath, ref => ref
+      .orderBy('timestampCreated')
+      .limit(1));
+  }
+  public saveServicesContent(data: ServiceContent): any {
+    data.timestampCreated = Date.now();
+    return this.servicesRef.add({ ...data });
   }
 
-  public getFeaturedContent(): FeaturedContent {
-    let content = new FeaturedContent();
-    return content;
+  // Featured
+  public getFeaturedContent(): AngularFirestoreCollection<FeaturedContent> {
+    return this.db.collection(this.featuredPath, ref => ref
+      .orderBy('timestampCreated')
+      .limit(1));
+  }
+  public saveFeaturedContent(data: FeaturedContent): any {
+    data.timestampCreated = Date.now();
+    return this.featuredRef.add({ ...data });
   }
 
-  public getLatestNewsContent(): LatestNewsContent {
-    let content = new LatestNewsContent();
-    return content;
+  // News
+  public getLatestNewsContent(): AngularFirestoreCollection<LatestNewsContent> {
+    return this.db.collection(this.latestnewsPath, ref => ref
+      .orderBy('timestampCreated')
+      .limit(1));
+  }
+  public saveLatestNewsContent(data: LatestNewsContent): any {
+    data.timestampCreated = Date.now();
+    return this.latestnewsRef.add({ ...data });
   }
 
-  public getLatestWorkContent(): LatestWorkContent {
-    let content = new LatestWorkContent();
-    return content;
+  // Work
+  public getLatestWorkContent(): AngularFirestoreCollection<LatestWorkContent> {
+    return this.db.collection(this.latestworkPath, ref => ref
+      .orderBy('timestampCreated')
+      .limit(1));
+  }
+  public saveLatestWorkContent(data: LatestWorkContent): any {
+    data.timestampCreated = Date.now();
+    return this.latestworkRef.add({ ...data });
   }
 
-  public getCtaContent(): CtaContent {
-    let content = new CtaContent();
-    return content;
+  // CTA
+  public getCtaContent(): AngularFirestoreCollection<CtaContent> {
+    return this.db.collection(this.ctaPath, ref => ref
+      .orderBy('timestampCreated')
+      .limit(1));
+  }
+  public saveCtaContent(data: CtaContent): any {
+    data.timestampCreated = Date.now();
+    return this.ctaRef.add({ ...data });
   }
 
-  public getGalleryContent(): GalleryContent {
-    let content = new GalleryContent();
-    content.title = "Gallerij";
-    content.subTitle = "Schilderij";
-    content.text = "Een overzicht van mijn werk";
-    content.maxHeight = "250px";
-    return content;
+  // Gallery
+  public getGalleryContent(): AngularFirestoreCollection<GalleryContent> {
+    return this.db.collection(this.galleryPath, ref => ref
+      .orderBy('timestampCreated')
+      .limit(1));
+  }
+  public saveGalleryContent(data: GalleryContent): any {
+    data.timestampCreated = Date.now();
+    return this.galleryRef.add({ ...data });
   }
 
-  public getNewsContent(): NewsContent {
-    let content = new NewsContent();
-    return content;
+  // News
+  public getNewsContent(): AngularFirestoreCollection<NewsContent> {
+    return this.db.collection(this.newsPath, ref => ref
+      .orderBy('timestampCreated')
+      .limit(1));
+  }
+  public saveNewsContent(data: NewsContent): any {
+    data.timestampCreated = Date.now();
+    return this.newsRef.add({ ...data });
   }
 
-  public getContactCardsContent(): ServiceContent {
-    let content = new ServiceContent();
-    return content;
+  // Contact cards
+  public getContactCardsContent(): AngularFirestoreCollection<ServiceContent> {
+    return this.db.collection(this.contactcardsPath, ref => ref
+      .orderBy('timestampCreated')
+      .limit(1));
+  }
+  public saveContactCardsContent(data: ServiceContent): any {
+    data.timestampCreated = Date.now();
+    return this.contactcardsRef.add({ ...data });
   }
 
-  public getContactFormContent(): ContactFormContent {
-    let content = new ContactFormContent();
-    return content;
+  // Contact form
+  public getContactFormContent(): AngularFirestoreCollection<ContactFormContent> {
+    return this.db.collection(this.contactFormPath, ref => ref
+      .orderBy('timestampCreated')
+      .limit(1));
+  }
+  public saveContactFormContent(data: ContactFormContent): any {
+    data.timestampCreated = Date.now();
+    return this.contactformRef.add({ ...data });
   }
 
-  public getPageNotFoundContent(): PageNotFoundContent {
-    let content = new PageNotFoundContent();
-    return content;
+  // Page not found
+  public getPageNotFoundContent(): AngularFirestoreCollection<PageNotFoundContent> {
+    return this.db.collection(this.pagenotfoundPath, ref => ref
+      .orderBy('timestampCreated')
+      .limit(1));
+  }
+  public savePageNotFoundContent(data: PageNotFoundContent): any {
+    data.timestampCreated = Date.now();
+    return this.pagenotfoundRef.add({ ...data });
   }
 
-  public getPageTitle(page: string): PageTitle {
-    let content = new PageTitle();
+  // Page title
+  public getPageTitle(page: string): AngularFirestoreCollection<PageTitle> {
+    let path: string;
     switch (page) {
       case 'home':
-        content.title = 'Spavento';
-        content.subTitle = 'Paintings & Artwork';
-        return content;
+        path = this.homeTitlePath;
       case 'portfolio':
-        content.title = 'Portfolio';
-        content.subTitle = 'Een overzicht van mijn werk';
-        return content;
+        path = this.portfolioTitlePath;
       case 'news':
-        content.title = 'Nieuws';
-        content.subTitle = 'Blijf op de hoogte';
-        return content;
+        path = this.newsTitlePath;
       case 'contact':
-        content.title = 'Contact';
-        content.subTitle = 'Zo bereik je ons';
-        return content;
+        path = this.contactTitlePath;
       case '404':
-        content.title = 'Cockie, een 404';
-        content.subTitle = 'Pagina niet gevonden jong kerol.';
-        return content;
+        path = this.pnfTitlePath;
       default:
         break;
     }
-    return content;
+    if (path) {
+      return this.db.collection(path, ref => ref
+        .orderBy('timestampCreated')
+        .limit(1));
+    }
+  }
+
+  public savePageTitle(page: string, data: PageTitle): any {
+    let ref: AngularFirestoreCollection<any>;
+    switch (page) {
+      case 'home':
+        ref = this.hometitleRef;
+      case 'portfolio':
+        ref = this.portfoliotitleRef;
+      case 'news':
+        ref = this.nestitleRef;
+      case 'contact':
+        ref = this.contacttitleRef;
+      case '404':
+        ref = this.pnftitleRef;
+      default:
+        break;
+    }
+    data.timestampCreated = Date.now();
+    return ref.add({ ...data });
+  }
+
+  firebaseSerialize<T>(object: T) {
+    return JSON.parse(JSON.stringify(object));
   }
 }

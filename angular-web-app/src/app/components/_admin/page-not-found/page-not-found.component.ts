@@ -29,8 +29,8 @@ export class PageNotFoundAdminComponent implements OnInit {
   }
 
   reset(): void {
-    this.pageTitle = this.contentService.getPageTitle('404');
-    this.pageContent = this.contentService.getPageNotFoundContent();
+    this.pageTitle = this.contentService.getPageTitle('404')[0];
+    this.pageContent = this.contentService.getPageNotFoundContent()[0];
   }
 
   setStep(i: number) {

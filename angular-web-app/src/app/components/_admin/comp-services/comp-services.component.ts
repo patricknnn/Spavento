@@ -21,7 +21,7 @@ export class CompServicesComponent implements OnInit {
   }
 
   reset(): void {
-    this.services = this.contentService.getServicesContent();
+    this.services = this.contentService.getServicesContent()[0];
   }
 
   setActive(input, e): void {
