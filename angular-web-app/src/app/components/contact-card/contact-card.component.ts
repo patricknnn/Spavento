@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SwalService } from 'src/app/services/swal.service';
 import { ContactForm } from '../../models/contactform';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
@@ -9,10 +9,11 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./contact-card.component.scss']
 })
 export class ContactCardComponent implements OnInit {
+  @Input() appearance = "standard";
+  @Input() color = "accent";
+  @Input() subjects = ['Question', 'Other'];
   submitted = false;
-  appearance = "standard";
   model = new ContactForm();
-  subjects = ['Question', 'Other'];
 
   constructor(
     private swalService: SwalService

@@ -1,12 +1,38 @@
 <div class="container-fluid pt-5">
-    <app-section-title 
-      [title]="title"
-      [subTitle]="subTitle"
-      [text]="text">
-    </app-section-title>
-  
-    <div class="row">
-      <div class="col-12">
-      </div>
+  <app-section-title [title]="title" [subTitle]="subTitle" [text]="text">
+  </app-section-title>
+
+  <div class="row mb-4">
+    <div class="col-12">
+      <form (ngSubmit)="onSubmit()" #generalContentForm="ngForm" *ngIf="content">
+        <div class="form-group row">
+
+          <mat-form-field appearance="fill" class="form-field col-sm-12 col-md-6">
+            <mat-label>Form style</mat-label>
+            <mat-select id="contactFormContentFormStyle" name="contactFormContentFormStyle"
+              [(ngModel)]="content.formStyle" #contactFormContentFormStyleInput="ngModel">
+              <mat-option *ngFor="let style of formStyles" [value]="style">
+                {{ style }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field col-sm-12 col-md-6">
+            <mat-label>Form kleur</mat-label>
+            <mat-select id="contactFormContentFormColor" name="contactFormContentFormColor"
+              [(ngModel)]="content.formColor" #contactFormContentFormColorInput="ngModel">
+              <mat-option value="primary">Primary</mat-option>
+              <mat-option value="accent">Accent</mat-option>
+              <mat-option value="warn">Warn</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <button mat-flat-button color="accent" type="submit"
+          [disabled]="!generalContentForm.form.touched">Opslaan</button>
+        <button mat-flat-button color="primary" type="button" class="ml-3"
+          (click)="resetForm(); generalContentForm.form.markAsUntouched();">Reset</button>
+      </form>
     </div>
   </div>
+</div>

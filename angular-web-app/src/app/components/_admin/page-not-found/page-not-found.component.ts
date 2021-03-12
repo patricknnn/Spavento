@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { PageNotFoundContent } from 'src/app/models/pagenotfoundcontent';
-import { PageTitle } from 'src/app/models/pagetitle';
 import { ContentService } from 'src/app/services/content.service';
+import { SwalService } from 'src/app/services/swal.service';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-page-not-found-admin',
@@ -12,25 +14,24 @@ export class PageNotFoundAdminComponent implements OnInit {
   title = "404, Pagina niet gevonden";
   subTitle = "Pagina";
   text = "Indien een pagina niet wordt gevonden zal een gebruiker deze pagina zien.";
-  pageTitle: PageTitle;
   pageContent: PageNotFoundContent;
+  pageContentHistory: PageNotFoundContent[];
   panelStep = -1;;
 
   constructor(
-    private contentService: ContentService
+    private contentService: ContentService,
+    private swalService: SwalService
   ) { }
 
   ngOnInit(): void {
-    this.reset();
+    this.retrieveData();
   }
 
   onSubmit() {
-    // Handle submit
-  }
-
-  reset(): void {
-    this.pageTitle = this.contentService.getPageTitle('404')[0];
-    this.pageContent = this.contentService.getPageNotFoundContent()[0];
+    this.swalService.loadingSwal("opslaan");
+    this.contentService.savePageNotFoundContent(this.pageContent).then(() => {
+      this.swalService.successSwal("opgeslagen");
+    });
   }
 
   setStep(i: number) {
@@ -43,6 +44,47 @@ export class PageNotFoundAdminComponent implements OnInit {
 
   prevStep() {
     this.panelStep--;
+  }
+
+  retrieveData(): void {
+    this.contentService.getPageNotFoundContent().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.pageContentHistory = data;
+      this.pageContent = data[0];
+      if (!this.pageContent) {
+        this.setDefaults();
+      }
+    });
+  }
+
+  setDefaults(): void {
+    this.pageContent = new PageNotFoundContent();
+    this.pageContent.title = "Pagina niet gevonden";
+    this.pageContent.subTitle = "404";
+    this.pageContent.text = "Gebruik een van de onderstaande knoppen om te navigeren";
+    this.pageContent.btnHomeText = "Home";
+    this.pageContent.btnHomeLink = "/home";
+    this.pageContent.btnBackText = "Back";
+  }
+
+  /**
+ * Clears form of data
+ * Asks user for confirmation
+ */
+  resetForm() {
+    this.swalService.promptSwal("Alle veranderingen zullen worden teruggedraaid").then((result) => {
+      if (result.value) {
+        this.retrieveData();
+        this.swalService.successSwal("Veranderingen teruggedraaid");
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        this.swalService.cancelSwal("Veranderingen niet teruggedraaid");
+      }
+    });
   }
 
 }

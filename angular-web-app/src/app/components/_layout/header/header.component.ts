@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit, OnChanges {
   @Input() title: string;
   @Input() subTitle: string;
   @Input() image: string;
+  @Input() elevation = "mat-elevation-z4";
   titleDisplay: string;
   headerContent: HeaderContent;
 

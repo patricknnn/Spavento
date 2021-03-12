@@ -5,6 +5,7 @@ import { CtaContent } from '../models/ctacontent';
 import { FeaturedContent } from '../models/featuredcontent';
 import { FooterContent } from '../models/footercontent';
 import { GalleryContent } from '../models/gallerycontent';
+import { GeneralContent } from '../models/generalcontent';
 import { HeaderContent } from '../models/headercontent';
 import { LatestNewsContent } from '../models/latestnewscontent';
 import { LatestWorkContent } from '../models/latestworkcontent';
@@ -18,6 +19,7 @@ import { ServiceContent } from '../models/servicecontent';
   providedIn: 'root',
 })
 export class ContentService {
+  private generalPath = '/general';
   private navPath = '/nav';
   private footerPath = '/footer';
   private headerPath = '/header';
@@ -36,6 +38,7 @@ export class ContentService {
   private newsTitlePath = '/newstitle';
   private contactTitlePath = '/contacttitle';
   private pnfTitlePath = '/pnftitle';
+  generalRef: AngularFirestoreCollection<GeneralContent>;
   navRef: AngularFirestoreCollection<NavContent>;
   footerRef: AngularFirestoreCollection<FooterContent>;
   headerRef: AngularFirestoreCollection<HeaderContent>;
@@ -74,6 +77,34 @@ export class ContentService {
     this.nestitleRef = db.collection(this.newsTitlePath);
     this.contacttitleRef = db.collection(this.contactTitlePath);
     this.pnftitleRef = db.collection(this.pnfTitlePath);
+  }
+
+  /**
+   * Forms
+   */
+  public getFormStyle(): string {
+    return "standard";
+  }
+  public getFormStyles(): string[] {
+    return [
+      "legacy",
+      "standard",
+      "fill",
+      "outline"
+    ];
+  }
+
+  /**
+   * General Content
+   */
+  public getGeneralContent(limit = 5): AngularFirestoreCollection<GeneralContent> {
+    return this.db.collection(this.navPath, ref => ref
+      .orderBy('timestampCreated', 'desc')
+      .limit(limit));
+  }
+  public saveGeneralContent(data: GeneralContent): any {
+    data.timestampCreated = Date.now();
+    return this.navRef.add({ ...data });
   }
 
   /**
@@ -217,6 +248,7 @@ export class ContentService {
       .limit(limit));
   }
   public saveContactCardsContent(data: ServiceContent): any {
+    data.services = this.firebaseSerialize(data.services);
     data.timestampCreated = Date.now();
     return this.contactcardsRef.add({ ...data });
   }

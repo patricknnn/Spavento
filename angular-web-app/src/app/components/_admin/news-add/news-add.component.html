@@ -90,7 +90,7 @@
             <div class="col-12">
               <button mat-flat-button color="accent" type="submit" class="mr-2"
                 [disabled]="!addNewsItemForm.valid">opslaan</button>
-              <button mat-flat-button color="primary" type="button" (click)="resetForm()">reset</button>
+              <button mat-flat-button color="primary" type="button" (click)="resetForm(); addNewsItemForm.form.markAsUntouched()">reset</button>
             </div>
           </div>
         </mat-card>

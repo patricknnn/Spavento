@@ -65,6 +65,8 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { ManagerFilesComponent } from './components/_admin/manager-files/manager-files.component';
 import { ManagerUsersComponent } from './components/_admin/manager-users/manager-users.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { CompGalleryComponent } from './components/_admin/comp-gallery/comp-gallery.component';
+import { CompNewsComponent } from './components/_admin/comp-news/comp-news.component';
 
 @NgModule({
   declarations: [
@@ -121,7 +123,9 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     PageNotFoundAdminComponent,
     CompHeaderComponent,
     ManagerFilesComponent,
-    ManagerUsersComponent
+    ManagerUsersComponent,
+    CompGalleryComponent,
+    CompNewsComponent
   ],
   imports: [
     BrowserModule,

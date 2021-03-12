@@ -39,21 +39,21 @@
           <h4 class="title-underlined mb-0 mt-2">Cards</h4>
         </mat-panel-title>
       </mat-expansion-panel-header>
-
+      <app-comp-contact-cards></app-comp-contact-cards>
       <mat-action-row>
         <button mat-raised-button color="primary" (click)="prevStep()">Vorige</button>
         <button mat-raised-button color="accent" (click)="nextStep()">Volgende</button>
       </mat-action-row>
     </mat-expansion-panel>
 
-    <!-- Cards -->
+    <!-- Form -->
     <mat-expansion-panel [expanded]="panelStep === 2" (opened)="setStep(2)">
       <mat-expansion-panel-header class="title-header">
         <mat-panel-title>
           <h4 class="title-underlined mb-0 mt-2">Formulier</h4>
         </mat-panel-title>
       </mat-expansion-panel-header>
-
+      <app-comp-contact-form></app-comp-contact-form>
       <mat-action-row>
         <button mat-raised-button color="primary" (click)="prevStep()">Vorige</button>
         <!-- <button mat-raised-button color="accent" (click)="nextStep()">Volgende</button> -->
