@@ -16,7 +16,9 @@ export class LayoutFooterComponent implements OnInit {
   text = "Stel hier alles in met betrekking tot de footer op de website.";
   footerContent: FooterContent;
   footerContentHistory: FooterContent[];
-
+  formStyle = "standard";
+  formColor = "accent";
+  
   constructor(
     private contentService: ContentService,
     private swalService: SwalService

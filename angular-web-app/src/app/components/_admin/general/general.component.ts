@@ -17,6 +17,8 @@ export class GeneralComponent implements OnInit {
   content: GeneralContent;
   contentHistory: GeneralContent[];
   formStyles: string[];
+  formStyle = "standard";
+  formColor = "accent";
 
   constructor(
     private contentService: ContentService,

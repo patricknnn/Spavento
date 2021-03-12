@@ -41,7 +41,7 @@
         </div>
 
         <div class="form-group row">
-          <mat-form-field appearance="fill" class="form-field col-sm-12 col-md-6">
+          <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field col-sm-12 col-md-6">
             <mat-label>Content titel</mat-label>
             <input matInput type="text" id="servicesContentTitle" placeholder="Titel" name="servicesContentTitle"
               [(ngModel)]="services.title" #servicesContentTitleInput="ngModel" required>
@@ -49,7 +49,7 @@
               verplicht</mat-hint>
           </mat-form-field>
 
-          <mat-form-field appearance="fill" class="form-field col-sm-12 col-md-6">
+          <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field col-sm-12 col-md-6">
             <mat-label>Content subtitel</mat-label>
             <input matInput type="text" id="servicesContentSubTitle" placeholder="Subtitel"
               name="servicesContentSubTitle" [(ngModel)]="services.subTitle" #servicesContentSubTitleInput="ngModel"
@@ -58,7 +58,7 @@
               verplicht</mat-hint>
           </mat-form-field>
 
-          <mat-form-field appearance="fill" class="form-field col-12">
+          <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field col-12">
             <mat-label>Content text</mat-label>
             <textarea rows="1" matInput type="text" id="servicesContentText" placeholder="Text"
               name="servicesContentText" [(ngModel)]="services.text" #servicesContentTextInput="ngModel"
@@ -70,7 +70,7 @@
 
         <div class="form-group row">
           <div class="col-xs-12 col-sm-6 col-md-4">
-            <mat-form-field appearance="fill" class="form-field w-100">
+            <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field w-100">
               <mat-label>Card titel</mat-label>
               <input matInput type="text" id="servicesCard0Title" placeholder="Titel" name="servicesCard0Title"
                 [(ngModel)]="services.services[0].title" #servicesCard0TitleInput="ngModel" required>
@@ -78,7 +78,7 @@
                 verplicht</mat-hint>
             </mat-form-field>
 
-            <mat-form-field appearance="fill" class="form-field w-100">
+            <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field w-100">
               <mat-label>Card icon</mat-label>
               <input matInput type="text" id="card0Icon" placeholder="Icon" name="card0Icon"
                 [(ngModel)]="services.services[0].icon" #card0IconInput="ngModel" required>
@@ -86,7 +86,7 @@
               </mat-hint>
             </mat-form-field>
 
-            <mat-form-field appearance="fill" class="form-field w-100">
+            <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field w-100">
               <mat-label>Card tekst</mat-label>
               <input matInput type="text" id="servicesCard0Text" placeholder="Text" name="servicesCard0Text"
                 [(ngModel)]="services.services[0].description">
@@ -94,7 +94,7 @@
           </div>
 
           <div class="col-xs-12 col-sm-6 col-md-4">
-            <mat-form-field appearance="fill" class="form-field w-100">
+            <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field w-100">
               <mat-label>Card titel</mat-label>
               <input matInput type="text" id="servicesCard1Title" placeholder="Titel" name="servicesCard1Title"
                 [(ngModel)]="services.services[1].title" #servicesCard1TitleInput="ngModel" required>
@@ -102,7 +102,7 @@
                 verplicht</mat-hint>
             </mat-form-field>
 
-            <mat-form-field appearance="fill" class="form-field w-100">
+            <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field w-100">
               <mat-label>Card icon</mat-label>
               <input matInput type="text" id="card1Icon" placeholder="Icon" name="card1Icon"
                 [(ngModel)]="services.services[1].icon" #card1IconInput="ngModel" required>
@@ -110,7 +110,7 @@
               </mat-hint>
             </mat-form-field>
 
-            <mat-form-field appearance="fill" class="form-field w-100">
+            <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field w-100">
               <mat-label>Card tekst</mat-label>
               <input matInput type="text" id="servicesCard1Text" placeholder="Text" name="servicesCard1Text"
                 [(ngModel)]="services.services[1].description">
@@ -118,7 +118,7 @@
           </div>
 
           <div class="col-xs-12 col-sm-6 col-md-4">
-            <mat-form-field appearance="fill" class="form-field w-100">
+            <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field w-100">
               <mat-label>Card titel</mat-label>
               <input matInput type="text" id="servicesCard2Title" placeholder="Titel" name="servicesCard2Title"
                 [(ngModel)]="services.services[2].title" #servicesCard2TitleInput="ngModel" required>
@@ -126,7 +126,7 @@
                 verplicht</mat-hint>
             </mat-form-field>
 
-            <mat-form-field appearance="fill" class="form-field w-100">
+            <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field w-100">
               <mat-label>Card icon</mat-label>
               <input matInput type="text" id="card2Icon" placeholder="Icon" name="card2Icon"
                 [(ngModel)]="services.services[2].icon" #card2IconInput="ngModel" required>
@@ -134,7 +134,7 @@
               </mat-hint>
             </mat-form-field>
 
-            <mat-form-field appearance="fill" class="form-field w-100">
+            <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field w-100">
               <mat-label>Card tekst</mat-label>
               <input matInput type="text" id="servicesCard2Text" placeholder="Text" name="servicesCard2Text"
                 [(ngModel)]="services.services[2].description">

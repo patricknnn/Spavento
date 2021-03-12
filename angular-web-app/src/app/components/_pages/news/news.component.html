@@ -1,10 +1,10 @@
 <!-- Header small -->
-<app-header [title]="pageTitle.title" [subTitle]="pageTitle.subTitle" [small]="true"></app-header>
+<app-header *ngIf="pageTitle" [title]="pageTitle.title" [subTitle]="pageTitle.subTitle" [small]="true"></app-header>
 
 <!-- Main -->
 <main id="news" class="main main-raised">
   <!-- News -->
-  <section class="page-section bg-light">
+  <section *ngIf="newsContent" class="page-section bg-light">
     <div class="container">
       <app-section-title [title]="newsContent.title" [subTitle]="newsContent.subTitle" [text]="newsContent.text">
       </app-section-title>

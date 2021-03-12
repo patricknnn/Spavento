@@ -17,7 +17,9 @@ export class LayoutNavigationComponent implements OnInit {
   text = "Stel hier alles in met betrekking tot de navigatie op de website.";
   navContent: NavContent;
   navContentHistory: NavContent[];
-
+  formStyle = "standard";
+  formColor = "accent";
+  
   constructor(
     private contentService: ContentService,
     private swalService: SwalService

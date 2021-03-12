@@ -14,7 +14,9 @@ export class CompContactFormComponent implements OnInit {
   content: ContactFormContent;
   contentHistory: ContactFormContent[];
   formStyles: string[];
-
+  formStyle = "standard";
+  formColor = "accent";
+  
   constructor(
     private contentService: ContentService,
     private swalService: SwalService

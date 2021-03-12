@@ -1,9 +1,9 @@
 <!-- Header -->
-<app-header [title]="pageTitle.title" [subTitle]="pageTitle.subTitle" [small]="false"></app-header>
+<app-header *ngIf="pageTitle" [title]="pageTitle.title" [subTitle]="pageTitle.subTitle" [small]="false"></app-header>
 
 <main id="home" class="main main-raised">
   <!-- Services -->
-  <section *ngIf="services.active" class="page-section bg-light">
+  <section *ngIf="services && services.active" class="page-section bg-light">
     <div class="container">
       <app-section-title [title]="services.title" [subTitle]="services.subTitle" [text]="services.text">
       </app-section-title>
@@ -17,7 +17,7 @@
   </section>
 
   <!-- Featured -->
-  <section *ngIf="featured.active" class="page-section">
+  <section *ngIf="featured && featured.active" class="page-section">
     <div class="container">
       <app-section-title [title]="featured.title" [subTitle]="featured.subTitle" [text]="featured.text">
       </app-section-title>
@@ -33,7 +33,7 @@
   </section>
 
   <!-- Latest News -->
-  <section *ngIf="latestNews.active" class="page-section bg-light">
+  <section *ngIf="latestNews && latestNews.active" class="page-section bg-light">
     <div class="container">
       <app-section-title [title]="latestNews.title" [subTitle]="latestNews.subTitle" [text]="latestNews.text"
         [link]="latestNews.link">
@@ -47,7 +47,7 @@
   </section>
 
   <!-- Latest paintings -->
-  <section *ngIf="latestWork.active" class="page-section">
+  <section *ngIf="latestWork && latestWork.active" class="page-section">
     <div class="container">
       <app-section-title [title]="latestWork.title" [subTitle]="latestWork.subTitle" [text]="latestWork.text"
         [link]="latestWork.link">
@@ -61,7 +61,7 @@
   </section>
 
   <!-- CTA -->
-  <section *ngIf="cta.active" class="page-section" [style.backgroundImage]="'url(' + cta.image + ')'">
+  <section *ngIf="cta && cta.active" class="page-section" [style.backgroundImage]="'url(' + cta.image + ')'">
     <div class="container">
       <div class="col-12">
         <app-call-to-action [title]="cta.title" [subTitle]="cta.subTitle" [buttonText]="cta.btnText"

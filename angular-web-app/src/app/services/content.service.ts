@@ -30,6 +30,7 @@ export class ContentService {
   private ctaPath = '/cta';
   private galleryPath = '/gallery';
   private newsPath = '/news';
+  private newsContentPath = '/newscontent';
   private contactcardsPath = '/contactcards';
   private contactFormPath = '/contactform';
   private pagenotfoundPath = '/pagenotfound';
@@ -49,6 +50,7 @@ export class ContentService {
   ctaRef: AngularFirestoreCollection<CtaContent>;
   galleryRef: AngularFirestoreCollection<GalleryContent>;
   newsRef: AngularFirestoreCollection<NewsContent>;
+  newsContentRef: AngularFirestoreCollection<NewsContent>;
   contactcardsRef: AngularFirestoreCollection<ServiceContent>;
   contactformRef: AngularFirestoreCollection<ContactFormContent>;
   pagenotfoundRef: AngularFirestoreCollection<PageNotFoundContent>;
@@ -69,6 +71,7 @@ export class ContentService {
     this.ctaRef = db.collection(this.ctaPath);
     this.galleryRef = db.collection(this.galleryPath);
     this.newsRef = db.collection(this.newsPath);
+    this.newsContentRef = db.collection(this.newsContentPath);
     this.contactcardsRef = db.collection(this.contactcardsPath);
     this.contactformRef = db.collection(this.contactFormPath);
     this.pagenotfoundRef = db.collection(this.pagenotfoundPath);
@@ -98,7 +101,7 @@ export class ContentService {
    * General Content
    */
   public getGeneralContent(limit = 5): AngularFirestoreCollection<GeneralContent> {
-    return this.db.collection(this.navPath, ref => ref
+    return this.db.collection(this.generalPath, ref => ref
       .orderBy('timestampCreated', 'desc')
       .limit(limit));
   }
@@ -230,13 +233,13 @@ export class ContentService {
    * News Content
    */
   public getNewsContent(limit = 5): AngularFirestoreCollection<NewsContent> {
-    return this.db.collection(this.newsPath, ref => ref
+    return this.db.collection(this.newsContentPath, ref => ref
       .orderBy('timestampCreated', 'desc')
       .limit(limit));
   }
   public saveNewsContent(data: NewsContent): any {
     data.timestampCreated = Date.now();
-    return this.newsRef.add({ ...data });
+    return this.newsContentRef.add({ ...data });
   }
 
   /**

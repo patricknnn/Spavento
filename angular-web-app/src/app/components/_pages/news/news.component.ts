@@ -28,9 +28,9 @@ export class NewsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.retrievePageTitle();
     this.retrieveNews();
-    this.pageTitle = this.contentService.getPageTitle('news')[0];
-    this.newsContent = this.contentService.getNewsContent()[0];
+    this.retrieveNewsContent();
     this.categories = this.newsService.getCategories();
     this.filterApplied = true;
   }
@@ -45,6 +45,30 @@ export class NewsComponent implements OnInit {
     ).subscribe(data => {
       this.newsItems = data;
       this.resetFilters();
+    });
+  }
+
+  retrievePageTitle(): void {
+    this.contentService.getPageTitle('news').snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.pageTitle = data[0];
+    });
+  }
+
+  retrieveNewsContent(): void {
+    this.contentService.getNewsContent(1).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.newsContent = data[0];
     });
   }
 

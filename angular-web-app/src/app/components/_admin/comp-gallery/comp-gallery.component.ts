@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./comp-gallery.component.scss']
 })
 export class CompGalleryComponent implements OnInit {
-
+  formStyle = "standard";
+  formColor = "accent";
+  
   constructor() { }
 
   ngOnInit(): void {

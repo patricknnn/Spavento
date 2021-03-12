@@ -15,8 +15,8 @@ export class NewsAddComponent implements OnInit {
   title = "Toevoegen";
   subTitle = "Nieuws";
   text = "Gebruik deze pagina om items aan het nieuws toe te voegen.";
-  formStyle = 'fill';
-  formColor = 'accent';
+  formStyle = "standard";
+  formColor = "accent";
   newsItem: NewsItem;
   categories: string[];
   selectedFiles: File[];

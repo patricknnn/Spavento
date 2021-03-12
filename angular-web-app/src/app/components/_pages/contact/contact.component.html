@@ -1,10 +1,10 @@
 <!-- Header small -->
-<app-header [title]="pageTitle.title" [subTitle]="pageTitle.subTitle" [small]="true"></app-header>
+<app-header *ngIf="pageTitle" [title]="pageTitle.title" [subTitle]="pageTitle.subTitle" [small]="true"></app-header>
 
 <!-- Main -->
 <main id="contact" class="main main-raised">
   <!-- Contact -->
-  <section class="page-section bg-light">
+  <section *ngIf="contactCards" class="page-section bg-light">
     <div class="container">
       <app-section-title [title]="contactCards.title" [subTitle]="contactCards.subTitle" [text]="contactCards.text">
       </app-section-title>
@@ -19,7 +19,7 @@
   </section>
 
   <!-- Form -->
-  <section class="page-section">
+  <section *ngIf="contactForm" class="page-section">
     <div class="container">
       <app-section-title [title]="contactForm.title" [subTitle]="contactForm.subTitle" [text]="contactForm.text">
       </app-section-title>

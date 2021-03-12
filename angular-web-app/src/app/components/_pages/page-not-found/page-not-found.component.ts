@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { PageTitle } from 'src/app/models/pagetitle';
 import { ContentService } from 'src/app/services/content.service';
 import { PageNotFoundContent } from 'src/app/models/pagenotfoundcontent';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-page-not-found',
@@ -25,6 +26,30 @@ export class PageNotFoundComponent implements OnInit {
     if (!this.content) {
       this.content = this.contentService.getPageNotFoundContent()[0];
     }
+  }
+
+  retrievePageTitle(): void {
+    this.contentService.getPageTitle('404').snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.pageTitle = data[0];
+    });
+  }
+
+  retrieveContent(): void {
+    this.contentService.getPageNotFoundContent(1).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.content = data[0];
+    });
   }
 
   goBack(): void {

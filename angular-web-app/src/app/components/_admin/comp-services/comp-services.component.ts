@@ -14,7 +14,9 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 export class CompServicesComponent implements OnInit {
   services: ServiceContent;
   servicesHistory: ServiceContent[];
-
+  formStyle = "standard";
+  formColor = "accent";
+  
   constructor(private contentService: ContentService, private swalService: SwalService) { }
 
   ngOnInit(): void {

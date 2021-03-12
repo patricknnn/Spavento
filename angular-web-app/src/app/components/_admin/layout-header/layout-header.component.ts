@@ -16,7 +16,9 @@ export class LayoutHeaderComponent implements OnInit {
   text = "Stel hier alles in met betrekking tot de header op de website.";
   headerContent: HeaderContent;
   headerContentHistory: HeaderContent[];
-
+  formStyle = "standard";
+  formColor = "accent";
+  
   constructor(private contentService: ContentService, private swalService: SwalService) { }
 
   ngOnInit(): void {

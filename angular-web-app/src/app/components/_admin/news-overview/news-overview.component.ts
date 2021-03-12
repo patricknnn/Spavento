@@ -33,6 +33,8 @@ export class NewsOverviewComponent implements OnInit {
     'active',
     'options'
   ];
+  formStyle = "standard";
+  formColor = "accent";
 
   constructor(
     private newsService: NewsService,

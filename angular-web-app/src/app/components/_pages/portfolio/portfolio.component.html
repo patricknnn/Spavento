@@ -1,11 +1,11 @@
 <!-- Header small -->
-<app-header [title]="pageTitle.title" [subTitle]="pageTitle.subTitle" [small]="true"></app-header>
+<app-header *ngIf="pageTitle" [title]="pageTitle.title" [subTitle]="pageTitle.subTitle" [small]="true"></app-header>
 
 <!-- Main -->
 <main id="portfolio" class="main main-raised">
 
   <!-- Content -->
-  <section class="page-section bg-light">
+  <section *ngIf="galleryContent" class="page-section bg-light">
 
     <div class="container">
       <app-section-title [title]="galleryContent.title" [subTitle]="galleryContent.subTitle" [text]="galleryContent.text"></app-section-title>

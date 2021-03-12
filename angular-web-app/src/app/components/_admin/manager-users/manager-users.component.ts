@@ -8,7 +8,9 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./manager-users.component.scss']
 })
 export class ManagerUsersComponent implements OnInit {
-
+  formStyle = "standard";
+  formColor = "accent";
+  
   constructor() { }
 
   ngOnInit(): void {

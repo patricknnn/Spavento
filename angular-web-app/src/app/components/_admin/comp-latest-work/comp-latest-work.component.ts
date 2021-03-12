@@ -13,7 +13,9 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 export class CompLatestWorkComponent implements OnInit {
   latestWork: LatestWorkContent;
   latestWorkHistory: LatestWorkContent[];
-
+  formStyle = "standard";
+  formColor = "accent";
+  
   constructor(
     private contentService: ContentService,
     private swalService: SwalService

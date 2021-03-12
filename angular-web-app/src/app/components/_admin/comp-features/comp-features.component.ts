@@ -16,7 +16,9 @@ export class CompFeaturesComponent implements OnInit {
   featured: FeaturedContent;
   featuredHistory: FeaturedContent[];
   paintings: Painting[];
-
+  formStyle = "standard";
+  formColor = "accent";
+  
   constructor(
     private contentService: ContentService,
     private paintingService: PaintingService,

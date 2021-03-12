@@ -1,11 +1,11 @@
 <!-- Header small -->
-<app-header [title]="pageTitle.title" [subTitle]="pageTitle.subTitle" [small]="true"></app-header>
+<app-header *ngIf="pageTitle" [title]="pageTitle.title" [subTitle]="pageTitle.subTitle" [small]="true"></app-header>
 
 <!-- Main -->
 <main id="404" class="main main-raised">
 
   <!-- Buttons -->
-  <section class="page-section bg-light">
+  <section *ngIf="content" class="page-section bg-light">
     <div class="container">
       <app-section-title 
         [title]="content.title" 

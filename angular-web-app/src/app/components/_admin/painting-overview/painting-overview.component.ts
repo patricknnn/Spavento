@@ -33,7 +33,9 @@ export class PaintingOverviewComponent implements OnInit {
     'created',
     'active',
     'options',
-  ];
+  ];  
+  formStyle = "standard";
+  formColor = "accent";
 
   constructor(
     private paintingService: PaintingService,

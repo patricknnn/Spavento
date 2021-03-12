@@ -14,7 +14,9 @@ export class CompHeaderComponent implements OnInit {
   @Input() page: string;
   pageTitle: PageTitle;
   pageTitleHistory: PageTitle[];
-
+  formStyle = "standard";
+  formColor = "accent";
+  
   constructor(
     private contentService: ContentService,
     private swalService: SwalService

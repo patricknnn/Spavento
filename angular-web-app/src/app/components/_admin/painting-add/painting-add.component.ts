@@ -19,8 +19,8 @@ export class PaintingAddComponent implements OnInit {
   title = 'Toevoegen';
   subTitle = 'Portfolio';
   text = 'Gebruik onderstaand formulier om een schilderij toe te voegen aan het portfolio.';
-  formStyle = 'fill';
-  formColor = 'accent';
+  formStyle = "standard";
+  formColor = "accent";
   painting: Painting;
   categories: string[];
   states: string[];

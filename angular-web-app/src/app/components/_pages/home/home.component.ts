@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { CtaContent } from 'src/app/models/ctacontent';
 import { FeaturedContent } from 'src/app/models/featuredcontent';
 import { LatestNewsContent } from 'src/app/models/latestnewscontent';
@@ -27,23 +28,95 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.pageTitle) {
-      this.pageTitle = this.contentService.getPageTitle('home')[0];
+      this.retrievePageTitle();
     }
     if (!this.services) {
-      this.services = this.contentService.getServicesContent()[0];
+      this.retrieveServices();
     }
     if (!this.featured) {
-      this.featured = this.contentService.getFeaturedContent()[0];
+      this.retrieveFeatured();
     }
     if (!this.latestNews) {
-      this.latestNews = this.contentService.getLatestNewsContent()[0];
+      this.retrieveLatestNews();
     }
     if (!this.latestWork) {
-      this.latestWork = this.contentService.getLatestWorkContent()[0];
+      this.retrieveLatestWork();
     }
     if (!this.cta) {
-      this.cta = this.contentService.getCtaContent()[0];
+      this.retrieveCta();
     }
+  }
+
+  retrievePageTitle(): void {
+    this.contentService.getPageTitle('home').snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.pageTitle = data[0];
+    });
+  }
+
+  retrieveServices(): void {
+    this.contentService.getServicesContent(1).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.services = data[0];
+    });
+  }
+
+  retrieveFeatured(): void {
+    this.contentService.getFeaturedContent(1).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.featured = data[0];
+    });
+  }
+
+  retrieveLatestNews(): void {
+    this.contentService.getLatestNewsContent(1).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.latestNews = data[0];
+    });
+  }
+
+  retrieveLatestWork(): void {
+    this.contentService.getLatestWorkContent(1).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.latestWork = data[0];
+    });
+  }
+
+  retrieveCta(): void {
+    this.contentService.getCtaContent(1).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.cta = data[0];
+    });
   }
 
 }

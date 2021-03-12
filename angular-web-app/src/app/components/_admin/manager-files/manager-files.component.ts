@@ -25,7 +25,9 @@ export class ManagerFilesComponent implements OnInit {
   displayedColumns: string[] = ['thumbnail', 'name', 'created', 'options'];
   percentage = 0;
   uploadCount = 0;
-
+  formStyle = "standard";
+  formColor = "accent";
+  
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 

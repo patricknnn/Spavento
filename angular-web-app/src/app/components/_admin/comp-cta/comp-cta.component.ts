@@ -18,6 +18,8 @@ export class CompCtaComponent implements OnInit {
     "../../../../assets/img/material-bg-light.jpg",
     "../../../../assets/img/material-bg.jpg",
   ];
+  formStyle = "standard";
+  formColor = "accent";
 
   constructor(
     private contentService: ContentService,

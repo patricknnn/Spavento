@@ -17,7 +17,9 @@ export class PageNotFoundAdminComponent implements OnInit {
   pageContent: PageNotFoundContent;
   pageContentHistory: PageNotFoundContent[];
   panelStep = -1;;
-
+  formStyle = "standard";
+  formColor = "accent";
+  
   constructor(
     private contentService: ContentService,
     private swalService: SwalService
