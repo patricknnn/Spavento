@@ -23,20 +23,19 @@ export class ContentService {
   private headerPath = '/header';
   private servicesPath = '/services';
   private featuredPath = '/featured';
-  private latestnewsPath = '/featured';
-  private latestworkPath = '/featured';
-  private ctaPath = '/featured';
-  private galleryPath = '/featured';
+  private latestnewsPath = '/latestnews';
+  private latestworkPath = '/latestwork';
+  private ctaPath = '/cta';
+  private galleryPath = '/gallery';
   private newsPath = '/news';
-  private contactcardsPath = '/news';
-  private contactFormPath = '/news';
-  private pagenotfoundPath = '/news';
+  private contactcardsPath = '/contactcards';
+  private contactFormPath = '/contactform';
+  private pagenotfoundPath = '/pagenotfound';
   private homeTitlePath = '/hometitle';
   private portfolioTitlePath = '/portfoliotitle';
   private newsTitlePath = '/newstitle';
   private contactTitlePath = '/contacttitle';
   private pnfTitlePath = '/pnftitle';
-
   navRef: AngularFirestoreCollection<NavContent>;
   footerRef: AngularFirestoreCollection<FooterContent>;
   headerRef: AngularFirestoreCollection<HeaderContent>;
@@ -60,15 +59,30 @@ export class ContentService {
     this.navRef = db.collection(this.navPath);
     this.footerRef = db.collection(this.footerPath);
     this.headerRef = db.collection(this.headerPath);
+    this.servicesRef = db.collection(this.servicesPath);
+    this.featuredRef = db.collection(this.featuredPath);
+    this.latestnewsRef = db.collection(this.latestnewsPath);
+    this.latestworkRef = db.collection(this.latestworkPath);
+    this.ctaRef = db.collection(this.ctaPath);
+    this.galleryRef = db.collection(this.galleryPath);
+    this.newsRef = db.collection(this.newsPath);
+    this.contactcardsRef = db.collection(this.contactcardsPath);
+    this.contactformRef = db.collection(this.contactFormPath);
+    this.pagenotfoundRef = db.collection(this.pagenotfoundPath);
+    this.hometitleRef = db.collection(this.homeTitlePath);
+    this.portfoliotitleRef = db.collection(this.portfolioTitlePath);
+    this.nestitleRef = db.collection(this.newsTitlePath);
+    this.contacttitleRef = db.collection(this.contactTitlePath);
+    this.pnftitleRef = db.collection(this.pnfTitlePath);
   }
 
   /**
-   * Layout content
+   * Nav Content
    */
-  public getNavContent(): AngularFirestoreCollection<NavContent> {
+  public getNavContent(limit = 5): AngularFirestoreCollection<NavContent> {
     return this.db.collection(this.navPath, ref => ref
-      .orderBy('timestampCreated')
-      .limit(1));
+      .orderBy('timestampCreated', 'desc')
+      .limit(limit));
   }
   public saveNavContent(data: NavContent): any {
     data.timestampCreated = Date.now();
@@ -76,22 +90,26 @@ export class ContentService {
     return this.navRef.add({ ...data });
   }
 
-  // Footer
-  public getFooterContent(): AngularFirestoreCollection<FooterContent> {
+  /**
+   * Footer Content
+   */
+  public getFooterContent(limit = 5): AngularFirestoreCollection<FooterContent> {
     return this.db.collection(this.footerPath, ref => ref
-      .orderBy('timestampCreated')
-      .limit(1));
+      .orderBy('timestampCreated', 'desc')
+      .limit(limit));
   }
   public saveFooterContent(data: FooterContent): any {
     data.timestampCreated = Date.now();
     return this.footerRef.add({ ...data });
   }
 
-  // Header
-  public getHeaderContent(): AngularFirestoreCollection<HeaderContent> {
+  /**
+   * Header Content
+   */
+  public getHeaderContent(limit = 5): AngularFirestoreCollection<HeaderContent> {
     return this.db.collection(this.headerPath, ref => ref
-      .orderBy('timestampCreated')
-      .limit(1));
+      .orderBy('timestampCreated', 'desc')
+      .limit(limit));
   }
   public saveHeaderContent(data: HeaderContent): any {
     data.timestampCreated = Date.now();
@@ -99,161 +117,188 @@ export class ContentService {
   }
 
   /**
-   * Page content
+   * Services Content
    */
-  public getServicesContent(): AngularFirestoreCollection<ServiceContent> {
+  public getServicesContent(limit = 5): AngularFirestoreCollection<ServiceContent> {
     return this.db.collection(this.servicesPath, ref => ref
-      .orderBy('timestampCreated')
-      .limit(1));
+      .orderBy('timestampCreated', 'desc')
+      .limit(limit));
   }
   public saveServicesContent(data: ServiceContent): any {
     data.timestampCreated = Date.now();
+    data.services = this.firebaseSerialize(data.services);
     return this.servicesRef.add({ ...data });
   }
 
-  // Featured
-  public getFeaturedContent(): AngularFirestoreCollection<FeaturedContent> {
+  /**
+   * Featured Content
+   */
+  public getFeaturedContent(limit = 5): AngularFirestoreCollection<FeaturedContent> {
     return this.db.collection(this.featuredPath, ref => ref
-      .orderBy('timestampCreated')
-      .limit(1));
+      .orderBy('timestampCreated', 'desc')
+      .limit(limit));
   }
   public saveFeaturedContent(data: FeaturedContent): any {
     data.timestampCreated = Date.now();
     return this.featuredRef.add({ ...data });
   }
 
-  // News
-  public getLatestNewsContent(): AngularFirestoreCollection<LatestNewsContent> {
+  /**
+   * News Content
+   */
+  public getLatestNewsContent(limit = 5): AngularFirestoreCollection<LatestNewsContent> {
     return this.db.collection(this.latestnewsPath, ref => ref
-      .orderBy('timestampCreated')
-      .limit(1));
+      .orderBy('timestampCreated', 'desc')
+      .limit(limit));
   }
   public saveLatestNewsContent(data: LatestNewsContent): any {
     data.timestampCreated = Date.now();
     return this.latestnewsRef.add({ ...data });
   }
 
-  // Work
-  public getLatestWorkContent(): AngularFirestoreCollection<LatestWorkContent> {
+  /**
+   * Work Content
+   */
+  public getLatestWorkContent(limit = 5): AngularFirestoreCollection<LatestWorkContent> {
     return this.db.collection(this.latestworkPath, ref => ref
-      .orderBy('timestampCreated')
-      .limit(1));
+      .orderBy('timestampCreated', 'desc')
+      .limit(limit));
   }
   public saveLatestWorkContent(data: LatestWorkContent): any {
     data.timestampCreated = Date.now();
     return this.latestworkRef.add({ ...data });
   }
 
-  // CTA
-  public getCtaContent(): AngularFirestoreCollection<CtaContent> {
+  /**
+   * CTA Content
+   */
+  public getCtaContent(limit = 5): AngularFirestoreCollection<CtaContent> {
     return this.db.collection(this.ctaPath, ref => ref
-      .orderBy('timestampCreated')
-      .limit(1));
+      .orderBy('timestampCreated', 'desc')
+      .limit(limit));
   }
   public saveCtaContent(data: CtaContent): any {
     data.timestampCreated = Date.now();
     return this.ctaRef.add({ ...data });
   }
 
-  // Gallery
-  public getGalleryContent(): AngularFirestoreCollection<GalleryContent> {
+  /**
+   * Gallery Content
+   */
+  public getGalleryContent(limit = 5): AngularFirestoreCollection<GalleryContent> {
     return this.db.collection(this.galleryPath, ref => ref
-      .orderBy('timestampCreated')
-      .limit(1));
+      .orderBy('timestampCreated', 'desc')
+      .limit(limit));
   }
   public saveGalleryContent(data: GalleryContent): any {
     data.timestampCreated = Date.now();
     return this.galleryRef.add({ ...data });
   }
 
-  // News
-  public getNewsContent(): AngularFirestoreCollection<NewsContent> {
+  /**
+   * News Content
+   */
+  public getNewsContent(limit = 5): AngularFirestoreCollection<NewsContent> {
     return this.db.collection(this.newsPath, ref => ref
-      .orderBy('timestampCreated')
-      .limit(1));
+      .orderBy('timestampCreated', 'desc')
+      .limit(limit));
   }
   public saveNewsContent(data: NewsContent): any {
     data.timestampCreated = Date.now();
     return this.newsRef.add({ ...data });
   }
 
-  // Contact cards
-  public getContactCardsContent(): AngularFirestoreCollection<ServiceContent> {
+  /**
+   * Contact cards Content
+   */
+  public getContactCardsContent(limit = 5): AngularFirestoreCollection<ServiceContent> {
     return this.db.collection(this.contactcardsPath, ref => ref
-      .orderBy('timestampCreated')
-      .limit(1));
+      .orderBy('timestampCreated', 'desc')
+      .limit(limit));
   }
   public saveContactCardsContent(data: ServiceContent): any {
     data.timestampCreated = Date.now();
     return this.contactcardsRef.add({ ...data });
   }
 
-  // Contact form
-  public getContactFormContent(): AngularFirestoreCollection<ContactFormContent> {
+  /**
+   * Contact form Content
+   */
+  public getContactFormContent(limit = 5): AngularFirestoreCollection<ContactFormContent> {
     return this.db.collection(this.contactFormPath, ref => ref
-      .orderBy('timestampCreated')
-      .limit(1));
+      .orderBy('timestampCreated', 'desc')
+      .limit(limit));
   }
   public saveContactFormContent(data: ContactFormContent): any {
     data.timestampCreated = Date.now();
     return this.contactformRef.add({ ...data });
   }
 
-  // Page not found
-  public getPageNotFoundContent(): AngularFirestoreCollection<PageNotFoundContent> {
+  /**
+   * Page not found Content
+   */
+  public getPageNotFoundContent(limit = 5): AngularFirestoreCollection<PageNotFoundContent> {
     return this.db.collection(this.pagenotfoundPath, ref => ref
-      .orderBy('timestampCreated')
-      .limit(1));
+      .orderBy('timestampCreated', 'desc')
+      .limit(limit));
   }
   public savePageNotFoundContent(data: PageNotFoundContent): any {
     data.timestampCreated = Date.now();
     return this.pagenotfoundRef.add({ ...data });
   }
 
-  // Page title
-  public getPageTitle(page: string): AngularFirestoreCollection<PageTitle> {
-    let path: string;
+  /**
+   * Page title Content
+   */
+  public getPageTitle(page: string, limit = 5): AngularFirestoreCollection<PageTitle> {
     switch (page) {
       case 'home':
-        path = this.homeTitlePath;
+        return this.db.collection(this.homeTitlePath, ref => ref
+          .orderBy('timestampCreated', 'desc')
+          .limit(limit));
       case 'portfolio':
-        path = this.portfolioTitlePath;
+        return this.db.collection(this.portfolioTitlePath, ref => ref
+          .orderBy('timestampCreated', 'desc')
+          .limit(limit));
       case 'news':
-        path = this.newsTitlePath;
+        return this.db.collection(this.newsTitlePath, ref => ref
+          .orderBy('timestampCreated', 'desc')
+          .limit(limit));
       case 'contact':
-        path = this.contactTitlePath;
+        return this.db.collection(this.contactTitlePath, ref => ref
+          .orderBy('timestampCreated', 'desc')
+          .limit(limit));
       case '404':
-        path = this.pnfTitlePath;
+        return this.db.collection(this.pnfTitlePath, ref => ref
+          .orderBy('timestampCreated', 'desc')
+          .limit(limit));
       default:
-        break;
-    }
-    if (path) {
-      return this.db.collection(path, ref => ref
-        .orderBy('timestampCreated')
-        .limit(1));
+        return null;
     }
   }
-
   public savePageTitle(page: string, data: PageTitle): any {
-    let ref: AngularFirestoreCollection<any>;
+    data.timestampCreated = Date.now();
     switch (page) {
       case 'home':
-        ref = this.hometitleRef;
+        return this.hometitleRef.add({ ...data });
       case 'portfolio':
-        ref = this.portfoliotitleRef;
+        return this.portfoliotitleRef.add({ ...data });
       case 'news':
-        ref = this.nestitleRef;
+        return this.nestitleRef.add({ ...data });
       case 'contact':
-        ref = this.contacttitleRef;
+        return this.contacttitleRef.add({ ...data });
       case '404':
-        ref = this.pnftitleRef;
+        return this.pnftitleRef.add({ ...data });
       default:
-        break;
+        return null;
     }
-    data.timestampCreated = Date.now();
-    return ref.add({ ...data });
   }
 
+  /**
+   * Serialize custom object to json
+   * @param object Object to serialize
+   * @returns Json serialized object
+   */
   firebaseSerialize<T>(object: T) {
     return JSON.parse(JSON.stringify(object));
   }

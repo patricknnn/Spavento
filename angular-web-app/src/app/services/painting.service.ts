@@ -36,7 +36,7 @@ export class PaintingService {
     return this.paintingsRef.doc(id);
   }
 
-  public getLatest(amount: number): any {
+  public getLatest(amount: number): AngularFirestoreCollection<Painting> {
     return this.db.collection(this.dbPath, ref => ref
       .orderBy('timestampCreated')
       .limit(amount));

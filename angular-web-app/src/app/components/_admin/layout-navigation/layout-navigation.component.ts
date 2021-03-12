@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { NavContent } from 'src/app/models/navcontent';
 import { NavLink } from 'src/app/models/navlink';
 import { ContentService } from 'src/app/services/content.service';
 import { SwalService } from 'src/app/services/swal.service';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-layout-navigation',
@@ -14,6 +16,7 @@ export class LayoutNavigationComponent implements OnInit {
   subTitle = "Layout";
   text = "Stel hier alles in met betrekking tot de navigatie op de website.";
   navContent: NavContent;
+  navContentHistory: NavContent[];
 
   constructor(
     private contentService: ContentService,
@@ -21,7 +24,7 @@ export class LayoutNavigationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.reset();
+    this.retrieveData();
   }
 
   onSubmit() {
@@ -31,24 +34,51 @@ export class LayoutNavigationComponent implements OnInit {
     });
   }
 
-  reset(): void {
-    this.navContent = this.contentService.getNavContent()[0];
-    console.log(this.contentService.getNavContent());
-    if (!this.navContent) {
-      this.navContent = new NavContent();
-      this.navContent.brandName = "Spavento";
-      this.navContent.brandImage = "../../../../assets/img/spavento-logo.png";
-      this.navContent.navLinks = [
-        new NavLink("Home", "/home", true),
-        new NavLink("Portfolio", "/portfolio", true),
-        new NavLink("News", "/news", true),
-        new NavLink("Contact", "/contact", true),
-      ];
-    }
+  retrieveData(): void {
+    this.contentService.getNavContent().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.navContentHistory = data;
+      this.navContent = data[0];
+      if (!this.navContent) {
+        this.loadDefaults();
+      }
+    });
+  }
+
+  loadDefaults(): void {
+    this.navContent = new NavContent();
+    this.navContent.brandName = "Spavento";
+    this.navContent.brandImage = "../../../../assets/img/spavento-logo.png";
+    this.navContent.navLinks = [
+      new NavLink("Home", "/home", true),
+      new NavLink("Portfolio", "/portfolio", true),
+      new NavLink("News", "/news", true),
+      new NavLink("Contact", "/contact", true),
+    ];
   }
 
   setVisibility(navlink, e): void {
     e.checked ? navlink.visible = true : navlink.visible = false;
+  }
+
+  /**
+   * Clears form of data
+   * Asks user for confirmation
+   */
+  resetForm() {
+    this.swalService.promptSwal("Alle veranderingen zullen worden teruggedraaid").then((result) => {
+      if (result.value) {
+        this.retrieveData();
+        this.swalService.successSwal("Veranderingen teruggedraaid");
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        this.swalService.cancelSwal("Veranderingen niet teruggedraaid");
+      }
+    });
   }
 
 }

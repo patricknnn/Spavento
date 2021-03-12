@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { PaintingService } from '../../services/painting.service';
 import { Painting } from '../../models/painting';
 import { Router } from '@angular/router';
-import { BreakpointObserver } from '@angular/cdk/layout';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-latest',
@@ -11,24 +11,32 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 })
 export class LatestComponent implements OnInit, OnChanges {
   @Input() amount: number = 3;
-  groupedPaintings: Painting[];
-  smallScreen = '(max-width: 767px)';
-  mediumScreen = '(min-width: 768px) and (max-width: 991px)';
-  largeScreen = '(min-width: 992px)';
+  paintings: Painting[];
 
   constructor(
-    private breakpointObserver: BreakpointObserver,
     private paintingService: PaintingService,
     private router: Router,
   ) {
   }
 
   ngOnInit(): void {
-    this.observeBreakpoints();
+    this.retrieveData();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.observeBreakpoints();
+    this.retrieveData();
+  }
+
+  retrieveData(): void {
+    this.paintingService.getLatest(this.amount).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.paintings = data;
+    });
   }
 
   // Open details page
@@ -36,32 +44,4 @@ export class LatestComponent implements OnInit, OnChanges {
     this.router.navigate(['/painting', { id: paintingId }]);
   }
 
-  // Fetch paintings and group them
-  groupPaintings(size: number): void {
-    let paintings = this.paintingService.getLatest(this.amount);
-    this.groupedPaintings = this.group(paintings, size);
-  }
-
-  // Groups array in chunks
-  group(array, size) {
-    let results = [];
-    while (array.length) {
-      results.push(array.splice(0, size));
-    }
-    return results;
-  };
-
-  // Observe breakpoints
-  observeBreakpoints(): void {
-    this.breakpointObserver.observe([
-      this.smallScreen,
-      this.mediumScreen,
-      this.largeScreen,
-    ]).subscribe(result => {
-      if (result.breakpoints[this.smallScreen]) { this.groupPaintings(1); }
-      if (result.breakpoints[this.mediumScreen]) { this.groupPaintings(2); }
-      if (result.breakpoints[this.largeScreen]) { this.groupPaintings(3); }
-    });
-  }
-  
 }

@@ -1,7 +1,6 @@
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="services">
   <div class="row mb-4">
     <div class="col-12">
-      <mat-card class="mat-elevation-z4">
         <div *ngIf="services.active">
           <app-section-title [title]="services.title" [subTitle]="services.subTitle" [text]="services.text">
           </app-section-title>
@@ -17,13 +16,11 @@
             <strong>Niet</strong> zichtbaar op de website.
           </ngb-alert>
         </div>
-      </mat-card>
     </div>
   </div>
 
   <div class="row mb-4">
     <div class="col-12">
-      <mat-card class="mat-elevation-z4">
 
         <form (ngSubmit)="onSubmit()" #matForm="ngForm">
 
@@ -44,25 +41,25 @@
           <div class="form-group row">
             <mat-form-field appearance="fill" class="form-field col-sm-12 col-md-6">
               <mat-label>Content titel</mat-label>
-              <input matInput type="text" id="contentTitle" placeholder="Titel" name="contentTitle"
-                [(ngModel)]="services.title" #contentTitleInput="ngModel" required>
-              <mat-hint [hidden]="contentTitleInput.valid || contentTitleInput.pristine">Titel is
+              <input matInput type="text" id="servicesContentTitle" placeholder="Titel" name="servicesContentTitle"
+                [(ngModel)]="services.title" #servicesContentTitleInput="ngModel" required>
+              <mat-hint [hidden]="servicesContentTitleInput.valid || servicesContentTitleInput.pristine">Titel is
                 verplicht</mat-hint>
             </mat-form-field>
 
             <mat-form-field appearance="fill" class="form-field col-sm-12 col-md-6">
               <mat-label>Content subtitel</mat-label>
-              <input matInput type="text" id="contentSubTitle" placeholder="Subtitel" name="contentSubTitle"
-                [(ngModel)]="services.subTitle" #contentSubTitleInput="ngModel" required>
-              <mat-hint [hidden]="contentSubTitleInput.valid || contentSubTitleInput.pristine">Subtitel is
+              <input matInput type="text" id="servicesContentSubTitle" placeholder="Subtitel" name="servicesContentSubTitle"
+                [(ngModel)]="services.subTitle" #servicesContentSubTitleInput="ngModel" required>
+              <mat-hint [hidden]="servicesContentSubTitleInput.valid || servicesContentSubTitleInput.pristine">Subtitel is
                 verplicht</mat-hint>
             </mat-form-field>
 
             <mat-form-field appearance="fill" class="form-field col-12">
               <mat-label>Content text</mat-label>
-              <textarea rows="1" matInput type="text" id="contentText" placeholder="Text" name="contentText"
-                [(ngModel)]="services.text" #contentTextInput="ngModel" required> </textarea>
-              <mat-hint [hidden]="contentTextInput.valid || contentTextInput.pristine">Text is verplicht
+              <textarea rows="1" matInput type="text" id="servicesContentText" placeholder="Text" name="servicesContentText"
+                [(ngModel)]="services.text" #servicesContentTextInput="ngModel" required> </textarea>
+              <mat-hint [hidden]="servicesContentTextInput.valid || servicesContentTextInput.pristine">Text is verplicht
               </mat-hint>
             </mat-form-field>
           </div>
@@ -71,9 +68,9 @@
             <div class="col-xs-12 col-sm-6 col-md-4">
               <mat-form-field appearance="fill" class="form-field w-100">
                 <mat-label>Card titel</mat-label>
-                <input matInput type="text" id="card0Title" placeholder="Titel" name="card0Title"
-                  [(ngModel)]="services.services[0].title" #card0TitleInput="ngModel" required>
-                <mat-hint [hidden]="card0TitleInput.valid || card0TitleInput.pristine">Titel is
+                <input matInput type="text" id="servicesCard0Title" placeholder="Titel" name="servicesCard0Title"
+                  [(ngModel)]="services.services[0].title" #servicesCard0TitleInput="ngModel" required>
+                <mat-hint [hidden]="servicesCard0TitleInput.valid || servicesCard0TitleInput.pristine">Titel is
                   verplicht</mat-hint>
               </mat-form-field>
 
@@ -87,7 +84,7 @@
 
               <mat-form-field appearance="fill" class="form-field w-100">
                 <mat-label>Card tekst</mat-label>
-                <input matInput type="text" id="card0Text" placeholder="Text" name="card0Text"
+                <input matInput type="text" id="servicesCard0Text" placeholder="Text" name="servicesCard0Text"
                   [(ngModel)]="services.services[0].description">
               </mat-form-field>
             </div>
@@ -95,9 +92,9 @@
             <div class="col-xs-12 col-sm-6 col-md-4">
               <mat-form-field appearance="fill" class="form-field w-100">
                 <mat-label>Card titel</mat-label>
-                <input matInput type="text" id="card1Title" placeholder="Titel" name="card1Title"
-                  [(ngModel)]="services.services[1].title" #card1TitleInput="ngModel" required>
-                <mat-hint [hidden]="card1TitleInput.valid || card1TitleInput.pristine">Titel is
+                <input matInput type="text" id="servicesCard1Title" placeholder="Titel" name="servicesCard1Title"
+                  [(ngModel)]="services.services[1].title" #servicesCard1TitleInput="ngModel" required>
+                <mat-hint [hidden]="servicesCard1TitleInput.valid || servicesCard1TitleInput.pristine">Titel is
                   verplicht</mat-hint>
               </mat-form-field>
 
@@ -111,7 +108,7 @@
 
               <mat-form-field appearance="fill" class="form-field w-100">
                 <mat-label>Card tekst</mat-label>
-                <input matInput type="text" id="card1Text" placeholder="Text" name="card1Text"
+                <input matInput type="text" id="servicesCard1Text" placeholder="Text" name="servicesCard1Text"
                   [(ngModel)]="services.services[1].description">
               </mat-form-field>
             </div>
@@ -119,9 +116,9 @@
             <div class="col-xs-12 col-sm-6 col-md-4">
               <mat-form-field appearance="fill" class="form-field w-100">
                 <mat-label>Card titel</mat-label>
-                <input matInput type="text" id="card2Title" placeholder="Titel" name="card2Title"
-                  [(ngModel)]="services.services[2].title" #card2TitleInput="ngModel" required>
-                <mat-hint [hidden]="card2TitleInput.valid || card2TitleInput.pristine">Titel is
+                <input matInput type="text" id="servicesCard2Title" placeholder="Titel" name="servicesCard2Title"
+                  [(ngModel)]="services.services[2].title" #servicesCard2TitleInput="ngModel" required>
+                <mat-hint [hidden]="servicesCard2TitleInput.valid || servicesCard2TitleInput.pristine">Titel is
                   verplicht</mat-hint>
               </mat-form-field>
 
@@ -135,7 +132,7 @@
 
               <mat-form-field appearance="fill" class="form-field w-100">
                 <mat-label>Card tekst</mat-label>
-                <input matInput type="text" id="card2Text" placeholder="Text" name="card2Text"
+                <input matInput type="text" id="servicesCard2Text" placeholder="Text" name="servicesCard2Text"
                   [(ngModel)]="services.services[2].description">
               </mat-form-field>
             </div>
@@ -144,9 +141,8 @@
 
           <button mat-flat-button color="accent" type="submit" [disabled]="!matForm.form.touched">Opslaan</button>
           <button mat-flat-button color="primary" type="button" class="ml-3"
-            (click)="reset(); matForm.form.markAsUntouched();services.active ? matForm.form.enable() : matForm.form.disable();">Reset</button>
+            (click)="resetForm(); matForm.form.markAsUntouched();services.active ? matForm.form.enable() : matForm.form.disable();">Reset</button>
         </form>
-      </mat-card>
 
     </div>
   </div>

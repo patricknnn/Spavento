@@ -5,6 +5,7 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { HeaderContent } from 'src/app/models/headercontent';
 import { ContentService } from 'src/app/services/content.service';
 
@@ -26,15 +27,27 @@ export class HeaderComponent implements OnInit, OnChanges {
   constructor(private contentService: ContentService) { }
 
   ngOnInit(): void {
-    this.headerContent = this.contentService.getHeaderContent()[0];
-    // Set defaults if none provided
-    this.setDefaults();
-    // Init desired effects
-    this.initEffects();
+    this.retrieveData();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.initEffects();
+  }
+
+  retrieveData(): void {
+    this.contentService.getHeaderContent().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.headerContent = data[0];
+      // Set defaults if none provided
+      this.setDefaults();
+      // Init desired effects
+      this.initEffects();
+    });
   }
 
   setDefaults(): void {

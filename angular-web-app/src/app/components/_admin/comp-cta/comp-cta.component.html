@@ -1,7 +1,6 @@
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="cta">
   <div class="row mb-4">
     <div class="col-12">
-      <mat-card class="mat-elevation-z4">
         <div *ngIf="cta.active" class="container-fluid p-5" [style.backgroundImage]="'url(' + cta.image + ')'">
           <div class="col-12">
             <app-call-to-action [title]="cta.title" [subTitle]="cta.subTitle" [buttonText]="cta.btnText"
@@ -15,19 +14,17 @@
             <strong>Niet</strong> zichtbaar op de website.
           </ngb-alert>
         </div>
-      </mat-card>
     </div>
   </div>
 
   <div class="row mb-4">
     <div class="col-12">
-      <mat-card class="mat-elevation-z4">
 
         <form (ngSubmit)="onSubmit()" #matForm="ngForm">
 
           <div class="form-group row">
             <div class="col-sm-12 col-md-10 d-flex align-items-center">
-              <h4 class="title-underlined">Instellingen</h4>
+              <h4 class="title-underlined">Details</h4>
             </div>
             <div class="col-sm-12 col-md-2 d-flex align-items-start justify-content-end">
               <button mat-mini-fab type="button"
@@ -42,16 +39,16 @@
           <div class="form-group row">
             <mat-form-field appearance="fill" class="form-field col-sm-12 col-md-6">
               <mat-label>Content titel</mat-label>
-              <input matInput type="text" id="contentTitle" placeholder="Titel" name="contentTitle"
-                [(ngModel)]="cta.title" #contentTitleInput="ngModel" required>
-              <mat-hint [hidden]="contentTitleInput.valid || contentTitleInput.pristine">Titel is
+              <input matInput type="text" id="ctaContentTitle" placeholder="Titel" name="ctaContentTitle"
+                [(ngModel)]="cta.title" #ctaContentTitleInput="ngModel" required>
+              <mat-hint [hidden]="ctaContentTitleInput.valid || ctaContentTitleInput.pristine">Titel is
                 verplicht</mat-hint>
             </mat-form-field>
             <mat-form-field appearance="fill" class="form-field col-sm-12 col-md-6">
               <mat-label>Content subtitel</mat-label>
-              <input matInput type="text" id="contentSubTitle" placeholder="Subtitel" name="contentSubTitle"
-                [(ngModel)]="cta.subTitle" #contentSubTitleInput="ngModel" required>
-              <mat-hint [hidden]="contentSubTitleInput.valid || contentSubTitleInput.pristine">Subtitel is verplicht
+              <input matInput type="text" id="ctaContentSubTitle" placeholder="Subtitel" name="ctaContentSubTitle"
+                [(ngModel)]="cta.subTitle" #ctaContentSubTitleInput="ngModel" required>
+              <mat-hint [hidden]="ctaContentSubTitleInput.valid || ctaContentSubTitleInput.pristine">Subtitel is verplicht
               </mat-hint>
             </mat-form-field>
           </div>
@@ -59,24 +56,36 @@
           <div class="form-group row">
             <mat-form-field appearance="fill" class="form-field col-12">
               <mat-label>Achtergrond</mat-label>
-              <input matInput type="text" id="contentImage" placeholder="Image" name="contentImage"
-                [(ngModel)]="cta.image">
+              <mat-select id="ctaContentImage" name="ctaContentImage" [(ngModel)]="cta.image">
+                <mat-option [value]="backgrounds[0]">
+                  <img [src]="backgrounds[0]" alt="thumbnail" class="img-thumbnail img-dropdown" />
+                  Blauw
+                </mat-option>
+                <mat-option [value]="backgrounds[1]">
+                  <img [src]="backgrounds[1]" alt="thumbnail" class="img-thumbnail img-dropdown" />
+                  Licht
+                </mat-option>
+                <mat-option [value]="backgrounds[2]">
+                  <img [src]="backgrounds[2]" alt="thumbnail" class="img-thumbnail img-dropdown" />
+                  Donker
+                </mat-option>
+              </mat-select>
             </mat-form-field>
           </div>
 
           <div class="form-group row">
             <mat-form-field appearance="fill" class="form-field col-xs-12 col-sm-6">
               <mat-label>Knop label</mat-label>
-              <input matInput type="text" id="contentBtnLabel" placeholder="Label" name="contentBtnLabel"
-                [(ngModel)]="cta.btnText" #contentBtnLabelInput="ngModel" required>
-              <mat-hint [hidden]="contentBtnLabelInput.valid || contentBtnLabelInput.pristine">Label is verplicht
+              <input matInput type="text" id="ctaContentBtnLabel" placeholder="Label" name="ctaContentBtnLabel"
+                [(ngModel)]="cta.btnText" #ctaContentBtnLabelInput="ngModel" required>
+              <mat-hint [hidden]="ctaContentBtnLabelInput.valid || ctaContentBtnLabelInput.pristine">Label is verplicht
               </mat-hint>
             </mat-form-field>
             <mat-form-field appearance="fill" class="form-field col-xs-12 col-sm-6">
               <mat-label>Knop link</mat-label>
-              <input matInput type="text" id="contentBtnLink" placeholder="Link" name="contentBtnLink"
-                [(ngModel)]="cta.btnLink" #contentBtnLinkInput="ngModel" required>
-              <mat-hint [hidden]="contentBtnLinkInput.valid || contentBtnLinkInput.pristine">Link is verplicht
+              <input matInput type="text" id="ctaContentBtnLink" placeholder="Link" name="ctaContentBtnLink"
+                [(ngModel)]="cta.btnLink" #ctaContentBtnLinkInput="ngModel" required>
+              <mat-hint [hidden]="ctaContentBtnLinkInput.valid || ctaContentBtnLinkInput.pristine">Link is verplicht
               </mat-hint>
             </mat-form-field>
           </div>
@@ -84,9 +93,8 @@
 
           <button mat-flat-button color="accent" type="submit" [disabled]="!matForm.form.touched">Opslaan</button>
           <button mat-flat-button color="primary" type="button" class="ml-3"
-            (click)="reset(); matForm.form.markAsUntouched();cta.active ? matForm.form.enable() : matForm.form.disable();">Reset</button>
+            (click)="resetForm(); matForm.form.markAsUntouched();cta.active ? matForm.form.enable() : matForm.form.disable();">Reset</button>
         </form>
-      </mat-card>
 
     </div>
   </div>

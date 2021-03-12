@@ -6,109 +6,93 @@
     <div class="col-12">
 
       <form *ngIf="newsItem" (ngSubmit)="onSubmit()" #addNewsItemForm="ngForm">
+        <mat-card class="mat-elevation-z4 mb-4">
+
+          <h4 class="title-underlined">Afbeelding</h4>
+
+          <div class="form-group row">
+            <div class="col-12">
+              <ngx-dropzone [multiple]="false" (change)="onFileSelect($event)" class="mat-dropzone">
+                <ngx-dropzone-label class="d-flex align-items-center">
+                  <mat-icon class="mr-2">upload</mat-icon>
+                  Kies afbeelding
+                </ngx-dropzone-label>
+                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let file of selectedFiles"
+                  [file]="file" [removable]="true" (removed)="onFileRemove(file)">
+                  <ngx-dropzone-label>{{ file.name }} ({{ file.type }})</ngx-dropzone-label>
+                </ngx-dropzone-image-preview>
+              </ngx-dropzone>
+            </div>
+          </div>
+        </mat-card>
 
         <!-- General information -->
         <mat-card class="mat-elevation-z4 mb-4">
-          <mat-card-header>
-            <mat-card-title>Details</mat-card-title>
-            <mat-card-subtitle>Voeg informatie over het nieuwsitem toe</mat-card-subtitle>
-          </mat-card-header>
+          <h4 class="title-underlined">Details</h4>
 
-          <mat-card-content>
-            <div class="form-group row">
-              <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
-                <mat-label>Titel</mat-label>
-                <input matInput id="title" placeholder="Titel" name="title" [(ngModel)]="newsItem.title"
-                  [disabled]="formDisabled" #title="ngModel" required />
-                <mat-hint [hidden]="title.valid || title.pristine">Titel is <strong>verplicht</strong></mat-hint>
-              </mat-form-field>
+          <div class="form-group row">
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+              <mat-label>Titel</mat-label>
+              <input matInput id="title" placeholder="Titel" name="title" [(ngModel)]="newsItem.title"
+                [disabled]="formDisabled" #title="ngModel" required />
+              <mat-hint [hidden]="title.valid || title.pristine">Titel is <strong>verplicht</strong></mat-hint>
+            </mat-form-field>
 
-              <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
-                <mat-label>Auteur</mat-label>
-                <input matInput id="author" placeholder="Auteur" name="author" [(ngModel)]="newsItem.author"
-                  [disabled]="formDisabled" #author="ngModel" required />
-                <mat-hint [hidden]="author.valid || author.pristine">Auteur is <strong>verplicht</strong></mat-hint>
-              </mat-form-field>
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+              <mat-label>Auteur</mat-label>
+              <input matInput id="author" placeholder="Auteur" name="author" [(ngModel)]="newsItem.author"
+                [disabled]="formDisabled" #author="ngModel" required />
+              <mat-hint [hidden]="author.valid || author.pristine">Auteur is <strong>verplicht</strong></mat-hint>
+            </mat-form-field>
+          </div>
+
+          <div class="form-group row">
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12">
+              <mat-label>Bericht</mat-label>
+              <textarea matInput id="text" placeholder="Bericht" name="text" [(ngModel)]="newsItem.text"
+                [disabled]="formDisabled" #text="ngModel" required></textarea>
+              <mat-hint [hidden]="text.valid || text.pristine">Bericht is <strong>verplicht</strong> </mat-hint>
+            </mat-form-field>
+          </div>
+
+          <div class="form-group row">
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+              <mat-label>Categorie</mat-label>
+              <mat-select id="category" name="category" [(ngModel)]="newsItem.category" [disabled]="formDisabled"
+                #category="ngModel" required>
+                <mat-option *ngFor="let category of categories" [value]="category">
+                  {{ category }}
+                </mat-option>
+              </mat-select>
+              <mat-hint [hidden]="category.valid || category.pristine">Categorie is <strong>verplicht</strong>
+              </mat-hint>
+            </mat-form-field>
+
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+              <mat-label>Locatie</mat-label>
+              <input matInput id="location" placeholder="Locatie" name="location" [(ngModel)]="newsItem.location"
+                [disabled]="formDisabled" #location="ngModel" />
+            </mat-form-field>
+          </div>
+
+          <div class="form-group row">
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+              <mat-label>Datum</mat-label>
+              <input matInput id="date" placeholder="Datum" name="date" [(ngModel)]="newsItem.date"
+                [disabled]="formDisabled" [matDatepicker]="datePicker" #date="ngModel" />
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #datePicker></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <!-- Actions -->
+          <div class="row mt-3">
+            <div class="col-12">
+              <button mat-flat-button color="accent" type="submit" class="mr-2"
+                [disabled]="!addNewsItemForm.valid">opslaan</button>
+              <button mat-flat-button color="primary" type="button" (click)="resetForm()">reset</button>
             </div>
-
-            <div class="form-group row">
-              <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12">
-                <mat-label>Bericht</mat-label>
-                <textarea matInput id="text" placeholder="Bericht" name="text"
-                  [(ngModel)]="newsItem.text" [disabled]="formDisabled" #text="ngModel"
-                  required></textarea>
-                <mat-hint [hidden]="text.valid || text.pristine">Bericht is <strong>verplicht</strong> </mat-hint>
-              </mat-form-field>
-            </div>
-
-            <div class="form-group row">
-              <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
-                <mat-label>Categorie</mat-label>
-                <mat-select id="category" name="category" [(ngModel)]="newsItem.category" [disabled]="formDisabled"
-                  #category="ngModel" required>
-                  <mat-option *ngFor="let category of categories" [value]="category">
-                    {{ category }}
-                  </mat-option>
-                </mat-select>
-                <mat-hint [hidden]="category.valid || category.pristine">Categorie is <strong>verplicht</strong></mat-hint>
-              </mat-form-field>
-
-              <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
-                <mat-label>Locatie</mat-label>
-                <input matInput id="location" placeholder="Locatie" name="location" [(ngModel)]="newsItem.location"
-                  [disabled]="formDisabled" #location="ngModel" />
-              </mat-form-field>
-            </div>
-
-            <div class="form-group row">
-              <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
-                <mat-label>Datum</mat-label>
-                <input matInput id="date" placeholder="Datum" name="date" [(ngModel)]="newsItem.date"
-                  [disabled]="formDisabled" [matDatepicker]="datePicker" #date="ngModel" />
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #datePicker></mat-datepicker>
-              </mat-form-field>
-            </div>
-
-          </mat-card-content>
-        </mat-card>
-
-        <!-- Images -->
-        <mat-card class="mat-elevation-z4 mb-4">
-          <mat-card-header>
-            <mat-card-title>Afbeelding</mat-card-title>
-            <mat-card-subtitle>Voeg eventueel een afbeelding bij dit nieuws item toe</mat-card-subtitle>
-          </mat-card-header>
-
-          <mat-card-content>
-            <div class="form-group row">
-              <div class="col-12">
-                <ngx-dropzone [multiple]="false" (change)="onFileSelect($event)" class="mat-dropzone">
-                  <ngx-dropzone-label class="d-flex align-items-center">
-                    <mat-icon class="mr-2">upload</mat-icon>
-                    Kies afbeelding
-                  </ngx-dropzone-label>
-                  <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let file of selectedFiles"
-                    [file]="file" [removable]="true" (removed)="onFileRemove(file)">
-                    <ngx-dropzone-label>{{ file.name }} ({{ file.type }})</ngx-dropzone-label>
-                  </ngx-dropzone-image-preview>
-                </ngx-dropzone>
-              </div>
-            </div>
-          </mat-card-content>
-        </mat-card>
-
-        <!-- Actions -->
-        <mat-card class="mat-elevation-z4">
-          <mat-card-content>
-            <button mat-flat-button color="primary" type="button" class="mr-2" (click)="resetForm()">
-              reset
-            </button>
-            <button mat-flat-button color="accent" type="submit"
-              [disabled]="!addNewsItemForm.valid">
-              opslaan
-            </button>
-          </mat-card-content>
+          </div>
         </mat-card>
       </form>
     </div>
