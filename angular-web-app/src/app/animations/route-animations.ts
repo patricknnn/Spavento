@@ -9,7 +9,7 @@ const smallheadHeight = '60vh';
 
 const positionAbsolute =
   query(':enter, :leave', [
-    style({ position: 'absolute', top: 0, left: 0, width: '100%' })
+    style({ position: 'absolute', top: 0, left: 0, width: '100%'})
   ], { optional: true });
 
 const showEnterMain =

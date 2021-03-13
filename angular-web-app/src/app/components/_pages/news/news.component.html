@@ -35,9 +35,8 @@
 
       <!-- News items -->
       <div id="resultsContainer" class="results-container row my-4" *ngIf="filteredNewsItems">
-        <app-news-card *ngFor="let item of filteredNewsItems" class="col-12 my-3"
-          [newsItem]="item" [ngClass]="{'animate__animated animate__bounceIn animate__faster': filterApplied}"
-          [attr.data-category]="item.category">
+        <app-news-card *ngFor="let item of filteredNewsItems" class="col-12 my-3" @fadeAnimation
+          [newsItem]="item" [attr.data-category]="item.category">
         </app-news-card>
       </div>
 

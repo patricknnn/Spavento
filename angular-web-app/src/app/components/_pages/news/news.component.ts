@@ -5,9 +5,11 @@ import { ContentService } from 'src/app/services/content.service';
 import { PageTitle } from 'src/app/models/pagetitle';
 import { NewsContent } from 'src/app/models/newscontent';
 import { map } from 'rxjs/operators';
+import { fadeAnimation } from 'src/app/animations/fade-animation';
 
 @Component({
   selector: 'app-news',
+  animations: [ fadeAnimation ],
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.scss'],
 })
@@ -16,7 +18,6 @@ export class NewsComponent implements OnInit {
   newsContent: NewsContent;
   newsItems: NewsItem[];
   filteredNewsItems: NewsItem[];
-  filterApplied: boolean;
   categories: string[];
   activeFilters = {
     categories: [],
@@ -32,7 +33,6 @@ export class NewsComponent implements OnInit {
     this.retrieveNews();
     this.retrieveNewsContent();
     this.categories = this.newsService.getCategories();
-    this.filterApplied = true;
   }
 
   retrieveNews(): void {

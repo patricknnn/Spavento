@@ -3,9 +3,11 @@ import { Painting } from '../../models/painting';
 import { PaintingService } from '../../services/painting.service';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { fadeAnimation } from 'src/app/animations/fade-animation';
 
 @Component({
   selector: 'app-gallery',
+  animations: [ fadeAnimation ],
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.scss'],
 })
@@ -13,7 +15,6 @@ export class GalleryComponent implements OnInit {
   @Input() maxHeight: string = '100%';
   paintings: Painting[];
   filteredPaintings: Painting[];
-  filterApplied: boolean;
   categories: string[];
   paints: string[];
   materials: string[];
@@ -41,7 +42,6 @@ export class GalleryComponent implements OnInit {
     this.paints = this.paintingService.getPaints();
     this.materials = this.paintingService.getMaterials();
     this.states = this.paintingService.getStates();
-    this.filterApplied = true;
   }
 
   retrievePaintings(): void {
