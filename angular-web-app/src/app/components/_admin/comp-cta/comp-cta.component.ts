@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { CtaContent } from 'src/app/models/ctacontent';
 import { ContentService } from 'src/app/services/content.service';
@@ -11,6 +12,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./comp-cta.component.scss']
 })
 export class CompCtaComponent implements OnInit {
+  @ViewChild('ctaForm') form: NgForm;
   cta: CtaContent;
   ctaHistory: CtaContent[];
   backgrounds = [
@@ -76,6 +78,7 @@ export class CompCtaComponent implements OnInit {
       if (result.value) {
         this.retrieveData();
         this.swalService.successSwal("Veranderingen teruggedraaid");
+        this.form.form.markAsPristine();
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         this.swalService.cancelSwal("Veranderingen niet teruggedraaid");
       }

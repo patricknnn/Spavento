@@ -41,6 +41,8 @@ export class PortfolioComponent implements OnInit {
       )
     ).subscribe(data => {
       this.galleryContent = data[0];
+      console.log(data[0]);
+      
     });
   }
 }

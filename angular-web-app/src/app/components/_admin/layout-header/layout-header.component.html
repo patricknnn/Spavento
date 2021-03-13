@@ -4,7 +4,7 @@
 
   <div class="row mb-4">
     <div class="col-12">
-      <!-- <mat-card class="mat-elevation-z4">
+      <mat-card class="mat-elevation-z4">
         <h4 class="title-underlined">Resultaat</h4>
         <app-header 
           [small]="headerContent.small"
@@ -14,18 +14,14 @@
           [subTitle]="headerContent.defaultSubtitle"
           [image]="headerContent.defaultImage">
         </app-header>
-      </mat-card> -->
-      <app-header [small]="headerContent.small" [typing]="headerContent.typing" [paralax]="headerContent.paralax"
-        [title]="headerContent.defaultTitle" [subTitle]="headerContent.defaultSubtitle"
-        [image]="headerContent.defaultImage">
-      </app-header>
+      </mat-card>
     </div>
   </div>
 
   <div class="row mb-5">
     <div class="col-12">
       <mat-card class="mat-elevation-z4">
-        <h4 class="title-underlined">Details</h4>
+        <h4 class="title-underlined">Instellingen</h4>
         <form (ngSubmit)="onSubmit()" #headerForm="ngForm">
 
           <div class="form-group row">
@@ -81,9 +77,13 @@
 
 
           <button mat-flat-button color="accent" type="submit"
-            [disabled]="!headerForm.form.valid || headerForm.form.pristine">Opslaan</button>
+            [disabled]="!headerForm.form.valid || headerForm.form.pristine">
+            Opslaan
+          </button>
           <button mat-flat-button color="primary" type="button" class="ml-3" [disabled]="headerForm.form.pristine"
-            (click)="resetForm()">Reset</button>
+            (click)="resetForm()">
+            Reset
+          </button>
         </form>
       </mat-card>
 

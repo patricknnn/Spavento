@@ -4,35 +4,41 @@
 
   <div class="row mb-4">
     <div class="col-12">
-      <form (ngSubmit)="onSubmit()" #generalContentForm="ngForm" *ngIf="content">
-        <div class="form-group row">
+      <mat-card class="mat-elevation-z4">
+        <form (ngSubmit)="onSubmit()" #generalContentForm="ngForm" *ngIf="content">
 
-          <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-sm-12 col-md-6">
-            <mat-label>Form style</mat-label>
-            <mat-select id="contactFormContentFormStyle" name="contactFormContentFormStyle"
-              [(ngModel)]="content.formStyle" #contactFormContentFormStyleInput="ngModel">
-              <mat-option *ngFor="let style of formStyles" [value]="style">
-                {{ style }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+          <!-- Form settings -->
+          <h4 class="title-underlined">Formulieren</h4>
+          <div class="form-group row">
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-sm-12 col-md-6">
+              <mat-label>Form style</mat-label>
+              <mat-select id="contactFormContentFormStyle" name="contactFormContentFormStyle"
+                [(ngModel)]="content.formStyle" #contactFormContentFormStyleInput="ngModel">
+                <mat-option *ngFor="let style of formStyles" [value]="style">
+                  {{ style }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
 
-          <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-sm-12 col-md-6">
-            <mat-label>Form kleur</mat-label>
-            <mat-select id="contactFormContentFormColor" name="contactFormContentFormColor"
-              [(ngModel)]="content.formColor" #contactFormContentFormColorInput="ngModel">
-              <mat-option value="primary">Primary</mat-option>
-              <mat-option value="accent">Accent</mat-option>
-              <mat-option value="warn">Warn</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-sm-12 col-md-6">
+              <mat-label>Form kleur</mat-label>
+              <mat-select id="contactFormContentFormColor" name="contactFormContentFormColor"
+                [(ngModel)]="content.formColor" #contactFormContentFormColorInput="ngModel">
+                <mat-option value="primary">Primary</mat-option>
+                <mat-option value="accent">Accent</mat-option>
+                <mat-option value="warn">Warn</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
 
-        <button mat-flat-button color="accent" type="submit"
-          [disabled]="!generalContentForm.form.touched">Opslaan</button>
-        <button mat-flat-button color="primary" type="button" class="ml-3"
-          (click)="resetForm(); generalContentForm.form.markAsUntouched();">Reset</button>
-      </form>
+          <!-- Other settings -->
+
+          <button mat-flat-button color="accent" type="submit"
+            [disabled]="!generalContentForm.form.touched">Opslaan</button>
+          <button mat-flat-button color="primary" type="button" class="ml-3"
+            (click)="resetForm(); generalContentForm.form.markAsUntouched();">Reset</button>
+        </form>
+      </mat-card>
     </div>
   </div>
 </div>

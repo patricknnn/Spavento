@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { NavContent } from 'src/app/models/navcontent';
 import { NavLink } from 'src/app/models/navlink';
@@ -12,6 +13,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./layout-navigation.component.scss']
 })
 export class LayoutNavigationComponent implements OnInit {
+  @ViewChild('navigationForm') form: NgForm;
   title = "Navigatie";
   subTitle = "Layout";
   text = "Stel hier alles in met betrekking tot de navigatie op de website.";
@@ -77,6 +79,7 @@ export class LayoutNavigationComponent implements OnInit {
       if (result.value) {
         this.retrieveData();
         this.swalService.successSwal("Veranderingen teruggedraaid");
+        this.form.form.markAsPristine();
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         this.swalService.cancelSwal("Veranderingen niet teruggedraaid");
       }

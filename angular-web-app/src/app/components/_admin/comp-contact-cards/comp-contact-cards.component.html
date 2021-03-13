@@ -1,7 +1,9 @@
-<div class="container-fluid" *ngIf="services">
+<div class="container-fluid p-0" *ngIf="services">
   <div class="row mb-4">
     <div class="col-12">
-      <mat-card class="mat-elevation-z8">
+
+      <mat-card class="mat-elevation-z4">
+        <h4 class="title-underlined">Resultaat</h4>
         <div *ngIf="services.active">
           <app-section-title [title]="services.title" [subTitle]="services.subTitle" [text]="services.text">
           </app-section-title>
@@ -23,130 +25,139 @@
 
   <div class="row mb-4">
     <div class="col-12">
+      <mat-card class="mat-elevation-z4">
+        <form (ngSubmit)="onSubmit()" #contactCardsForm="ngForm">
 
-      <form (ngSubmit)="onSubmit()" #contactCardsForm="ngForm">
-
-        <div class="form-group row">
-          <div class="col-sm-12 col-md-10 d-flex align-items-center">
-            <h4 class="title-underlined">Instellingen</h4>
+          <div class="form-group row">
+            <div class="col-sm-12 col-md-10 d-flex align-items-center">
+              <h4 class="title-underlined">Instellingen</h4>
+            </div>
+            <div class="col-sm-12 col-md-2 d-flex align-items-start justify-content-end">
+              <button mat-mini-fab type="button"
+                (click)="services.active = !services.active; services.active ? contactCardsForm.form.enable() : contactCardsForm.form.disable(); contactCardsForm.form.markAsTouched()"
+                [color]="services.active ? 'accent' : 'primary'" [attr.aria-label]="'Hide component'"
+                [attr.aria-pressed]="services.active">
+                <mat-icon>{{services.active ? 'visibility' : 'visibility_off'}}</mat-icon>
+              </button>
+            </div>
           </div>
-          <div class="col-sm-12 col-md-2 d-flex align-items-start justify-content-end">
-            <button mat-mini-fab type="button"
-              (click)="services.active = !services.active; services.active ? contactCardsForm.form.enable() : contactCardsForm.form.disable(); contactCardsForm.form.markAsTouched()"
-              [color]="services.active ? 'accent' : 'primary'" [attr.aria-label]="'Hide component'"
-              [attr.aria-pressed]="services.active">
-              <mat-icon>{{services.active ? 'visibility' : 'visibility_off'}}</mat-icon>
-            </button>
-          </div>
-        </div>
 
-        <div class="form-group row">
-          <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field col-sm-12 col-md-6">
-            <mat-label>Content titel</mat-label>
-            <input matInput type="text" id="contactCardContentTitle" placeholder="Titel" name="contactCardContentTitle"
-              [(ngModel)]="services.title" #contactCardContentTitleInput="ngModel" required>
-            <mat-hint [hidden]="contactCardContentTitleInput.valid || contactCardContentTitleInput.pristine">Titel is
-              verplicht</mat-hint>
-          </mat-form-field>
-
-          <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field col-sm-12 col-md-6">
-            <mat-label>Content subtitel</mat-label>
-            <input matInput type="text" id="contactCardContentSubTitle" placeholder="Subtitel"
-              name="contactCardContentSubTitle" [(ngModel)]="services.subTitle" #contactCardContentSubTitleInput="ngModel"
-              required>
-            <mat-hint [hidden]="contactCardContentSubTitleInput.valid || contactCardContentSubTitleInput.pristine">Subtitel is
-              verplicht</mat-hint>
-          </mat-form-field>
-
-          <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field col-12">
-            <mat-label>Content text</mat-label>
-            <textarea rows="1" matInput type="text" id="contactCardContentText" placeholder="Text"
-              name="contactCardContentText" [(ngModel)]="services.text" #contactCardContentTextInput="ngModel"
-              required> </textarea>
-            <mat-hint [hidden]="contactCardContentTextInput.valid || contactCardContentTextInput.pristine">Text is verplicht
-            </mat-hint>
-          </mat-form-field>
-        </div>
-
-        <div class="form-group row">
-          <div class="col-xs-12 col-sm-6 col-md-4">
-            <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field w-100">
-              <mat-label>Card titel</mat-label>
-              <input matInput type="text" id="contactCard0Title" placeholder="Titel" name="contactCard0Title"
-                [(ngModel)]="services.services[0].title" #contactCard0TitleInput="ngModel" required>
-              <mat-hint [hidden]="contactCard0TitleInput.valid || contactCard0TitleInput.pristine">Titel is
+          <div class="form-group row">
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-sm-12 col-md-6">
+              <mat-label>Content titel</mat-label>
+              <input matInput type="text" id="contactCardContentTitle" placeholder="Titel"
+                name="contactCardContentTitle" [(ngModel)]="services.title" #contactCardContentTitleInput="ngModel"
+                required>
+              <mat-hint [hidden]="contactCardContentTitleInput.valid || contactCardContentTitleInput.pristine">Titel is
                 verplicht</mat-hint>
             </mat-form-field>
 
-            <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field w-100">
-              <mat-label>Card icon</mat-label>
-              <input matInput type="text" id="contactCard0Icon" placeholder="Icon" name="contactCard0Icon"
-                [(ngModel)]="services.services[0].icon" #contactCard0IconInput="ngModel" required>
-              <mat-hint [hidden]="contactCard0IconInput.valid || contactCard0IconInput.pristine">Icon is verplicht
-              </mat-hint>
-            </mat-form-field>
-
-            <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field w-100">
-              <mat-label>Card tekst</mat-label>
-              <input matInput type="text" id="contactCard0Text" placeholder="Text" name="contactCard0Text"
-                [(ngModel)]="services.services[0].description">
-            </mat-form-field>
-          </div>
-
-          <div class="col-xs-12 col-sm-6 col-md-4">
-            <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field w-100">
-              <mat-label>Card titel</mat-label>
-              <input matInput type="text" id="contactCard1Title" placeholder="Titel" name="contactCard1Title"
-                [(ngModel)]="services.services[1].title" #contactCard1TitleInput="ngModel" required>
-              <mat-hint [hidden]="contactCard1TitleInput.valid || contactCard1TitleInput.pristine">Titel is
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-sm-12 col-md-6">
+              <mat-label>Content subtitel</mat-label>
+              <input matInput type="text" id="contactCardContentSubTitle" placeholder="Subtitel"
+                name="contactCardContentSubTitle" [(ngModel)]="services.subTitle"
+                #contactCardContentSubTitleInput="ngModel" required>
+              <mat-hint [hidden]="contactCardContentSubTitleInput.valid || contactCardContentSubTitleInput.pristine">
+                Subtitel is
                 verplicht</mat-hint>
             </mat-form-field>
 
-            <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field w-100">
-              <mat-label>Card icon</mat-label>
-              <input matInput type="text" id="contactCard1Icon" placeholder="Icon" name="contactCard1Icon"
-                [(ngModel)]="services.services[1].icon" #contactCard1IconInput="ngModel" required>
-              <mat-hint [hidden]="contactCard1IconInput.valid || contactCard1IconInput.pristine">Icon is verplicht
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12">
+              <mat-label>Content text</mat-label>
+              <textarea rows="1" matInput type="text" id="contactCardContentText" placeholder="Text"
+                name="contactCardContentText" [(ngModel)]="services.text" #contactCardContentTextInput="ngModel"
+                required> </textarea>
+              <mat-hint [hidden]="contactCardContentTextInput.valid || contactCardContentTextInput.pristine">Text is
+                verplicht
               </mat-hint>
-            </mat-form-field>
-
-            <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field w-100">
-              <mat-label>Card tekst</mat-label>
-              <input matInput type="text" id="contactCard1Text" placeholder="Text" name="contactCard1Text"
-                [(ngModel)]="services.services[1].description">
             </mat-form-field>
           </div>
 
-          <div class="col-xs-12 col-sm-6 col-md-4">
-            <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field w-100">
-              <mat-label>Card titel</mat-label>
-              <input matInput type="text" id="contactCard2Title" placeholder="Titel" name="contactCard2Title"
-                [(ngModel)]="services.services[2].title" #contactCard2TitleInput="ngModel" required>
-              <mat-hint [hidden]="contactCard2TitleInput.valid || contactCard2TitleInput.pristine">Titel is
-                verplicht</mat-hint>
-            </mat-form-field>
+          <div class="form-group row">
+            <div class="col-xs-12 col-sm-6 col-md-4">
+              <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field w-100">
+                <mat-label>Card titel</mat-label>
+                <input matInput type="text" id="contactCard0Title" placeholder="Titel" name="contactCard0Title"
+                  [(ngModel)]="services.services[0].title" #contactCard0TitleInput="ngModel" required>
+                <mat-hint [hidden]="contactCard0TitleInput.valid || contactCard0TitleInput.pristine">Titel is
+                  verplicht</mat-hint>
+              </mat-form-field>
 
-            <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field w-100">
-              <mat-label>Card icon</mat-label>
-              <input matInput type="text" id="contactCard2Icon" placeholder="Icon" name="contactCard2Icon"
-                [(ngModel)]="services.services[2].icon" #contactCard2IconInput="ngModel" required>
-              <mat-hint [hidden]="contactCard2IconInput.valid || contactCard2IconInput.pristine">Icon is verplicht
-              </mat-hint>
-            </mat-form-field>
+              <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field w-100">
+                <mat-label>Card icon</mat-label>
+                <input matInput type="text" id="contactCard0Icon" placeholder="Icon" name="contactCard0Icon"
+                  [(ngModel)]="services.services[0].icon" #contactCard0IconInput="ngModel" required>
+                <mat-hint [hidden]="contactCard0IconInput.valid || contactCard0IconInput.pristine">Icon is verplicht
+                </mat-hint>
+              </mat-form-field>
 
-            <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field w-100">
-              <mat-label>Card tekst</mat-label>
-              <input matInput type="text" id="contactCard2Text" placeholder="Text" name="contactCard2Text"
-                [(ngModel)]="services.services[2].description">
-            </mat-form-field>
+              <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field w-100">
+                <mat-label>Card tekst</mat-label>
+                <input matInput type="text" id="contactCard0Text" placeholder="Text" name="contactCard0Text"
+                  [(ngModel)]="services.services[0].description">
+              </mat-form-field>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-4">
+              <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field w-100">
+                <mat-label>Card titel</mat-label>
+                <input matInput type="text" id="contactCard1Title" placeholder="Titel" name="contactCard1Title"
+                  [(ngModel)]="services.services[1].title" #contactCard1TitleInput="ngModel" required>
+                <mat-hint [hidden]="contactCard1TitleInput.valid || contactCard1TitleInput.pristine">Titel is
+                  verplicht</mat-hint>
+              </mat-form-field>
+
+              <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field w-100">
+                <mat-label>Card icon</mat-label>
+                <input matInput type="text" id="contactCard1Icon" placeholder="Icon" name="contactCard1Icon"
+                  [(ngModel)]="services.services[1].icon" #contactCard1IconInput="ngModel" required>
+                <mat-hint [hidden]="contactCard1IconInput.valid || contactCard1IconInput.pristine">Icon is verplicht
+                </mat-hint>
+              </mat-form-field>
+
+              <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field w-100">
+                <mat-label>Card tekst</mat-label>
+                <input matInput type="text" id="contactCard1Text" placeholder="Text" name="contactCard1Text"
+                  [(ngModel)]="services.services[1].description">
+              </mat-form-field>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-4">
+              <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field w-100">
+                <mat-label>Card titel</mat-label>
+                <input matInput type="text" id="contactCard2Title" placeholder="Titel" name="contactCard2Title"
+                  [(ngModel)]="services.services[2].title" #contactCard2TitleInput="ngModel" required>
+                <mat-hint [hidden]="contactCard2TitleInput.valid || contactCard2TitleInput.pristine">Titel is
+                  verplicht</mat-hint>
+              </mat-form-field>
+
+              <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field w-100">
+                <mat-label>Card icon</mat-label>
+                <input matInput type="text" id="contactCard2Icon" placeholder="Icon" name="contactCard2Icon"
+                  [(ngModel)]="services.services[2].icon" #contactCard2IconInput="ngModel" required>
+                <mat-hint [hidden]="contactCard2IconInput.valid || contactCard2IconInput.pristine">Icon is verplicht
+                </mat-hint>
+              </mat-form-field>
+
+              <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field w-100">
+                <mat-label>Card tekst</mat-label>
+                <input matInput type="text" id="contactCard2Text" placeholder="Text" name="contactCard2Text"
+                  [(ngModel)]="services.services[2].description">
+              </mat-form-field>
+            </div>
+
           </div>
 
-        </div>
-
-        <button mat-flat-button color="accent" type="submit" [disabled]="!contactCardsForm.form.touched">Opslaan</button>
-        <button mat-flat-button color="primary" type="button" class="ml-3"
-          (click)="resetForm(); contactCardsForm.form.markAsUntouched();services.active ? contactCardsForm.form.enable() : contactCardsForm.form.disable();">Reset</button>
-      </form>
+          <button mat-flat-button color="accent" type="submit"
+            [disabled]="!contactCardsForm.form.valid || contactCardsForm.form.pristine">
+            Opslaan
+          </button>
+          <button mat-flat-button color="primary" type="button" class="ml-3" [disabled]="contactCardsForm.form.pristine"
+            (click)="resetForm()">
+            Reset
+          </button>
+        </form>
+      </mat-card>
 
     </div>
   </div>

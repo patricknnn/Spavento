@@ -1,8 +1,9 @@
-<div class="container-fluid" *ngIf="newsContent">
+<div class="container-fluid p-0" *ngIf="newsContent">
   <div class="row mb-4">
     <div class="col-12">
-      <mat-card class="mat-elevation-z8">
-        <div *ngIf="newsContent.active" class="container-fluid">
+      <mat-card class="mat-elevation-z4">
+        <h4 class="title-underlined">Resultaat</h4>
+        <div class="container-fluid">
           <app-section-title [title]="newsContent.title" [subTitle]="newsContent.subTitle" [text]="newsContent.text"
             [link]="newsContent.link">
           </app-section-title>
@@ -13,50 +14,54 @@
 
   <div class="row mb-4">
     <div class="col-12">
-      <form (ngSubmit)="onSubmit()" #newsContentForm="ngForm">
+      <mat-card class="mat-elevation-z4">
+        <form (ngSubmit)="onSubmit()" #newsContentForm="ngForm">
 
-        <div class="form-group row">
-          <div class="col-12 d-flex align-items-center">
-            <h4 class="title-underlined">Instellingen</h4>
+          <div class="form-group row">
+            <div class="col-12 d-flex align-items-center">
+              <h4 class="title-underlined">Instellingen</h4>
+            </div>
           </div>
-        </div>
 
-        <div class="form-group row">
-          <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field col-sm-12 col-md-6">
-            <mat-label>Content titel</mat-label>
-            <input matInput type="text" id="newsContentTitle" placeholder="Titel" name="newsContentTitle"
-              [(ngModel)]="newsContent.title" #newsContentTitleInput="ngModel" required>
-            <mat-hint [hidden]="newsContentTitleInput.valid || newsContentTitleInput.pristine">Titel is
-              verplicht</mat-hint>
-          </mat-form-field>
+          <div class="form-group row">
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-sm-12 col-md-6">
+              <mat-label>Content titel</mat-label>
+              <input matInput type="text" id="newsContentTitle" placeholder="Titel" name="newsContentTitle"
+                [(ngModel)]="newsContent.title" #newsContentTitleInput="ngModel" required>
+              <mat-hint [hidden]="newsContentTitleInput.valid || newsContentTitleInput.pristine">Titel is
+                verplicht</mat-hint>
+            </mat-form-field>
 
-          <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field col-sm-12 col-md-6">
-            <mat-label>Content subtitel</mat-label>
-            <input matInput type="text" id="newsContentSubTitle" placeholder="Subtitel"
-              name="newsContentSubTitle" [(ngModel)]="newsContent.subTitle"
-              #newsContentSubTitleInput="ngModel" required>
-            <mat-hint [hidden]="newsContentSubTitleInput.valid || newsContentSubTitleInput.pristine">
-              Subtitel is verplicht
-            </mat-hint>
-          </mat-form-field>
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-sm-12 col-md-6">
+              <mat-label>Content subtitel</mat-label>
+              <input matInput type="text" id="newsContentSubTitle" placeholder="Subtitel" name="newsContentSubTitle"
+                [(ngModel)]="newsContent.subTitle" #newsContentSubTitleInput="ngModel" required>
+              <mat-hint [hidden]="newsContentSubTitleInput.valid || newsContentSubTitleInput.pristine">
+                Subtitel is verplicht
+              </mat-hint>
+            </mat-form-field>
 
-          <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field col-10">
-            <mat-label>Content text</mat-label>
-            <textarea rows="1" matInput type="text" id="newsContentText" placeholder="Text"
-              name="newsContentText" [(ngModel)]="newsContent.text" #newsContentTextInput="ngModel"
-              required> </textarea>
-            <mat-hint [hidden]="newsContentTextInput.valid || newsContentTextInput.pristine">Text is verplicht
-            </mat-hint>
-          </mat-form-field>
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12">
+              <mat-label>Content text</mat-label>
+              <textarea rows="1" matInput type="text" id="newsContentText" placeholder="Text" name="newsContentText"
+                [(ngModel)]="newsContent.text" #newsContentTextInput="ngModel" required> </textarea>
+              <mat-hint [hidden]="newsContentTextInput.valid || newsContentTextInput.pristine">Text is verplicht
+              </mat-hint>
+            </mat-form-field>
 
-        </div>
+          </div>
 
 
-        <button mat-flat-button color="accent" type="submit" [disabled]="!newsContentForm.form.touched">Opslaan</button>
-        <button mat-flat-button color="primary" type="button" class="ml-3"
-          (click)="resetForm(); newsContentForm.form.markAsUntouched();newsContent.active ? newsContentForm.form.enable() : newsContentForm.form.disable();">Reset</button>
-      </form>
-
+          <button mat-flat-button color="accent" type="submit"
+            [disabled]="!newsContentForm.form.valid || newsContentForm.form.pristine">
+            Opslaan
+          </button>
+          <button mat-flat-button color="primary" type="button" class="ml-3" [disabled]="newsContentForm.form.pristine"
+            (click)="resetForm()">
+            Reset
+          </button>
+        </form>
+      </mat-card>
     </div>
   </div>
 

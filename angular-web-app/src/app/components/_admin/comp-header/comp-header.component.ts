@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { PageTitle } from 'src/app/models/pagetitle';
 import { ContentService } from 'src/app/services/content.service';
@@ -11,6 +12,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./comp-header.component.scss']
 })
 export class CompHeaderComponent implements OnInit {
+  @ViewChild('headerForm') form: NgForm;
   @Input() page: string;
   pageTitle: PageTitle;
   pageTitleHistory: PageTitle[];
@@ -72,6 +74,7 @@ export class CompHeaderComponent implements OnInit {
       if (result.value) {
         this.retrieveData();
         this.swalService.successSwal("Veranderingen teruggedraaid");
+        this.form.form.markAsPristine();
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         this.swalService.cancelSwal("Veranderingen niet teruggedraaid");
       }

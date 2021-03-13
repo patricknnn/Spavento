@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { HeaderContent } from 'src/app/models/headercontent';
 import { ContentService } from 'src/app/services/content.service';
@@ -11,6 +12,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./layout-header.component.scss']
 })
 export class LayoutHeaderComponent implements OnInit {
+  @ViewChild('headerForm') form: NgForm;
   title = "Header";
   subTitle = "Layout";
   text = "Stel hier alles in met betrekking tot de header op de website.";
@@ -65,6 +67,7 @@ export class LayoutHeaderComponent implements OnInit {
       if (result.value) {
         this.retrieveData();
         this.swalService.successSwal("Veranderingen teruggedraaid");
+        this.form.form.markAsPristine();
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         this.swalService.cancelSwal("Veranderingen niet teruggedraaid");
       }

@@ -21,7 +21,7 @@ export class NewsCardComponent implements OnInit {
       this.colOne = 'col-12';
       this.colTwo = 'col-12';
       this.imageClass = 'img-news-small';
-    }    
+    }
   }
 
   openNewsItem(content): void {

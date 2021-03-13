@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { FeaturedContent } from 'src/app/models/featuredcontent';
 import { Painting } from 'src/app/models/painting';
@@ -13,6 +14,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./comp-features.component.scss']
 })
 export class CompFeaturesComponent implements OnInit {
+  @ViewChild('featuredForm') form: NgForm;
   featured: FeaturedContent;
   featuredHistory: FeaturedContent[];
   paintings: Painting[];
@@ -87,6 +89,7 @@ export class CompFeaturesComponent implements OnInit {
       if (result.value) {
         this.retrievePaintings();
         this.swalService.successSwal("Veranderingen teruggedraaid");
+        this.form.form.markAsPristine();
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         this.swalService.cancelSwal("Veranderingen niet teruggedraaid");
       }

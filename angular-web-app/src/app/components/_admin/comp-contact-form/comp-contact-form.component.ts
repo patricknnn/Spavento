@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { ContactFormContent } from 'src/app/models/contactformcontent';
 import { ContentService } from 'src/app/services/content.service';
@@ -11,6 +12,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./comp-contact-form.component.scss']
 })
 export class CompContactFormComponent implements OnInit {
+  @ViewChild('contactFormForm') form: NgForm;
   content: ContactFormContent;
   contentHistory: ContactFormContent[];
   formStyles: string[];
@@ -73,6 +75,7 @@ export class CompContactFormComponent implements OnInit {
       if (result.value) {
         this.retrieveData();
         this.swalService.successSwal("Veranderingen teruggedraaid");
+        this.form.form.markAsPristine();
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         this.swalService.cancelSwal("Veranderingen niet teruggedraaid");
       }

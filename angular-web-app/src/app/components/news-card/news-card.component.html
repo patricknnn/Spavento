@@ -1,4 +1,4 @@
-<mat-card *ngIf="newsItem">
+<mat-card *ngIf="newsItem" (click)="openNewsItem(content)" style="cursor: pointer;">
   <div class="container-fluid">
     <div class="row">
       <div [class]="colOne">
@@ -12,10 +12,10 @@
         </h6>
         <h3 class="mb-3">{{ newsItem.title }}</h3>
 
-        <div class="txt-dark-muted mb-3">
+        <div class="txt-dark-muted mb-0">
           <hr class="hr-news">
           <mat-icon class="inline-icon mr-2">today</mat-icon>
-          <span>{{ newsItem.date | date}}</span>
+          <span>{{ newsItem.timestampCreated | date}}</span>
           <span class="px-2">|</span>
           <mat-icon class="inline-icon mr-2">person</mat-icon>
           <span>{{ newsItem.author }}</span>
@@ -24,11 +24,6 @@
           <span>{{ newsItem.category }}</span>
           <hr class="hr-news">
         </div>
-
-        <button mat-raised-button color="accent" class="rounded-pill" (click)="openNewsItem(content)">
-          Read more
-          <mat-icon>arrow_right_alt</mat-icon>
-        </button>
       </div>
     </div>
   </div>
@@ -45,29 +40,23 @@
             <img class="w-100 rounded mat-elevation-z4" [src]="newsItem.image" alt="news" />
           </div>
         </div>
-        <div class="col-md-89">
+        <div class="col-md-9">
           <div class="d-flex flex-column justify-content-center h-100">
             <h6 class="txt-secondary text-uppercase mt-2">
               {{ newsItem.category }}
             </h6>
             <h3>{{ newsItem.title }}</h3>
-            <div class="txt-dark-muted">
+            <div class="txt-dark-muted" *ngIf="newsItem.timestampCreated && newsItem.author && newsItem.category">
               <hr class="hr-news">
-              <div *ngIf="newsItem.date">
-                <mat-icon class="inline-icon mr-2">today</mat-icon>
-                <span>{{ newsItem.date | date}}</span>
-                <span class="px-2">|</span>
-              </div>
-              <div *ngIf="newsItem.author">
-                <mat-icon class="inline-icon mr-2">person</mat-icon>
-                <span>{{ newsItem.author }}</span>
-                <span class="px-2">|</span>
-              </div>
-              <div *ngIf="newsItem.category">
-                <mat-icon class="inline-icon mr-2">local_offer</mat-icon>
-                <span>{{ newsItem.category }}</span>
-                <hr class="hr-news">
-              </div>
+              <mat-icon class="inline-icon mr-2">today</mat-icon>
+              <span>{{ newsItem.timestampCreated | date}}</span>
+              <span class="px-2">|</span>
+              <mat-icon class="inline-icon mr-2">person</mat-icon>
+              <span>{{ newsItem.author }}</span>
+              <span class="px-2">|</span>
+              <mat-icon class="inline-icon mr-2">local_offer</mat-icon>
+              <span>{{ newsItem.category }}</span>
+              <hr class="hr-news">
             </div>
           </div>
         </div>

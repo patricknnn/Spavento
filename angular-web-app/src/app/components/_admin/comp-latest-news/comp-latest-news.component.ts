@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { LatestNewsContent } from 'src/app/models/latestnewscontent';
 import { ContentService } from 'src/app/services/content.service';
@@ -11,11 +12,12 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./comp-latest-news.component.scss']
 })
 export class CompLatestNewsComponent implements OnInit {
+  @ViewChild('latestNewsForm') form: NgForm;
   latestNews: LatestNewsContent;
   latestNewsHistory: LatestNewsContent[];
   formStyle = "standard";
   formColor = "accent";
-  
+
   constructor(private contentService: ContentService,
     private swalService: SwalService) { }
 
@@ -69,6 +71,7 @@ export class CompLatestNewsComponent implements OnInit {
       if (result.value) {
         this.retrieveData();
         this.swalService.successSwal("Veranderingen teruggedraaid");
+        this.form.form.markAsPristine();
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         this.swalService.cancelSwal("Veranderingen niet teruggedraaid");
       }

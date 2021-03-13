@@ -90,6 +90,13 @@ button::-moz-focus-inner {
   margin-bottom: 0.5rem !important;
 }
 
+.admin-accordion {
+  & .mat-expansion-panel {
+    box-shadow: none !important;
+    background: inherit !important;
+  }
+}
+
 /*************************************/
 /**            Sections             **/
 /*************************************/
@@ -407,7 +414,7 @@ hr.divider {
   display: flex;
   min-height: min-content;
   height: 100%;
-  overflow: auto;
+  overflow-y: auto;
 }
 
 .simplebar-scrollbar::before {
