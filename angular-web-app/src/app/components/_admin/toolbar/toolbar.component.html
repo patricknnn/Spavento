@@ -9,13 +9,20 @@
   <span class="spacer"></span>
 
 
-  <button mat-button [matMenuTriggerFor]="profileMenu">John Doe</button>
+  <button mat-button *ngIf="user" [matMenuTriggerFor]="profileMenu">
+    <img *ngIf="user.photoURL" [src]="user.photoURL" class="img-fluid img-thumbnail rounded-circle mr-2">
+    {{user.email}}
+  </button>
+
   <mat-menu #profileMenu="matMenu" xPosition="before">
     <button mat-menu-item>
       <mat-icon class="material-icons-two-tone">remove_circle</mat-icon>
-      <span>Logout</span>
+      <span (click)="logout()">Logout</span>
     </button>
-
   </mat-menu>
+
+  <button mat-button>
+    <span (click)="logout()">Logout</span>
+  </button>
 
 </mat-toolbar>

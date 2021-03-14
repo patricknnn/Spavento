@@ -67,6 +67,8 @@ import { ManagerUsersComponent } from './components/_admin/manager-users/manager
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { CompGalleryComponent } from './components/_admin/comp-gallery/comp-gallery.component';
 import { CompNewsComponent } from './components/_admin/comp-news/comp-news.component';
+import { LoginComponent } from './components/_pages/login/login.component';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -125,7 +127,8 @@ import { CompNewsComponent } from './components/_admin/comp-news/comp-news.compo
     ManagerFilesComponent,
     ManagerUsersComponent,
     CompGalleryComponent,
-    CompNewsComponent
+    CompNewsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -139,6 +142,7 @@ import { CompNewsComponent } from './components/_admin/comp-news/comp-news.compo
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireStorageModule,
+    AngularFireAuthModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],

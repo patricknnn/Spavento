@@ -24,6 +24,8 @@ import { NewsAddComponent } from './components/_admin/news-add/news-add.componen
 import { PageNotFoundAdminComponent } from './components/_admin/page-not-found/page-not-found.component';
 import { ManagerFilesComponent } from './components/_admin/manager-files/manager-files.component';
 import { ManagerUsersComponent } from './components/_admin/manager-users/manager-users.component';
+import { LoginComponent } from './components/_pages/login/login.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -34,6 +36,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent, data: { animation: 'about' } },
   { path: 'contact', component: ContactComponent, data: { animation: 'contact' } },
   { path: 'painting', component: PaintingDetailComponent, data: { animation: 'painting' } },
+  { path: 'login', component: LoginComponent, data: { animation: 'login' } },
   // admin
   { path: 'admin', component: AdminComponent, data: { animation: 'admin' }, children: [
       { path: 'dashboard', component: DashboardComponent },
@@ -52,7 +55,7 @@ const routes: Routes = [
       { path: 'portfolio-add', component: PaintingAddComponent },
       { path: 'news-overview', component: NewsOverviewComponent },
       { path: 'news-add', component: NewsAddComponent },
-  ]},
+  ], canActivate: [AuthGuard]},
   // page not found
   { path: 'page-not-found', component: PageNotFoundComponent, data: { animation: '404' } },
   // redirects
