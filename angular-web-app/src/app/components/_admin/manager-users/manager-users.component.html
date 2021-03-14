@@ -12,7 +12,7 @@
                             <mat-label>E-mail</mat-label>
                             <input matInput type="text" placeholder="info@spavento.com" [(ngModel)]="form.email"
                                 name="email" id="email" #emailInput="ngModel" required />
-                            <mat-error *ngIf="!emailInput.valid || !emailInput.pristine">
+                            <mat-error [hidden]="emailInput.valid || emailInput.pristine">
                                 Email is <strong>verplicht</strong>
                             </mat-error>
                         </mat-form-field>
@@ -23,7 +23,7 @@
                             <mat-label>Wachtwoord</mat-label>
                             <input matInput type="password" placeholder="Wachtwoord" [(ngModel)]="form.password"
                                 name="password" id="password" #passwordInput="ngModel" required />
-                            <mat-error *ngIf="!passwordInput.valid || !passwordInput.pristine">
+                            <mat-error  [hidden]="passwordInput.valid || passwordInput.pristine">
                                 Wachtwoord is <strong>verplicht</strong>
                             </mat-error>
                         </mat-form-field>
@@ -34,7 +34,7 @@
                             <mat-label>Bevestig wachtwoord</mat-label>
                             <input matInput type="password" placeholder="Wachtwoord" [(ngModel)]="form.confirmPassword"
                                 name="confirmPassword" id="confirmPassword" #confirmPasswordInput="ngModel" required />
-                            <mat-hint *ngIf="form.password != form.confirmPassword">
+                            <mat-hint  [hidden]="form.password == form.confirmPassword">
                                 Wachtwoorden komen niet overeen
                             </mat-hint>
                         </mat-form-field>

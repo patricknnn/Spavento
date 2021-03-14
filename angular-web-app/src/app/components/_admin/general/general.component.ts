@@ -17,8 +17,7 @@ export class GeneralComponent implements OnInit {
   content: GeneralContent;
   contentHistory: GeneralContent[];
   formStyles: string[];
-  formStyle = "standard";
-  formColor = "accent";
+  elevations: string[];
 
   constructor(
     private contentService: ContentService,
@@ -26,8 +25,9 @@ export class GeneralComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.formStyles = this.contentService.getFormStyles();
     this.retrieveData();
+    this.formStyles = this.contentService.getFormStyles();
+    this.elevations = this.getElevations();
   }
 
   onSubmit() {
@@ -77,6 +77,35 @@ export class GeneralComponent implements OnInit {
         this.swalService.cancelSwal("Veranderingen niet teruggedraaid");
       }
     });
+  }
+
+  getElevations(): string[] {
+    return [
+      "mat-elevation-z1",
+      "mat-elevation-z2",
+      "mat-elevation-z3",
+      "mat-elevation-z4",
+      "mat-elevation-z5",
+      "mat-elevation-z6",
+      "mat-elevation-z7",
+      "mat-elevation-z8",
+      "mat-elevation-z9",
+      "mat-elevation-z10",
+      "mat-elevation-z11",
+      "mat-elevation-z12",
+      "mat-elevation-z13",
+      "mat-elevation-z14",
+      "mat-elevation-z15",
+      "mat-elevation-z16",
+      "mat-elevation-z17",
+      "mat-elevation-z18",
+      "mat-elevation-z19",
+      "mat-elevation-z20",
+      "mat-elevation-z21",
+      "mat-elevation-z22",
+      "mat-elevation-z23",
+      "mat-elevation-z24",
+    ];
   }
 
 }

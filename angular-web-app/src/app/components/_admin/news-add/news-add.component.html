@@ -35,14 +35,18 @@
               <mat-label>Titel</mat-label>
               <input matInput id="title" placeholder="Titel" name="title" [(ngModel)]="newsItem.title"
                 [disabled]="formDisabled" #title="ngModel" required />
-              <mat-hint [hidden]="title.valid || title.pristine">Titel is <strong>verplicht</strong></mat-hint>
+              <mat-error [hidden]="title.valid || title.pristine">
+                Titel is <strong>verplicht</strong>
+              </mat-error>
             </mat-form-field>
 
             <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
               <mat-label>Auteur</mat-label>
               <input matInput id="author" placeholder="Auteur" name="author" [(ngModel)]="newsItem.author"
                 [disabled]="formDisabled" #author="ngModel" required />
-              <mat-hint [hidden]="author.valid || author.pristine">Auteur is <strong>verplicht</strong></mat-hint>
+              <mat-error [hidden]="author.valid || author.pristine">
+                Auteur is <strong>verplicht</strong>
+              </mat-error>
             </mat-form-field>
           </div>
 
@@ -51,7 +55,9 @@
               <mat-label>Bericht</mat-label>
               <textarea matInput id="text" placeholder="Bericht" name="text" [(ngModel)]="newsItem.text"
                 [disabled]="formDisabled" #text="ngModel" required></textarea>
-              <mat-hint [hidden]="text.valid || text.pristine">Bericht is <strong>verplicht</strong> </mat-hint>
+              <mat-error [hidden]="text.valid || text.pristine">
+                Bericht is <strong>verplicht</strong> 
+              </mat-error>
             </mat-form-field>
           </div>
 
@@ -64,8 +70,9 @@
                   {{ category }}
                 </mat-option>
               </mat-select>
-              <mat-hint [hidden]="category.valid || category.pristine">Categorie is <strong>verplicht</strong>
-              </mat-hint>
+              <mat-error [hidden]="category.valid || category.pristine">
+                Categorie is <strong>verplicht</strong>
+              </mat-error>
             </mat-form-field>
 
             <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
@@ -80,7 +87,7 @@
               <mat-label>Datum</mat-label>
               <input matInput id="date" placeholder="Datum" name="date" [(ngModel)]="newsItem.date"
                 [disabled]="formDisabled" [matDatepicker]="datePicker" #date="ngModel" />
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
               <mat-datepicker #datePicker></mat-datepicker>
             </mat-form-field>
           </div>

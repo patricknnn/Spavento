@@ -29,9 +29,9 @@
                             <input matInput type="text" id="galleryContentTitle" placeholder="Titel"
                                 name="galleryContentTitle" [(ngModel)]="galleryContent.title"
                                 #galleryContentTitleInput="ngModel" required>
-                            <mat-hint [hidden]="galleryContentTitleInput.valid || galleryContentTitleInput.pristine">
+                            <mat-error [hidden]="galleryContentTitleInput.valid || galleryContentTitleInput.pristine">
                                 Titel is verplicht
-                            </mat-hint>
+                            </mat-error>
                         </mat-form-field>
 
                         <mat-form-field [appearance]="formStyle" [color]="formColor"
@@ -40,10 +40,10 @@
                             <input matInput type="text" id="galleryContentSubTitle" placeholder="Subtitel"
                                 name="galleryContentSubTitle" [(ngModel)]="galleryContent.subTitle"
                                 #galleryContentSubTitleInput="ngModel" required>
-                            <mat-hint
+                            <mat-error
                                 [hidden]="galleryContentSubTitleInput.valid || galleryContentSubTitleInput.pristine">
                                 Subtitel is verplicht
-                            </mat-hint>
+                            </mat-error>
                         </mat-form-field>
 
                         <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12">
@@ -51,9 +51,9 @@
                             <textarea rows="1" matInput type="text" id="galleryContentText" placeholder="Text"
                                 name="galleryContentText" [(ngModel)]="galleryContent.text"
                                 #galleryContentTextInput="ngModel" required> </textarea>
-                            <mat-hint [hidden]="galleryContentTextInput.valid || galleryContentTextInput.pristine">
+                            <mat-error [hidden]="galleryContentTextInput.valid || galleryContentTextInput.pristine">
                                 Text is verplicht
-                            </mat-hint>
+                            </mat-error>
                         </mat-form-field>
 
                     </div>

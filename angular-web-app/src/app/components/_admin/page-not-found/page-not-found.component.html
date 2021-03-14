@@ -62,25 +62,27 @@
                     <mat-label>Content titel</mat-label>
                     <input matInput type="text" id="contentTitle" placeholder="Titel" name="contentTitle"
                       [(ngModel)]="pageContent.title" #contentTitleInput="ngModel" required>
-                    <mat-hint [hidden]="contentTitleInput.valid || contentTitleInput.pristine">Titel is verplicht
-                    </mat-hint>
+                    <mat-error [hidden]="contentTitleInput.valid || contentTitleInput.pristine">
+                      Titel is <strong>verplicht</strong>
+                    </mat-error>
                   </mat-form-field>
 
                   <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field col-sm-12 col-md-6">
                     <mat-label>Content subtitel</mat-label>
                     <input matInput type="text" id="contentSubTitle" placeholder="Subtitel" name="contentSubTitle"
                       [(ngModel)]="pageContent.subTitle" #contentSubTitleInput="ngModel" required>
-                    <mat-hint [hidden]="contentSubTitleInput.valid || contentSubTitleInput.pristine">Subtitel is
-                      verplicht
-                    </mat-hint>
+                    <mat-error [hidden]="contentSubTitleInput.valid || contentSubTitleInput.pristine">
+                      Subtitel is <strong>verplicht</strong>
+                    </mat-error>
                   </mat-form-field>
 
                   <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field col-12">
                     <mat-label>Content text</mat-label>
                     <textarea rows="1" matInput type="text" id="contentText" placeholder="Text" name="contentText"
                       [(ngModel)]="pageContent.text" #contentTextInput="ngModel" required> </textarea>
-                    <mat-hint [hidden]="contentTextInput.valid || contentTextInput.pristine">Text is verplicht
-                    </mat-hint>
+                    <mat-error [hidden]="contentTextInput.valid || contentTextInput.pristine">
+                      Text is <strong>verplicht</strong>
+                    </mat-error>
                   </mat-form-field>
                 </div>
 
@@ -89,16 +91,18 @@
                     <mat-label>Vorige knop label</mat-label>
                     <input matInput type="text" id="backBtnLabel" placeholder="Label" name="backBtnLabel"
                       [(ngModel)]="pageContent.btnBackText" #backBtnLabelInput="ngModel" required>
-                    <mat-hint [hidden]="backBtnLabelInput.valid || backBtnLabelInput.pristine">Label is verplicht
-                    </mat-hint>
+                    <mat-error [hidden]="backBtnLabelInput.valid || backBtnLabelInput.pristine">
+                      Label is <strong>verplicht</strong>
+                    </mat-error>
                   </mat-form-field>
 
                   <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field col-sm-12 col-md-6">
                     <mat-label>Home knop label</mat-label>
                     <input matInput type="text" id="homeBtnLabel" placeholder="Label" name="homeBtnLabel"
                       [(ngModel)]="pageContent.btnHomeText" #homeBtnLabelInput="ngModel" required>
-                    <mat-hint [hidden]="homeBtnLabelInput.valid || homeBtnLabelInput.pristine">Label is verplicht
-                    </mat-hint>
+                    <mat-error [hidden]="homeBtnLabelInput.valid || homeBtnLabelInput.pristine">
+                      Label is <strong>verplicht</strong>
+                    </mat-error>
                   </mat-form-field>
                 </div>
 

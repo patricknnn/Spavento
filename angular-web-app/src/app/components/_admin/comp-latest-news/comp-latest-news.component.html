@@ -49,8 +49,9 @@
               <mat-label>Content titel</mat-label>
               <input matInput type="text" id="latestNewsContentTitle" placeholder="Titel" name="latestNewsContentTitle"
                 [(ngModel)]="latestNews.title" #latestNewsContentTitleInput="ngModel" required>
-              <mat-hint [hidden]="latestNewsContentTitleInput.valid || latestNewsContentTitleInput.pristine">Titel is
-                verplicht</mat-hint>
+              <mat-error [hidden]="latestNewsContentTitleInput.valid || latestNewsContentTitleInput.pristine">
+                Titel is verplicht
+              </mat-error>
             </mat-form-field>
 
             <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-sm-12 col-md-6">
@@ -58,9 +59,9 @@
               <input matInput type="text" id="latestNewsContentSubTitle" placeholder="Subtitel"
                 name="latestNewsContentSubTitle" [(ngModel)]="latestNews.subTitle"
                 #latestNewsContentSubTitleInput="ngModel" required>
-              <mat-hint [hidden]="latestNewsContentSubTitleInput.valid || latestNewsContentSubTitleInput.pristine">
+              <mat-error [hidden]="latestNewsContentSubTitleInput.valid || latestNewsContentSubTitleInput.pristine">
                 Subtitel is verplicht
-              </mat-hint>
+              </mat-error>
             </mat-form-field>
 
             <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-10">
@@ -68,18 +69,18 @@
               <textarea rows="1" matInput type="text" id="latestNewsContentText" placeholder="Text"
                 name="latestNewsContentText" [(ngModel)]="latestNews.text" #latestNewsContentTextInput="ngModel"
                 required> </textarea>
-              <mat-hint [hidden]="latestNewsContentTextInput.valid || latestNewsContentTextInput.pristine">Text is
-                verplicht
-              </mat-hint>
+              <mat-error [hidden]="latestNewsContentTextInput.valid || latestNewsContentTextInput.pristine">
+                Text is verplicht
+              </mat-error>
             </mat-form-field>
 
             <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-2">
               <mat-label>Items</mat-label>
               <input matInput type="number" id="latestNewsContentAmount" name="latestNewsContentAmount" min="1" max="6"
                 [(ngModel)]="latestNews.amount" #latestNewsContentAmountInput="ngModel" required>
-              <mat-hint [hidden]="latestNewsContentAmountInput.valid || latestNewsContentAmountInput.pristine">Aantal is
-                verplicht
-              </mat-hint>
+              <mat-error [hidden]="latestNewsContentAmountInput.valid || latestNewsContentAmountInput.pristine">
+                Aantal is verplicht
+              </mat-error>
             </mat-form-field>
 
           </div>

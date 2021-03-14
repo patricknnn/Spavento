@@ -35,13 +35,17 @@
                 <mat-label>Titel</mat-label>
                 <input matInput id="title" placeholder="Titel" name="title" [(ngModel)]="painting.title"
                   [disabled]="formDisabled" #title="ngModel" required />
-                <mat-hint [hidden]="title.valid || title.pristine">Titel is verplicht</mat-hint>
+                <mat-error [hidden]="title.valid || title.pristine">
+                  Titel is <strong>verplicht</strong>
+                </mat-error>
               </mat-form-field>
               <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
                 <mat-label>Artiest</mat-label>
                 <input matInput id="artist" placeholder="Artiest" name="artist" [(ngModel)]="painting.artist"
                   [disabled]="formDisabled" #artist="ngModel" required />
-                <mat-hint [hidden]="artist.valid || artist.pristine">Artiest is verplicht</mat-hint>
+                <mat-error [hidden]="artist.valid || artist.pristine">
+                  Artiest is <strong>verplicht</strong>
+                </mat-error>
               </mat-form-field>
             </div>
 
@@ -51,7 +55,9 @@
                 <textarea matInput id="description" placeholder="Omschrijving" name="description"
                   [(ngModel)]="painting.description" [disabled]="formDisabled" #description="ngModel"
                   required></textarea>
-                <mat-hint [hidden]="description.valid || description.pristine">Omschrijving is verplicht</mat-hint>
+                <mat-error [hidden]="description.valid || description.pristine">
+                  Omschrijving is <strong>verplicht</strong>
+                </mat-error>
               </mat-form-field>
             </div>
 
@@ -64,7 +70,9 @@
                     {{ paint }}
                   </mat-option>
                 </mat-select>
-                <mat-hint [hidden]="paint.valid || paint.pristine">Verf is verplicht</mat-hint>
+                <mat-error [hidden]="paint.valid || paint.pristine">
+                  Verf is <strong>verplicht</strong>
+                </mat-error>
               </mat-form-field>
               <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
                 <mat-label>Materiaal</mat-label>
@@ -74,7 +82,9 @@
                     {{ material }}
                   </mat-option>
                 </mat-select>
-                <mat-hint [hidden]="material.valid || material.pristine">Matriaal is verplicht</mat-hint>
+                <mat-error [hidden]="material.valid || material.pristine">
+                  Materiaal is <strong>verplicht</strong>
+                </mat-error>
               </mat-form-field>
             </div>
 
@@ -87,7 +97,9 @@
                     {{ category }}
                   </mat-option>
                 </mat-select>
-                <mat-hint [hidden]="category.valid || category.pristine">Categorie is verplicht</mat-hint>
+                <mat-error [hidden]="category.valid || category.pristine">
+                  Categorie is <strong>verplicht</strong>
+                </mat-error>
               </mat-form-field>
               <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
                 <mat-label>Status</mat-label>
@@ -97,7 +109,9 @@
                     {{ state }}
                   </mat-option>
                 </mat-select>
-                <mat-hint [hidden]="state.valid || state.pristine">Status is verplicht</mat-hint>
+                <mat-error [hidden]="state.valid || state.pristine">
+                  Status is <strong>verplicht</strong>
+                </mat-error>
               </mat-form-field>
             </div>
 

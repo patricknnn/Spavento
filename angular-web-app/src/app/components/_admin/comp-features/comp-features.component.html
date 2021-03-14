@@ -50,8 +50,9 @@
               <mat-label>Content titel</mat-label>
               <input matInput type="text" id="featuredContentTitle" placeholder="Titel" name="featuredContentTitle"
                 [(ngModel)]="featured.title" #featuredContentTitleInput="ngModel" required />
-              <mat-hint [hidden]="featuredContentTitleInput.valid || featuredContentTitleInput.pristine">Titel is
-                verplicht</mat-hint>
+              <mat-error [hidden]="featuredContentTitleInput.valid || featuredContentTitleInput.pristine">
+                Titel is verplicht
+              </mat-error>
             </mat-form-field>
 
             <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-sm-12 col-md-6">
@@ -59,10 +60,9 @@
               <input matInput type="text" id="featuredContentSubTitle" placeholder="Subtitel"
                 name="featuredContentSubTitle" [(ngModel)]="featured.subTitle" #featuredContentSubTitleInput="ngModel"
                 required />
-              <mat-hint [hidden]="featuredContentSubTitleInput.valid || featuredContentSubTitleInput.pristine">Subtitel
-                is
-                verplicht
-              </mat-hint>
+              <mat-error [hidden]="featuredContentSubTitleInput.valid || featuredContentSubTitleInput.pristine">
+                Subtitel is verplicht
+              </mat-error>
             </mat-form-field>
 
             <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12">
@@ -70,8 +70,9 @@
               <textarea rows="1" matInput type="text" id="featuredContentText" placeholder="Text"
                 name="featuredContentText" [(ngModel)]="featured.text" #featuredContentTextInput="ngModel" required>
               </textarea>
-              <mat-hint [hidden]="featuredContentTextInput.valid || featuredContentTextInput.pristine">Text is verplicht
-              </mat-hint>
+              <mat-error [hidden]="featuredContentTextInput.valid || featuredContentTextInput.pristine">
+                Text is verplicht
+              </mat-error>
             </mat-form-field>
 
             <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-sm-12 col-md-6">
@@ -83,19 +84,18 @@
                   {{ painting.title }}
                 </mat-option>
               </mat-select>
-              <mat-hint [hidden]="featuredContentPaintingInput.valid || featuredContentPaintingInput.pristine ">
-                Schilderij
-                is verplicht
-              </mat-hint>
+              <mat-error [hidden]="featuredContentPaintingInput.valid || featuredContentPaintingInput.pristine ">
+                Schilderij is verplicht
+              </mat-error>
             </mat-form-field>
 
             <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-sm-12 col-md-6">
               <mat-label>Hoogte</mat-label>
               <input matInput type="text" id="featuredContentHeight" placeholder="Hoogte" name="featuredContentHeight"
                 [(ngModel)]="featured.maxHeight" #featuredContentHeightInput="ngModel" required />
-              <mat-hint [hidden]="featuredContentHeightInput.valid || featuredContentHeightInput.pristine ">Hoogte is
-                verplicht
-              </mat-hint>
+              <mat-error [hidden]="featuredContentHeightInput.valid || featuredContentHeightInput.pristine">
+                Hoogte is verplicht
+              </mat-error>
             </mat-form-field>
           </div>
 

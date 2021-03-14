@@ -9,7 +9,7 @@
               <mat-form-field appearance="{{ appearance }}" color="{{ color }}" class="w-100">
                 <mat-label>Naam</mat-label>
                 <input matInput type="text" [(ngModel)]="model.name" name="name" id="name" #name="ngModel" required />
-                <mat-error *ngIf="name.valid || name.pristine">
+                <mat-error [hidden]="name.valid || name.pristine">
                   Naam is <strong>verplicht</strong>
                 </mat-error>
               </mat-form-field>
@@ -20,7 +20,7 @@
                 <mat-label>Email</mat-label>
                 <input matInput type="email" placeholder="info@example.com" [(ngModel)]="model.email" name="email"
                   id="email" #email="ngModel" required />
-                <mat-error *ngIf="email.valid || email.pristine">
+                <mat-error [hidden]="email.valid || email.pristine">
                   Email is <strong>verplicht</strong>
                 </mat-error>
               </mat-form-field>
@@ -32,7 +32,7 @@
                 <mat-select [(ngModel)]="model.subject" name="subject" id="subject" #subject="ngModel" required>
                   <mat-option *ngFor="let subject of subjects" [value]="subject">{{ subject }}</mat-option>
                 </mat-select>
-                <mat-error *ngIf="subject.valid || subject.pristine">
+                <mat-error [hidden]="subject.valid || subject.pristine">
                   Onderwerp is <strong>verplicht</strong>
                 </mat-error>
               </mat-form-field>
@@ -42,7 +42,7 @@
               <mat-form-field appearance="{{ appearance }}" color="{{ color }}" class="w-100">
                 <mat-label>Bericht</mat-label>
                 <textarea matInput [(ngModel)]="model.text" name="text" id="text" #text="ngModel" required></textarea>
-                <mat-error *ngIf="text.valid || text.pristine">
+                <mat-error [hidden]="text.valid || text.pristine">
                   Bericht is <strong>verplicht</strong>
                 </mat-error>
               </mat-form-field>

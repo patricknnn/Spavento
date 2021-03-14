@@ -10,20 +10,22 @@
           <!-- Form settings -->
           <h4 class="title-underlined">Formulieren</h4>
           <div class="form-group row">
-            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-sm-12 col-md-6">
+            <mat-form-field [appearance]="content.formStyle" [color]="content.formColor"
+              class="form-field col-sm-12 col-md-6">
               <mat-label>Form style</mat-label>
-              <mat-select id="contactFormContentFormStyle" name="contactFormContentFormStyle"
-                [(ngModel)]="content.formStyle" #contactFormContentFormStyleInput="ngModel">
+              <mat-select id="generalFormStyle" name="generalFormStyle"
+                [(ngModel)]="content.formStyle" #generalFormStyleInput="ngModel">
                 <mat-option *ngFor="let style of formStyles" [value]="style">
                   {{ style }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
 
-            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-sm-12 col-md-6">
+            <mat-form-field [appearance]="content.formStyle" [color]="content.formColor"
+              class="form-field col-sm-12 col-md-6">
               <mat-label>Form kleur</mat-label>
-              <mat-select id="contactFormContentFormColor" name="contactFormContentFormColor"
-                [(ngModel)]="content.formColor" #contactFormContentFormColorInput="ngModel">
+              <mat-select id="generalFormColor" name="generalFormColor"
+                [(ngModel)]="content.formColor" #generalFormColorInput="ngModel">
                 <mat-option value="primary">Primary</mat-option>
                 <mat-option value="accent">Accent</mat-option>
                 <mat-option value="warn">Warn</mat-option>
@@ -31,7 +33,23 @@
             </mat-form-field>
           </div>
 
-          <!-- Other settings -->
+          <!-- Card settings -->
+          <h4 class="title-underlined">Cards</h4>
+          <div class="form-group row">
+            <mat-form-field [appearance]="content.formStyle" [color]="content.formColor"
+              class="form-field col-12 col-md-6">
+              <mat-label>Card elevation level</mat-label>
+              <mat-select id="generalFormElevation" name="generalFormElevation"
+                [(ngModel)]="content.cardElevation" #generalFormElevationeInput="ngModel">
+                <mat-option *ngFor="let elevation of elevations" [value]="elevation">
+                  {{ elevation }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div class="col-12 col-md-6">
+              <mat-card [ngClass]="content.cardElevation"></mat-card>
+            </div>
+          </div>
 
           <button mat-flat-button color="accent" type="submit"
             [disabled]="!generalContentForm.form.touched">Opslaan</button>

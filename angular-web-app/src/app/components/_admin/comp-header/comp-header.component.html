@@ -20,19 +20,27 @@
               <mat-label>Titel</mat-label>
               <input matInput type="text" id="defaultTitle" placeholder="Titel" name="defaultTitle"
                 [(ngModel)]="pageTitle.title" #title="ngModel" required>
-              <mat-hint [hidden]="title.valid || title.pristine">Titel is verplicht</mat-hint>
+              <mat-error [hidden]="title.valid || title.pristine">
+                Titel is verplicht
+              </mat-error>
             </mat-form-field>
+
             <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-sm-12 col-md-6">
               <mat-label>Subtitel</mat-label>
               <input matInput type="text" id="defaultSubTitle" placeholder="Subtitel" name="defaultSubTitle"
                 [(ngModel)]="pageTitle.subTitle" #subTitle="ngModel" required>
-              <mat-hint [hidden]="subTitle.valid || subTitle.pristine">Subtitel is verplicht</mat-hint>
+              <mat-error [hidden]="subTitle.valid || subTitle.pristine">
+                Subtitel is verplicht
+              </mat-error>
             </mat-form-field>
+
             <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12">
               <mat-label>Afbeelding</mat-label>
               <input matInput type="text" id="defaultImage" placeholder="Afbeelding" name="defaultImage"
                 [(ngModel)]="pageTitle.image">
-              <mat-hint>Als deze afbeelding leeg is zal de standaard header afbeelding getoond worden.</mat-hint>
+              <mat-hint>
+                Als deze afbeelding leeg is zal de standaard header afbeelding getoond worden.
+              </mat-hint>
             </mat-form-field>
           </div>
 

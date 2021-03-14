@@ -52,9 +52,9 @@
               <input matInput type="text" id="contactFormContentTitle" placeholder="Titel"
                 name="contactFormContentTitle" [(ngModel)]="content.title" #contactFormContentTitleInput="ngModel"
                 required>
-              <mat-hint [hidden]="contactFormContentTitleInput.valid || contactFormContentTitleInput.pristine">
+              <mat-error [hidden]="contactFormContentTitleInput.valid || contactFormContentTitleInput.pristine">
                 Titel is verplicht
-              </mat-hint>
+              </mat-error>
             </mat-form-field>
 
             <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-sm-12 col-md-6">
@@ -62,9 +62,9 @@
               <input matInput type="text" id="contactFormContentSubTitle" placeholder="Subtitel"
                 name="contactFormContentSubTitle" [(ngModel)]="content.subTitle"
                 #contactFormContentSubTitleInput="ngModel" required>
-              <mat-hint [hidden]="contactFormContentSubTitleInput.valid || contactFormContentSubTitleInput.pristine">
+              <mat-error [hidden]="contactFormContentSubTitleInput.valid || contactFormContentSubTitleInput.pristine">
                 Subtitel is verplicht
-              </mat-hint>
+              </mat-error>
             </mat-form-field>
 
             <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12">
@@ -72,9 +72,9 @@
               <textarea rows="1" matInput type="text" id="contactFormContentText" placeholder="Text"
                 name="contactFormContentText" [(ngModel)]="content.text" #contactFormContentTextInput="ngModel"
                 required> </textarea>
-              <mat-hint [hidden]="contactFormContentTextInput.valid || contactFormContentTextInput.pristine">
+              <mat-error [hidden]="contactFormContentTextInput.valid || contactFormContentTextInput.pristine">
                 Text is verplicht
-              </mat-hint>
+              </mat-error>
             </mat-form-field>
 
             <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-sm-12 col-md-6">
@@ -85,9 +85,9 @@
                   {{ style }}
                 </mat-option>
               </mat-select>
-              <mat-hint [hidden]="contactFormContentFormStyleInput.valid || contactFormContentFormStyleInput.pristine ">
+              <mat-error [hidden]="contactFormContentFormStyleInput.valid || contactFormContentFormStyleInput.pristine ">
                 Form style is verplicht
-              </mat-hint>
+              </mat-error>
             </mat-form-field>
 
             <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-sm-12 col-md-6">
@@ -98,9 +98,9 @@
                 <mat-option value="accent">Accent</mat-option>
                 <mat-option value="warn">Warn</mat-option>
               </mat-select>
-              <mat-hint [hidden]="contactFormContentFormColorInput.valid || contactFormContentFormColorInput.pristine ">
+              <mat-error [hidden]="contactFormContentFormColorInput.valid || contactFormContentFormColorInput.pristine ">
                 Form kleur is verplicht
-              </mat-hint>
+              </mat-error>
             </mat-form-field>
           </div>
 

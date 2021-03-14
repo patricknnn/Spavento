@@ -23,6 +23,7 @@ export class ContactCardComponent implements OnInit {
   }
 
   onSubmit() {
+    this.swalService.successSwal("Bericht verzonden");
     this.submitted = true;
   }
 
