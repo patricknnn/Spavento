@@ -2,8 +2,15 @@ import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from "@angular/router";
-import { User } from '../models/user';
+import { SwalService } from './swal.service';
 
+export interface User {
+  uid: string;
+  email: string;
+  displayName: string;
+  photoURL: string;
+  emailVerified: boolean;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +22,8 @@ export class AuthService {
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
     public router: Router,
-    public ngZone: NgZone
+    public ngZone: NgZone,
+    private swalService: SwalService
   ) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
@@ -37,7 +45,7 @@ export class AuthService {
         });
         this.SetUserData(result.user);
       }).catch((error) => {
-        window.alert(error.message)
+        this.swalService.errorSwal(error.message);
       })
   }
 
@@ -47,7 +55,7 @@ export class AuthService {
         this.SendVerificationMail();
         this.SetUserData(result.user);
       }).catch((error) => {
-        window.alert(error.message)
+        this.swalService.errorSwal(error.message);
       })
   }
 
@@ -63,7 +71,7 @@ export class AuthService {
       .then(() => {
         window.alert('Password reset email sent, check your inbox.');
       }).catch((error) => {
-        window.alert(error)
+        this.swalService.errorSwal(error.message);
       })
   }
 
@@ -81,7 +89,7 @@ export class AuthService {
         })
         this.SetUserData(result.user);
       }).catch((error) => {
-        window.alert(error)
+        this.swalService.errorSwal(error.message);
       })
   }
 
@@ -97,10 +105,6 @@ export class AuthService {
     return userRef.set(userState, {
       merge: true
     })
-  }
-
-  getUser(): User {
-    return this.userState as User;
   }
 
   SignOut() {
