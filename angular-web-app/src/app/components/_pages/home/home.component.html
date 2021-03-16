@@ -23,8 +23,12 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <app-painting-card [painting]="featured.painting" [maxHeight]="featured.maxHeight">
-          </app-painting-card>
+          <div class="featured-item-wrapper">
+            <div [ngStyle]="{'height': featured.maxHeight}" class="featured-item mat-elevation-z8">
+              <app-painting-card [painting]="featured.painting" [maxHeight]="featured.maxHeight">
+              </app-painting-card>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Painting } from 'src/app/models/painting';
 import { ModalService } from 'src/app/services/modal.service';
@@ -33,11 +34,12 @@ export class PaintingOverviewComponent implements OnInit {
     'created',
     'active',
     'options',
-  ];  
+  ];
   formStyle = "standard";
   formColor = "accent";
 
   constructor(
+    private router: Router,
     private paintingService: PaintingService,
     private swalService: SwalService,
     private modalService: ModalService
@@ -86,6 +88,11 @@ export class PaintingOverviewComponent implements OnInit {
         this.swalService.cancelSwal("Schilderij niet verwijderd");
       }
     });
+  }
+
+  // Open edit page
+  goToPaintingEdit(paintingId: number): void {
+    this.router.navigate(['/admin/portfolio-edit', { id: paintingId }]);
   }
 
   /**

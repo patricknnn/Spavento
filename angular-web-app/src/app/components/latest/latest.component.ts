@@ -11,6 +11,7 @@ import { map } from 'rxjs/operators';
 })
 export class LatestComponent implements OnInit, OnChanges {
   @Input() amount: number = 3;
+  @Input() maxHeight = "70vh";
   paintings: Painting[];
 
   constructor(

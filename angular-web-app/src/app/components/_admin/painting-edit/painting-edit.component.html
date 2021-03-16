@@ -1,0 +1,179 @@
+<div class="container-fluid pt-5">
+  <app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [admin]="true">
+  </app-section-title>
+
+  <div class="row mb-5">
+    <div class="col-12">
+
+      <form *ngIf="painting" (ngSubmit)="onSubmit()" #editPaintingForm="ngForm">
+
+        <mat-card class="mat-elevation-z8 mb-4">
+          <h4 class="title-underlined">Afbeeldingen</h4>
+
+          <div class="form-group row">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" *ngFor="let img of painting.images">
+              <img [src]="img" class="img-thumbnail">
+              <div class="d-flex align-items-center justify-content-center w-100">
+                <button mat-mini-fab color="primary" type="button" (click)="removeImage(img)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-12">
+              <ngx-dropzone (change)="onFileSelect($event)" class="mat-dropzone">
+                <ngx-dropzone-label class="d-flex align-items-center">
+                  <mat-icon class="mr-2">upload</mat-icon>
+                  Kies afbeeldingen
+                </ngx-dropzone-label>
+                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let file of selectedFiles"
+                  [file]="file" [removable]="true" (removed)="onFileRemove(file)">
+                  <ngx-dropzone-label>{{ file.name }} ({{ file.type }})</ngx-dropzone-label>
+                </ngx-dropzone-image-preview>
+              </ngx-dropzone>
+            </div>
+          </div>
+        </mat-card>
+
+        <!-- General information -->
+        <mat-card class="mat-elevation-z8 mb-4">
+          <h4 class="title-underlined">Details</h4>
+
+          <div class="form-group row">
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+              <mat-label>Titel</mat-label>
+              <input matInput id="title" placeholder="Titel" name="title" [(ngModel)]="painting.title"
+                [disabled]="formDisabled" #title="ngModel" required />
+              <mat-error [hidden]="title.valid || title.pristine">
+                Titel is <strong>verplicht</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+              <mat-label>Kunstenaar</mat-label>
+              <input matInput id="artist" placeholder="Kunstenaar" name="artist" [(ngModel)]="painting.artist"
+                [disabled]="formDisabled" #artist="ngModel" required />
+              <mat-error [hidden]="artist.valid || artist.pristine">
+                Kunstenaar is <strong>verplicht</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-group row">
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12">
+              <mat-label>Omschrijving</mat-label>
+              <textarea matInput id="description" placeholder="Omschrijving" name="description"
+                [(ngModel)]="painting.description" [disabled]="formDisabled" #description="ngModel" required></textarea>
+              <mat-error [hidden]="description.valid || description.pristine">
+                Omschrijving is <strong>verplicht</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-group row">
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+              <mat-label>Verf</mat-label>
+              <mat-select id="paint" name="paint" [(ngModel)]="painting.paint" [disabled]="formDisabled"
+                #paint="ngModel" required>
+                <mat-option *ngFor="let paint of paints" [value]="paint">
+                  {{ paint }}
+                </mat-option>
+              </mat-select>
+              <mat-error [hidden]="paint.valid || paint.pristine">
+                Verf is <strong>verplicht</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+              <mat-label>Materiaal</mat-label>
+              <mat-select id="material" name="material" [(ngModel)]="painting.material" [disabled]="formDisabled"
+                #material="ngModel" required>
+                <mat-option *ngFor="let material of materials" [value]="material">
+                  {{ material }}
+                </mat-option>
+              </mat-select>
+              <mat-error [hidden]="material.valid || material.pristine">
+                Materiaal is <strong>verplicht</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-group row">
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+              <mat-label>Categorie</mat-label>
+              <mat-select id="category" name="category" [(ngModel)]="painting.category" [disabled]="formDisabled"
+                #category="ngModel" required>
+                <mat-option *ngFor="let category of categories" [value]="category">
+                  {{ category }}
+                </mat-option>
+              </mat-select>
+              <mat-error [hidden]="category.valid || category.pristine">
+                Categorie is <strong>verplicht</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+              <mat-label>Status</mat-label>
+              <mat-select id="state" name="state" [(ngModel)]="painting.status" [disabled]="formDisabled"
+                #state="ngModel" required>
+                <mat-option *ngFor="let state of states" [value]="state">
+                  {{ state }}
+                </mat-option>
+              </mat-select>
+              <mat-error [hidden]="state.valid || state.pristine">
+                Status is <strong>verplicht</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-group row">
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+              <mat-label>Prijs</mat-label>
+              <input matInput id="price" placeholder="Prijs" name="price" [(ngModel)]="painting.price"
+                [disabled]="formDisabled" #price="ngModel" />
+            </mat-form-field>
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-3">
+              <mat-label>Lengte</mat-label>
+              <input matInput id="length" placeholder="Lengte" name="length" [(ngModel)]="painting.length"
+                [disabled]="formDisabled" #length="ngModel" />
+            </mat-form-field>
+            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-3">
+              <mat-label>Breedte</mat-label>
+              <input matInput id="width" placeholder="Breedte" name="width" [(ngModel)]="painting.width"
+                [disabled]="formDisabled" #width="ngModel" />
+            </mat-form-field>
+          </div>
+
+          <!-- Actions -->
+          <div class="row mt-3">
+            <div class="col-12">
+              <button mat-flat-button color="accent" type="submit" class="mr-2"
+                [disabled]="!editPaintingForm.valid || editPaintingForm.form.pristine || (!painting.images.length && !selectedFiles.length )">opslaan</button>
+              <button mat-flat-button color="primary" type="button"
+                (click)="resetForm(); editPaintingForm.form.markAsUntouched()">reset</button>
+            </div>
+          </div>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<swal title="Kies miniatuur" [allowOutsideClick]="focusAnimation" [showConfirmButton]="false" #thumbnailSwal>
+  <div *swalPortal class="row mt-3" #thumbnailOptions>
+    <div *ngFor="let url of painting.images" class="col-12 col-md-4">
+      <div class="img-thumbnail-option">
+        <img [src]="url" (click)="setThumbnail($event, url)" class="img-thumbnail mat-elevation-z8">
+        <div class="img-thumbnail-option-overlay">
+          <mat-icon>check_cricle_outline</mat-icon>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 mt-3">
+      <button mat-flat-button color="accent" [disabled]="painting.thumbnail == null" (click)="thumbnailSwal.close()">
+        opslaan
+      </button>
+    </div>
+  </div>
+</swal>

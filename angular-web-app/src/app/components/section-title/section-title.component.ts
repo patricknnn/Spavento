@@ -14,6 +14,7 @@ export class SectionTitleComponent implements OnInit {
   @Input() linkIcon: string;
   @Input() modal: any;
   @Input() modalIcon: string;
+  @Input() admin = false;
 
   constructor(private modalService: ModalService) { }
 

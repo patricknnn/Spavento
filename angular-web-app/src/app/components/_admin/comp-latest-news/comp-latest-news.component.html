@@ -1,7 +1,7 @@
 <div class="container-fluid p-0" *ngIf="latestNews">
   <div class="row mb-4">
     <div class="col-12">
-      <mat-card class="mat-elevation-z4">
+      <mat-card class="mat-elevation-z8">
         <h4 class="title-underlined">Resultaat</h4>
         <div *ngIf="latestNews.active" class="container-fluid">
           <app-section-title [title]="latestNews.title" [subTitle]="latestNews.subTitle" [text]="latestNews.text"
@@ -25,7 +25,7 @@
 
   <div class="row mb-4">
     <div class="col-12">
-      <mat-card class="mat-elevation-z4">
+      <mat-card class="mat-elevation-z8">
 
 
         <form (ngSubmit)="onSubmit()" #latestNewsForm="ngForm">

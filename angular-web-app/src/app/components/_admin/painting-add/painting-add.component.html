@@ -1,5 +1,5 @@
 <div class="container-fluid pt-5">
-  <app-section-title [title]="title" [subTitle]="subTitle" [text]="text">
+  <app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [admin]="true">
   </app-section-title>
 
   <div class="row mb-5">
@@ -7,7 +7,7 @@
 
       <form *ngIf="painting" (ngSubmit)="onSubmit()" #addPaintingForm="ngForm">
 
-        <mat-card class="mat-elevation-z4 mb-4">
+        <mat-card class="mat-elevation-z8 mb-4">
           <h4 class="title-underlined">Afbeeldingen</h4>
 
           <div class="form-group row">
@@ -27,7 +27,7 @@
         </mat-card>
 
         <!-- General information -->
-        <mat-card class="mat-elevation-z4 mb-4">
+        <mat-card class="mat-elevation-z8 mb-4">
             <h4 class="title-underlined">Details</h4>
 
             <div class="form-group row">
@@ -40,11 +40,11 @@
                 </mat-error>
               </mat-form-field>
               <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
-                <mat-label>Artiest</mat-label>
-                <input matInput id="artist" placeholder="Artiest" name="artist" [(ngModel)]="painting.artist"
+                <mat-label>Kunstenaar</mat-label>
+                <input matInput id="artist" placeholder="Kunstenaar" name="artist" [(ngModel)]="painting.artist"
                   [disabled]="formDisabled" #artist="ngModel" required />
                 <mat-error [hidden]="artist.valid || artist.pristine">
-                  Artiest is <strong>verplicht</strong>
+                  Kunstenaar is <strong>verplicht</strong>
                 </mat-error>
               </mat-form-field>
             </div>
@@ -152,7 +152,7 @@
   <div *swalPortal class="row mt-3" #thumbnailOptions>
     <div *ngFor="let url of painting.images" class="col-12 col-md-4">
       <div class="img-thumbnail-option">
-        <img [src]="url" (click)="setThumbnail($event, url)" class="img-thumbnail mat-elevation-z4">
+        <img [src]="url" (click)="setThumbnail($event, url)" class="img-thumbnail mat-elevation-z8">
         <div class="img-thumbnail-option-overlay">
           <mat-icon>check_cricle_outline</mat-icon>
         </div>

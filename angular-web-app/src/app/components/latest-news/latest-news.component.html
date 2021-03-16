@@ -1,5 +1,9 @@
 <ngb-carousel *ngIf="newsItems" #newsCarousel>
   <ng-template ngbSlide *ngFor="let newsItem of newsItems">
-    <app-news-card [newsItem]="newsItem" [direction]="'row'"></app-news-card>
+    <div class="latest-news-item-wrapper">
+      <div class="latest-news-item mat-elevation-z8">
+        <app-news-card [newsItem]="newsItem" [direction]="'row'"></app-news-card>
+      </div>
+    </div>
   </ng-template>
 </ngb-carousel>

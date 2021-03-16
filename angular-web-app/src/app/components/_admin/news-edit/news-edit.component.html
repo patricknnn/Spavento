@@ -5,17 +5,19 @@
   <div class="row mb-5">
     <div class="col-12">
 
-      <form *ngIf="newsItem" (ngSubmit)="onSubmit()" #addNewsItemForm="ngForm">
+      <form *ngIf="newsItem" (ngSubmit)="onSubmit()" #editNewsItemForm="ngForm">
         <mat-card class="mat-elevation-z8 mb-4">
-
           <h4 class="title-underlined">Afbeelding</h4>
 
           <div class="form-group row">
-            <div class="col-12">
+            <div class="col-4" *ngIf="newsItem.image">
+              <img [src]="newsItem.image" class="img-thumbnail" style="max-height: 180px;">
+            </div>
+            <div class="col-8">
               <ngx-dropzone [multiple]="false" (change)="onFileSelect($event)" class="mat-dropzone">
                 <ngx-dropzone-label class="d-flex align-items-center">
                   <mat-icon class="mr-2">upload</mat-icon>
-                  Kies afbeelding
+                  Kies nieuwe afbeelding
                 </ngx-dropzone-label>
                 <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let file of selectedFiles"
                   [file]="file" [removable]="true" (removed)="onFileRemove(file)">
@@ -96,8 +98,8 @@
           <div class="row mt-3">
             <div class="col-12">
               <button mat-flat-button color="accent" type="submit" class="mr-2"
-                [disabled]="!addNewsItemForm.valid">opslaan</button>
-              <button mat-flat-button color="primary" type="button" (click)="resetForm(); addNewsItemForm.form.markAsUntouched()">reset</button>
+                [disabled]="!editNewsItemForm.valid">opslaan</button>
+              <button mat-flat-button color="primary" type="button" (click)="resetForm(); editNewsItemForm.form.markAsUntouched()">reset</button>
             </div>
           </div>
         </mat-card>

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { NewsItem } from 'src/app/models/newsitem';
 import { ModalService } from 'src/app/services/modal.service';
@@ -37,6 +38,7 @@ export class NewsOverviewComponent implements OnInit {
   formColor = "accent";
 
   constructor(
+    private router: Router,
     private newsService: NewsService,
     private swalService: SwalService,
     private modalService: ModalService
@@ -104,6 +106,12 @@ export class NewsOverviewComponent implements OnInit {
     }
   }
 
+  // Open edit page
+  goToNewsEdit(itemId: number): void {
+    this.router.navigate(['/admin/news-edit', { id: itemId }]);
+  }
+
+  // Open modal
   openModalItem(item: NewsItem): void {
     this.modalItem = item;
     this.modalService.openModal(this.modalContent);

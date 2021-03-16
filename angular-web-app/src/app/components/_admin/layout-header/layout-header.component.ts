@@ -27,7 +27,7 @@ export class LayoutHeaderComponent implements OnInit {
     this.retrieveData();
     let header = document.getElementById('header');
     if (header) {
-      header.classList.add('mat-elevation-z4');
+      header.classList.add('mat-elevation-z8');
     }
   }
 

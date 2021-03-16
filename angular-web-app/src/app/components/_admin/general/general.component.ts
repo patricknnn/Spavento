@@ -84,7 +84,7 @@ export class GeneralComponent implements OnInit {
       "mat-elevation-z1",
       "mat-elevation-z2",
       "mat-elevation-z3",
-      "mat-elevation-z4",
+      "mat-elevation-z8",
       "mat-elevation-z5",
       "mat-elevation-z6",
       "mat-elevation-z7",

@@ -26,6 +26,8 @@ import { ManagerFilesComponent } from './components/_admin/manager-files/manager
 import { ManagerUsersComponent } from './components/_admin/manager-users/manager-users.component';
 import { LoginComponent } from './components/_pages/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
+import { PaintingEditComponent } from './components/_admin/painting-edit/painting-edit.component';
+import { NewsEditComponent } from './components/_admin/news-edit/news-edit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -53,8 +55,10 @@ const routes: Routes = [
       { path: 'page-not-found', component: PageNotFoundAdminComponent },
       { path: 'portfolio-overview', component: PaintingOverviewComponent },
       { path: 'portfolio-add', component: PaintingAddComponent },
+      { path: 'portfolio-edit', component: PaintingEditComponent },
       { path: 'news-overview', component: NewsOverviewComponent },
       { path: 'news-add', component: NewsAddComponent },
+      { path: 'news-edit', component: NewsEditComponent },
   ], canActivate: [AuthGuard]},
   // page not found
   { path: 'page-not-found', component: PageNotFoundComponent, data: { animation: '404' } },

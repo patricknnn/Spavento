@@ -1,5 +1,5 @@
 <div class="container-fluid py-5">
-  <app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [modal]="content">
+  <app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [modal]="content" [admin]="true">
   </app-section-title>
 
   <mat-accordion class="admin-accordion">
@@ -27,7 +27,7 @@
       <div class="container-fluid" *ngIf="pageContent">
         <div class="row mb-4">
           <div class="col-12">
-            <mat-card class="mat-elevation-z4">
+            <mat-card class="mat-elevation-z8">
               <div class="container">
                 <app-section-title [title]="pageContent.title" [subTitle]="pageContent.subTitle"
                   [text]="pageContent.text">

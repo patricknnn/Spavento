@@ -69,6 +69,8 @@ import { CompGalleryComponent } from './components/_admin/comp-gallery/comp-gall
 import { CompNewsComponent } from './components/_admin/comp-news/comp-news.component';
 import { LoginComponent } from './components/_pages/login/login.component';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { PaintingEditComponent } from './components/_admin/painting-edit/painting-edit.component';
+import { NewsEditComponent } from './components/_admin/news-edit/news-edit.component';
 
 @NgModule({
   declarations: [
@@ -128,7 +130,9 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     ManagerUsersComponent,
     CompGalleryComponent,
     CompNewsComponent,
-    LoginComponent
+    LoginComponent,
+    PaintingEditComponent,
+    NewsEditComponent
   ],
   imports: [
     BrowserModule,
