@@ -7,13 +7,13 @@
   <!-- Content -->
   <section *ngIf="galleryContent" class="page-section bg-light">
 
-    <div class="container">
-      <app-section-title [title]="galleryContent.title" [subTitle]="galleryContent.subTitle" [text]="galleryContent.text"></app-section-title>
+    <!-- Title -->
+    <app-section-title [title]="galleryContent.title" [subTitle]="galleryContent.subTitle" [text]="galleryContent.text">
+    </app-section-title>
 
-      <!-- Gallery -->
-      <app-gallery [maxHeight]="galleryContent.maxHeight"></app-gallery>
+    <!-- Gallery -->
+    <app-gallery></app-gallery>
 
-    </div>
   </section>
 
 </main>

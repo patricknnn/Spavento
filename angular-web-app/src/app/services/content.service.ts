@@ -19,30 +19,35 @@ import { ServiceContent } from '../models/servicecontent';
   providedIn: 'root',
 })
 export class ContentService {
-  private generalPath = '/general';
-  private navPath = '/nav';
-  private footerPath = '/footer';
-  private headerPath = '/header';
-  private servicesPath = '/services';
-  private featuredPath = '/featured';
-  private latestnewsPath = '/latestnews';
-  private latestworkPath = '/latestwork';
-  private ctaPath = '/cta';
-  private galleryPath = '/gallery';
-  private newsPath = '/news';
-  private newsContentPath = '/newscontent';
-  private contactcardsPath = '/contactcards';
-  private contactFormPath = '/contactform';
-  private pagenotfoundPath = '/pagenotfound';
-  private homeTitlePath = '/hometitle';
-  private portfolioTitlePath = '/portfoliotitle';
-  private newsTitlePath = '/newstitle';
-  private contactTitlePath = '/contacttitle';
-  private pnfTitlePath = '/pnftitle';
-  generalRef: AngularFirestoreCollection<GeneralContent>;
+  // Layout
+  private navPath = '/content/layout/nav';
+  private footerPath = '/content/layout/footer';
+  private headerPath = '/content/layout/header';
+  // Components
+  private generalPath = '/content/components/general';
+  private servicesPath = '/content/components/services';
+  private featuredPath = '/content/components/featured';
+  private latestnewsPath = '/content/components/latestnews';
+  private latestworkPath = '/content/components/latestwork';
+  private ctaPath = '/content/components/cta';
+  private galleryPath = '/content/components/gallery';
+  private newsPath = '/content/components/news';
+  private contactcardsPath = '/content/components/contactcards';
+  private contactFormPath = '/content/components/contactform';
+  private pagenotfoundPath = '/content/components/pagenotfound';
+  // Titles
+  private homeTitlePath = '/content/title/home';
+  private portfolioTitlePath = '/content/title/portfolio';
+  private newsTitlePath = '/content/title/news';
+  private contactTitlePath = '/content/title/contact';
+  private pnfTitlePath = '/content/title/pagenotfound';
+
+  // Layout
   navRef: AngularFirestoreCollection<NavContent>;
   footerRef: AngularFirestoreCollection<FooterContent>;
   headerRef: AngularFirestoreCollection<HeaderContent>;
+  // Components
+  generalRef: AngularFirestoreCollection<GeneralContent>;
   servicesRef: AngularFirestoreCollection<ServiceContent>;
   featuredRef: AngularFirestoreCollection<FeaturedContent>;
   latestnewsRef: AngularFirestoreCollection<LatestNewsContent>;
@@ -50,16 +55,20 @@ export class ContentService {
   ctaRef: AngularFirestoreCollection<CtaContent>;
   galleryRef: AngularFirestoreCollection<GalleryContent>;
   newsRef: AngularFirestoreCollection<NewsContent>;
-  newsContentRef: AngularFirestoreCollection<NewsContent>;
   contactcardsRef: AngularFirestoreCollection<ServiceContent>;
   contactformRef: AngularFirestoreCollection<ContactFormContent>;
   pagenotfoundRef: AngularFirestoreCollection<PageNotFoundContent>;
+  // Titles
   hometitleRef: AngularFirestoreCollection<PageTitle>;
   portfoliotitleRef: AngularFirestoreCollection<PageTitle>;
   nestitleRef: AngularFirestoreCollection<PageTitle>;
   contacttitleRef: AngularFirestoreCollection<PageTitle>;
   pnftitleRef: AngularFirestoreCollection<PageTitle>;
 
+  /**
+   * Contructor
+   * @param db Angular Firestore
+   */
   constructor(private db: AngularFirestore) {
     this.navRef = db.collection(this.navPath);
     this.footerRef = db.collection(this.footerPath);
@@ -71,7 +80,6 @@ export class ContentService {
     this.ctaRef = db.collection(this.ctaPath);
     this.galleryRef = db.collection(this.galleryPath);
     this.newsRef = db.collection(this.newsPath);
-    this.newsContentRef = db.collection(this.newsContentPath);
     this.contactcardsRef = db.collection(this.contactcardsPath);
     this.contactformRef = db.collection(this.contactFormPath);
     this.pagenotfoundRef = db.collection(this.pagenotfoundPath);
@@ -233,13 +241,13 @@ export class ContentService {
    * News Content
    */
   public getNewsContent(limit = 5): AngularFirestoreCollection<NewsContent> {
-    return this.db.collection(this.newsContentPath, ref => ref
+    return this.db.collection(this.newsPath, ref => ref
       .orderBy('timestampCreated', 'desc')
       .limit(limit));
   }
   public saveNewsContent(data: NewsContent): any {
     data.timestampCreated = Date.now();
-    return this.newsContentRef.add({ ...data });
+    return this.newsRef.add({ ...data });
   }
 
   /**

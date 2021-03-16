@@ -6,12 +6,9 @@
 
   <!-- Buttons -->
   <section *ngIf="content" class="page-section bg-light">
+    <app-section-title [title]="content.title" [subTitle]="content.subTitle" [text]="content.text">
+    </app-section-title>
     <div class="container">
-      <app-section-title 
-        [title]="content.title" 
-        [subTitle]="content.subTitle" 
-        [text]="content.text">
-      </app-section-title>
       <div class="row">
         <div class="col-xs-12 col-sm-6 d-flex align-items-center justify-content-center">
           <button mat-raised-button color="accent" class="rounded-pill mt-3" (click)="goBack()">

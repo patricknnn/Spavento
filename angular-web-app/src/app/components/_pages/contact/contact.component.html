@@ -5,10 +5,9 @@
 <main id="contact" class="main main-raised">
   <!-- Contact -->
   <section *ngIf="contactCards" class="page-section bg-light">
+    <app-section-title [title]="contactCards.title" [subTitle]="contactCards.subTitle" [text]="contactCards.text">
+    </app-section-title>
     <div class="container">
-      <app-section-title [title]="contactCards.title" [subTitle]="contactCards.subTitle" [text]="contactCards.text">
-      </app-section-title>
-
       <div class="row">
         <div *ngFor="let contactcard of contactCards.services" class="col-lg-4 col-md-6 col-sm-12">
           <!-- Service cards -->
@@ -20,10 +19,9 @@
 
   <!-- Form -->
   <section *ngIf="contactForm" class="page-section">
+    <app-section-title [title]="contactForm.title" [subTitle]="contactForm.subTitle" [text]="contactForm.text">
+    </app-section-title>
     <div class="container">
-      <app-section-title [title]="contactForm.title" [subTitle]="contactForm.subTitle" [text]="contactForm.text">
-      </app-section-title>
-
       <div class="row">
         <div class="col-12">
           <app-contact-card></app-contact-card>

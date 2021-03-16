@@ -3,45 +3,45 @@
 
 <!-- Main -->
 <main id="contact" class="main main-raised">
-    <!-- Contact -->
-    <section class="page-section bg-light">
-        <div class="container">
-            <app-section-title [title]="'Material admin'" [subTitle]="'login'"
-                [text]="'Gebruik email en wachtwoord om in te loggen'">
-            </app-section-title>
-
-            <div class="row">
-                <div class="col-12">
-                    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-                        <div class="form-group">
-                            <mat-form-field appearance="{{ formStyle }}" color="{{ formColor }}" class="w-100">
-                                <mat-label>E-mail</mat-label>
-                                <input matInput type="text" placeholder="info@spavento.com" [(ngModel)]="loginFormModel.email"
-                                    name="email" id="email" #emailInput="ngModel" required />
-                                <mat-error *ngIf="emailInput.valid || emailInput.pristine">
-                                    Email is <strong>verplicht</strong>
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-
-                        <div class="form-group">
-                            <mat-form-field appearance="{{ formStyle }}" color="{{ formColor }}" class="w-100">
-                                <mat-label>Wachtwoord</mat-label>
-                                <input matInput type="password" placeholder="Wachtwoord" [(ngModel)]="loginFormModel.password"
-                                    name="password" id="password" #passwordInput="ngModel" required />
-                                <mat-error *ngIf="passwordInput.valid || passwordInput.pristine">
-                                    Wachtwoord is <strong>verplicht</strong>
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-
-                        <button mat-raised-button color="accent" type="submit" [disabled]="!loginForm.form.valid">
-                            Login
-                        </button>
-
-                    </form>
-                </div>
+  <!-- Contact -->
+  <section class="page-section bg-light">
+    <app-section-title [title]="'Material admin'" [subTitle]="'login'"
+      [text]="'Gebruik email en wachtwoord om in te loggen'">
+    </app-section-title>
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+            <div class="form-group">
+              <mat-form-field appearance="{{ formStyle }}" color="{{ formColor }}" class="w-100">
+                <mat-label>E-mail</mat-label>
+                <input matInput type="text" placeholder="info@spavento.com" [(ngModel)]="loginFormModel.email"
+                  name="email" id="email" #emailInput="ngModel" required />
+                <mat-error *ngIf="emailInput.valid || emailInput.pristine">
+                  Email is <strong>verplicht</strong>
+                </mat-error>
+              </mat-form-field>
             </div>
+
+            <div class="form-group">
+              <mat-form-field appearance="{{ formStyle }}" color="{{ formColor }}" class="w-100">
+                <mat-label>Wachtwoord</mat-label>
+                <input matInput type="password" placeholder="Wachtwoord" [(ngModel)]="loginFormModel.password"
+                  name="password" id="password" #passwordInput="ngModel" required />
+                <mat-error *ngIf="passwordInput.valid || passwordInput.pristine">
+                  Wachtwoord is <strong>verplicht</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <button mat-raised-button color="accent" type="submit" [disabled]="!loginForm.form.valid">
+              Login
+            </button>
+
+          </form>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 </main>

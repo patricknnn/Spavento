@@ -6,10 +6,13 @@ import { NewsItem } from '../models/newsitem';
   providedIn: 'root',
 })
 export class NewsService {
-
-  private dbPath = '/news';
+  private dbPath = '/newsitems';
   newsRef: AngularFirestoreCollection<NewsItem>;
 
+  /**
+   * Constructor
+   * @param db Angular Firestore
+   */
   constructor(private db: AngularFirestore) {
     this.newsRef = db.collection(this.dbPath);
   }

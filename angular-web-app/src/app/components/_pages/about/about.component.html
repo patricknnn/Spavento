@@ -1,4 +1,3 @@
-
 <!-- Header small -->
 <app-header [title]="title" [subTitle]="subTitle" [small]="true"></app-header>
 
@@ -7,17 +6,9 @@
 
   <!-- Content -->
   <section class="page-section bg-light">
-    <div class="container">
-      <app-section-title
-        [title]="'Some title'"
-        [subTitle]="'What i have to offer'"
-        [text]="'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam.'"
-      ></app-section-title>
-      <div class="row">
-
-      </div>
-    </div>
+    <app-section-title [title]="'Some title'" [subTitle]="'What i have to offer'"
+      [text]="'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam.'">
+    </app-section-title>
   </section>
 
 </main>
-

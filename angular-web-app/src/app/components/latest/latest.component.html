@@ -1,11 +1,5 @@
 <ngb-carousel *ngIf="paintings" #latestCarousel>
   <ng-template ngbSlide *ngFor="let painting of paintings">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <app-painting-card [painting]="painting" [maxHeight]="'30vh'"></app-painting-card>
-        </div>
-      </div>
-    </div>
+    <app-painting-card [painting]="painting" [maxHeight]="'30vh'"></app-painting-card>
   </ng-template>
 </ngb-carousel>

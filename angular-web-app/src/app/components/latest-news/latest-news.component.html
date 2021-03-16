@@ -1,12 +1,5 @@
-
 <ngb-carousel *ngIf="newsItems" #newsCarousel>
   <ng-template ngbSlide *ngFor="let newsItem of newsItems">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-12">
-          <app-news-card [newsItem]="newsItem" [direction]="'row'"></app-news-card>
-        </div>
-      </div>
-    </div>
+    <app-news-card [newsItem]="newsItem" [direction]="'row'"></app-news-card>
   </ng-template>
 </ngb-carousel>

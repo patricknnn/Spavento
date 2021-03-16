@@ -5,10 +5,10 @@
 <main id="news" class="main main-raised">
   <!-- News -->
   <section *ngIf="newsContent" class="page-section bg-light">
-    <div class="container">
-      <app-section-title [title]="newsContent.title" [subTitle]="newsContent.subTitle" [text]="newsContent.text">
-      </app-section-title>
+    <app-section-title [title]="newsContent.title" [subTitle]="newsContent.subTitle" [text]="newsContent.text">
+    </app-section-title>
 
+    <div class="container" *ngIf="newsItems">
       <!-- Filters -->
       <div id="filterRow" class="row">
         <div class="col-12 d-flex align-items-center justify-content-center flex-wrap">
@@ -32,14 +32,20 @@
           </button>
         </div>
       </div>
-
       <!-- News items -->
       <div id="resultsContainer" class="results-container row my-4" *ngIf="filteredNewsItems">
-        <app-news-card *ngFor="let item of filteredNewsItems" class="col-12 my-3" @fadeAnimation
-          [newsItem]="item" [attr.data-category]="item.category">
+        <app-news-card *ngFor="let item of filteredNewsItems" class="col-12 my-3" @fadeAnimation [newsItem]="item"
+          [attr.data-category]="item.category">
         </app-news-card>
       </div>
+    </div>
 
+    <div class="container" *ngIf="!newsItems">
+      <div class="row">
+        <div class="col-12 text-center">
+          <p>Geen resultaten gevonden.</p>
+        </div>
+      </div>
     </div>
   </section>
 </main>

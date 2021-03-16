@@ -12,7 +12,6 @@ import { fadeAnimation } from 'src/app/animations/fade-animation';
   styleUrls: ['./gallery.component.scss'],
 })
 export class GalleryComponent implements OnInit {
-  @Input() maxHeight: string = '100%';
   paintings: Painting[];
   filteredPaintings: Painting[];
   categories: string[];

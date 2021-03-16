@@ -46,13 +46,16 @@ export class NewsAddComponent implements OnInit {
     // loading swal
     this.swalService.loadingSwal("Nieuws item opslaan");
     // Upload files
-    if (this.selectedFiles.length <= 1) {
+    if (this.selectedFiles.length > 0) {
       const { downloadUrl, uploadProgress } = this.uploadService.pushFileToStorageAndReturnMetadata(new FileUpload(this.selectedFiles[0]));
       downloadUrl.subscribe((downloadUrl) => {
         // add url to painting
         this.newsItem.image = downloadUrl;
         this.saveItem();
       });
+    } else {
+      this.newsItem.image = "../../../../assets/img/material-bg.jpg";
+      this.saveItem();
     }
   }
 

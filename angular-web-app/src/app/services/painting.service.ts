@@ -6,10 +6,13 @@ import { Painting } from '../models/painting';
   providedIn: 'root',
 })
 export class PaintingService {
-
-  private dbPath = '/paintings';
+  private dbPath = '/portfolioitems';
   paintingsRef: AngularFirestoreCollection<Painting>;
 
+  /**
+   * Constructor
+   * @param db Angular Firestore
+   */
   constructor(private db: AngularFirestore) {
     this.paintingsRef = db.collection(this.dbPath);
   }

@@ -4,9 +4,9 @@
 <main id="home" class="main main-raised">
   <!-- Services -->
   <section *ngIf="services && services.active" class="page-section bg-light">
+    <app-section-title [title]="services.title" [subTitle]="services.subTitle" [text]="services.text">
+    </app-section-title>
     <div class="container">
-      <app-section-title [title]="services.title" [subTitle]="services.subTitle" [text]="services.text">
-      </app-section-title>
       <div class="row">
         <div *ngFor="let service of services.services" class="col-lg-4 col-md-6 col-sm-12">
           <!-- Service cards -->
@@ -18,10 +18,8 @@
 
   <!-- Featured -->
   <section *ngIf="featured && featured.active" class="page-section">
-    <div class="container">
-      <app-section-title [title]="featured.title" [subTitle]="featured.subTitle" [text]="featured.text">
-      </app-section-title>
-    </div>
+    <app-section-title [title]="featured.title" [subTitle]="featured.subTitle" [text]="featured.text">
+    </app-section-title>
     <div class="container">
       <div class="row">
         <div class="col-12">
@@ -34,10 +32,9 @@
 
   <!-- Latest News -->
   <section *ngIf="latestNews && latestNews.active" class="page-section bg-light">
+    <app-section-title [title]="latestNews.title" [subTitle]="latestNews.subTitle" [text]="latestNews.text"
+      [link]="latestNews.link"></app-section-title>
     <div class="container">
-      <app-section-title [title]="latestNews.title" [subTitle]="latestNews.subTitle" [text]="latestNews.text"
-        [link]="latestNews.link">
-      </app-section-title>
       <div class="row">
         <div class="col-12">
           <app-latest-news></app-latest-news>
@@ -48,10 +45,9 @@
 
   <!-- Latest paintings -->
   <section *ngIf="latestWork && latestWork.active" class="page-section">
+    <app-section-title [title]="latestWork.title" [subTitle]="latestWork.subTitle" [text]="latestWork.text"
+      [link]="latestWork.link"></app-section-title>
     <div class="container">
-      <app-section-title [title]="latestWork.title" [subTitle]="latestWork.subTitle" [text]="latestWork.text"
-        [link]="latestWork.link">
-      </app-section-title>
       <div class="row">
         <div class="col-12">
           <app-latest></app-latest>
@@ -62,12 +58,7 @@
 
   <!-- CTA -->
   <section *ngIf="cta && cta.active" class="page-section" [style.backgroundImage]="'url(' + cta.image + ')'">
-    <div class="container">
-      <div class="col-12">
-        <app-call-to-action [title]="cta.title" [subTitle]="cta.subTitle" [buttonText]="cta.btnText"
-          [buttonLink]="cta.btnLink">
-        </app-call-to-action>
-      </div>
-    </div>
+    <app-call-to-action [title]="cta.title" [subTitle]="cta.subTitle" [buttonText]="cta.btnText"
+      [buttonLink]="cta.btnLink"></app-call-to-action>
   </section>
 </main>
