@@ -36,7 +36,7 @@ export class NewsComponent implements OnInit {
   }
 
   retrieveNews(): void {
-    this.newsService.getAll().snapshotChanges().pipe(
+    this.newsService.getAllActive().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({ id: c.payload.doc.id, ...c.payload.doc.data() })

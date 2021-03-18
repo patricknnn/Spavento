@@ -44,7 +44,7 @@ export class GalleryComponent implements OnInit {
   }
 
   retrievePaintings(): void {
-    this.paintingService.getAll().snapshotChanges().pipe(
+    this.paintingService.getAllActive().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({ id: c.payload.doc.id, ...c.payload.doc.data() })

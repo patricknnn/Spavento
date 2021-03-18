@@ -12,7 +12,7 @@ import { ContactFormService } from 'src/app/services/contact-form.service';
 export class ContactCardComponent implements OnInit {
   @Input() appearance = "standard";
   @Input() color = "accent";
-  @Input() subjects = ['Question', 'Other'];
+  subjects: string[];
   submitted = false;
   model = new ContactForm();
 
@@ -22,6 +22,7 @@ export class ContactCardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.subjects = this.contactformService.getCategories();
   }
 
   onSubmit() {

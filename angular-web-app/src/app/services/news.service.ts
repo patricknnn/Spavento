@@ -21,6 +21,11 @@ export class NewsService {
     return this.newsRef;
   }
 
+  public getAllActive(): AngularFirestoreCollection<NewsItem> {
+    return this.db.collection(this.dbPath, ref => ref
+      .where('active', '==', true));
+  }
+
   public create(item: NewsItem): any {
     item.timestampCreated = Date.now();
     return this.newsRef.add({ ...item });
