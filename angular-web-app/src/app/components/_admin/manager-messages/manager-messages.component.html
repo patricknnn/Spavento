@@ -5,17 +5,18 @@
   <div class="row mb-5">
 
     <div class="col-12" *ngIf="isLoadingResults">
-      <app-loading [message]="'Nieuws items laden...'"></app-loading>
+      <app-loading [message]="'Berichten laden...'"></app-loading>
     </div>
 
     <div class="col-12">
+
       <!-- Table Filter -->
       <mat-form-field [appearance]="formStyle" [color]="formColor" class="w-100">
         <button mat-button matPrefix mat-icon-button>
           <mat-icon>search</mat-icon>
         </button>
         <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Technologie" #input>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Vraag" #input>
         <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear"
           (click)="input.value=''; resetFilter()">
           <mat-icon>close</mat-icon>
@@ -28,48 +29,40 @@
         <div class="table-responsive">
           <table mat-table [dataSource]="dataSource" class="w-100" matSort matSortActive="created"
             matSortDirection="desc">
-            <ng-container matColumnDef="image" sticky>
-              <th mat-header-cell *matHeaderCellDef> Afbeelding </th>
+
+            <ng-container matColumnDef="read">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Gelezen </th>
               <td mat-cell *matCellDef="let item">
-                <img [src]="item.image" class="rounded img-table mat-elevation-z2">
+                <mat-slide-toggle [checked]="item.read" (change)="setReadState(item , $event)"></mat-slide-toggle>
               </td>
             </ng-container>
 
-            <ng-container matColumnDef="title">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Titel </th>
-              <td mat-cell *matCellDef="let item"> {{ item.title }} </td>
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Naam </th>
+              <td mat-cell *matCellDef="let item"> {{ item.name }} </td>
             </ng-container>
 
-            <ng-container matColumnDef="author">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Auteur </th>
-              <td mat-cell *matCellDef="let item"> {{ item.author }} </td>
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+              <td mat-cell *matCellDef="let item"> {{ item.email }} </td>
             </ng-container>
 
-            <ng-container matColumnDef="category">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Categorie </th>
-              <td mat-cell *matCellDef="let item"> {{ item.category }} </td>
+            <ng-container matColumnDef="subject">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Onderwerp </th>
+              <td mat-cell *matCellDef="let item"> {{ item.subject }} </td>
             </ng-container>
 
             <ng-container matColumnDef="created">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Toegevoegd </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Ontvangen </th>
               <td mat-cell *matCellDef="let item"> {{ item.timestampCreated | date }} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="active">
-              <th mat-header-cell *matHeaderCellDef> Actief </th>
-              <td mat-cell *matCellDef="let item">
-                <mat-slide-toggle [checked]="item.active" (change)="setActiveState(item , $event)"></mat-slide-toggle>
-              </td>
             </ng-container>
 
             <ng-container matColumnDef="options">
               <th mat-header-cell *matHeaderCellDef> Opties </th>
               <td mat-cell *matCellDef="let item">
-                <button mat-icon-button color="accent" (click)="openModalItem(item);" class="mr-2">
+                <button mat-icon-button color="accent" (click)="setModalItem(item); openModal(modalContent); markAsRead(item)"
+                  class="mr-2">
                   <mat-icon>launch</mat-icon>
-                </button>
-                <button mat-icon-button color="accent" (click)="goToNewsEdit(item.id)" class="mr-2">
-                  <mat-icon>edit</mat-icon>
                 </button>
                 <button mat-icon-button color="primary" (click)="deleteItem(item.id)">
                   <mat-icon>delete</mat-icon>
@@ -103,27 +96,19 @@
   <mat-dialog-content>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-3">
-          <div class="news-header">
-            <img class="w-100 rounded mat-elevation-z8" [src]="modalItem.image" alt="news" />
-          </div>
-        </div>
-        <div class="col-md-9">
+        <div class="col-12">
           <div class="d-flex flex-column justify-content-center h-100">
             <h6 class="txt-secondary text-uppercase mt-2">
-              {{ modalItem.category }}
+              {{ modalItem.subject }}
             </h6>
-            <h3>{{ modalItem.title }}</h3>
+            <h3>{{ modalItem.name }}</h3>
             <div class="txt-dark-muted">
               <hr class="hr-news">
+              <mat-icon class="inline-icon mr-2">send</mat-icon>
+              <span>{{ modalItem.email }}</span>
+              <span class="px-2">|</span>
               <mat-icon class="inline-icon mr-2">today</mat-icon>
               <span>{{ modalItem.timestampCreated | date}}</span>
-              <span class="px-2">|</span>
-              <mat-icon class="inline-icon mr-2">person</mat-icon>
-              <span>{{ modalItem.author }}</span>
-              <span class="px-2">|</span>
-              <mat-icon class="inline-icon mr-2">local_offer</mat-icon>
-              <span>{{ modalItem.category }}</span>
               <hr class="hr-news">
             </div>
           </div>

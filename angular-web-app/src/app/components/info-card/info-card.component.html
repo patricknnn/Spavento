@@ -1,11 +1,13 @@
-<mat-card class="card-clean">
-  <div class="d-flex flex-row">
-    <div class="flex-shrink-0 mr-2">
-      <mat-icon class="txt-secondary icon-medium">{{ icon }}</mat-icon>
-    </div>
-    <div class="flex-grow-1">
-      <h4>{{ title }}</h4>
-      <p class="txt-dark-muted">{{ text }}</p>
+<mat-card class="mat-elevation-z8 p-3 m-2">
+  <div class="d-flex flex-column">
+    <div class="d-flex flex-row align-items-center justify-content-between mb-1">
+      <div class="card-info-icon bg-primary d-flex align-items-center justify-content-center mat-elevation-z0">
+        <mat-icon class="txt-light">{{icon}}</mat-icon>
+      </div>
+      <div class="card-info-text d-flex flex-column align-items-end justify-content-center">
+        <span class="h6 txt-dark-muted">{{title}}</span>
+        <span class="h5 txt-dark mb-0">{{text}}</span>
+      </div>
     </div>
   </div>
 </mat-card>

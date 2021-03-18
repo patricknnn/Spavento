@@ -5,4 +5,5 @@ export class ContactForm extends FirebaseEntity {
   email: string;
   subject: string;
   text: string;
+  read: boolean;
 }

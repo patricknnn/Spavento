@@ -71,6 +71,8 @@ import { LoginComponent } from './components/_pages/login/login.component';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { PaintingEditComponent } from './components/_admin/painting-edit/painting-edit.component';
 import { NewsEditComponent } from './components/_admin/news-edit/news-edit.component';
+import { LoadingComponent } from './components/_admin/loading/loading.component';
+import { ManagerMessagesComponent } from './components/_admin/manager-messages/manager-messages.component';
 
 @NgModule({
   declarations: [
@@ -132,7 +134,9 @@ import { NewsEditComponent } from './components/_admin/news-edit/news-edit.compo
     CompNewsComponent,
     LoginComponent,
     PaintingEditComponent,
-    NewsEditComponent
+    NewsEditComponent,
+    LoadingComponent,
+    ManagerMessagesComponent
   ],
   imports: [
     BrowserModule,

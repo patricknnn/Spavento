@@ -66,6 +66,7 @@ export class PaintingAddComponent implements OnInit {
   onSubmit() {
     // disable form
     this.formDisabled = true;
+    this.painting.active = true;
     // loading swal
     this.swalService.loadingSwal("Afbeeldingen opslaan");
     // Upload files
@@ -103,7 +104,6 @@ export class PaintingAddComponent implements OnInit {
       this.swalService.successSwal("Schilderij opgeslagen");
     });
   }
-
 
   /**
    * Handles file select

@@ -52,7 +52,7 @@ export class AdminComponent implements OnInit, AfterViewInit, OnDestroy {
         nav.classList.add('d-none');
         footer.classList.add('d-none');
       }
-    }, 1000);
+    }, 2500);
   }
 
   ngOnDestroy(): void {

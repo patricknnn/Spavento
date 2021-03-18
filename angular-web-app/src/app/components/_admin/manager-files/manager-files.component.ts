@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -13,7 +13,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   templateUrl: './manager-files.component.html',
   styleUrls: ['./manager-files.component.scss'],
 })
-export class ManagerFilesComponent implements OnInit {
+export class ManagerFilesComponent implements AfterViewInit {
   title = 'Bestanden';
   subTitle = 'Beheer';
   text =
@@ -21,19 +21,28 @@ export class ManagerFilesComponent implements OnInit {
   fileUploads: any[];
   selectedFiles: File[] = [];
   currentFileUpload: FileUpload;
-  dataSource: any;
   displayedColumns: string[] = ['thumbnail', 'name', 'created', 'options'];
   percentage = 0;
   uploadCount = 0;
   formStyle = "standard";
   formColor = "accent";
-  
+  resultsLength = 0;
+  isLoadingResults = true;
+  dataSource: MatTableDataSource<FileUpload>;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private uploadService: FileUploadService, private swalService: SwalService) { }
+  constructor(
+    private uploadService: FileUploadService,
+    private swalService: SwalService
+  ) { }
 
-  ngOnInit(): void {
+  ngAfterViewInit() {
+    this.retrieveFiles();
+  }
+
+  retrieveFiles(): void {
     this.uploadService
       .getFiles(99)
       .snapshotChanges()
@@ -43,12 +52,18 @@ export class ManagerFilesComponent implements OnInit {
           changes.map((c) => ({ key: c.payload.key, ...c.payload.val() }))
         )
       )
-      .subscribe((fileUploads) => {
-        this.fileUploads = fileUploads;
-        this.dataSource = new MatTableDataSource(this.fileUploads);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+      .subscribe((data) => {
+        this.fileUploads = data;
+        this.isLoadingResults = false;
+        this.resultsLength = data.length;
+        this.initTable(data);
       });
+  }
+
+  initTable(data): void {
+    this.dataSource = new MatTableDataSource<FileUpload>(data);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   /**

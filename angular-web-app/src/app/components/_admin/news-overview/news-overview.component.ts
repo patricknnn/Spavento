@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -15,16 +15,12 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   templateUrl: './news-overview.component.html',
   styleUrls: ['./news-overview.component.scss']
 })
-export class NewsOverviewComponent implements OnInit {
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild('modalContent') modalContent;
+export class NewsOverviewComponent implements AfterViewInit {
   title = 'Overzicht';
   subTitle = 'Nieuws';
   text = 'Hier is een overzicht van alle nieuws items te vinden.';
   newsItems: NewsItem[];
   modalItem: NewsItem;
-  dataSource: any;
   displayedColumns: string[] = [
     'image',
     'title',
@@ -36,6 +32,12 @@ export class NewsOverviewComponent implements OnInit {
   ];
   formStyle = "standard";
   formColor = "accent";
+  resultsLength = 0;
+  isLoadingResults = true;
+  dataSource: MatTableDataSource<NewsItem>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('modalContent') modalContent;
 
   constructor(
     private router: Router,
@@ -44,16 +46,9 @@ export class NewsOverviewComponent implements OnInit {
     private modalService: ModalService
   ) { }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.retrieveItems();
   }
-
-  initTable(): void {
-    this.dataSource = new MatTableDataSource(this.newsItems);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
-
 
   retrieveItems(): void {
     this.newsService.getAll().snapshotChanges().pipe(
@@ -61,11 +56,19 @@ export class NewsOverviewComponent implements OnInit {
         changes.map(c =>
           ({ id: c.payload.doc.id, ...c.payload.doc.data() })
         )
-      )
-    ).subscribe(data => {
-      this.newsItems = data;
-      this.initTable();
-    });
+      ))
+      .subscribe((data) => {
+        this.newsItems = data;
+        this.isLoadingResults = false;
+        this.resultsLength = data.length;
+        this.initTable(data);
+      });
+  }
+
+  initTable(data): void {
+    this.dataSource = new MatTableDataSource<NewsItem>(data);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   deleteItem(key): void {
@@ -83,6 +86,26 @@ export class NewsOverviewComponent implements OnInit {
       }
     });
   }
+
+  /**
+   * Updates active state of painting
+   * @param painting Painting to update
+   * @param e Event
+   */
+  setActiveState(item: NewsItem, e): void {
+    let msg = "";
+    if (e.checked) {
+      item.active = true;
+      msg = "Nieuws item zichtbaar op website";
+    } else {
+      item.active = false;
+      msg = "Nieuws item niet zichtbaar op website";
+    }
+    this.newsService.update(item.id, item).then(() => {
+      this.swalService.successSwal(msg);
+    });
+  }
+
 
   /**
    * Apply filter to the table view

@@ -28,6 +28,7 @@ import { LoginComponent } from './components/_pages/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { PaintingEditComponent } from './components/_admin/painting-edit/painting-edit.component';
 import { NewsEditComponent } from './components/_admin/news-edit/news-edit.component';
+import { ManagerMessagesComponent } from './components/_admin/manager-messages/manager-messages.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -45,6 +46,7 @@ const routes: Routes = [
       { path: 'general', component: GeneralComponent },
       { path: 'manager-files', component: ManagerFilesComponent },
       { path: 'manager-users', component: ManagerUsersComponent },
+      { path: 'manager-messages', component: ManagerMessagesComponent },
       { path: 'layout-navigation', component: LayoutNavigationComponent },
       { path: 'layout-header', component: LayoutHeaderComponent },
       { path: 'layout-footer', component: LayoutFooterComponent },

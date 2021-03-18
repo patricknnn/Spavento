@@ -43,6 +43,7 @@ export class NewsAddComponent implements OnInit {
   onSubmit() {
     // disable form
     this.formDisabled = true;
+    this.newsItem.active = true;
     // loading swal
     this.swalService.loadingSwal("Nieuws item opslaan");
     // Upload files

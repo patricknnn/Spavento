@@ -18,6 +18,7 @@ export class SidenavComponent implements OnInit {
       new Sidenavlink("Beheer", "assignment_turned_in", "", [
         new Sidenavlink("Bestanden", "library_add_check", "/admin/manager-files"),
         new Sidenavlink("Gebruikers", "verified_user", "/admin/manager-users"),
+        new Sidenavlink("Berichten", "send", "/admin/manager-messages"),
       ]),
       new Sidenavlink("Layout", "view_sidebar", "", [
         new Sidenavlink("Navigatie", "explore", "/admin/layout-navigation"),

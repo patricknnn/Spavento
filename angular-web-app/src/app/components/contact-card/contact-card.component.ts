@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { SwalService } from 'src/app/services/swal.service';
 import { ContactForm } from '../../models/contactform';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { ContactFormService } from 'src/app/services/contact-form.service';
 
 @Component({
   selector: 'app-contact-card',
@@ -16,15 +17,23 @@ export class ContactCardComponent implements OnInit {
   model = new ContactForm();
 
   constructor(
-    private swalService: SwalService
+    private swalService: SwalService,
+    private contactformService: ContactFormService
   ) { }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
-    this.swalService.successSwal("Bericht verzonden");
-    this.submitted = true;
+    this.saveMessage();
+  }
+
+  saveMessage(): void {
+    this.swalService.loadingSwal("Bericht verzenden");
+    this.contactformService.create(this.model).then(() => {
+      this.model = new ContactForm();
+      this.swalService.successSwal("Bericht verzonden");
+    });
   }
 
   resetForm() {

@@ -2,64 +2,54 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { Painting } from 'src/app/models/painting';
+import { ContactForm } from 'src/app/models/contactform';
+import { ContactFormService } from 'src/app/services/contact-form.service';
 import { ModalService } from 'src/app/services/modal.service';
-import { PaintingService } from 'src/app/services/painting.service';
 import { SwalService } from 'src/app/services/swal.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
-  selector: 'app-painting-overview',
-  templateUrl: './painting-overview.component.html',
-  styleUrls: ['./painting-overview.component.scss'],
+  selector: 'app-manager-messages',
+  templateUrl: './manager-messages.component.html',
+  styleUrls: ['./manager-messages.component.scss']
 })
-export class PaintingOverviewComponent implements AfterViewInit {
-  title = 'Overzicht';
-  subTitle = 'Portfolio';
-  text = 'Hier is een overzicht van alle portfolio items te vinden.';
-  paintings: Painting[];
-  modalPainting: Painting;
-  displayedColumns: string[] = [
-    'thumbnail',
-    'title',
-    'artist',
-    'paint',
-    'created',
-    'active',
-    'options',
-  ];
+export class ManagerMessagesComponent implements AfterViewInit {
+  title = 'Berichten';
+  subTitle = 'Beheer';
+  text =
+    'Hier is een overzicht van alle ontvangen berichten te vinden.';
+  displayedColumns: string[] = ['read', 'name', 'email', 'subject', 'created', 'options'];
   formStyle = "standard";
   formColor = "accent";
-
   resultsLength = 0;
   isLoadingResults = true;
-  dataSource: MatTableDataSource<Painting>;
+  contactForms: ContactForm[];
+  modalItem: ContactForm;
+  dataSource: MatTableDataSource<ContactForm>;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
-    private router: Router,
-    private paintingService: PaintingService,
+    private contactformService: ContactFormService,
     private swalService: SwalService,
     private modalService: ModalService
   ) { }
 
-
   ngAfterViewInit() {
-    this.retrievePaintings();
+    this.retrieveData();
   }
 
-  retrievePaintings(): void {
-    this.paintingService.getAll().snapshotChanges().pipe(
+  retrieveData(): void {
+    this.contactformService.getAll().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({ id: c.payload.doc.id, ...c.payload.doc.data() })
         )
       ))
       .subscribe((data) => {
-        this.paintings = data;
+        this.contactForms = data;
         this.isLoadingResults = false;
         this.resultsLength = data.length;
         this.initTable(data);
@@ -67,47 +57,53 @@ export class PaintingOverviewComponent implements AfterViewInit {
   }
 
   initTable(data): void {
-    this.dataSource = new MatTableDataSource<Painting>(data);
+    this.dataSource = new MatTableDataSource<ContactForm>(data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
-  deletePainting(key): void {
+  deleteItem(key): void {
     this.swalService.promptSwal("Dit kan niet worden terug gedraaid").then((result) => {
       if (result.value) {
-        this.paintingService.delete(key)
+        this.contactformService.delete(key)
           .then(() => {
-            this.swalService.successSwal("Schilderij verwijderd")
+            this.swalService.successSwal("Bericht verwijderd")
           })
           .catch((err) => {
             this.swalService.errorSwal(err)
           });
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        this.swalService.cancelSwal("Schilderij niet verwijderd");
+        this.swalService.cancelSwal("Bericht niet verwijderd");
       }
     });
   }
 
-  // Open edit page
-  goToPaintingEdit(paintingId: number): void {
-    this.router.navigate(['/admin/portfolio-edit', { id: paintingId }]);
+  /**
+   * Mark item as read
+   * @param item Item to mark
+   */
+  markAsRead(item: ContactForm): void {
+    if (item.read == false) {
+      item.read = true;
+      this.contactformService.update(item.id, item);
+    }
   }
 
   /**
    * Updates active state of painting
-   * @param painting Painting to update
+   * @param item Item to mark
    * @param e Event
    */
-  setActiveState(painting: Painting, e): void {
+  setReadState(item: ContactForm, e): void {
     let msg = "";
     if (e.checked) {
-      painting.active = true;
-      msg = "Schilderij zichtbaar op website";
+      item.read = true;
+      msg = "Gemarkeerd als gelezen";
     } else {
-      painting.active = false;
-      msg = "Schilderij niet zichtbaar op website";
-    } 
-    this.paintingService.update(painting.id, painting).then(() => {
+      item.read = false;
+      msg = "Gemarkeerd als niet gelezen";
+    }
+    this.contactformService.update(item.id, item).then(() => {
       this.swalService.successSwal(msg);
     });
   }
@@ -138,9 +134,8 @@ export class PaintingOverviewComponent implements AfterViewInit {
    * 
    * @param painting Modal painting
    */
-  setModalPainting(painting: Painting): void {
-    //this.router.navigate(['/painting', { id: paintingId }]);
-    this.modalPainting = painting;
+  setModalItem(item: ContactForm): void {
+    this.modalItem = item;
   }
 
   /**
@@ -150,4 +145,6 @@ export class PaintingOverviewComponent implements AfterViewInit {
   openModal(content) {
     this.modalService.openModal(content);
   }
+
+
 }

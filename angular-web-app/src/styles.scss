@@ -533,12 +533,12 @@ hr.divider {
 
 td.mat-cell {
   white-space: nowrap;
-  padding: 0.5rem !important;
 }
 
 .img-table {
-  max-width: 100px;
-  height: auto;
+  max-height: 75px;
+  width: auto;
+  margin: 0.5rem;
 }
 /*************************************/
 /**          Color Helpers          **/
