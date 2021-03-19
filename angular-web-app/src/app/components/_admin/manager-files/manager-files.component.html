@@ -30,7 +30,7 @@
             <ng-container matColumnDef="thumbnail" sticky>
               <th mat-header-cell *matHeaderCellDef> Afbeelding </th>
               <td mat-cell *matCellDef="let fileUpload">
-                <img [src]="fileUpload.url" class="rounded img-table mat-elevation-z2">
+                <img *ngIf="fileUpload.url" [src]="fileUpload.url" class="rounded img-table mat-elevation-z2">
               </td>
             </ng-container>
 

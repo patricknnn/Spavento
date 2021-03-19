@@ -131,7 +131,7 @@ export class ManagerMessagesComponent implements AfterViewInit {
   }
 
   /**
-   * 
+   * Set modal item
    * @param painting Modal painting
    */
   setModalItem(item: ContactForm): void {

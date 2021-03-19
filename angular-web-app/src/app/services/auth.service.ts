@@ -36,10 +36,10 @@ export class AuthService {
   signIn(email, password) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
-        this.ngZone.run(() => {
+        console.log(result);
+        this.setUserData(result.user).then(() => {
           this.router.navigate(['admin/dashboard']);
         });
-        this.setUserData(result.user);
       }).catch((error) => {
         this.swalService.errorSwal(error.message);
       })
@@ -72,7 +72,7 @@ export class AuthService {
   forgotPassword(passwordResetEmail) {
     return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
       .then(() => {
-        window.alert('Password reset email sent, check your inbox.');
+        this.swalService.successSwal("Wachtwoord reset email verstuurd, bekijk je mailbox.");
       }).catch((error) => {
         this.swalService.errorSwal(error.message);
       })

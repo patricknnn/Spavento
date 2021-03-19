@@ -37,8 +37,11 @@
               </mat-form-field>
             </div>
 
-            <button mat-raised-button color="accent" type="submit" [disabled]="!loginForm.form.valid">
+            <button mat-raised-button color="accent" type="submit" class="mr-2" [disabled]="!loginForm.form.valid">
               Login
+            </button>
+            <button mat-button type="button" (click)="openModal(modalContent)">
+              Wachtwoord vergeten?
             </button>
 
           </form>
@@ -47,3 +50,34 @@
     </div>
   </section>
 </main>
+
+
+<!-- Modal -->
+<ng-template #modalContent>
+
+  <mat-dialog-content>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h4 class="title-underlined">Wachtwoord vergeten</h4>
+        </div>
+      </div>
+      <form #recoverMailForm="ngForm" style="width: 400px;">
+        <div class="form-group row">
+          <mat-form-field appearance="{{ formStyle }}" color="{{ formStyle }}" class="col-12">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" [(ngModel)]="recoverMail" name="recoverMail" id="recoverMail"
+              #recoverMailInput="ngModel" required />
+          </mat-form-field>
+        </div>
+      </form>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-raised-button color="accent" class="mr-2" [disabled]="!recoverMailForm.form.valid"
+      (click)="resetPassword()">Verstuur</button>
+    <button mat-button mat-dialog-close cdkFocusInitial>Sluit</button>
+  </mat-dialog-actions>
+
+</ng-template>

@@ -1,56 +1,11 @@
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { GeneralContent } from '../models/generalcontent';
-import { ContentService } from './content.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SettingsService {
-  settings: GeneralContent;
 
-  constructor(private contentService: ContentService) {
-    this.retrieveSettings();
-  }
-
-  retrieveSettings(): void {
-    this.contentService.getGeneralContent(1).snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(data => {
-      this.settings = data[0];
-    });
-  }
-
-  public getFormStyle(): string {
-    return this.settings.formStyle;
-  }
-
-  public getPaintingCategories(): string[] {
-    return this.settings.paintingCategories;
-  }
-
-  public getPaintingStates(): string[] {
-    return this.settings.paintingStates;
-  }
-
-  public getPaintingPaints(): string[] {
-    return this.settings.paintingPaints;
-  }
-
-  public getPaintingMaterials(): string[] {
-    return this.settings.paintingMaterials;
-  }
-
-  public getNewsCategories(): string[] {
-    return this.settings.newsCategories;
-  }
-
-  public getContactFormCategories(): string[] {
-    return this.settings.contactformCategories;
+  constructor() {
   }
 
   public getFormStyles(): string[] {
