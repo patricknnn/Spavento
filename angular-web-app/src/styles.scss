@@ -38,6 +38,10 @@ button::-moz-focus-inner {
   outline: none;
 }
 
+.btn-clean:hover {
+  text-decoration: inherit;
+}
+
 .mat-dropzone {
   background-color: rgba(0, 0, 0, 0.04) !important;
   border: 1px solid rgba(0, 0, 0, 0.42) !important;
@@ -102,7 +106,7 @@ button::-moz-focus-inner {
 /*************************************/
 app-painting-card {
   height: fit-content;
-  margin: .5rem 0;
+  margin: 0.5rem 0;
 }
 
 .masonry {
@@ -110,9 +114,9 @@ app-painting-card {
   column-count: 1;
   -webkit-column-count: 1;
   -moz-column-count: 1;
-  column-gap: 1em;
-  -webkit-column-gap: 1em;
-  -moz-column-gap: 1em;
+  column-gap: 0em;
+  -webkit-column-gap: 0em;
+  -moz-column-gap: 0em;
   transition: 500ms ease all;
   -webkit-transition: 500ms ease all;
   width: 100%;
@@ -533,6 +537,7 @@ hr.divider {
 
 td.mat-cell {
   white-space: nowrap;
+  padding-right: 0.75rem !important;
 }
 
 .img-table {

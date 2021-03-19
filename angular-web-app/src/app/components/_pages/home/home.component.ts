@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { CtaContent } from 'src/app/models/ctacontent';
 import { FeaturedContent } from 'src/app/models/featuredcontent';
+import { GeneralContent } from 'src/app/models/generalcontent';
 import { LatestNewsContent } from 'src/app/models/latestnewscontent';
 import { LatestWorkContent } from 'src/app/models/latestworkcontent';
 import { PageTitle } from 'src/app/models/pagetitle';
@@ -20,6 +21,7 @@ export class HomeComponent implements OnInit {
   @Input() latestNews: LatestNewsContent;
   @Input() latestWork: LatestWorkContent;
   @Input() cta: CtaContent;
+  generalContent: GeneralContent;
 
   constructor(
     private contentService: ContentService
@@ -27,6 +29,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.retrieveGeneralContent();
     if (!this.pageTitle) {
       this.retrievePageTitle();
     }
@@ -116,6 +119,18 @@ export class HomeComponent implements OnInit {
       )
     ).subscribe(data => {
       this.cta = data[0];
+    });
+  }
+
+  retrieveGeneralContent(): void {
+    this.contentService.getGeneralContent(1).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.generalContent = data[0];
     });
   }
 

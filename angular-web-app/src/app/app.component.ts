@@ -22,7 +22,6 @@ export class AppComponent {
     this.retrieveFooterContent();
   }
 
-
   retrieveNavContent(): void {
     this.contentService.getNavContent(1).snapshotChanges().pipe(
       map(changes =>

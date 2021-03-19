@@ -2,7 +2,7 @@
   <app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [admin]="true">
   </app-section-title>
 
-  <div class="row">
+  <div class="row mb-5">
     <div class="col-12" *ngIf="isLoadingResults">
       <app-loading [message]="'Bestanden laden...'"></app-loading>
     </div>
@@ -71,7 +71,7 @@
     </div>
   </div>
 
-  <div class="row my-5">
+  <!-- <div class="row my-5">
     <div class="col-12">
       <ngx-dropzone (change)="onFileSelect($event)" class="mat-dropzone">
         <ngx-dropzone-label>Drop of klik hier om te uploaden! </ngx-dropzone-label>
@@ -87,6 +87,6 @@
     <div *ngIf="currentFileUpload" class="col-12 mt-2">
       <mat-progress-bar mode="determinate" value="{{ percentage }}"></mat-progress-bar>
     </div>
-  </div>
+  </div> -->
 
 </div>

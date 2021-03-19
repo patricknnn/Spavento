@@ -18,13 +18,15 @@ export class CompContactCardsComponent implements OnInit {
   servicesHistory: ServiceContent[];
   formStyle = "standard";
   formColor = "accent";
-  
-  constructor(private contentService: ContentService, private swalService: SwalService) { }
+
+  constructor(
+    private contentService: ContentService,
+    private swalService: SwalService
+  ) { }
 
   ngOnInit(): void {
     this.retrieveData();
   }
-
 
   onSubmit() {
     this.swalService.loadingSwal("opslaan");

@@ -2,19 +2,20 @@
 <app-header *ngIf="pageTitle" [title]="pageTitle.title" [subTitle]="pageTitle.subTitle" [small]="true"></app-header>
 
 <!-- Main -->
-<main id="contact" class="main main-raised">
+<main id="contact" class="main main-raised" *ngIf="generalContent">
   <!-- Contact -->
   <section class="page-section bg-light">
     <app-section-title [title]="'Material admin'" [subTitle]="'login'"
       [text]="'Gebruik email en wachtwoord om in te loggen'">
     </app-section-title>
-    
+
     <div class="container">
       <div class="row">
         <div class="col-12">
           <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
             <div class="form-group">
-              <mat-form-field appearance="{{ formStyle }}" color="{{ formColor }}" class="w-100">
+              <mat-form-field appearance="{{ generalContent.formStyle }}" color="{{ generalContent.formColor }}"
+                class="w-100">
                 <mat-label>E-mail</mat-label>
                 <input matInput type="text" placeholder="info@spavento.com" [(ngModel)]="loginFormModel.email"
                   name="email" id="email" #emailInput="ngModel" required />
@@ -25,7 +26,8 @@
             </div>
 
             <div class="form-group">
-              <mat-form-field appearance="{{ formStyle }}" color="{{ formColor }}" class="w-100">
+              <mat-form-field appearance="{{ generalContent.formStyle }}" color="{{ generalContent.formColor }}"
+                class="w-100">
                 <mat-label>Wachtwoord</mat-label>
                 <input matInput type="password" placeholder="Wachtwoord" [(ngModel)]="loginFormModel.password"
                   name="password" id="password" #passwordInput="ngModel" required />

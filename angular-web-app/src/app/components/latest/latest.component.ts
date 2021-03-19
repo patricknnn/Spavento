@@ -3,6 +3,7 @@ import { PaintingService } from '../../services/painting.service';
 import { Painting } from '../../models/painting';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { GeneralContent } from 'src/app/models/generalcontent';
 
 @Component({
   selector: 'app-latest',
@@ -10,6 +11,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./latest.component.scss'],
 })
 export class LatestComponent implements OnInit, OnChanges {
+  @Input() generalContent: GeneralContent;
   @Input() amount: number = 3;
   @Input() maxHeight = "70vh";
   paintings: Painting[];

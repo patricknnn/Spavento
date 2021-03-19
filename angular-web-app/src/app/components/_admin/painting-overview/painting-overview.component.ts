@@ -25,8 +25,8 @@ export class PaintingOverviewComponent implements AfterViewInit {
     'thumbnail',
     'title',
     'artist',
-    'paint',
     'created',
+    'updated',
     'active',
     'options',
   ];

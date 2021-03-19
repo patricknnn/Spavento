@@ -1,4 +1,4 @@
-<div class="container" *ngIf="paintings">
+<div class="container" *ngIf="paintings && generalContent">
   <!-- Filters -->
   <div id="filterRow" class="row">
     <div class="col-12 d-flex align-items-center justify-content-center flex-wrap">
@@ -10,8 +10,8 @@
       </button>
       <mat-menu #menuCategory="matMenu">
         <mat-selection-list #categorylist [(ngModel)]="activeFilters.categories" (ngModelChange)="applyFilters()">
-          <mat-list-option color="primary" checkboxPosition="after" *ngFor="let category of categories"
-            [value]="category">
+          <mat-list-option color="primary" checkboxPosition="after"
+            *ngFor="let category of generalContent.paintingCategories" [value]="category">
             {{ category }}
           </mat-list-option>
         </mat-selection-list>
@@ -24,7 +24,8 @@
       </button>
       <mat-menu #menuPaint="matMenu">
         <mat-selection-list #paintlist [(ngModel)]="activeFilters.paints" (ngModelChange)="applyFilters()">
-          <mat-list-option color="primary" checkboxPosition="after" *ngFor="let paint of paints" [value]="paint">
+          <mat-list-option color="primary" checkboxPosition="after" *ngFor="let paint of generalContent.paintingPaints"
+            [value]="paint">
             {{ paint }}
           </mat-list-option>
         </mat-selection-list>
@@ -38,8 +39,8 @@
       </button>
       <mat-menu #menuMaterial="matMenu">
         <mat-selection-list #materiallist [(ngModel)]="activeFilters.materials" (ngModelChange)="applyFilters()">
-          <mat-list-option color="primary" checkboxPosition="after" *ngFor="let material of materials"
-            [value]="material">
+          <mat-list-option color="primary" checkboxPosition="after"
+            *ngFor="let material of generalContent.paintingMaterials" [value]="material">
             {{ material }}
           </mat-list-option>
         </mat-selection-list>
@@ -52,7 +53,8 @@
       </button>
       <mat-menu #menuState="matMenu">
         <mat-selection-list #statelist [(ngModel)]="activeFilters.states" (ngModelChange)="applyFilters()">
-          <mat-list-option color="primary" checkboxPosition="after" *ngFor="let state of states" [value]="state">
+          <mat-list-option color="primary" checkboxPosition="after" *ngFor="let state of generalContent.paintingStates"
+            [value]="state">
             {{ state }}
           </mat-list-option>
         </mat-selection-list>
@@ -67,9 +69,10 @@
   <!-- Gallery -->
   <div class="row" *ngIf="filteredPaintings">
     <div class="col-12 mt-3 masonry">
-      <app-painting-card *ngFor="let painting of filteredPaintings" class="item mat-elevation-z8" @fadeAnimation
+      <app-painting-card *ngFor="let painting of filteredPaintings" class="item" @fadeAnimation
         [attr.data-category]="painting.category" [attr.data-paint]="painting.paint"
-        [attr.data-material]="painting.material" [attr.data-status]="painting.status" [painting]="painting">
+        [attr.data-material]="painting.material" [attr.data-status]="painting.status" 
+        [painting]="painting" [elevation]="generalContent.cardElevation">
       </app-painting-card>
     </div>
   </div>

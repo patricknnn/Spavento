@@ -10,6 +10,7 @@ import { NewsItem } from '../../models/newsitem';
 export class NewsCardComponent implements OnInit {
   @Input() newsItem: NewsItem;
   @Input() direction = 'row';
+  @Input() elevation: string;
   colOne = 'col-md-3';
   colTwo = 'col-md-9';
   imageClass = '';

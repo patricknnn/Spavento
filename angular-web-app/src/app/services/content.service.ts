@@ -73,6 +73,7 @@ export class ContentService {
     this.navRef = db.collection(this.navPath);
     this.footerRef = db.collection(this.footerPath);
     this.headerRef = db.collection(this.headerPath);
+    this.generalRef = db.collection(this.generalPath);
     this.servicesRef = db.collection(this.servicesPath);
     this.featuredRef = db.collection(this.featuredPath);
     this.latestnewsRef = db.collection(this.latestnewsPath);
@@ -115,7 +116,7 @@ export class ContentService {
   }
   public saveGeneralContent(data: GeneralContent): any {
     data.timestampCreated = Date.now();
-    return this.navRef.add({ ...data });
+    return this.generalRef.add({ ...data });
   }
 
   /**

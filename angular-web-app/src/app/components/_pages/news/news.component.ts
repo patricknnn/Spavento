@@ -6,6 +6,7 @@ import { PageTitle } from 'src/app/models/pagetitle';
 import { NewsContent } from 'src/app/models/newscontent';
 import { map } from 'rxjs/operators';
 import { fadeAnimation } from 'src/app/animations/fade-animation';
+import { GeneralContent } from 'src/app/models/generalcontent';
 
 @Component({
   selector: 'app-news',
@@ -14,6 +15,7 @@ import { fadeAnimation } from 'src/app/animations/fade-animation';
   styleUrls: ['./news.component.scss'],
 })
 export class NewsComponent implements OnInit {
+  generalContent: GeneralContent;
   pageTitle: PageTitle;
   newsContent: NewsContent;
   newsItems: NewsItem[];
@@ -32,6 +34,7 @@ export class NewsComponent implements OnInit {
     this.retrievePageTitle();
     this.retrieveNews();
     this.retrieveNewsContent();
+    this.retrieveGeneralContent();
     this.categories = this.newsService.getCategories();
   }
 
@@ -69,6 +72,18 @@ export class NewsComponent implements OnInit {
       )
     ).subscribe(data => {
       this.newsContent = data[0];
+    });
+  }
+
+  retrieveGeneralContent(): void {
+    this.contentService.getGeneralContent(1).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.generalContent = data[0];
     });
   }
 

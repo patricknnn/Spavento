@@ -25,8 +25,8 @@
       <div class="container">
         <div class="row">
           <div class="col-12">
-            <mat-accordion multi="true">
-              <mat-expansion-panel [expanded]="true">
+            <mat-accordion multi="true" class="admin-accordion">
+              <mat-expansion-panel [expanded]="true" *ngIf="painting.artist">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <mat-icon color="accent" class="mr-3">person</mat-icon>
@@ -36,19 +36,18 @@
                 <div class="panel-content">{{ painting.artist }}</div>
               </mat-expansion-panel>
 
-              <mat-expansion-panel [expanded]="true">
+              <mat-expansion-panel [expanded]="true" *ngIf="painting.description">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <mat-icon color="accent" class="mr-3">description</mat-icon>
                     <strong>Omschrijving</strong>
                   </mat-panel-title>
                 </mat-expansion-panel-header>
-                <div class="panel-content">
-                  {{ painting.description }}
+                <div class="panel-content" [innerHTML]="painting.description">
                 </div>
               </mat-expansion-panel>
 
-              <mat-expansion-panel>
+              <mat-expansion-panel *ngIf="painting.paint || painting.material">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <mat-icon color="accent" class="mr-3">palette</mat-icon>
@@ -60,7 +59,7 @@
                 </div>
               </mat-expansion-panel>
 
-              <mat-expansion-panel>
+              <mat-expansion-panel *ngIf="painting.length || painting.width">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <mat-icon color="accent" class="mr-3">photo_size_select_actual</mat-icon>
@@ -72,7 +71,7 @@
                 </div>
               </mat-expansion-panel>
 
-              <mat-expansion-panel>
+              <mat-expansion-panel *ngIf="painting.category">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <mat-icon color="accent" class="mr-3">category</mat-icon>
@@ -84,7 +83,7 @@
                 </div>
               </mat-expansion-panel>
 
-              <mat-expansion-panel>
+              <mat-expansion-panel *ngIf="painting.status">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <mat-icon color="accent" class="mr-3">more</mat-icon>
@@ -96,7 +95,7 @@
                 </div>
               </mat-expansion-panel>
 
-              <mat-expansion-panel>
+              <mat-expansion-panel *ngIf="painting.price">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <mat-icon color="accent" class="mr-3">shopping_bag</mat-icon>

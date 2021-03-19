@@ -8,13 +8,13 @@
         <form (ngSubmit)="onSubmit()" #generalContentForm="ngForm" *ngIf="content">
 
           <!-- Form settings -->
-          <h4 class="title-underlined">Formulieren</h4>
+          <h4 class="title-underlined my-5">Formulieren</h4>
           <div class="form-group row">
             <mat-form-field [appearance]="content.formStyle" [color]="content.formColor"
               class="form-field col-sm-12 col-md-6">
               <mat-label>Form style</mat-label>
-              <mat-select id="generalFormStyle" name="generalFormStyle"
-                [(ngModel)]="content.formStyle" #generalFormStyleInput="ngModel">
+              <mat-select id="generalFormStyle" name="generalFormStyle" [(ngModel)]="content.formStyle"
+                #generalFormStyleInput="ngModel">
                 <mat-option *ngFor="let style of formStyles" [value]="style">
                   {{ style }}
                 </mat-option>
@@ -24,8 +24,8 @@
             <mat-form-field [appearance]="content.formStyle" [color]="content.formColor"
               class="form-field col-sm-12 col-md-6">
               <mat-label>Form kleur</mat-label>
-              <mat-select id="generalFormColor" name="generalFormColor"
-                [(ngModel)]="content.formColor" #generalFormColorInput="ngModel">
+              <mat-select id="generalFormColor" name="generalFormColor" [(ngModel)]="content.formColor"
+                #generalFormColorInput="ngModel">
                 <mat-option value="primary">Primary</mat-option>
                 <mat-option value="accent">Accent</mat-option>
                 <mat-option value="warn">Warn</mat-option>
@@ -33,28 +33,133 @@
             </mat-form-field>
           </div>
 
+          <div class="form-group row">
+            <mat-form-field [appearance]="content.formStyle" [color]="content.formColor" class="form-field col-12">
+              <mat-label>Categorieen contactformulier</mat-label>
+              <mat-chip-list #generalFormcontactformCategories>
+                <mat-chip *ngFor="let category of content.contactformCategories" [selectable]="true" [removable]="true"
+                  (removed)="removeChip(category, content.contactformCategories)">
+                  {{category}}
+                  <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="Nieuw..." [matChipInputFor]="generalFormcontactformCategories"
+                  [matChipInputSeparatorKeyCodes]="[ENTER, COMMA]" [matChipInputAddOnBlur]="true"
+                  (matChipInputTokenEnd)="addChip($event, content.contactformCategories)">
+              </mat-chip-list>
+            </mat-form-field>
+          </div>
+
           <!-- Card settings -->
-          <h4 class="title-underlined">Cards</h4>
+          <h4 class="title-underlined my-5">Cards</h4>
           <div class="form-group row">
             <mat-form-field [appearance]="content.formStyle" [color]="content.formColor"
               class="form-field col-12 col-md-6">
               <mat-label>Card elevation level</mat-label>
-              <mat-select id="generalFormElevation" name="generalFormElevation"
-                [(ngModel)]="content.cardElevation" #generalFormElevationeInput="ngModel">
+              <mat-select id="generalFormElevation" name="generalFormElevation" [(ngModel)]="content.cardElevation"
+                #generalFormElevationInput="ngModel">
                 <mat-option *ngFor="let elevation of elevations" [value]="elevation">
                   {{ elevation }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
             <div class="col-12 col-md-6">
-              <mat-card [ngClass]="content.cardElevation"></mat-card>
+              <mat-card [ngClass]="content.cardElevation" class=""></mat-card>
             </div>
           </div>
 
-          <button mat-flat-button color="accent" type="submit"
-            [disabled]="!generalContentForm.form.touched">Opslaan</button>
-          <button mat-flat-button color="primary" type="button" class="ml-3"
-            (click)="resetForm(); generalContentForm.form.markAsUntouched();">Reset</button>
+          <!-- Painting settings -->
+          <h4 class="title-underlined my-5">Portfolio</h4>
+          <div class="form-group row">
+
+            <mat-form-field [appearance]="content.formStyle" [color]="content.formColor" class="form-field col-12">
+              <mat-label>Categorieen</mat-label>
+              <mat-chip-list #generalFormPaintingCategories>
+                <mat-chip *ngFor="let category of content.paintingCategories" [selectable]="true" [removable]="true"
+                  (removed)="removeChip(category, content.paintingCategories)">
+                  {{category}}
+                  <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="Nieuw..." [matChipInputFor]="generalFormPaintingCategories"
+                  [matChipInputSeparatorKeyCodes]="[ENTER, COMMA]" [matChipInputAddOnBlur]="true"
+                  (matChipInputTokenEnd)="addChip($event, content.paintingCategories)">
+              </mat-chip-list>
+            </mat-form-field>
+
+            <mat-form-field [appearance]="content.formStyle" [color]="content.formColor" class="form-field col-12">
+              <mat-label>Statussen</mat-label>
+              <mat-chip-list #generalFormPaintingStates>
+                <mat-chip *ngFor="let item of content.paintingStates" [selectable]="true" [removable]="true"
+                  (removed)="removeChip(item, content.paintingStates)">
+                  {{item}}
+                  <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="Nieuw..." [matChipInputFor]="generalFormPaintingStates"
+                  [matChipInputSeparatorKeyCodes]="[ENTER, COMMA]" [matChipInputAddOnBlur]="true"
+                  (matChipInputTokenEnd)="addChip($event, content.paintingStates)">
+              </mat-chip-list>
+            </mat-form-field>
+
+            <mat-form-field [appearance]="content.formStyle" [color]="content.formColor" class="form-field col-12">
+              <mat-label>Verf soorten</mat-label>
+              <mat-chip-list #generalFormPaintingPaints>
+                <mat-chip *ngFor="let item of content.paintingPaints" [selectable]="true" [removable]="true"
+                  (removed)="removeChip(item, content.paintingPaints)">
+                  {{item}}
+                  <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="Nieuw..." [matChipInputFor]="generalFormPaintingPaints"
+                  [matChipInputSeparatorKeyCodes]="[ENTER, COMMA]" [matChipInputAddOnBlur]="true"
+                  (matChipInputTokenEnd)="addChip($event, content.paintingPaints)">
+              </mat-chip-list>
+            </mat-form-field>
+
+            <mat-form-field [appearance]="content.formStyle" [color]="content.formColor" class="form-field col-12">
+              <mat-label>Materialen</mat-label>
+              <mat-chip-list #generalFormPaintingMaterials>
+                <mat-chip *ngFor="let item of content.paintingMaterials" [selectable]="true" [removable]="true"
+                  (removed)="removeChip(item, content.paintingMaterials)">
+                  {{item}}
+                  <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="Nieuw..." [matChipInputFor]="generalFormPaintingMaterials"
+                  [matChipInputSeparatorKeyCodes]="[ENTER, COMMA]" [matChipInputAddOnBlur]="true"
+                  (matChipInputTokenEnd)="addChip($event, content.paintingMaterials)">
+              </mat-chip-list>
+            </mat-form-field>
+
+          </div>
+
+          <!-- News settings -->
+          <h4 class="title-underlined my-5">Nieuws</h4>
+          <div class="form-group row">
+
+            <mat-form-field [appearance]="content.formStyle" [color]="content.formColor" class="form-field col-12">
+              <mat-label>Categorieen</mat-label>
+              <mat-chip-list #generalFormNewsCategories>
+                <mat-chip *ngFor="let item of content.newsCategories" [selectable]="true" [removable]="true"
+                  (removed)="removeChip(item, content.newsCategories)">
+                  {{item}}
+                  <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="Nieuw..." [matChipInputFor]="generalFormNewsCategories"
+                  [matChipInputSeparatorKeyCodes]="[ENTER, COMMA]" [matChipInputAddOnBlur]="true"
+                  (matChipInputTokenEnd)="addChip($event, content.newsCategories)">
+              </mat-chip-list>
+            </mat-form-field>
+
+          </div>
+
+
+          <div class="mt-5">
+            <button mat-flat-button color="accent" type="submit" [disabled]="!generalContentForm.form.valid">
+              Opslaan
+            </button>
+            <button mat-flat-button color="primary" type="button" class="ml-3"
+              (click)="resetForm(); generalContentForm.form.markAsUntouched();">
+              Reset
+            </button>
+          </div>
+
         </form>
       </mat-card>
     </div>

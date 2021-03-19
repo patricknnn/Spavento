@@ -116,7 +116,7 @@
         </div>
       </div>
 
-      <div class="row mt-5">
+      <div class="row mt-3">
         <div class="col-12">
           <p>{{ modalItem.text }}</p>
         </div>
@@ -125,7 +125,8 @@
   </mat-dialog-content>
 
   <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
+    <a mat-raised-button color="accent" [href]="getMailLink()" class="btn-clean">ANTWOORD</a>
+    <button mat-button mat-dialog-close cdkFocusInitial>Sluit</button>
   </mat-dialog-actions>
 
 </ng-template>

@@ -1,5 +1,5 @@
 <div class="container-fluid py-5">
-  <app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [modal]="content" [admin]="true">
+  <app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [admin]="true">
   </app-section-title>
 
   <mat-accordion class="admin-accordion">
@@ -28,24 +28,23 @@
         <div class="row mb-4">
           <div class="col-12">
             <mat-card class="mat-elevation-z8">
-              <div class="container">
-                <app-section-title [title]="pageContent.title" [subTitle]="pageContent.subTitle"
-                  [text]="pageContent.text">
-                </app-section-title>
-                <div class="row">
-                  <div class="col-xs-12 col-sm-6 d-flex align-items-center justify-content-center">
-                    <button mat-raised-button color="accent" class="rounded-pill mt-3">
-                      <mat-icon>reply</mat-icon>
-                      {{pageContent.btnBackText}}
-                    </button>
-                  </div>
-                  <div class="col-xs-12 col-sm-6 d-flex align-items-center justify-content-center">
-                    <button mat-raised-button color="accent" class="rounded-pill mt-3"
-                      routerLink="{{pageContent.btnHomeLink}}">
-                      <mat-icon>home</mat-icon>
-                      {{pageContent.btnHomeText}}
-                    </button>
-                  </div>
+              <h4 class="title-underlined">Resultaat</h4>
+              <app-section-title [title]="pageContent.title" [subTitle]="pageContent.subTitle"
+                [text]="pageContent.text">
+              </app-section-title>
+              <div class="row">
+                <div class="col-xs-12 col-sm-6 d-flex align-items-center justify-content-center">
+                  <button mat-raised-button color="accent" class="rounded-pill mt-3">
+                    <mat-icon>reply</mat-icon>
+                    {{pageContent.btnBackText}}
+                  </button>
+                </div>
+                <div class="col-xs-12 col-sm-6 d-flex align-items-center justify-content-center">
+                  <button mat-raised-button color="accent" class="rounded-pill mt-3"
+                    routerLink="{{pageContent.btnHomeLink}}">
+                    <mat-icon>home</mat-icon>
+                    {{pageContent.btnHomeText}}
+                  </button>
                 </div>
               </div>
             </mat-card>
@@ -54,11 +53,12 @@
 
         <div class="row mb-4">
           <div class="col-12">
+            <mat-card class="mat-elevation-z8">
               <h4 class="title-underlined">Instellingen</h4>
               <form (ngSubmit)="onSubmit()" #pnfContentForm="ngForm">
 
                 <div class="form-group row">
-                  <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field col-sm-12 col-md-6">
+                  <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-sm-12 col-md-6">
                     <mat-label>Content titel</mat-label>
                     <input matInput type="text" id="contentTitle" placeholder="Titel" name="contentTitle"
                       [(ngModel)]="pageContent.title" #contentTitleInput="ngModel" required>
@@ -67,7 +67,7 @@
                     </mat-error>
                   </mat-form-field>
 
-                  <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field col-sm-12 col-md-6">
+                  <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-sm-12 col-md-6">
                     <mat-label>Content subtitel</mat-label>
                     <input matInput type="text" id="contentSubTitle" placeholder="Subtitel" name="contentSubTitle"
                       [(ngModel)]="pageContent.subTitle" #contentSubTitleInput="ngModel" required>
@@ -76,7 +76,7 @@
                     </mat-error>
                   </mat-form-field>
 
-                  <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field col-12">
+                  <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12">
                     <mat-label>Content text</mat-label>
                     <textarea rows="1" matInput type="text" id="contentText" placeholder="Text" name="contentText"
                       [(ngModel)]="pageContent.text" #contentTextInput="ngModel" required> </textarea>
@@ -87,7 +87,7 @@
                 </div>
 
                 <div class="form-group row">
-                  <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field col-sm-12 col-md-6">
+                  <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-sm-12 col-md-6">
                     <mat-label>Vorige knop label</mat-label>
                     <input matInput type="text" id="backBtnLabel" placeholder="Label" name="backBtnLabel"
                       [(ngModel)]="pageContent.btnBackText" #backBtnLabelInput="ngModel" required>
@@ -96,7 +96,7 @@
                     </mat-error>
                   </mat-form-field>
 
-                  <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field col-sm-12 col-md-6">
+                  <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-sm-12 col-md-6">
                     <mat-label>Home knop label</mat-label>
                     <input matInput type="text" id="homeBtnLabel" placeholder="Label" name="homeBtnLabel"
                       [(ngModel)]="pageContent.btnHomeText" #homeBtnLabelInput="ngModel" required>
@@ -110,6 +110,7 @@
                   [disabled]="!pnfContentForm.form.valid || pnfContentForm.form.pristine">Opslaan</button>
                 <button mat-flat-button color="primary" type="button" class="ml-3" (click)="resetForm()">Reset</button>
               </form>
+            </mat-card>
           </div>
         </div>
       </div>

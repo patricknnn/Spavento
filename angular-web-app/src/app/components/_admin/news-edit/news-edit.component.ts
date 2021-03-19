@@ -1,8 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Editor } from 'ngx-editor';
 import { map } from 'rxjs/operators';
 import { FileUpload } from 'src/app/models/fileupload';
+import { GeneralContent } from 'src/app/models/generalcontent';
 import { NewsItem } from 'src/app/models/newsitem';
+import { ContentService } from 'src/app/services/content.service';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 import { NewsService } from 'src/app/services/news.service';
 import { SwalService } from 'src/app/services/swal.service';
@@ -13,16 +16,16 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   templateUrl: './news-edit.component.html',
   styleUrls: ['./news-edit.component.scss']
 })
-export class NewsEditComponent implements OnInit {
+export class NewsEditComponent implements OnInit, OnDestroy {
   @Input() newsItem: NewsItem;
   title = 'Aanpassen';
   subTitle = 'Nieuws';
   text = 'Gebruik onderstaand formulier om een nieuws item aan te passen.';
-  formStyle = "standard";
-  formColor = "accent";
-  categories: string[];
+  generalContent: GeneralContent;
   selectedFiles: File[];
   formDisabled: boolean;
+  editor: Editor;
+  editorOutput = "";
 
   /**
    * Constructor
@@ -33,16 +36,34 @@ export class NewsEditComponent implements OnInit {
     private route: ActivatedRoute,
     private newsService: NewsService,
     private uploadService: FileUploadService,
+    private contentService: ContentService,
     private swalService: SwalService
   ) { }
 
   ngOnInit() {
+    this.retrieveGeneralContent();
+    this.editor = new Editor();
     this.resetFormData();
     if (!this.newsItem) {
       let id = this.route.snapshot.paramMap.get('id');
       this.retrieveNewsItem(id);
     }
-    this.categories = this.newsService.getCategories();
+  }
+
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  }
+
+  retrieveGeneralContent(): void {
+    this.contentService.getGeneralContent(1).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.generalContent = data[0];
+    });
   }
 
   retrieveNewsItem(id: string): void {
@@ -52,10 +73,15 @@ export class NewsEditComponent implements OnInit {
       )
     ).subscribe(data => {
       this.newsItem = data;
+      this.editorOutput = data.text;
       if (!this.newsItem) {
         this.goToDashboard();
       }
     });
+  }
+
+  onEditorContentChange(content): void {
+    this.editorOutput = content;
   }
 
   /**
@@ -64,6 +90,7 @@ export class NewsEditComponent implements OnInit {
   onSubmit() {
     // disable form
     this.formDisabled = true;
+    this.newsItem.text = this.editorOutput;
     // loading swal
     this.swalService.loadingSwal("Nieuws item opslaan");
     // Upload files

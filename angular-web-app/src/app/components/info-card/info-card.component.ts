@@ -9,6 +9,7 @@ export class InfoCardComponent implements OnInit {
   @Input() title: string;
   @Input() text: string;
   @Input() icon: string;
+  @Input() elevation: string;
 
   constructor() { }
 

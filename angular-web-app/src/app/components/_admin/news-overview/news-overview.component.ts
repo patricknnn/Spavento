@@ -22,11 +22,11 @@ export class NewsOverviewComponent implements AfterViewInit {
   newsItems: NewsItem[];
   modalItem: NewsItem;
   displayedColumns: string[] = [
-    'image',
     'title',
     'author',
     'category',
     'created',
+    'updated',
     'active',
     'options'
   ];

@@ -73,6 +73,7 @@ import { PaintingEditComponent } from './components/_admin/painting-edit/paintin
 import { NewsEditComponent } from './components/_admin/news-edit/news-edit.component';
 import { LoadingComponent } from './components/_admin/loading/loading.component';
 import { ManagerMessagesComponent } from './components/_admin/manager-messages/manager-messages.component';
+import { NgxEditorModule } from 'ngx-editor';
 
 @NgModule({
   declarations: [
@@ -146,11 +147,12 @@ import { ManagerMessagesComponent } from './components/_admin/manager-messages/m
     FormsModule,
     NgbModule,
     NgxDropzoneModule,
+    NgxEditorModule,
     SweetAlert2Module.forRoot({ provideSwal: () => import('sweetalert2/dist/sweetalert2.js') }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireStorageModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],

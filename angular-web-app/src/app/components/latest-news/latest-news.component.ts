@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { GeneralContent } from 'src/app/models/generalcontent';
 import { NewsItem } from 'src/app/models/newsitem';
 import { NewsService } from 'src/app/services/news.service';
 
@@ -9,6 +10,7 @@ import { NewsService } from 'src/app/services/news.service';
   styleUrls: ['./latest-news.component.scss']
 })
 export class LatestNewsComponent implements OnInit, OnChanges {
+  @Input() generalContent: GeneralContent;
   @Input() amount: number = 3;
   newsItems: NewsItem[];
 

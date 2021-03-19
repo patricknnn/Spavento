@@ -1,9 +1,9 @@
-<mat-card *ngIf="newsItem" (click)="openNewsItem(content)" style="cursor: pointer;">
+<mat-card *ngIf="newsItem" (click)="openNewsItem(content)" style="cursor: pointer;" class="{{elevation}}">
   <div class="container-fluid">
     <div class="row">
       <div [class]="colOne">
         <div class="news-header">
-          <img [class]="imageClass" class="w-100 rounded mat-elevation-z8" [src]="newsItem.image" alt="news" />
+          <img class="w-100 rounded {{imageClass}} {{elevation}}" [src]="newsItem.image" alt="news" />
         </div>
       </div>
       <div [class]="colTwo">
@@ -37,7 +37,7 @@
       <div class="row">
         <div class="col-md-3">
           <div class="news-header">
-            <img class="w-100 rounded mat-elevation-z8" [src]="newsItem.image" alt="news" />
+            <img class="w-100 rounded {{elevation}}" [src]="newsItem.image" alt="news" />
           </div>
         </div>
         <div class="col-md-9">
@@ -63,15 +63,8 @@
       </div>
 
       <div class="row mt-5">
-        <div class="col-12">
-          <p>{{ newsItem.text }}</p>
-          <p>{{ newsItem.text }}</p>
-          <p>{{ newsItem.text }}</p>
+        <div class="col-12" [innerHTML]="newsItem.text">
         </div>
-        <!-- <div class="col-md-4">
-          <app-maps [title]="'Location'" [subtitle]="'The event will be here.'"
-            [location]="'Oeverlanden+60,+9606+RR+Kropswolde'"></app-maps>
-        </div> -->
       </div>
     </div>
   </mat-dialog-content>

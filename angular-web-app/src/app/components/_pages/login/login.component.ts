@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { GeneralContent } from 'src/app/models/generalcontent';
 import { LoginForm } from 'src/app/models/loginform';
 import { PageTitle } from 'src/app/models/pagetitle';
 import { AuthService } from 'src/app/services/auth.service';
+import { ContentService } from 'src/app/services/content.service';
 
 @Component({
   selector: 'app-login',
@@ -9,14 +12,14 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  formStyle = "standard";
-  formColor = "accent";
   pageTitle: PageTitle;
   loginFormModel: LoginForm;
+  generalContent: GeneralContent;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private contentService: ContentService) { }
 
   ngOnInit(): void {
+    this.retrieveGeneralContent();
     this.pageTitle = new PageTitle();
     this.pageTitle.title = "Login";
     this.pageTitle.subTitle = "Material admin";
@@ -26,7 +29,19 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.authService.SignIn(this.loginFormModel.email, this.loginFormModel.password);
+    this.authService.signIn(this.loginFormModel.email, this.loginFormModel.password);
+  }
+
+  retrieveGeneralContent(): void {
+    this.contentService.getGeneralContent(1).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.generalContent = data[0];
+    });
   }
 
 }

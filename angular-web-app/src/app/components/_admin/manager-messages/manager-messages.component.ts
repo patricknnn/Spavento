@@ -142,8 +142,16 @@ export class ManagerMessagesComponent implements AfterViewInit {
    * Open modal
    * @param content Modal content
    */
-  openModal(content) {
+  openModal(content): void {
     this.modalService.openModal(content);
+  }
+
+  getMailLink(): string {
+    let email = this.modalItem.email;
+    let subject = this.modalItem.subject;
+    let emailBody = "Hallo " + this.modalItem.name + ",";
+    let link = "mailto:" + email + "?subject=Re: " + subject + "&body=" + emailBody;
+    return link;
   }
 
 

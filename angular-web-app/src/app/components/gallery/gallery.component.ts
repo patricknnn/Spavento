@@ -4,6 +4,8 @@ import { PaintingService } from '../../services/painting.service';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { fadeAnimation } from 'src/app/animations/fade-animation';
+import { ContentService } from 'src/app/services/content.service';
+import { GeneralContent } from 'src/app/models/generalcontent';
 
 @Component({
   selector: 'app-gallery',
@@ -12,12 +14,9 @@ import { fadeAnimation } from 'src/app/animations/fade-animation';
   styleUrls: ['./gallery.component.scss'],
 })
 export class GalleryComponent implements OnInit {
+  @Input() generalContent: GeneralContent;
   paintings: Painting[];
   filteredPaintings: Painting[];
-  categories: string[];
-  paints: string[];
-  materials: string[];
-  states: string[];
   activeFilters = {
     categories: [],
     paints: [],
@@ -37,10 +36,6 @@ export class GalleryComponent implements OnInit {
 
   ngOnInit(): void {
     this.retrievePaintings();
-    this.categories = this.paintingService.getCategories();
-    this.paints = this.paintingService.getPaints();
-    this.materials = this.paintingService.getMaterials();
-    this.states = this.paintingService.getStates();
   }
 
   retrievePaintings(): void {
@@ -55,7 +50,6 @@ export class GalleryComponent implements OnInit {
       this.resetFilters();
     });
   }
-
 
   goToPaintingDetails(paintingId: string): void {
     this.router.navigate(['/painting', { id: paintingId }]);

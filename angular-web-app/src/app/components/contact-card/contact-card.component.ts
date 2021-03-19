@@ -3,6 +3,7 @@ import { SwalService } from 'src/app/services/swal.service';
 import { ContactForm } from '../../models/contactform';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { ContactFormService } from 'src/app/services/contact-form.service';
+import { GeneralContent } from 'src/app/models/generalcontent';
 
 @Component({
   selector: 'app-contact-card',
@@ -10,9 +11,7 @@ import { ContactFormService } from 'src/app/services/contact-form.service';
   styleUrls: ['./contact-card.component.scss']
 })
 export class ContactCardComponent implements OnInit {
-  @Input() appearance = "standard";
-  @Input() color = "accent";
-  subjects: string[];
+  @Input() generalContent: GeneralContent;
   submitted = false;
   model = new ContactForm();
 
@@ -22,7 +21,6 @@ export class ContactCardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.subjects = this.contactformService.getCategories();
   }
 
   onSubmit() {

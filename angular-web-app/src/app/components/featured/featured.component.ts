@@ -10,6 +10,7 @@ import { ModalService } from 'src/app/services/modal.service';
 })
 export class FeaturedComponent implements OnInit {
   @Input() painting: Painting;
+  @Input() elevation: string;
 
   constructor(
     private router: Router,

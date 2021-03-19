@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { map } from 'rxjs/operators';
 import { GeneralContent } from 'src/app/models/generalcontent';
 import { ContentService } from 'src/app/services/content.service';
+import { SettingsService } from 'src/app/services/settings.service';
 import { SwalService } from 'src/app/services/swal.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
@@ -20,14 +22,15 @@ export class GeneralComponent implements OnInit {
   elevations: string[];
 
   constructor(
+    private settingsService: SettingsService,
     private contentService: ContentService,
     private swalService: SwalService
   ) { }
 
   ngOnInit(): void {
     this.retrieveData();
-    this.formStyles = this.contentService.getFormStyles();
-    this.elevations = this.getElevations();
+    this.formStyles = this.settingsService.getFormStyles();
+    this.elevations = this.settingsService.getElevations();
   }
 
   onSubmit() {
@@ -53,6 +56,35 @@ export class GeneralComponent implements OnInit {
     });
   }
 
+  addChip(event: MatChipInputEvent, list): void {
+    const input = event.input;
+    const value = event.value;
+    console.log("input: " + input);
+    console.log("value: " + value);
+    // Add
+    if ((value || '').trim()) {
+      list.push(value);
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  removeChip(item, list): void {
+    this.swalService.promptSwal("Filters zullen niet meer werken voor items die hieraan verbonden zijn, update die items dus ook").then((result) => {
+      if (result.value) {
+        const index = list.indexOf(item);
+        if (index >= 0) {
+          list.splice(index, 1);
+        }
+        this.swalService.successSwal("Verwijderd");
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        this.swalService.cancelSwal("Niet verwijderd");
+      }
+    });
+  }
 
   setActive(input, e): void {
     e.checked ? input = true : input = false;
@@ -62,6 +94,41 @@ export class GeneralComponent implements OnInit {
     this.content = new GeneralContent();
     this.content.formStyle = "standard";
     this.content.formColor = "accent";
+    this.content.cardElevation = "mat-elevation-z8";
+    this.content.paintingCategories = [
+      "Portretten",
+      "Natuur",
+      "Dieren",
+      "TV Series",
+      "Algemeen"
+    ];
+    this.content.paintingStates = [
+      "Beschikbaar",
+      "Niet beschikbaar",
+      "Opdrachten",
+      "Eerdere werken"
+    ];
+    this.content.paintingPaints = [
+      "Acryl",
+      "Aquarel",
+      "Olie",
+      "Plakkaat",
+      "Water"
+    ];
+    this.content.paintingMaterials = [
+      "Doek",
+      "Hout",
+    ];
+    this.content.newsCategories = [
+      "Exposities",
+      "Technologie",
+      "Services"
+    ];
+    this.content.contactformCategories = [
+      "Vraag",
+      "Offerte",
+      "Anders"
+    ];
   }
 
   /**
@@ -77,35 +144,6 @@ export class GeneralComponent implements OnInit {
         this.swalService.cancelSwal("Veranderingen niet teruggedraaid");
       }
     });
-  }
-
-  getElevations(): string[] {
-    return [
-      "mat-elevation-z1",
-      "mat-elevation-z2",
-      "mat-elevation-z3",
-      "mat-elevation-z8",
-      "mat-elevation-z5",
-      "mat-elevation-z6",
-      "mat-elevation-z7",
-      "mat-elevation-z8",
-      "mat-elevation-z9",
-      "mat-elevation-z10",
-      "mat-elevation-z11",
-      "mat-elevation-z12",
-      "mat-elevation-z13",
-      "mat-elevation-z14",
-      "mat-elevation-z15",
-      "mat-elevation-z16",
-      "mat-elevation-z17",
-      "mat-elevation-z18",
-      "mat-elevation-z19",
-      "mat-elevation-z20",
-      "mat-elevation-z21",
-      "mat-elevation-z22",
-      "mat-elevation-z23",
-      "mat-elevation-z24",
-    ];
   }
 
 }

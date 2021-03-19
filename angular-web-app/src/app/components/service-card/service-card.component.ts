@@ -8,6 +8,7 @@ import { Service } from '../../models/service';
 })
 export class ServiceCardComponent implements OnInit {
   @Input() service: Service;
+  @Input() elevation: string;
 
   constructor() { }
 

@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Editor } from 'ngx-editor';
+import { map } from 'rxjs/operators';
 import { FileUpload } from 'src/app/models/fileupload';
+import { GeneralContent } from 'src/app/models/generalcontent';
 import { NewsItem } from 'src/app/models/newsitem';
+import { ContentService } from 'src/app/services/content.service';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 import { NewsService } from 'src/app/services/news.service';
 import { SwalService } from 'src/app/services/swal.service';
@@ -9,18 +13,19 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 @Component({
   selector: 'app-news-add',
   templateUrl: './news-add.component.html',
-  styleUrls: ['./news-add.component.scss']
+  styleUrls: ['./news-add.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
-export class NewsAddComponent implements OnInit {
+export class NewsAddComponent implements OnInit, OnDestroy {
   title = "Toevoegen";
   subTitle = "Nieuws";
   text = "Gebruik deze pagina om items aan het nieuws toe te voegen.";
-  formStyle = "standard";
-  formColor = "accent";
   newsItem: NewsItem;
-  categories: string[];
+  generalContent: GeneralContent;
   selectedFiles: File[];
   formDisabled: boolean;
+  editor: Editor;
+  editorOutput = "";
 
   /**
    * Constructor
@@ -29,12 +34,34 @@ export class NewsAddComponent implements OnInit {
   constructor(
     private newsService: NewsService,
     private uploadService: FileUploadService,
+    private contentService: ContentService,
     private swalService: SwalService
   ) { }
 
   ngOnInit() {
-    this.categories = this.newsService.getCategories();
+    this.retrieveGeneralContent();
+    this.editor = new Editor();
     this.resetFormData();
+  }
+
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  }
+
+  retrieveGeneralContent(): void {
+    this.contentService.getGeneralContent(1).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.generalContent = data[0];
+    });
+  }
+
+  onEditorContentChange(content): void {
+    this.editorOutput = content;
   }
 
   /**
@@ -43,6 +70,8 @@ export class NewsAddComponent implements OnInit {
   onSubmit() {
     // disable form
     this.formDisabled = true;
+    // set newsitem variables
+    this.newsItem.text = this.editorOutput;
     this.newsItem.active = true;
     // loading swal
     this.swalService.loadingSwal("Nieuws item opslaan");

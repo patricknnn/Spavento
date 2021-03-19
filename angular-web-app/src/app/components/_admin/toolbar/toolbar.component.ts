@@ -22,7 +22,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   logout(): void {
-    this.authService.SignOut();
+    this.authService.signOut();
   }
 
 }

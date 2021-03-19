@@ -1,8 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
+import { Editor } from 'ngx-editor';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { FileUpload } from 'src/app/models/fileupload';
+import { GeneralContent } from 'src/app/models/generalcontent';
 import { Painting } from 'src/app/models/painting';
+import { ContentService } from 'src/app/services/content.service';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 import { PaintingService } from 'src/app/services/painting.service';
 import { SwalService } from 'src/app/services/swal.service';
@@ -13,23 +17,20 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   templateUrl: './painting-add.component.html',
   styleUrls: ['./painting-add.component.scss'],
 })
-export class PaintingAddComponent implements OnInit {
+export class PaintingAddComponent implements OnInit, OnDestroy {
   @ViewChild('thumbnailSwal') thumbnailSwal!: SwalComponent;
   @ViewChild('thumbnailOptions') thumbnailOptions: any;
   title = 'Toevoegen';
   subTitle = 'Portfolio';
   text = 'Gebruik onderstaand formulier om een schilderij toe te voegen aan het portfolio.';
-  formStyle = "standard";
-  formColor = "accent";
+  generalContent: GeneralContent;
   painting: Painting;
-  categories: string[];
-  states: string[];
-  paints: string[];
-  materials: string[];
   selectedFiles: File[];
   percentage: Observable<number>;
   uploadCount = 0;
   formDisabled: boolean;
+  editor: Editor;
+  editorOutput = "";
   focusAnimation = () => {
     const popup = Swal.getPopup();
     popup.classList.remove('swal2-show');
@@ -48,16 +49,35 @@ export class PaintingAddComponent implements OnInit {
    */
   constructor(
     private paintingService: PaintingService,
+    private contentService: ContentService,
     private uploadService: FileUploadService,
     private swalService: SwalService
   ) { }
 
   ngOnInit() {
-    this.categories = this.paintingService.getCategories();
-    this.states = this.paintingService.getStates();
-    this.paints = this.paintingService.getPaints();
-    this.materials = this.paintingService.getMaterials();
+    this.retrieveGeneralContent();
+    this.editor = new Editor();
     this.resetFormData();
+  }
+
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  }
+
+  retrieveGeneralContent(): void {
+    this.contentService.getGeneralContent(1).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.generalContent = data[0];
+    });
+  }
+
+  onEditorContentChange(content): void {
+    this.editorOutput = content;
   }
 
   /**
@@ -66,6 +86,7 @@ export class PaintingAddComponent implements OnInit {
   onSubmit() {
     // disable form
     this.formDisabled = true;
+    this.painting.description = this.editorOutput;
     this.painting.active = true;
     // loading swal
     this.swalService.loadingSwal("Afbeeldingen opslaan");
@@ -169,7 +190,7 @@ export class PaintingAddComponent implements OnInit {
     painting.title = 'Dessert car';
     painting.description = 'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam. Nullam molestie vehicula ipsum a consequat. Vivamus efficitur metus ut nulla consectetur porta. Proin auctor dui ut orci aliquet, sit amet ultricies justo mattis. Mauris nec massa sit amet metus dignissim placerat elementum a justo. Nunc sit amet facilisis velit, ac varius enim.';
     painting.material = 'Doek';
-    painting.paint = 'Oil';
+    painting.paint = 'Olie';
     painting.status = 'Beschikbaar';
     painting.category = 'Nature';
     painting.length = 100;

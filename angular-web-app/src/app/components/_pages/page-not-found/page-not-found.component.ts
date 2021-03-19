@@ -21,10 +21,10 @@ export class PageNotFoundComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.pageTitle) {
-      this.pageTitle = this.contentService.getPageTitle('404')[0];
+      this.retrievePageTitle();
     }
     if (!this.content) {
-      this.content = this.contentService.getPageNotFoundContent()[0];
+      this.retrieveContent();
     }
   }
 

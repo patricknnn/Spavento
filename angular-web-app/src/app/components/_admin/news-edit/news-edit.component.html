@@ -1,4 +1,4 @@
-<div class="container-fluid pt-5">
+<div class="container-fluid pt-5" *ngIf="generalContent">
   <app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [admin]="true">
   </app-section-title>
 
@@ -33,7 +33,7 @@
           <h4 class="title-underlined">Details</h4>
 
           <div class="form-group row">
-            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-12 col-md-6">
               <mat-label>Titel</mat-label>
               <input matInput id="title" placeholder="Titel" name="title" [(ngModel)]="newsItem.title"
                 [disabled]="formDisabled" #title="ngModel" required />
@@ -42,7 +42,7 @@
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-12 col-md-6">
               <mat-label>Auteur</mat-label>
               <input matInput id="author" placeholder="Auteur" name="author" [(ngModel)]="newsItem.author"
                 [disabled]="formDisabled" #author="ngModel" required />
@@ -53,22 +53,11 @@
           </div>
 
           <div class="form-group row">
-            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12">
-              <mat-label>Bericht</mat-label>
-              <textarea matInput id="text" placeholder="Bericht" name="text" [(ngModel)]="newsItem.text"
-                [disabled]="formDisabled" #text="ngModel" required></textarea>
-              <mat-error [hidden]="text.valid || text.pristine">
-                Bericht is <strong>verplicht</strong> 
-              </mat-error>
-            </mat-form-field>
-          </div>
-
-          <div class="form-group row">
-            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-12 col-md-6">
               <mat-label>Categorie</mat-label>
               <mat-select id="category" name="category" [(ngModel)]="newsItem.category" [disabled]="formDisabled"
                 #category="ngModel" required>
-                <mat-option *ngFor="let category of categories" [value]="category">
+                <mat-option *ngFor="let category of generalContent.newsCategories" [value]="category">
                   {{ category }}
                 </mat-option>
               </mat-select>
@@ -77,7 +66,7 @@
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-12 col-md-6">
               <mat-label>Locatie</mat-label>
               <input matInput id="location" placeholder="Locatie" name="location" [(ngModel)]="newsItem.location"
                 [disabled]="formDisabled" #location="ngModel" />
@@ -85,13 +74,23 @@
           </div>
 
           <div class="form-group row">
-            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-12 col-md-6">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-12 col-md-6">
               <mat-label>Datum</mat-label>
               <input matInput id="date" placeholder="Datum" name="date" [(ngModel)]="newsItem.date"
                 [disabled]="formDisabled" [matDatepicker]="datePicker" #date="ngModel" />
               <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
               <mat-datepicker #datePicker></mat-datepicker>
             </mat-form-field>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-12">
+              <div class="NgxEditor__Wrapper">
+                <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+                <ngx-editor [editor]="editor" [ngModel]="editorOutput" [placeholder]="'Bericht...'" name="editorOutput" (ngModelChange)="onEditorContentChange($event)">
+                </ngx-editor>
+              </div>
+            </div>
           </div>
 
           <!-- Actions -->

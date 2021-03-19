@@ -1,10 +1,13 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
+import { Editor } from 'ngx-editor';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FileUpload } from 'src/app/models/fileupload';
+import { GeneralContent } from 'src/app/models/generalcontent';
 import { Painting } from 'src/app/models/painting';
+import { ContentService } from 'src/app/services/content.service';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 import { PaintingService } from 'src/app/services/painting.service';
 import { SwalService } from 'src/app/services/swal.service';
@@ -15,23 +18,20 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   templateUrl: './painting-edit.component.html',
   styleUrls: ['./painting-edit.component.scss']
 })
-export class PaintingEditComponent implements OnInit {
+export class PaintingEditComponent implements OnInit, OnDestroy {
   @Input() painting: Painting;
   @ViewChild('thumbnailSwal') thumbnailSwal!: SwalComponent;
   @ViewChild('thumbnailOptions') thumbnailOptions: any;
   title = 'Aanpassen';
   subTitle = 'Portfolio';
   text = 'Gebruik onderstaand formulier om een schilderij aan te passen.';
-  formStyle = "standard";
-  formColor = "accent";
-  categories: string[];
-  states: string[];
-  paints: string[];
-  materials: string[];
+  generalContent: GeneralContent;
   selectedFiles: File[];
   percentage: Observable<number>;
   uploadCount = 0;
   formDisabled: boolean;
+  editor: Editor;
+  editorOutput = "";
   focusAnimation = () => {
     const popup = Swal.getPopup();
     popup.classList.remove('swal2-show');
@@ -53,19 +53,38 @@ export class PaintingEditComponent implements OnInit {
     private route: ActivatedRoute,
     private paintingService: PaintingService,
     private uploadService: FileUploadService,
+    private contentService: ContentService,
     private swalService: SwalService
   ) { }
 
   ngOnInit() {
+    this.retrieveGeneralContent();
+    this.editor = new Editor();
     this.resetFormData();
     if (!this.painting) {
       let id = this.route.snapshot.paramMap.get('id');
       this.retrievePainting(id);
     }
-    this.categories = this.paintingService.getCategories();
-    this.states = this.paintingService.getStates();
-    this.paints = this.paintingService.getPaints();
-    this.materials = this.paintingService.getMaterials();
+  }
+
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  }
+
+  retrieveGeneralContent(): void {
+    this.contentService.getGeneralContent(1).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.generalContent = data[0];
+    });
+  }
+
+  onEditorContentChange(content): void {
+    this.editorOutput = content;
   }
 
   /**
@@ -74,6 +93,7 @@ export class PaintingEditComponent implements OnInit {
   onSubmit() {
     // disable form
     this.formDisabled = true;
+    this.painting.description = this.editorOutput;
     // Upload files
     if (this.selectedFiles.length) {
       // loading swal
@@ -113,6 +133,7 @@ export class PaintingEditComponent implements OnInit {
       )
     ).subscribe(data => {
       this.painting = data;
+      this.editorOutput = data.description;
       if (!this.painting) {
         this.goToDashboard();
       }
