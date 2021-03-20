@@ -15,7 +15,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 })
 export class LayoutHeaderComponent implements OnInit {
   @ViewChild('headerForm') form: NgForm;
-  @Input() generalContent: GeneralContent;
+  generalContent: GeneralContent;
   title = "Header";
   subTitle = "Layout";
   text = "Stel hier alles in met betrekking tot de header op de website.";
@@ -32,12 +32,9 @@ export class LayoutHeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.retrieveGeneralContent();
     this.retrieveData();
     this.retrieveFiles();
-    let header = document.getElementById('header');
-    if (header) {
-      header.classList.add('mat-elevation-z8');
-    }
   }
 
   onSubmit() {
@@ -59,6 +56,22 @@ export class LayoutHeaderComponent implements OnInit {
       this.headerContent = data[0];
       if (!this.headerContent) {
         this.loadDefaults();
+      }
+    });
+  }
+
+  retrieveGeneralContent(): void {
+    this.contentService.getGeneralContent(1).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.generalContent = data[0];
+      let header = document.getElementById('header');
+      if (header) {
+        header.classList.add(this.generalContent.cardElevation);
       }
     });
   }

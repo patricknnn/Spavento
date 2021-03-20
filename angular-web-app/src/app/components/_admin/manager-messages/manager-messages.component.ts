@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { ContactForm } from 'src/app/models/contactform';
 import { GeneralContent } from 'src/app/models/generalcontent';
 import { ContactFormService } from 'src/app/services/contact-form.service';
+import { ContentService } from 'src/app/services/content.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { SwalService } from 'src/app/services/swal.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
@@ -16,7 +17,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./manager-messages.component.scss']
 })
 export class ManagerMessagesComponent implements AfterViewInit {
-  @Input() generalContent: GeneralContent;
+  generalContent: GeneralContent;
   title = 'Berichten';
   subTitle = 'Beheer';
   text =
@@ -35,12 +36,14 @@ export class ManagerMessagesComponent implements AfterViewInit {
 
   constructor(
     private contactformService: ContactFormService,
+    private contentService: ContentService,
     private swalService: SwalService,
     private modalService: ModalService
   ) { }
 
   ngAfterViewInit() {
     this.retrieveData();
+    this.retrieveGeneralContent();
   }
 
   retrieveData(): void {
@@ -56,6 +59,18 @@ export class ManagerMessagesComponent implements AfterViewInit {
         this.resultsLength = data.length;
         this.initTable(data);
       });
+  }
+
+  retrieveGeneralContent(): void {
+    this.contentService.getGeneralContent(1).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.generalContent = data[0];
+    });
   }
 
   initTable(data): void {

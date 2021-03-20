@@ -4,7 +4,7 @@
 
   <div class="row mb-4">
     <div class="col-12">
-      <mat-card class="mat-elevation-z8">
+      <mat-card class="{{generalContent.cardElevation}}">
         <h4 class="title-underlined">Resultaat</h4>
         <app-footer [footerContent]="footerContent" [fixed]="false" [elevated]="true"></app-footer>
       </mat-card>
@@ -13,12 +13,13 @@
 
   <div class="row mb-5">
     <div class="col-12">
-      <mat-card class="mat-elevation-z8">
+      <mat-card class="{{generalContent.cardElevation}}">
         <h4 class="title-underlined">Instellingen</h4>
         <form (ngSubmit)="onSubmit()" #footerForm="ngForm">
           <div class="form-group row">
             <div class="col-sm-12 col-md-6">
-              <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field w-100">
+              <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+                class="form-field w-100">
                 <mat-label>Over titel</mat-label>
                 <input matInput type="text" id="aboutTitle" placeholder="Titel" name="aboutTitle"
                   [(ngModel)]="footerContent.aboutTitle" #aboutTitle="ngModel" required />
@@ -26,7 +27,8 @@
                   Titel is verplicht
                 </mat-error>
               </mat-form-field>
-              <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field w-100">
+              <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+                class="form-field w-100">
                 <mat-label>Over tekst</mat-label>
                 <textarea matInput rows="3" [(ngModel)]="footerContent.aboutText" name="aboutText" id="aboutText"
                   type="text" #aboutText="ngModel" required>
@@ -37,7 +39,8 @@
               </mat-form-field>
             </div>
             <div class="col-sm-12 col-md-6">
-              <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field w-100">
+              <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+                class="form-field w-100">
                 <mat-label>Social media titel</mat-label>
                 <input matInput type="text" id="socialTitle" placeholder="Titel" name="socialTitle"
                   [(ngModel)]="footerContent.socialTitle" #socialTitle="ngModel" required />
@@ -45,7 +48,8 @@
                   Social media titel is verplicht
                 </mat-error>
               </mat-form-field>
-              <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field w-100">
+              <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+                class="form-field w-100">
                 <mat-label>Social media tekst</mat-label>
                 <textarea matInput rows="3" [(ngModel)]="footerContent.socialText" name="socialText" id="socialText"
                   type="text" #socialText="ngModel" required>
@@ -58,7 +62,8 @@
           </div>
 
           <div class="form-group row">
-            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-12">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+              class="form-field col-12">
               <mat-label>Facebook link</mat-label>
               <input matInput type="text" id="facebookLink" placeholder="Tekst" name="facebookLink"
                 [(ngModel)]="footerContent.facebookLink" />
@@ -67,7 +72,8 @@
           </div>
 
           <div class="form-group row">
-            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-12">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+              class="form-field col-12">
               <mat-label>Instagram link</mat-label>
               <input matInput type="text" id="instaLink" placeholder="Tekst" name="instaLink"
                 [(ngModel)]="footerContent.instagramLink" />
@@ -76,7 +82,8 @@
           </div>
 
           <div class="form-group row">
-            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-12">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+              class="form-field col-12">
               <mat-label>Twitter link</mat-label>
               <input matInput type="text" id="twitterLink" placeholder="Tekst" name="twitterLink"
                 [(ngModel)]="footerContent.twitterLink" />
@@ -85,7 +92,8 @@
           </div>
 
           <div class="form-group row">
-            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-12">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+              class="form-field col-12">
               <mat-label>Footer tekst</mat-label>
               <input matInput type="text" id="footerText" placeholder="Tekst" name="footerText"
                 [(ngModel)]="footerContent.footerText" #footerText="ngModel" required />

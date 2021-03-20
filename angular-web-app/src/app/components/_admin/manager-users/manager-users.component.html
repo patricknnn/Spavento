@@ -22,7 +22,7 @@
       </mat-form-field>
 
       <!-- Elevation -->
-      <div class="mat-elevation-z8">
+      <div class="{{generalContent.cardElevation}}">
         <!-- Table -->
         <div class="table-responsive">
           <table mat-table [dataSource]="dataSource" class="w-100" matSort matSortActive="displayName"
@@ -89,7 +89,7 @@
 
   <div class="row mb-4">
     <div class="col-12">
-      <mat-card class="mat-elevation-z8">
+      <mat-card class="{{generalContent.cardElevation}}">
         <h4 class="title-underlined">Toevoegen</h4>
         <form (ngSubmit)="onSubmit()" #signUpForm="ngForm">
           <div class="form-group">
@@ -176,7 +176,8 @@
   </mat-dialog-content>
 
   <mat-dialog-actions align="end">
-    <button mat-raised-button color="accent" [disabled]="editUserForm.form.pristine" (click)="updateUser()">Opslaan</button>
+    <button mat-raised-button color="accent" [disabled]="editUserForm.form.pristine"
+      (click)="updateUser()">Opslaan</button>
     <button mat-button mat-dialog-close cdkFocusInitial>Sluit</button>
   </mat-dialog-actions>
 

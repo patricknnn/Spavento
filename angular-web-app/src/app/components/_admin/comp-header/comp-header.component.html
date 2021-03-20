@@ -1,22 +1,23 @@
 <div class="container-fluid p-0" *ngIf="pageTitle && generalContent">
   <div class="row mb-4">
     <div class="col-12">
-      <mat-card class="mat-elevation-z8">
+      <mat-card class="{{generalContent.cardElevation}}">
         <h4 class="title-underlined">Resultaat</h4>
         <app-header [title]="pageTitle.title" [subTitle]="pageTitle.subTitle" [image]="pageTitle.image"
-          [elevation]="'mat-elevation-z8'"></app-header>
+          [elevation]="generalContent.cardElevation"></app-header>
       </mat-card>
     </div>
   </div>
 
   <div class="row mb-4">
     <div class="col-12">
-      <mat-card class="mat-elevation-z8">
+      <mat-card class="{{generalContent.cardElevation}}">
         <h4 class="title-underlined">Instellingen</h4>
         <form (ngSubmit)="onSubmit()" #headerForm="ngForm">
 
           <div class="form-group row">
-            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-sm-12 col-md-6">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+              class="form-field col-sm-12 col-md-6">
               <mat-label>Titel</mat-label>
               <input matInput type="text" id="defaultTitle" placeholder="Titel" name="defaultTitle"
                 [(ngModel)]="pageTitle.title" #title="ngModel" required>
@@ -25,7 +26,8 @@
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-sm-12 col-md-6">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+              class="form-field col-sm-12 col-md-6">
               <mat-label>Subtitel</mat-label>
               <input matInput type="text" id="defaultSubTitle" placeholder="Subtitel" name="defaultSubTitle"
                 [(ngModel)]="pageTitle.subTitle" #subTitle="ngModel" required>
@@ -34,8 +36,8 @@
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field *ngIf="fileUploads" [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-              class="form-field col-sm-12">
+            <mat-form-field *ngIf="fileUploads" [appearance]="generalContent.formStyle"
+              [color]="generalContent.formColor" class="form-field col-sm-12">
               <mat-label>Afbeelding</mat-label>
               <mat-select id="defaultImage" name="defaultImage" [(ngModel)]="pageTitle.image" #defaultImage="ngModel">
                 <mat-option *ngFor="let file of fileUploads" [value]="file.url">

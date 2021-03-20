@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { map } from 'rxjs/operators';
 import { FileUpload } from 'src/app/models/fileupload';
 import { GeneralContent } from 'src/app/models/generalcontent';
+import { ContentService } from 'src/app/services/content.service';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 import { SwalService } from 'src/app/services/swal.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
@@ -15,7 +16,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./manager-files.component.scss'],
 })
 export class ManagerFilesComponent implements AfterViewInit {
-  @Input() generalContent: GeneralContent;
+  generalContent: GeneralContent;
   title = 'Bestanden';
   subTitle = 'Beheer';
   text =
@@ -37,11 +38,13 @@ export class ManagerFilesComponent implements AfterViewInit {
 
   constructor(
     private uploadService: FileUploadService,
+    private contentService: ContentService,
     private swalService: SwalService
   ) { }
 
   ngAfterViewInit() {
     this.retrieveFiles();
+    this.retrieveGeneralContent();
   }
 
   retrieveFiles(): void {
@@ -60,6 +63,18 @@ export class ManagerFilesComponent implements AfterViewInit {
         this.resultsLength = data.length;
         this.initTable(data);
       });
+  }
+
+  retrieveGeneralContent(): void {
+    this.contentService.getGeneralContent(1).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.generalContent = data[0];
+    });
   }
 
   initTable(data): void {

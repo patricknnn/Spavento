@@ -27,7 +27,7 @@
       <div class="container-fluid" *ngIf="pageContent">
         <div class="row mb-4">
           <div class="col-12">
-            <mat-card class="mat-elevation-z8">
+            <mat-card class="{{generalContent.cardElevation}}">
               <h4 class="title-underlined">Resultaat</h4>
               <app-section-title [title]="pageContent.title" [subTitle]="pageContent.subTitle"
                 [text]="pageContent.text">
@@ -53,12 +53,13 @@
 
         <div class="row mb-4">
           <div class="col-12">
-            <mat-card class="mat-elevation-z8">
+            <mat-card class="{{generalContent.cardElevation}}">
               <h4 class="title-underlined">Instellingen</h4>
               <form (ngSubmit)="onSubmit()" #pnfContentForm="ngForm">
 
                 <div class="form-group row">
-                  <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-sm-12 col-md-6">
+                  <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+                    class="form-field col-sm-12 col-md-6">
                     <mat-label>Content titel</mat-label>
                     <input matInput type="text" id="contentTitle" placeholder="Titel" name="contentTitle"
                       [(ngModel)]="pageContent.title" #contentTitleInput="ngModel" required>
@@ -67,7 +68,8 @@
                     </mat-error>
                   </mat-form-field>
 
-                  <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-sm-12 col-md-6">
+                  <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+                    class="form-field col-sm-12 col-md-6">
                     <mat-label>Content subtitel</mat-label>
                     <input matInput type="text" id="contentSubTitle" placeholder="Subtitel" name="contentSubTitle"
                       [(ngModel)]="pageContent.subTitle" #contentSubTitleInput="ngModel" required>
@@ -76,7 +78,8 @@
                     </mat-error>
                   </mat-form-field>
 
-                  <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-12">
+                  <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+                    class="form-field col-12">
                     <mat-label>Content text</mat-label>
                     <textarea rows="1" matInput type="text" id="contentText" placeholder="Text" name="contentText"
                       [(ngModel)]="pageContent.text" #contentTextInput="ngModel" required> </textarea>
@@ -87,7 +90,8 @@
                 </div>
 
                 <div class="form-group row">
-                  <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-sm-12 col-md-6">
+                  <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+                    class="form-field col-sm-12 col-md-6">
                     <mat-label>Vorige knop label</mat-label>
                     <input matInput type="text" id="backBtnLabel" placeholder="Label" name="backBtnLabel"
                       [(ngModel)]="pageContent.btnBackText" #backBtnLabelInput="ngModel" required>
@@ -96,7 +100,8 @@
                     </mat-error>
                   </mat-form-field>
 
-                  <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-sm-12 col-md-6">
+                  <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+                    class="form-field col-sm-12 col-md-6">
                     <mat-label>Home knop label</mat-label>
                     <input matInput type="text" id="homeBtnLabel" placeholder="Label" name="homeBtnLabel"
                       [(ngModel)]="pageContent.btnHomeText" #homeBtnLabelInput="ngModel" required>

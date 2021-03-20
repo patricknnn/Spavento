@@ -1,7 +1,7 @@
 <div class="container-fluid p-0" *ngIf="latestNews && generalContent">
   <div class="row mb-4">
     <div class="col-12">
-      <mat-card class="mat-elevation-z8">
+      <mat-card class="{{generalContent.cardElevation}}">
         <h4 class="title-underlined">Resultaat</h4>
         <div *ngIf="latestNews.active" class="container-fluid">
           <app-section-title [title]="latestNews.title" [subTitle]="latestNews.subTitle" [text]="latestNews.text"
@@ -25,7 +25,7 @@
 
   <div class="row mb-4">
     <div class="col-12">
-      <mat-card class="mat-elevation-z8">
+      <mat-card class="{{generalContent.cardElevation}}">
 
 
         <form (ngSubmit)="onSubmit()" #latestNewsForm="ngForm">
@@ -45,7 +45,8 @@
           </div>
 
           <div class="form-group row">
-            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-sm-12 col-md-6">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+              class="form-field col-sm-12 col-md-6">
               <mat-label>Content titel</mat-label>
               <input matInput type="text" id="latestNewsContentTitle" placeholder="Titel" name="latestNewsContentTitle"
                 [(ngModel)]="latestNews.title" #latestNewsContentTitleInput="ngModel" required>
@@ -54,7 +55,8 @@
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-sm-12 col-md-6">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+              class="form-field col-sm-12 col-md-6">
               <mat-label>Content subtitel</mat-label>
               <input matInput type="text" id="latestNewsContentSubTitle" placeholder="Subtitel"
                 name="latestNewsContentSubTitle" [(ngModel)]="latestNews.subTitle"
@@ -64,7 +66,8 @@
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-10">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+              class="form-field col-10">
               <mat-label>Content text</mat-label>
               <textarea rows="1" matInput type="text" id="latestNewsContentText" placeholder="Text"
                 name="latestNewsContentText" [(ngModel)]="latestNews.text" #latestNewsContentTextInput="ngModel"
@@ -74,7 +77,8 @@
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-2">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+              class="form-field col-2">
               <mat-label>Items</mat-label>
               <input matInput type="number" id="latestNewsContentAmount" name="latestNewsContentAmount" min="1" max="6"
                 [(ngModel)]="latestNews.amount" #latestNewsContentAmountInput="ngModel" required>

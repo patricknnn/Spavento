@@ -4,7 +4,7 @@
 
   <div class="row mb-4">
     <div class="col-12">
-      <mat-card class="mat-elevation-z8">
+      <mat-card class="{{content.cardElevation}}">
         <form (ngSubmit)="onSubmit()" #generalContentForm="ngForm" *ngIf="content">
 
           <!-- Form settings -->

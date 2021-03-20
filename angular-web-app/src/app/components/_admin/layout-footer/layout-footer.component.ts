@@ -14,7 +14,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 })
 export class LayoutFooterComponent implements OnInit {
   @ViewChild('footerForm') form: NgForm;
-  @Input() generalContent: GeneralContent;
+  generalContent: GeneralContent;
   title = "Footer";
   subTitle = "Layout";
   text = "Stel hier alles in met betrekking tot de footer op de website.";
@@ -22,7 +22,7 @@ export class LayoutFooterComponent implements OnInit {
   footerContentHistory: FooterContent[];
   formStyle = "standard";
   formColor = "accent";
-  
+
   constructor(
     private contentService: ContentService,
     private swalService: SwalService
@@ -30,6 +30,7 @@ export class LayoutFooterComponent implements OnInit {
 
   ngOnInit(): void {
     this.retrieveData();
+    this.retrieveGeneralContent();
   }
 
   onSubmit() {
@@ -52,6 +53,18 @@ export class LayoutFooterComponent implements OnInit {
       if (!this.footerContent) {
         this.loadDefaults();
       }
+    });
+  }
+
+  retrieveGeneralContent(): void {
+    this.contentService.getGeneralContent(1).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.generalContent = data[0];
     });
   }
 

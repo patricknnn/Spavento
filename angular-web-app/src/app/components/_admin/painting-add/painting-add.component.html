@@ -7,7 +7,7 @@
 
       <form *ngIf="painting" (ngSubmit)="onSubmit()" #addPaintingForm="ngForm">
 
-        <mat-card class="mat-elevation-z8 mb-4">
+        <mat-card class="{{generalContent.cardElevation}} mb-4">
           <h4 class="title-underlined">Afbeeldingen</h4>
 
           <div class="form-group row">
@@ -27,118 +27,129 @@
         </mat-card>
 
         <!-- General information -->
-        <mat-card class="mat-elevation-z8 mb-4">
-            <h4 class="title-underlined">Details</h4>
+        <mat-card class="{{generalContent.cardElevation}} mb-4">
+          <h4 class="title-underlined">Details</h4>
 
-            <div class="form-group row">
-              <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-12 col-md-6">
-                <mat-label>Titel</mat-label>
-                <input matInput id="title" placeholder="Titel" name="title" [(ngModel)]="painting.title"
-                  [disabled]="formDisabled" #title="ngModel" required />
-                <mat-error [hidden]="title.valid || title.pristine">
-                  Titel is <strong>verplicht</strong>
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-12 col-md-6">
-                <mat-label>Kunstenaar</mat-label>
-                <input matInput id="artist" placeholder="Kunstenaar" name="artist" [(ngModel)]="painting.artist"
-                  [disabled]="formDisabled" #artist="ngModel" required />
-                <mat-error [hidden]="artist.valid || artist.pristine">
-                  Kunstenaar is <strong>verplicht</strong>
-                </mat-error>
-              </mat-form-field>
-            </div>
+          <div class="form-group row">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+              class="form-field col-12 col-md-6">
+              <mat-label>Titel</mat-label>
+              <input matInput id="title" placeholder="Titel" name="title" [(ngModel)]="painting.title"
+                [disabled]="formDisabled" #title="ngModel" required />
+              <mat-error [hidden]="title.valid || title.pristine">
+                Titel is <strong>verplicht</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+              class="form-field col-12 col-md-6">
+              <mat-label>Kunstenaar</mat-label>
+              <input matInput id="artist" placeholder="Kunstenaar" name="artist" [(ngModel)]="painting.artist"
+                [disabled]="formDisabled" #artist="ngModel" required />
+              <mat-error [hidden]="artist.valid || artist.pristine">
+                Kunstenaar is <strong>verplicht</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
 
-            <div class="form-group row">
-              <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-12 col-md-6">
-                <mat-label>Verf</mat-label>
-                <mat-select id="paint" name="paint" [(ngModel)]="painting.paint" [disabled]="formDisabled"
-                  #paint="ngModel" required>
-                  <mat-option *ngFor="let paint of generalContent.paintingPaints" [value]="paint">
-                    {{ paint }}
-                  </mat-option>
-                </mat-select>
-                <mat-error [hidden]="paint.valid || paint.pristine">
-                  Verf is <strong>verplicht</strong>
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-12 col-md-6">
-                <mat-label>Materiaal</mat-label>
-                <mat-select id="material" name="material" [(ngModel)]="painting.material" [disabled]="formDisabled"
-                  #material="ngModel" required>
-                  <mat-option *ngFor="let material of generalContent.paintingMaterials" [value]="material">
-                    {{ material }}
-                  </mat-option>
-                </mat-select>
-                <mat-error [hidden]="material.valid || material.pristine">
-                  Materiaal is <strong>verplicht</strong>
-                </mat-error>
-              </mat-form-field>
-            </div>
+          <div class="form-group row">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+              class="form-field col-12 col-md-6">
+              <mat-label>Verf</mat-label>
+              <mat-select id="paint" name="paint" [(ngModel)]="painting.paint" [disabled]="formDisabled"
+                #paint="ngModel" required>
+                <mat-option *ngFor="let paint of generalContent.paintingPaints" [value]="paint">
+                  {{ paint }}
+                </mat-option>
+              </mat-select>
+              <mat-error [hidden]="paint.valid || paint.pristine">
+                Verf is <strong>verplicht</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+              class="form-field col-12 col-md-6">
+              <mat-label>Materiaal</mat-label>
+              <mat-select id="material" name="material" [(ngModel)]="painting.material" [disabled]="formDisabled"
+                #material="ngModel" required>
+                <mat-option *ngFor="let material of generalContent.paintingMaterials" [value]="material">
+                  {{ material }}
+                </mat-option>
+              </mat-select>
+              <mat-error [hidden]="material.valid || material.pristine">
+                Materiaal is <strong>verplicht</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
 
-            <div class="form-group row">
-              <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-12 col-md-6">
-                <mat-label>Categorie</mat-label>
-                <mat-select id="category" name="category" [(ngModel)]="painting.category" [disabled]="formDisabled"
-                  #category="ngModel" required>
-                  <mat-option *ngFor="let category of generalContent.paintingCategories" [value]="category">
-                    {{ category }}
-                  </mat-option>
-                </mat-select>
-                <mat-error [hidden]="category.valid || category.pristine">
-                  Categorie is <strong>verplicht</strong>
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-12 col-md-6">
-                <mat-label>Status</mat-label>
-                <mat-select id="state" name="state" [(ngModel)]="painting.status" [disabled]="formDisabled"
-                  #state="ngModel" required>
-                  <mat-option *ngFor="let state of generalContent.paintingStates" [value]="state">
-                    {{ state }}
-                  </mat-option>
-                </mat-select>
-                <mat-error [hidden]="state.valid || state.pristine">
-                  Status is <strong>verplicht</strong>
-                </mat-error>
-              </mat-form-field>
-            </div>
+          <div class="form-group row">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+              class="form-field col-12 col-md-6">
+              <mat-label>Categorie</mat-label>
+              <mat-select id="category" name="category" [(ngModel)]="painting.category" [disabled]="formDisabled"
+                #category="ngModel" required>
+                <mat-option *ngFor="let category of generalContent.paintingCategories" [value]="category">
+                  {{ category }}
+                </mat-option>
+              </mat-select>
+              <mat-error [hidden]="category.valid || category.pristine">
+                Categorie is <strong>verplicht</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+              class="form-field col-12 col-md-6">
+              <mat-label>Status</mat-label>
+              <mat-select id="state" name="state" [(ngModel)]="painting.status" [disabled]="formDisabled"
+                #state="ngModel" required>
+                <mat-option *ngFor="let state of generalContent.paintingStates" [value]="state">
+                  {{ state }}
+                </mat-option>
+              </mat-select>
+              <mat-error [hidden]="state.valid || state.pristine">
+                Status is <strong>verplicht</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
 
-            <div class="form-group row">
-              <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-12 col-md-6">
-                <mat-label>Prijs</mat-label>
-                <input matInput id="price" placeholder="Prijs" name="price" [(ngModel)]="painting.price"
-                  [disabled]="formDisabled" #price="ngModel" />
-              </mat-form-field>
-              <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-12 col-md-3">
-                <mat-label>Lengte</mat-label>
-                <input matInput id="length" placeholder="Lengte" name="length" [(ngModel)]="painting.length"
-                  [disabled]="formDisabled" #length="ngModel" />
-              </mat-form-field>
-              <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-12 col-md-3">
-                <mat-label>Breedte</mat-label>
-                <input matInput id="width" placeholder="Breedte" name="width" [(ngModel)]="painting.width"
-                  [disabled]="formDisabled" #width="ngModel" />
-              </mat-form-field>
-            </div>
+          <div class="form-group row">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+              class="form-field col-12 col-md-6">
+              <mat-label>Prijs</mat-label>
+              <input matInput id="price" placeholder="Prijs" name="price" [(ngModel)]="painting.price"
+                [disabled]="formDisabled" #price="ngModel" />
+            </mat-form-field>
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+              class="form-field col-12 col-md-3">
+              <mat-label>Lengte</mat-label>
+              <input matInput id="length" placeholder="Lengte" name="length" [(ngModel)]="painting.length"
+                [disabled]="formDisabled" #length="ngModel" />
+            </mat-form-field>
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+              class="form-field col-12 col-md-3">
+              <mat-label>Breedte</mat-label>
+              <input matInput id="width" placeholder="Breedte" name="width" [(ngModel)]="painting.width"
+                [disabled]="formDisabled" #width="ngModel" />
+            </mat-form-field>
+          </div>
 
-            <div class="form-group row">
-              <div class="col-12">
-                <div class="NgxEditor__Wrapper">
-                  <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
-                  <ngx-editor [editor]="editor" [ngModel]="editorOutput" [placeholder]="'Omschrijving...'" name="editorOutput" (ngModelChange)="onEditorContentChange($event)">
-                  </ngx-editor>
-                </div>
+          <div class="form-group row">
+            <div class="col-12">
+              <div class="NgxEditor__Wrapper">
+                <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+                <ngx-editor [editor]="editor" [ngModel]="editorOutput" [placeholder]="'Omschrijving...'"
+                  name="editorOutput" (ngModelChange)="onEditorContentChange($event)">
+                </ngx-editor>
               </div>
             </div>
+          </div>
 
-            <!-- Actions -->
-            <div class="row mt-3">
-              <div class="col-12">
-                <button mat-flat-button color="accent" type="submit" class="mr-2"
-                  [disabled]="!addPaintingForm.valid || !this.selectedFiles.length">opslaan</button>
-                <button mat-flat-button color="primary" type="button" (click)="resetForm(); addPaintingForm.form.markAsUntouched()">reset</button>
-              </div>
+          <!-- Actions -->
+          <div class="row mt-3">
+            <div class="col-12">
+              <button mat-flat-button color="accent" type="submit" class="mr-2"
+                [disabled]="!addPaintingForm.valid || !this.selectedFiles.length">opslaan</button>
+              <button mat-flat-button color="primary" type="button"
+                (click)="resetForm(); addPaintingForm.form.markAsUntouched()">reset</button>
             </div>
+          </div>
         </mat-card>
       </form>
     </div>
@@ -150,7 +161,7 @@
   <div *swalPortal class="row mt-3" #thumbnailOptions>
     <div *ngFor="let url of painting.images" class="col-12 col-md-4">
       <div class="img-thumbnail-option">
-        <img [src]="url" (click)="setThumbnail($event, url)" class="img-thumbnail mat-elevation-z8">
+        <img [src]="url" (click)="setThumbnail($event, url)" class="img-thumbnail {{generalContent.cardElevation}}">
         <div class="img-thumbnail-option-overlay">
           <mat-icon>check_cricle_outline</mat-icon>
         </div>

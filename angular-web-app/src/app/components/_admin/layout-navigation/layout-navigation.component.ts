@@ -15,7 +15,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 })
 export class LayoutNavigationComponent implements OnInit {
   @ViewChild('navigationForm') form: NgForm;
-  @Input() generalContent: GeneralContent;
+  generalContent: GeneralContent;
   title = "Navigatie";
   subTitle = "Layout";
   text = "Stel hier alles in met betrekking tot de navigatie op de website.";
@@ -23,7 +23,7 @@ export class LayoutNavigationComponent implements OnInit {
   navContentHistory: NavContent[];
   formStyle = "standard";
   formColor = "accent";
-  
+
   constructor(
     private contentService: ContentService,
     private swalService: SwalService
@@ -31,6 +31,7 @@ export class LayoutNavigationComponent implements OnInit {
 
   ngOnInit(): void {
     this.retrieveData();
+    this.retrieveGeneralContent();
   }
 
   onSubmit() {
@@ -53,6 +54,18 @@ export class LayoutNavigationComponent implements OnInit {
       if (!this.navContent) {
         this.loadDefaults();
       }
+    });
+  }
+
+  retrieveGeneralContent(): void {
+    this.contentService.getGeneralContent(1).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.generalContent = data[0];
     });
   }
 

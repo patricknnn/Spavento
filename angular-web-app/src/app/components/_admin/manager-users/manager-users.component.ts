@@ -7,6 +7,7 @@ import { GeneralContent } from 'src/app/models/generalcontent';
 import { LoginForm } from 'src/app/models/loginform';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { ContentService } from 'src/app/services/content.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { SwalService } from 'src/app/services/swal.service';
 import { UserService } from 'src/app/services/user.service';
@@ -18,7 +19,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./manager-users.component.scss']
 })
 export class ManagerUsersComponent implements OnInit {
-  @Input() generalContent: GeneralContent;
+  generalContent: GeneralContent;
   title = "Gebruikers";
   subTitle = "Beheer";
   text = "Hier is een overzicht van alle gebruikers berichten te vinden. Om gebruikers toe te voegen kan je gebruik maken van het formulier.";
@@ -41,12 +42,14 @@ export class ManagerUsersComponent implements OnInit {
     private swalService: SwalService,
     private authService: AuthService,
     private userService: UserService,
+    private contentService: ContentService,
     private modalService: ModalService
   ) { }
 
   ngOnInit(): void {
     this.form = new LoginForm();
     this.retrieveData();
+    this.retrieveGeneralContent();
   }
 
   onSubmit() {
@@ -76,6 +79,18 @@ export class ManagerUsersComponent implements OnInit {
         this.resultsLength = data.length;
         this.initTable(data);
       });
+  }
+
+  retrieveGeneralContent(): void {
+    this.contentService.getGeneralContent(1).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.generalContent = data[0];
+    });
   }
 
   initTable(data): void {
