@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { GeneralContent } from 'src/app/models/generalcontent';
 import { Painting } from 'src/app/models/painting';
+import { ContentService } from 'src/app/services/content.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { PaintingService } from 'src/app/services/painting.service';
 import { SwalService } from 'src/app/services/swal.service';
@@ -17,7 +18,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./painting-overview.component.scss'],
 })
 export class PaintingOverviewComponent implements AfterViewInit {
-  @Input() generalContent: GeneralContent;
+  generalContent: GeneralContent;
   title = 'Overzicht';
   subTitle = 'Portfolio';
   text = 'Hier is een overzicht van alle portfolio items te vinden.';
@@ -43,13 +44,20 @@ export class PaintingOverviewComponent implements AfterViewInit {
   constructor(
     private router: Router,
     private paintingService: PaintingService,
+    private contentService: ContentService,
     private swalService: SwalService,
     private modalService: ModalService
-  ) { }
+  ) {
+    this.generalContent = new GeneralContent();
+    this.generalContent.cardElevation = "mat-elevation-z8";
+    this.generalContent.formStyle = "standard";
+    this.generalContent.formColor = "accent";
+  }
 
 
   ngAfterViewInit() {
     this.retrievePaintings();
+    this.retrieveGeneralContent();
   }
 
   retrievePaintings(): void {
@@ -65,6 +73,18 @@ export class PaintingOverviewComponent implements AfterViewInit {
         this.resultsLength = data.length;
         this.initTable(data);
       });
+  }
+
+  retrieveGeneralContent(): void {
+    this.contentService.getGeneralContent(1).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.generalContent = data[0];
+    });
   }
 
   initTable(data): void {
@@ -107,7 +127,7 @@ export class PaintingOverviewComponent implements AfterViewInit {
     } else {
       painting.active = false;
       msg = "Schilderij niet zichtbaar op website";
-    } 
+    }
     this.paintingService.update(painting.id, painting).then(() => {
       this.swalService.successSwal(msg);
     });

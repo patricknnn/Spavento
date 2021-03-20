@@ -44,7 +44,12 @@ export class ManagerUsersComponent implements OnInit {
     private userService: UserService,
     private contentService: ContentService,
     private modalService: ModalService
-  ) { }
+  ) {
+    this.generalContent = new GeneralContent();
+    this.generalContent.cardElevation = "mat-elevation-z8";
+    this.generalContent.formStyle = "standard";
+    this.generalContent.formColor = "accent";
+  }
 
   ngOnInit(): void {
     this.form = new LoginForm();

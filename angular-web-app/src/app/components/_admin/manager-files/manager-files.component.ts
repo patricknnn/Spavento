@@ -40,7 +40,12 @@ export class ManagerFilesComponent implements AfterViewInit {
     private uploadService: FileUploadService,
     private contentService: ContentService,
     private swalService: SwalService
-  ) { }
+  ) {
+    this.generalContent = new GeneralContent();
+    this.generalContent.cardElevation = "mat-elevation-z8";
+    this.generalContent.formStyle = "standard";
+    this.generalContent.formColor = "accent";
+  }
 
   ngAfterViewInit() {
     this.retrieveFiles();

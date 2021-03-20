@@ -39,7 +39,12 @@ export class ManagerMessagesComponent implements AfterViewInit {
     private contentService: ContentService,
     private swalService: SwalService,
     private modalService: ModalService
-  ) { }
+  ) {
+    this.generalContent = new GeneralContent();
+    this.generalContent.cardElevation = "mat-elevation-z8";
+    this.generalContent.formStyle = "standard";
+    this.generalContent.formColor = "accent";
+  }
 
   ngAfterViewInit() {
     this.retrieveData();
