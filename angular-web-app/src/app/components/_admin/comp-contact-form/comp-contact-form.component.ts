@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { ContactFormContent } from 'src/app/models/contactformcontent';
+import { GeneralContent } from 'src/app/models/generalcontent';
 import { ContentService } from 'src/app/services/content.service';
 import { SwalService } from 'src/app/services/swal.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
@@ -13,6 +14,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 })
 export class CompContactFormComponent implements OnInit {
   @ViewChild('contactFormForm') form: NgForm;
+  @Input() generalContent: GeneralContent;
   content: ContactFormContent;
   contentHistory: ContactFormContent[];
   formStyles: string[];

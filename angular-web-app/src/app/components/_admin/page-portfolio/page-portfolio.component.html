@@ -1,4 +1,4 @@
-<div class="container-fluid py-5">
+<div class="container-fluid py-5" *ngIf="generalContent">
   <app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [admin]="true">
   </app-section-title>
 
@@ -11,7 +11,7 @@
           <h4 class="title-underlined mb-0 mt-2">Header</h4>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <app-comp-header [page]="'portfolio'"></app-comp-header>
+      <app-comp-header [page]="'portfolio'" [generalContent]="generalContent"></app-comp-header>
       <mat-action-row>
         <button mat-raised-button color="accent" (click)="nextStep()">Volgende</button>
       </mat-action-row>
@@ -24,7 +24,7 @@
           <h4 class="title-underlined mb-0 mt-2">Gallerij</h4>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <app-comp-gallery></app-comp-gallery>
+      <app-comp-gallery [generalContent]="generalContent"></app-comp-gallery>
       <mat-action-row>
         <button mat-raised-button color="primary" (click)="prevStep()">Vorige</button>
         <!-- <button mat-raised-button color="accent" (click)="nextStep()">Volgende</button> -->

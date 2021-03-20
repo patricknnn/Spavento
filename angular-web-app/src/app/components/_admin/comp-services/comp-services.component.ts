@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { map } from 'rxjs/operators';
+import { GeneralContent } from 'src/app/models/generalcontent';
 import { Service } from 'src/app/models/service';
 import { ServiceContent } from 'src/app/models/servicecontent';
 import { ContentService } from 'src/app/services/content.service';
@@ -14,6 +15,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 })
 export class CompServicesComponent implements OnInit {
   @ViewChild('servicesForm') form: NgForm;
+  @Input() generalContent: GeneralContent;
   services: ServiceContent;
   servicesHistory: ServiceContent[];
   formStyle = "standard";

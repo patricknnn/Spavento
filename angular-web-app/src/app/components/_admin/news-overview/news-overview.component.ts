@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { GeneralContent } from 'src/app/models/generalcontent';
 import { NewsItem } from 'src/app/models/newsitem';
 import { ModalService } from 'src/app/services/modal.service';
 import { NewsService } from 'src/app/services/news.service';
@@ -16,6 +17,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./news-overview.component.scss']
 })
 export class NewsOverviewComponent implements AfterViewInit {
+  @Input() generalContent: GeneralContent;
   title = 'Overzicht';
   subTitle = 'Nieuws';
   text = 'Hier is een overzicht van alle nieuws items te vinden.';

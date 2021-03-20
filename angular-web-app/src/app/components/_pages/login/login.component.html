@@ -1,5 +1,5 @@
 <!-- Header small -->
-<app-header *ngIf="pageTitle" [title]="pageTitle.title" [subTitle]="pageTitle.subTitle" [small]="true"></app-header>
+<app-header *ngIf="pageTitle" [title]="pageTitle.title" [subTitle]="pageTitle.subTitle" [image]="pageTitle.image" [small]="true"></app-header>
 
 <!-- Main -->
 <main id="contact" class="main main-raised" *ngIf="generalContent">
@@ -60,11 +60,12 @@
       <div class="row">
         <div class="col-12">
           <h4 class="title-underlined">Wachtwoord vergeten</h4>
+          <p>Voer je email adres is voor het opnieuw instellen van je wachtwoord.</p>
         </div>
       </div>
-      <form #recoverMailForm="ngForm" style="width: 400px;">
+      <form #recoverMailForm="ngForm">
         <div class="form-group row">
-          <mat-form-field appearance="{{ formStyle }}" color="{{ formStyle }}" class="col-12">
+          <mat-form-field appearance="{{ generalContent.formStyle }}" color="{{ generalContent.formColor }}" class="col-12 w-100">
             <mat-label>Email</mat-label>
             <input matInput type="email" [(ngModel)]="recoverMail" name="recoverMail" id="recoverMail"
               #recoverMailInput="ngModel" required />

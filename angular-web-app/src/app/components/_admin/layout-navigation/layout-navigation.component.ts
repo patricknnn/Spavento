@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { map } from 'rxjs/operators';
+import { GeneralContent } from 'src/app/models/generalcontent';
 import { NavContent } from 'src/app/models/navcontent';
 import { NavLink } from 'src/app/models/navlink';
 import { ContentService } from 'src/app/services/content.service';
@@ -14,6 +15,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 })
 export class LayoutNavigationComponent implements OnInit {
   @ViewChild('navigationForm') form: NgForm;
+  @Input() generalContent: GeneralContent;
   title = "Navigatie";
   subTitle = "Layout";
   text = "Stel hier alles in met betrekking tot de navigatie op de website.";

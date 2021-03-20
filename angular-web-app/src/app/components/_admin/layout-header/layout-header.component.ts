@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { map } from 'rxjs/operators';
+import { GeneralContent } from 'src/app/models/generalcontent';
 import { HeaderContent } from 'src/app/models/headercontent';
 import { ContentService } from 'src/app/services/content.service';
+import { FileUploadService } from 'src/app/services/file-upload.service';
 import { SwalService } from 'src/app/services/swal.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
@@ -13,18 +15,25 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 })
 export class LayoutHeaderComponent implements OnInit {
   @ViewChild('headerForm') form: NgForm;
+  @Input() generalContent: GeneralContent;
   title = "Header";
   subTitle = "Layout";
   text = "Stel hier alles in met betrekking tot de header op de website.";
   headerContent: HeaderContent;
   headerContentHistory: HeaderContent[];
+  fileUploads: any[];
   formStyle = "standard";
   formColor = "accent";
-  
-  constructor(private contentService: ContentService, private swalService: SwalService) { }
+
+  constructor(
+    private uploadService: FileUploadService,
+    private contentService: ContentService,
+    private swalService: SwalService
+  ) { }
 
   ngOnInit(): void {
     this.retrieveData();
+    this.retrieveFiles();
     let header = document.getElementById('header');
     if (header) {
       header.classList.add('mat-elevation-z8');
@@ -51,6 +60,16 @@ export class LayoutHeaderComponent implements OnInit {
       if (!this.headerContent) {
         this.loadDefaults();
       }
+    });
+  }
+
+  retrieveFiles(): void {
+    this.uploadService.getFiles(99).snapshotChanges().pipe(
+      map((changes) =>
+        changes.map((c) => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    ).subscribe((data) => {
+      this.fileUploads = data;
     });
   }
 

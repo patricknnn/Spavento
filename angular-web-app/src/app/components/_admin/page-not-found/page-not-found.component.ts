@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { GeneralContent } from 'src/app/models/generalcontent';
 import { PageNotFoundContent } from 'src/app/models/pagenotfoundcontent';
 import { ContentService } from 'src/app/services/content.service';
 import { SwalService } from 'src/app/services/swal.service';
@@ -11,6 +12,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./page-not-found.component.scss']
 })
 export class PageNotFoundAdminComponent implements OnInit {
+  generalContent: GeneralContent;
   title = "404, Pagina niet gevonden";
   subTitle = "Pagina";
   text = "Indien een pagina niet wordt gevonden zal een gebruiker deze pagina zien.";
@@ -19,7 +21,7 @@ export class PageNotFoundAdminComponent implements OnInit {
   panelStep = -1;;
   formStyle = "standard";
   formColor = "accent";
-  
+
   constructor(
     private contentService: ContentService,
     private swalService: SwalService
@@ -27,6 +29,7 @@ export class PageNotFoundAdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.retrieveData();
+    this.retrieveGeneralContent();
   }
 
   onSubmit() {
@@ -61,6 +64,18 @@ export class PageNotFoundAdminComponent implements OnInit {
       if (!this.pageContent) {
         this.setDefaults();
       }
+    });
+  }
+
+  retrieveGeneralContent(): void {
+    this.contentService.getGeneralContent(1).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.generalContent = data[0];
     });
   }
 

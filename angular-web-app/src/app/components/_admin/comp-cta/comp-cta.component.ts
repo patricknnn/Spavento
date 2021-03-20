@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { CtaContent } from 'src/app/models/ctacontent';
+import { GeneralContent } from 'src/app/models/generalcontent';
 import { ContentService } from 'src/app/services/content.service';
 import { SwalService } from 'src/app/services/swal.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
@@ -12,6 +13,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./comp-cta.component.scss']
 })
 export class CompCtaComponent implements OnInit {
+  @Input() generalContent: GeneralContent;
   @ViewChild('ctaForm') form: NgForm;
   cta: CtaContent;
   ctaHistory: CtaContent[];

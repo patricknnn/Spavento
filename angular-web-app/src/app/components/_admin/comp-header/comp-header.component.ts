@@ -1,8 +1,10 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { map } from 'rxjs/operators';
+import { GeneralContent } from 'src/app/models/generalcontent';
 import { PageTitle } from 'src/app/models/pagetitle';
 import { ContentService } from 'src/app/services/content.service';
+import { FileUploadService } from 'src/app/services/file-upload.service';
 import { SwalService } from 'src/app/services/swal.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
@@ -13,19 +15,23 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 })
 export class CompHeaderComponent implements OnInit {
   @ViewChild('headerForm') form: NgForm;
+  @Input() generalContent: GeneralContent;
   @Input() page: string;
   pageTitle: PageTitle;
   pageTitleHistory: PageTitle[];
+  fileUploads: any;
   formStyle = "standard";
   formColor = "accent";
   
   constructor(
     private contentService: ContentService,
+    private uploadService: FileUploadService,
     private swalService: SwalService
   ) { }
 
   ngOnInit(): void {
     this.retrieveData();
+    this.retrieveFiles();
   }
 
   onSubmit() {
@@ -48,6 +54,16 @@ export class CompHeaderComponent implements OnInit {
       if (!this.pageTitle) {
         this.retrieveDefaultHeader();
       }
+    });
+  }
+
+  retrieveFiles(): void {
+    this.uploadService.getFiles(99).snapshotChanges().pipe(
+      map((changes) =>
+        changes.map((c) => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    ).subscribe((data) => {
+      this.fileUploads = data;
     });
   }
 

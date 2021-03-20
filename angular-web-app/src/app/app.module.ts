@@ -45,7 +45,6 @@ import { PageContactComponent } from './components/_admin/page-contact/page-cont
 import { LayoutNavigationComponent } from './components/_admin/layout-navigation/layout-navigation.component';
 import { LayoutHeaderComponent } from './components/_admin/layout-header/layout-header.component';
 import { LayoutFooterComponent } from './components/_admin/layout-footer/layout-footer.component';
-import { GeneralComponent } from './components/_admin/general/general.component';
 import { NewsAddComponent } from './components/_admin/news-add/news-add.component';
 import { NewsOverviewComponent } from './components/_admin/news-overview/news-overview.component';
 import { CompServicesComponent } from './components/_admin/comp-services/comp-services.component';
@@ -74,6 +73,7 @@ import { NewsEditComponent } from './components/_admin/news-edit/news-edit.compo
 import { LoadingComponent } from './components/_admin/loading/loading.component';
 import { ManagerMessagesComponent } from './components/_admin/manager-messages/manager-messages.component';
 import { NgxEditorModule } from 'ngx-editor';
+import { GeneralComponent } from './components/_admin/general/general.component';
 
 @NgModule({
   declarations: [

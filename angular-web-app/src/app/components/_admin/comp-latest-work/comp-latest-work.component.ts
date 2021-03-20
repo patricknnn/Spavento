@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { map } from 'rxjs/operators';
+import { GeneralContent } from 'src/app/models/generalcontent';
 import { LatestWorkContent } from 'src/app/models/latestworkcontent';
 import { ContentService } from 'src/app/services/content.service';
 import { SwalService } from 'src/app/services/swal.service';
@@ -12,6 +13,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./comp-latest-work.component.scss']
 })
 export class CompLatestWorkComponent implements OnInit {
+  @Input() generalContent: GeneralContent;
   @ViewChild('latestWorkForm') form: NgForm;
   latestWork: LatestWorkContent;
   latestWorkHistory: LatestWorkContent[];

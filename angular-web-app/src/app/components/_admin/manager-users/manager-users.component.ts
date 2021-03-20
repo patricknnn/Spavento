@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { map } from 'rxjs/operators';
+import { GeneralContent } from 'src/app/models/generalcontent';
 import { LoginForm } from 'src/app/models/loginform';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
@@ -17,6 +18,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./manager-users.component.scss']
 })
 export class ManagerUsersComponent implements OnInit {
+  @Input() generalContent: GeneralContent;
   title = "Gebruikers";
   subTitle = "Beheer";
   text = "Hier is een overzicht van alle gebruikers berichten te vinden. Om gebruikers toe te voegen kan je gebruik maken van het formulier.";

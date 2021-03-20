@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { GalleryContent } from 'src/app/models/gallerycontent';
+import { GeneralContent } from 'src/app/models/generalcontent';
 import { NewsContent } from 'src/app/models/newscontent';
 import { ContentService } from 'src/app/services/content.service';
 import { SwalService } from 'src/app/services/swal.service';
@@ -13,6 +14,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./comp-gallery.component.scss']
 })
 export class CompGalleryComponent implements OnInit {
+  @Input() generalContent: GeneralContent;
   @ViewChild('galleryContentForm') form: NgForm;
   galleryContent: GalleryContent;
   galleryContentHistory: GalleryContent[];

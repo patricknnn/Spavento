@@ -1,4 +1,4 @@
-<div class="container-fluid pt-5" *ngIf="headerContent">
+<div class="container-fluid pt-5" *ngIf="headerContent && generalContent">
   <app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [admin]="true">
   </app-section-title>
 
@@ -6,12 +6,8 @@
     <div class="col-12">
       <mat-card class="mat-elevation-z8">
         <h4 class="title-underlined">Resultaat</h4>
-        <app-header 
-          [small]="headerContent.small"
-          [typing]="headerContent.typing"
-          [paralax]="headerContent.paralax"
-          [title]="headerContent.defaultTitle"
-          [subTitle]="headerContent.defaultSubtitle"
+        <app-header [small]="headerContent.small" [typing]="headerContent.typing" [paralax]="headerContent.paralax"
+          [title]="headerContent.defaultTitle" [subTitle]="headerContent.defaultSubtitle"
           [image]="headerContent.defaultImage">
         </app-header>
       </mat-card>
@@ -25,7 +21,7 @@
         <form (ngSubmit)="onSubmit()" #headerForm="ngForm">
 
           <div class="form-group row">
-            <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field col-sm-12 col-md-6">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-sm-12 col-md-6">
               <mat-label>Standaard titel</mat-label>
               <input matInput type="text" id="defaultTitle" placeholder="Titel" name="defaultTitle"
                 [(ngModel)]="headerContent.defaultTitle" #defaultTitle="ngModel" required>
@@ -33,7 +29,7 @@
                 Titel is verplicht
               </mat-error>
             </mat-form-field>
-            <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field col-sm-12 col-md-6">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-sm-12 col-md-6">
               <mat-label>Standaard subtitel</mat-label>
               <input matInput type="text" id="defaultSubTitle" placeholder="Subtitel" name="defaultSubTitle"
                 [(ngModel)]="headerContent.defaultSubtitle" #defaultSubTitle="ngModel" required>
@@ -43,12 +39,17 @@
             </mat-form-field>
           </div>
 
-          <div class="form-group row">
-            <mat-form-field [appearance]="formStyle" [color]="formColor"  class="form-field col-12">
+          <div class="form-group row" *ngIf="fileUploads">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-sm-12">
               <mat-label>Standaard afbeelding</mat-label>
-              <input matInput type="text" id="defaultImage" placeholder="Afbeelding" name="defaultImage"
-                [(ngModel)]="headerContent.defaultImage" #defaultImage="ngModel" required>
-              <mat-error [hidden]="defaultImage.valid || defaultImage.pristine">
+              <mat-select id="defaultImage" name="defaultImage" [(ngModel)]="headerContent.defaultImage"
+                #defaultImage="ngModel" required>
+                <mat-option *ngFor="let file of fileUploads" [value]="file.url">
+                  <img [src]="file.url" alt="thumbnail" class="img-thumbnail img-dropdown" />
+                  {{ file.name }}
+                </mat-option>
+              </mat-select>
+              <mat-error [hidden]="defaultImage.valid || defaultImage.pristine ">
                 Afbeelding is verplicht
               </mat-error>
             </mat-form-field>

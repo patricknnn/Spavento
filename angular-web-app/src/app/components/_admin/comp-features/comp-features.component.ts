@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { FeaturedContent } from 'src/app/models/featuredcontent';
+import { GeneralContent } from 'src/app/models/generalcontent';
 import { Painting } from 'src/app/models/painting';
 import { ContentService } from 'src/app/services/content.service';
 import { PaintingService } from 'src/app/services/painting.service';
@@ -14,6 +15,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./comp-features.component.scss']
 })
 export class CompFeaturesComponent implements OnInit {
+  @Input() generalContent: GeneralContent;
   @ViewChild('featuredForm') form: NgForm;
   featured: FeaturedContent;
   featuredHistory: FeaturedContent[];

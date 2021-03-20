@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { map } from 'rxjs/operators';
 import { FileUpload } from 'src/app/models/fileupload';
+import { GeneralContent } from 'src/app/models/generalcontent';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 import { SwalService } from 'src/app/services/swal.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
@@ -14,6 +15,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./manager-files.component.scss'],
 })
 export class ManagerFilesComponent implements AfterViewInit {
+  @Input() generalContent: GeneralContent;
   title = 'Bestanden';
   subTitle = 'Beheer';
   text =

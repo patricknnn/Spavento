@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { GeneralContent } from 'src/app/models/generalcontent';
 import { Painting } from 'src/app/models/painting';
 import { ModalService } from 'src/app/services/modal.service';
 import { PaintingService } from 'src/app/services/painting.service';
@@ -16,6 +17,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./painting-overview.component.scss'],
 })
 export class PaintingOverviewComponent implements AfterViewInit {
+  @Input() generalContent: GeneralContent;
   title = 'Overzicht';
   subTitle = 'Portfolio';
   text = 'Hier is een overzicht van alle portfolio items te vinden.';
@@ -32,7 +34,6 @@ export class PaintingOverviewComponent implements AfterViewInit {
   ];
   formStyle = "standard";
   formColor = "accent";
-
   resultsLength = 0;
   isLoadingResults = true;
   dataSource: MatTableDataSource<Painting>;

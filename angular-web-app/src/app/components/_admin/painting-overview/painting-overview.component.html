@@ -1,4 +1,4 @@
-<div class="container-fluid pt-5">
+<div class="container-fluid pt-5" *ngIf="generalContent">
   <app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [admin]="true">
   </app-section-title>
 
@@ -11,7 +11,7 @@
     <div class="col-12">
 
       <!-- Table Filter -->
-      <mat-form-field [appearance]="formStyle" [color]="formColor" class="w-100">
+      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="w-100">
         <button mat-button matPrefix mat-icon-button>
           <mat-icon>search</mat-icon>
         </button>

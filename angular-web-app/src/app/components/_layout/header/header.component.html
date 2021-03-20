@@ -1,5 +1,5 @@
 <!-- Header-->
-<header id="header" class="rounded-bottom {{elevation}}" [ngClass]="small ? 'smallhead' : 'masthead'"
+<header *ngIf="image" id="header" class="rounded-bottom {{elevation}}" [ngClass]="small ? 'smallhead' : 'masthead'"
   [style.backgroundImage]="'url(' + image + ')'">
   <div class="container-fluid h-100 linear-overlay-black">
     <div class="row h-100 align-items-center justify-content-center text-center">

@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { map } from 'rxjs/operators';
 import { ContactForm } from 'src/app/models/contactform';
+import { GeneralContent } from 'src/app/models/generalcontent';
 import { ContactFormService } from 'src/app/services/contact-form.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { SwalService } from 'src/app/services/swal.service';
@@ -15,6 +16,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./manager-messages.component.scss']
 })
 export class ManagerMessagesComponent implements AfterViewInit {
+  @Input() generalContent: GeneralContent;
   title = 'Berichten';
   subTitle = 'Beheer';
   text =

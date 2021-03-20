@@ -7,7 +7,10 @@ import {
 } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { map } from 'rxjs/operators';
 import { fadeAnimation } from 'src/app/animations/fade-animation';
+import { GeneralContent } from 'src/app/models/generalcontent';
+import { ContentService } from 'src/app/services/content.service';
 import { SidenavService } from 'src/app/services/sidenav.service';
 
 @Component({
@@ -41,7 +44,8 @@ export class AdminComponent implements OnInit, AfterViewInit, OnDestroy {
     );
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
   ngAfterViewInit(): void {
     this.sidenavService.setSidenav(this.sidenav);

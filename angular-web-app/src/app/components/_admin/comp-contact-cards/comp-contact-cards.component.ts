@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { map } from 'rxjs/operators';
+import { GeneralContent } from 'src/app/models/generalcontent';
 import { Service } from 'src/app/models/service';
 import { ServiceContent } from 'src/app/models/servicecontent';
 import { ContentService } from 'src/app/services/content.service';
@@ -16,6 +17,7 @@ export class CompContactCardsComponent implements OnInit {
   @ViewChild('contactCardsForm') form: NgForm;
   services: ServiceContent;
   servicesHistory: ServiceContent[];
+  @Input() generalContent: GeneralContent;
   formStyle = "standard";
   formColor = "accent";
 

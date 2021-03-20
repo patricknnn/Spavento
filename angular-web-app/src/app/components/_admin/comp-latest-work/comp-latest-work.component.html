@@ -1,4 +1,4 @@
-<div class="container-fluid p-0" *ngIf="latestWork">
+<div class="container-fluid p-0" *ngIf="latestWork && generalContent">
   <div class="row mb-4">
     <div class="col-12">
       <mat-card class="mat-elevation-z8">
@@ -43,7 +43,7 @@
           </div>
 
           <div class="form-group row">
-            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-sm-12 col-md-6">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-sm-12 col-md-6">
               <mat-label>Content titel</mat-label>
               <input matInput type="text" id="latestWorkContentTitle" placeholder="Titel" name="latestWorkContentTitle"
                 [(ngModel)]="latestWork.title" #latestWorkContentTitleInput="ngModel" required>
@@ -51,7 +51,7 @@
                 Titel is verplicht</mat-error>
             </mat-form-field>
 
-            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-sm-12 col-md-6">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-sm-12 col-md-6">
               <mat-label>Content subtitel</mat-label>
               <input matInput type="text" id="latestWorkContentSubTitle" placeholder="Subtitel"
                 name="latestWorkContentSubTitle" [(ngModel)]="latestWork.subTitle"
@@ -61,7 +61,7 @@
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-10">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-10">
               <mat-label>Content text</mat-label>
               <textarea rows="1" matInput type="text" id="latestWorkContentText" placeholder="Text"
                 name="latestWorkContentText" [(ngModel)]="latestWork.text" #latestWorkContentTextInput="ngModel"
@@ -71,7 +71,7 @@
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field [appearance]="formStyle" [color]="formColor" class="form-field col-2">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-2">
               <mat-label>Items</mat-label>
               <input matInput type="number" id="latestWorkContentAmount" name="latestWorkContentAmount" min="1" max="6"
                 [(ngModel)]="latestWork.amount" #latestWorkContentAmountInput="ngModel" required>

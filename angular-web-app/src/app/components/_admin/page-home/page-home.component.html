@@ -1,4 +1,4 @@
-<div class="container-fluid py-5">
+<div class="container-fluid py-5" *ngIf="generalContent">
   <app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [admin]="true">
   </app-section-title>
 
@@ -11,7 +11,7 @@
           <h4 class="title-underlined mb-0 mt-2">Header</h4>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <app-comp-header [page]="'home'"></app-comp-header>
+      <app-comp-header [page]="'home'" [generalContent]="generalContent"></app-comp-header>
       <mat-action-row>
         <button mat-raised-button color="accent" (click)="nextStep()">Volgende</button>
       </mat-action-row>
@@ -24,7 +24,7 @@
           <h4 class="title-underlined mb-0 mt-2">Diensten</h4>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <app-comp-services></app-comp-services>
+      <app-comp-services [generalContent]="generalContent"></app-comp-services>
       <mat-action-row>
         <button mat-raised-button color="primary" (click)="prevStep()">Vorige</button>
         <button mat-raised-button color="accent" (click)="nextStep()">Volgende</button>
@@ -38,7 +38,7 @@
           <h4 class="title-underlined mb-0 mt-2">Uitgelicht</h4>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <app-comp-features></app-comp-features>
+      <app-comp-features [generalContent]="generalContent"></app-comp-features>
       <mat-action-row>
         <button mat-raised-button color="primary" (click)="prevStep()">Vorige</button>
         <button mat-raised-button color="accent" (click)="nextStep()">Volgende</button>
@@ -52,7 +52,7 @@
           <h4 class="title-underlined mb-0 mt-2">Laatste nieuws</h4>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <app-comp-latest-news></app-comp-latest-news>
+      <app-comp-latest-news [generalContent]="generalContent"></app-comp-latest-news>
       <mat-action-row>
         <button mat-raised-button color="primary" (click)="prevStep()">Vorige</button>
         <button mat-raised-button color="accent" (click)="nextStep()">Volgende</button>
@@ -66,7 +66,7 @@
           <h4 class="title-underlined mb-0 mt-2">Laatste werk</h4>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <app-comp-latest-work></app-comp-latest-work>
+      <app-comp-latest-work [generalContent]="generalContent"></app-comp-latest-work>
       <mat-action-row>
         <button mat-raised-button color="primary" (click)="prevStep()">Vorige</button>
         <button mat-raised-button color="accent" (click)="nextStep()">Volgende</button>
@@ -80,7 +80,7 @@
           <h4 class="title-underlined mb-0 mt-2">Call to action</h4>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <app-comp-cta></app-comp-cta>
+      <app-comp-cta [generalContent]="generalContent"></app-comp-cta>
       <mat-action-row>
         <button mat-raised-button color="primary" (click)="prevStep()">Vorige</button>
       </mat-action-row>

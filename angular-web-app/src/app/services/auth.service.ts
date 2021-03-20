@@ -1,6 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/auth";
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from "@angular/router";
 import { User } from '../models/user';
 import { SwalService } from './swal.service';
@@ -9,8 +9,6 @@ import { SwalService } from './swal.service';
   providedIn: 'root'
 })
 export class AuthService {
-  userspath = 'users';
-  usersRef: AngularFirestoreCollection<any>;
   userState: any;
 
   constructor(
@@ -20,7 +18,6 @@ export class AuthService {
     public ngZone: NgZone,
     private swalService: SwalService
   ) {
-    this.usersRef = this.afs.collection(this.userspath);
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.userState = user;
@@ -33,10 +30,9 @@ export class AuthService {
     })
   }
 
-  signIn(email, password) {
+  signIn(email, password): Promise<void> {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
-        console.log(result);
         this.setUserData(result.user).then(() => {
           this.router.navigate(['admin/dashboard']);
         });
@@ -45,14 +41,14 @@ export class AuthService {
       })
   }
 
-  signOut() {
+  signOut(): Promise<void> {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       this.router.navigate(['login']);
     })
   }
 
-  signUp(email, password) {
+  signUp(email, password): Promise<void> {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
         this.sendVerificationMail();
@@ -62,14 +58,15 @@ export class AuthService {
       })
   }
 
-  sendVerificationMail() {
-    return this.afAuth.currentUser.then(u => u.sendEmailVerification())
-      .then(() => {
-        this.router.navigate(['email-verification']);
-      })
+  sendVerificationMail(): Promise<void> {
+    return this.afAuth.currentUser.then((u) => {
+      u.sendEmailVerification();
+    }).then(() => {
+      this.swalService.successSwal("Verificatie email verstuurd");
+    })
   }
 
-  forgotPassword(passwordResetEmail) {
+  forgotPassword(passwordResetEmail): Promise<void> {
     return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
       .then(() => {
         this.swalService.successSwal("Wachtwoord reset email verstuurd, bekijk je mailbox.");
@@ -78,25 +75,13 @@ export class AuthService {
       })
   }
 
-  get isLoggedIn(): boolean {
+  isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
     //return (user !== null && user.emailVerified !== false) ? true : false;
     return (user !== null) ? true : false;
   }
 
-  authLogin(provider) {
-    return this.afAuth.signInWithPopup(provider)
-      .then((result) => {
-        this.ngZone.run(() => {
-          this.router.navigate(['admin/dashboard']);
-        })
-        this.setUserData(result.user);
-      }).catch((error) => {
-        this.swalService.errorSwal(error.message);
-      })
-  }
-
-  setUserData(user) {
+  setUserData(user): Promise<void> {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     const userState: User = {
       uid: user.uid,
