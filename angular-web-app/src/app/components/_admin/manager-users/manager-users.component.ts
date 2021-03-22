@@ -66,8 +66,10 @@ export class ManagerUsersComponent implements OnInit {
 
   updateUser(): void {
     this.swalService.loadingSwal("opslaan");
-    this.userService.update(this.modalUser.uid, this.modalUser).then(() => {
-      this.swalService.successSwal("opgeslagen");
+    this.authService.updateProfile(this.modalUser.displayName, this.modalUser.photoURL).then(() => {
+      this.swalService.successSwal("Gebruiker bijgewerkt");
+    }).catch((error) => {
+      this.swalService.errorSwal(error.message);
     });
   }
 
@@ -109,13 +111,13 @@ export class ManagerUsersComponent implements OnInit {
       if (result.value) {
         this.userService.delete(key)
           .then(() => {
-            this.swalService.successSwal("Bericht verwijderd")
+            this.swalService.successSwal("Gebruiker verwijderd")
           })
           .catch((err) => {
             this.swalService.errorSwal(err)
           });
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        this.swalService.cancelSwal("Bericht niet verwijderd");
+        this.swalService.cancelSwal("Gebruiker niet verwijderd");
       }
     });
   }

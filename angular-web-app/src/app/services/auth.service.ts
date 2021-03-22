@@ -27,7 +27,7 @@ export class AuthService {
         localStorage.setItem('user', null);
         JSON.parse(localStorage.getItem('user'));
       }
-    })
+    });
   }
 
   signIn(email, password): Promise<void> {
@@ -38,14 +38,14 @@ export class AuthService {
         });
       }).catch((error) => {
         this.swalService.errorSwal(error.message);
-      })
+      });
   }
 
   signOut(): Promise<void> {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       this.router.navigate(['login']);
-    })
+    });
   }
 
   signUp(email, password): Promise<void> {
@@ -63,7 +63,7 @@ export class AuthService {
       u.sendEmailVerification();
     }).then(() => {
       this.swalService.successSwal("Verificatie email verstuurd");
-    })
+    });
   }
 
   forgotPassword(passwordResetEmail): Promise<void> {
@@ -72,7 +72,7 @@ export class AuthService {
         this.swalService.successSwal("Wachtwoord reset email verstuurd, bekijk je mailbox.");
       }).catch((error) => {
         this.swalService.errorSwal(error.message);
-      })
+      });
   }
 
   isLoggedIn(): boolean {
@@ -89,9 +89,19 @@ export class AuthService {
       displayName: user.displayName,
       photoURL: user.photoURL,
       emailVerified: user.emailVerified
-    }
+    };
     return userRef.set(userState, {
       merge: true
     });
   }
+
+  updateProfile(displayName: string, photoURL: string): Promise<any> {
+    return this.afAuth.currentUser.then((user) => {
+      user.updateProfile({
+        displayName: displayName,
+        photoURL: photoURL
+      })
+    })
+  };
+
 }

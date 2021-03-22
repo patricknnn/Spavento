@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { User } from '../models/user';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,10 @@ export class UserService {
    * Constructor
    * @param db Angular Firestore
    */
-  constructor(private db: AngularFirestore) {
+  constructor(
+    private db: AngularFirestore,
+    private authService: AuthService
+  ) {
     this.usersRef = db.collection(this.dbPath);
   }
 
@@ -31,7 +35,6 @@ export class UserService {
   }
 
   public update(id: string, data: any): Promise<void> {
-    data.timestampUpdated = Date.now();
     return this.usersRef.doc(id).update(data);
   }
 

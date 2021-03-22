@@ -94,7 +94,14 @@ export class FileUploadService {
    * @param fileUpload File to be saved
    */
   private saveFileData(fileUpload: FileUpload): void {
-    this.db.list(this.basePath).push(fileUpload);
+     //this.db.list(this.basePath).push(fileUpload);
+    // check if file exists
+    var ref = this.db.database.ref(this.basePath);
+    ref.orderByChild("name").equalTo(fileUpload.name).get().then((result) => {
+      console.log(result);
+    }, (error) => {
+      console.log(error);
+    });
   }
 
   /**
