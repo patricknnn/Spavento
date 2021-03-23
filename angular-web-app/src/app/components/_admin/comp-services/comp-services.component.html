@@ -47,7 +47,7 @@
               <mat-label>Content titel</mat-label>
               <input matInput type="text" id="servicesContentTitle" placeholder="Titel" name="servicesContentTitle"
                 [(ngModel)]="services.title" #servicesContentTitleInput="ngModel" required>
-              <mat-error [hidden]="servicesContentTitleInput.valid || servicesContentTitleInput.pristine">
+              <mat-error *ngIf="servicesContentTitleInput.invalid">
                 Titel is verplicht
               </mat-error>
             </mat-form-field>
@@ -58,7 +58,7 @@
               <input matInput type="text" id="servicesContentSubTitle" placeholder="Subtitel"
                 name="servicesContentSubTitle" [(ngModel)]="services.subTitle" #servicesContentSubTitleInput="ngModel"
                 required>
-              <mat-error [hidden]="servicesContentSubTitleInput.valid || servicesContentSubTitleInput.pristine">
+              <mat-error *ngIf="servicesContentSubTitleInput.invalid">
                 Subtitel is verplicht
               </mat-error>
             </mat-form-field>
@@ -69,7 +69,7 @@
               <textarea rows="1" matInput type="text" id="servicesContentText" placeholder="Text"
                 name="servicesContentText" [(ngModel)]="services.text" #servicesContentTextInput="ngModel"
                 required> </textarea>
-              <mat-error [hidden]="servicesContentTextInput.valid || servicesContentTextInput.pristine">
+              <mat-error *ngIf="servicesContentTextInput.invalid">
                 Text is verplicht
               </mat-error>
             </mat-form-field>
@@ -82,7 +82,7 @@
                 <mat-label>Card titel</mat-label>
                 <input matInput type="text" id="servicesCard0Title" placeholder="Titel" name="servicesCard0Title"
                   [(ngModel)]="services.services[0].title" #servicesCard0TitleInput="ngModel" required>
-                <mat-error [hidden]="servicesCard0TitleInput.valid || servicesCard0TitleInput.pristine">
+                <mat-error *ngIf="servicesCard0TitleInput.invalid">
                   Titel is verplicht
                 </mat-error>
               </mat-form-field>
@@ -92,7 +92,7 @@
                 <mat-label>Card icon</mat-label>
                 <input matInput type="text" id="card0Icon" placeholder="Icon" name="card0Icon"
                   [(ngModel)]="services.services[0].icon" #card0IconInput="ngModel" required>
-                <mat-error [hidden]="card0IconInput.valid || card0IconInput.pristine">
+                <mat-error *ngIf="card0IconInput.invalid">
                   Icon is verplicht
                 </mat-error>
               </mat-form-field>
@@ -111,7 +111,7 @@
                 <mat-label>Card titel</mat-label>
                 <input matInput type="text" id="servicesCard1Title" placeholder="Titel" name="servicesCard1Title"
                   [(ngModel)]="services.services[1].title" #servicesCard1TitleInput="ngModel" required>
-                <mat-error [hidden]="servicesCard1TitleInput.valid || servicesCard1TitleInput.pristine">
+                <mat-error *ngIf="servicesCard1TitleInput.invalid">
                   Titel is verplicht
                 </mat-error>
               </mat-form-field>
@@ -121,7 +121,7 @@
                 <mat-label>Card icon</mat-label>
                 <input matInput type="text" id="card1Icon" placeholder="Icon" name="card1Icon"
                   [(ngModel)]="services.services[1].icon" #card1IconInput="ngModel" required>
-                <mat-error [hidden]="card1IconInput.valid || card1IconInput.pristine">
+                <mat-error *ngIf="card1IconInput.invalid">
                   Icon is verplicht
                 </mat-error>
               </mat-form-field>
@@ -140,7 +140,7 @@
                 <mat-label>Card titel</mat-label>
                 <input matInput type="text" id="servicesCard2Title" placeholder="Titel" name="servicesCard2Title"
                   [(ngModel)]="services.services[2].title" #servicesCard2TitleInput="ngModel" required>
-                <mat-error [hidden]="servicesCard2TitleInput.valid || servicesCard2TitleInput.pristine">
+                <mat-error *ngIf="servicesCard2TitleInput.invalid">
                   Titel is verplicht
                 </mat-error>
               </mat-form-field>
@@ -150,7 +150,7 @@
                 <mat-label>Card icon</mat-label>
                 <input matInput type="text" id="card2Icon" placeholder="Icon" name="card2Icon"
                   [(ngModel)]="services.services[2].icon" #card2IconInput="ngModel" required>
-                <mat-error [hidden]="card2IconInput.valid || card2IconInput.pristine">
+                <mat-error *ngIf="card2IconInput.invalid">
                   Icon is verplicht
                 </mat-error>
               </mat-form-field>

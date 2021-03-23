@@ -37,7 +37,7 @@
               <mat-label>Titel</mat-label>
               <input matInput id="title" placeholder="Titel" name="title" [(ngModel)]="newsItem.title"
                 [disabled]="formDisabled" #title="ngModel" required />
-              <mat-error [hidden]="title.valid || title.pristine">
+              <mat-error *ngIf="titleinvalid">
                 Titel is <strong>verplicht</strong>
               </mat-error>
             </mat-form-field>
@@ -46,7 +46,7 @@
               <mat-label>Auteur</mat-label>
               <input matInput id="author" placeholder="Auteur" name="author" [(ngModel)]="newsItem.author"
                 [disabled]="formDisabled" #author="ngModel" required />
-              <mat-error [hidden]="author.valid || author.pristine">
+              <mat-error *ngIf="author.invalid">
                 Auteur is <strong>verplicht</strong>
               </mat-error>
             </mat-form-field>
@@ -61,7 +61,7 @@
                   {{ category }}
                 </mat-option>
               </mat-select>
-              <mat-error [hidden]="category.valid || category.pristine">
+              <mat-error *ngIf="category.invalid">
                 Categorie is <strong>verplicht</strong>
               </mat-error>
             </mat-form-field>

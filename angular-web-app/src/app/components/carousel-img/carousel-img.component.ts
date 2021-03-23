@@ -8,6 +8,7 @@ import { ModalService } from 'src/app/services/modal.service';
 })
 export class CarouselImgComponent implements OnInit {
   @Input() images: string[];
+  @Input() elevation: string;
   modalImage: string;
 
   constructor(

@@ -4,7 +4,7 @@ import { FooterContent } from 'src/app/models/footercontent';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss'],
+  styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnChanges {
   @Input() footerContent: FooterContent;
@@ -16,7 +16,6 @@ export class FooterComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     // footer on resize
     window.onresize = this.siteFooter;
-
     // init footer
     setTimeout(this.siteFooter, 1500);
   }

@@ -24,7 +24,7 @@
               <mat-label>Titel</mat-label>
               <input matInput type="text" id="title" placeholder="Titel" name="title" [(ngModel)]="navContent.brandName"
                 #navTitle="ngModel" required>
-              <mat-error [hidden]="navTitle.valid || navTitle.pristine">
+              <mat-error *ngIf="navTitle.invalid">
                 Titel is verplicht
               </mat-error>
             </mat-form-field>
@@ -36,7 +36,7 @@
               <mat-label>Logo</mat-label>
               <input matInput type="text" id="logo" placeholder="Logo" name="logo" [(ngModel)]="navContent.brandImage"
                 #navLogo="ngModel" disabled>
-              <mat-error [hidden]="navLogo.valid || navLogo.pristine">
+              <mat-error *ngIf="navLogo.invalid">
                 Logo is verplicht
               </mat-error>
             </mat-form-field>

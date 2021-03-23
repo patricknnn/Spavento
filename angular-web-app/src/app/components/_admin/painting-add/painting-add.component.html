@@ -36,7 +36,7 @@
               <mat-label>Titel</mat-label>
               <input matInput id="title" placeholder="Titel" name="title" [(ngModel)]="painting.title"
                 [disabled]="formDisabled" #title="ngModel" required />
-              <mat-error [hidden]="title.valid || title.pristine">
+              <mat-error *ngIf="title.invalid">
                 Titel is <strong>verplicht</strong>
               </mat-error>
             </mat-form-field>
@@ -45,7 +45,7 @@
               <mat-label>Kunstenaar</mat-label>
               <input matInput id="artist" placeholder="Kunstenaar" name="artist" [(ngModel)]="painting.artist"
                 [disabled]="formDisabled" #artist="ngModel" required />
-              <mat-error [hidden]="artist.valid || artist.pristine">
+              <mat-error *ngIf="artist.invalid">
                 Kunstenaar is <strong>verplicht</strong>
               </mat-error>
             </mat-form-field>
@@ -61,7 +61,7 @@
                   {{ paint }}
                 </mat-option>
               </mat-select>
-              <mat-error [hidden]="paint.valid || paint.pristine">
+              <mat-error *ngIf="paint.invalid">
                 Verf is <strong>verplicht</strong>
               </mat-error>
             </mat-form-field>
@@ -74,7 +74,7 @@
                   {{ material }}
                 </mat-option>
               </mat-select>
-              <mat-error [hidden]="material.valid || material.pristine">
+              <mat-error *ngIf="material.invalid">
                 Materiaal is <strong>verplicht</strong>
               </mat-error>
             </mat-form-field>
@@ -90,7 +90,7 @@
                   {{ category }}
                 </mat-option>
               </mat-select>
-              <mat-error [hidden]="category.valid || category.pristine">
+              <mat-error *ngIf="category.invalid">
                 Categorie is <strong>verplicht</strong>
               </mat-error>
             </mat-form-field>
@@ -103,7 +103,7 @@
                   {{ state }}
                 </mat-option>
               </mat-select>
-              <mat-error [hidden]="state.valid || state.pristine">
+              <mat-error *ngIf="state.invalid">
                 Status is <strong>verplicht</strong>
               </mat-error>
             </mat-form-field>
@@ -118,13 +118,13 @@
             </mat-form-field>
             <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
               class="form-field col-12 col-md-3">
-              <mat-label>Lengte</mat-label>
+              <mat-label>Lengte (cm)</mat-label>
               <input matInput id="length" placeholder="Lengte" name="length" [(ngModel)]="painting.length"
                 [disabled]="formDisabled" #length="ngModel" />
             </mat-form-field>
             <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
               class="form-field col-12 col-md-3">
-              <mat-label>Breedte</mat-label>
+              <mat-label>Breedte (cm)</mat-label>
               <input matInput id="width" placeholder="Breedte" name="width" [(ngModel)]="painting.width"
                 [disabled]="formDisabled" #width="ngModel" />
             </mat-form-field>

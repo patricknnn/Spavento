@@ -29,7 +29,7 @@
               <mat-label>Content titel</mat-label>
               <input matInput type="text" id="galleryContentTitle" placeholder="Titel" name="galleryContentTitle"
                 [(ngModel)]="galleryContent.title" #galleryContentTitleInput="ngModel" required>
-              <mat-error [hidden]="galleryContentTitleInput.valid || galleryContentTitleInput.pristine">
+              <mat-error *ngIf="galleryContentTitleInput.invalid">
                 Titel is verplicht
               </mat-error>
             </mat-form-field>
@@ -40,7 +40,7 @@
               <input matInput type="text" id="galleryContentSubTitle" placeholder="Subtitel"
                 name="galleryContentSubTitle" [(ngModel)]="galleryContent.subTitle"
                 #galleryContentSubTitleInput="ngModel" required>
-              <mat-error [hidden]="galleryContentSubTitleInput.valid || galleryContentSubTitleInput.pristine">
+              <mat-error *ngIf="galleryContentSubTitleInput.invalid">
                 Subtitel is verplicht
               </mat-error>
             </mat-form-field>
@@ -51,7 +51,7 @@
               <textarea rows="1" matInput type="text" id="galleryContentText" placeholder="Text"
                 name="galleryContentText" [(ngModel)]="galleryContent.text" #galleryContentTextInput="ngModel"
                 required> </textarea>
-              <mat-error [hidden]="galleryContentTextInput.valid || galleryContentTextInput.pristine">
+              <mat-error *ngIf="galleryContentTextInput.invalid">
                 Text is verplicht
               </mat-error>
             </mat-form-field>

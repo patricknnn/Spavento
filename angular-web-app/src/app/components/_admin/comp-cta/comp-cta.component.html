@@ -44,7 +44,7 @@
               <mat-label>Content titel</mat-label>
               <input matInput type="text" id="ctaContentTitle" placeholder="Titel" name="ctaContentTitle"
                 [(ngModel)]="cta.title" #ctaContentTitleInput="ngModel" required>
-              <mat-error [hidden]="ctaContentTitleInput.valid || ctaContentTitleInput.pristine">
+              <mat-error *ngIf="ctaContentTitleInput.invalid">
                 Titel is verplicht
               </mat-error>
             </mat-form-field>
@@ -52,7 +52,7 @@
               <mat-label>Content subtitel</mat-label>
               <input matInput type="text" id="ctaContentSubTitle" placeholder="Subtitel" name="ctaContentSubTitle"
                 [(ngModel)]="cta.subTitle" #ctaContentSubTitleInput="ngModel" required>
-              <mat-error [hidden]="ctaContentSubTitleInput.valid || ctaContentSubTitleInput.pristine">
+              <mat-error *ngIf="ctaContentSubTitleInput.invalid">
                 Subtitel is verplicht
               </mat-error>
             </mat-form-field>
@@ -83,14 +83,14 @@
               <mat-label>Knop label</mat-label>
               <input matInput type="text" id="ctaContentBtnLabel" placeholder="Label" name="ctaContentBtnLabel"
                 [(ngModel)]="cta.btnText" #ctaContentBtnLabelInput="ngModel" required>
-              <mat-error [hidden]="ctaContentBtnLabelInput.valid || ctaContentBtnLabelInput.pristine">Label is verplicht
+              <mat-error *ngIf="ctaContentBtnLabelInput.invalid">Label is verplicht
               </mat-error>
             </mat-form-field>
             <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-xs-12 col-sm-6">
               <mat-label>Knop link</mat-label>
               <input matInput type="text" id="ctaContentBtnLink" placeholder="Link" name="ctaContentBtnLink"
                 [(ngModel)]="cta.btnLink" #ctaContentBtnLinkInput="ngModel" required>
-              <mat-error [hidden]="ctaContentBtnLinkInput.valid || ctaContentBtnLinkInput.pristine">
+              <mat-error *ngIf="ctaContentBtnLinkInput.invalid">
                 Link is verplicht
               </mat-error>
             </mat-form-field>

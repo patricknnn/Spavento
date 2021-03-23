@@ -41,7 +41,8 @@ const routes: Routes = [
   { path: 'painting', component: PaintingDetailComponent, data: { animation: 'painting' } },
   { path: 'login', component: LoginComponent, data: { animation: 'login' } },
   // admin
-  { path: 'admin', component: AdminComponent, data: { animation: 'admin' }, children: [
+  {
+    path: 'admin', component: AdminComponent, data: { animation: 'admin' }, children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'general', component: GeneralComponent },
       { path: 'manager-files', component: ManagerFilesComponent },
@@ -61,7 +62,8 @@ const routes: Routes = [
       { path: 'news-overview', component: NewsOverviewComponent },
       { path: 'news-add', component: NewsAddComponent },
       { path: 'news-edit', component: NewsEditComponent },
-  ], canActivate: [AuthGuard]},
+    ], canActivate: [AuthGuard]
+  },
   // page not found
   { path: 'page-not-found', component: PageNotFoundComponent, data: { animation: '404' } },
   // redirects

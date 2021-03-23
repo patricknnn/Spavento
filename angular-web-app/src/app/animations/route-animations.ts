@@ -188,6 +188,33 @@ export const routeAnimations = trigger('routeAnimations', [
   ]),
 
   /**
+    *  * <=> *
+    */
+  transition('adminpage <=> adminpage', [
+    // Before animate
+    positionAbsolute,
+    query(':enter', [
+      style({ opacity: 0 })
+    ], { optional: true }),
+    query(':leave', [
+      style({ opacity: 1 }),
+    ], { optional: true }),
+    // Animate
+    group([
+      // ENTERING PAGE
+      query(':enter', [
+        animate(duration + 'ms ease', style({ opacity: 1 }))
+      ], { optional: true }),
+      // LEAVING PAGE
+      query(':leave', [
+        animate(duration / 2 + 'ms ease', style({ opacity: 0 }))
+      ], { optional: true }),
+    ]),
+    // Animate child
+    query(':enter', animateChild(), { optional: true }),
+  ]),
+
+  /**
   *  * <=> *
   */
   transition('* <=> *', [

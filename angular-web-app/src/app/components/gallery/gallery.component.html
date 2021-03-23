@@ -67,7 +67,7 @@
   </div>
 
   <!-- Gallery -->
-  <div class="row" *ngIf="filteredPaintings">
+  <div class="row" *ngIf="filteredPaintings && filteredPaintings.length">
     <div class="col-12 mt-3 masonry">
       <app-painting-card *ngFor="let painting of filteredPaintings" class="item" @fadeAnimation
         [attr.data-category]="painting.category" [attr.data-paint]="painting.paint"
@@ -81,9 +81,9 @@
 </div>
 
 
-<div class="container" *ngIf="!paintings">
-  <div class="row">
-    <div class="col-12 text-center">
+<div class="container" *ngIf="!filteredPaintings || !filteredPaintings.length">
+  <div class="row mt-5">
+    <div class="col-12 text-center" @fadeAnimation>
       <p>Geen resultaten gevonden.</p>
     </div>
   </div>

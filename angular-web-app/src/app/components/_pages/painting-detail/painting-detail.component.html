@@ -9,10 +9,10 @@
     <section class="page-section bg-light">
       <app-section-title [title]="'Gallerij'" [subTitle]="'Foto'"
         [text]="'Alle beschikbare fotos zijn hier te vinden.'"></app-section-title>
-      <div class="container">
+      <div class="container" *ngIf="generalContent">
         <div class="row mb-5">
           <div class="col-12">
-            <app-carousel-img [images]="painting.images"></app-carousel-img>
+            <app-carousel-img [images]="painting.images" [elevation]="generalContent.cardElevation"></app-carousel-img>
           </div>
         </div>
       </div>

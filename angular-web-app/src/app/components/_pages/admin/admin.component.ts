@@ -7,17 +7,15 @@ import {
 } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { map } from 'rxjs/operators';
-import { fadeAnimation } from 'src/app/animations/fade-animation';
-import { GeneralContent } from 'src/app/models/generalcontent';
-import { ContentService } from 'src/app/services/content.service';
+import { RouterOutlet } from '@angular/router';
+import { routeAnimations } from 'src/app/animations/route-animations-simple';
 import { SidenavService } from 'src/app/services/sidenav.service';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss'],
-  animations: [fadeAnimation],
+  animations: [routeAnimations],
 })
 export class AdminComponent implements OnInit, AfterViewInit, OnDestroy {
   title = 'Material Admin';
@@ -66,7 +64,9 @@ export class AdminComponent implements OnInit, AfterViewInit, OnDestroy {
     );
   }
 
-  public getRouterOutletState(outlet) {
-    return outlet.isActivated ? outlet.activatedRoute : '';
+  prepareRoute(outlet: RouterOutlet): any {
+    return (
+      outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation
+    );
   }
 }

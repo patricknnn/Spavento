@@ -26,7 +26,7 @@
               <mat-label>Standaard titel</mat-label>
               <input matInput type="text" id="defaultTitle" placeholder="Titel" name="defaultTitle"
                 [(ngModel)]="headerContent.defaultTitle" #defaultTitle="ngModel" required>
-              <mat-error [hidden]="defaultTitle.valid || defaultTitle.pristine">
+              <mat-error *ngIf="defaultTitle.invalid">
                 Titel is verplicht
               </mat-error>
             </mat-form-field>
@@ -35,7 +35,7 @@
               <mat-label>Standaard subtitel</mat-label>
               <input matInput type="text" id="defaultSubTitle" placeholder="Subtitel" name="defaultSubTitle"
                 [(ngModel)]="headerContent.defaultSubtitle" #defaultSubTitle="ngModel" required>
-              <mat-error [hidden]="defaultSubTitle.valid || defaultSubTitle.pristine">
+              <mat-error *ngIf="defaultSubTitle.invalid">
                 Subtitel is verplicht
               </mat-error>
             </mat-form-field>
@@ -52,7 +52,7 @@
                   {{ file.name }}
                 </mat-option>
               </mat-select>
-              <mat-error [hidden]="defaultImage.valid || defaultImage.pristine ">
+              <mat-error *ngIf="defaultImage.invalid">
                 Afbeelding is verplicht
               </mat-error>
             </mat-form-field>

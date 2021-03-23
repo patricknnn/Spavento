@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { routeAnimations } from './animations/route-animations';
+import { routeAnimations } from './animations/route-animations-simple';
 import { RouterOutlet } from '@angular/router';
 import { ContentService } from './services/content.service';
 import { NavContent } from './models/navcontent';

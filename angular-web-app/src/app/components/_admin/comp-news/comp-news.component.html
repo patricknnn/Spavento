@@ -29,7 +29,7 @@
               <mat-label>Content titel</mat-label>
               <input matInput type="text" id="newsContentTitle" placeholder="Titel" name="newsContentTitle"
                 [(ngModel)]="newsContent.title" #newsContentTitleInput="ngModel" required>
-              <mat-error [hidden]="newsContentTitleInput.valid || newsContentTitleInput.pristine">
+              <mat-error *ngIf="newsContentTitleInput.invalid">
                 Titel is verplicht
               </mat-error>
             </mat-form-field>
@@ -39,7 +39,7 @@
               <mat-label>Content subtitel</mat-label>
               <input matInput type="text" id="newsContentSubTitle" placeholder="Subtitel" name="newsContentSubTitle"
                 [(ngModel)]="newsContent.subTitle" #newsContentSubTitleInput="ngModel" required>
-              <mat-error [hidden]="newsContentSubTitleInput.valid || newsContentSubTitleInput.pristine">
+              <mat-error *ngIf="newsContentSubTitleInput.invalid">
                 Subtitel is verplicht
               </mat-error>
             </mat-form-field>
@@ -49,7 +49,7 @@
               <mat-label>Content text</mat-label>
               <textarea rows="1" matInput type="text" id="newsContentText" placeholder="Text" name="newsContentText"
                 [(ngModel)]="newsContent.text" #newsContentTextInput="ngModel" required> </textarea>
-              <mat-error [hidden]="newsContentTextInput.valid || newsContentTextInput.pristine">
+              <mat-error *ngIf="newsContentTextInput.invalid">
                 Text is verplicht
               </mat-error>
             </mat-form-field>

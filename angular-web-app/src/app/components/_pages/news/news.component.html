@@ -33,16 +33,16 @@
         </div>
       </div>
       <!-- News items -->
-      <div id="resultsContainer" class="results-container row my-4" *ngIf="filteredNewsItems">
+      <div id="resultsContainer" class="results-container row my-4" *ngIf="filteredNewsItems && filteredNewsItems.length">
         <app-news-card *ngFor="let item of filteredNewsItems" class="col-12 my-3" @fadeAnimation [newsItem]="item"
           [elevation]="generalContent.cardElevation" [attr.data-category]="item.category">
         </app-news-card>
       </div>
     </div>
 
-    <div class="container" *ngIf="!newsItems">
-      <div class="row">
-        <div class="col-12 text-center">
+    <div class="container" *ngIf="!filteredNewsItems || !filteredNewsItems.length">
+      <div class="row mt-5">
+        <div class="col-12 text-center" @fadeAnimation>
           <p>Geen resultaten gevonden.</p>
         </div>
       </div>

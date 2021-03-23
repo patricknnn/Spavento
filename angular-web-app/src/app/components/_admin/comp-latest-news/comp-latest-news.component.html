@@ -50,7 +50,7 @@
               <mat-label>Content titel</mat-label>
               <input matInput type="text" id="latestNewsContentTitle" placeholder="Titel" name="latestNewsContentTitle"
                 [(ngModel)]="latestNews.title" #latestNewsContentTitleInput="ngModel" required>
-              <mat-error [hidden]="latestNewsContentTitleInput.valid || latestNewsContentTitleInput.pristine">
+              <mat-error *ngIf="latestNewsContentTitleInput.invalid">
                 Titel is verplicht
               </mat-error>
             </mat-form-field>
@@ -61,7 +61,7 @@
               <input matInput type="text" id="latestNewsContentSubTitle" placeholder="Subtitel"
                 name="latestNewsContentSubTitle" [(ngModel)]="latestNews.subTitle"
                 #latestNewsContentSubTitleInput="ngModel" required>
-              <mat-error [hidden]="latestNewsContentSubTitleInput.valid || latestNewsContentSubTitleInput.pristine">
+              <mat-error *ngIf="latestNewsContentSubTitleInput.invalid">
                 Subtitel is verplicht
               </mat-error>
             </mat-form-field>
@@ -72,7 +72,7 @@
               <textarea rows="1" matInput type="text" id="latestNewsContentText" placeholder="Text"
                 name="latestNewsContentText" [(ngModel)]="latestNews.text" #latestNewsContentTextInput="ngModel"
                 required> </textarea>
-              <mat-error [hidden]="latestNewsContentTextInput.valid || latestNewsContentTextInput.pristine">
+              <mat-error *ngIf="latestNewsContentTextInput.invalid">
                 Text is verplicht
               </mat-error>
             </mat-form-field>
@@ -82,7 +82,7 @@
               <mat-label>Items</mat-label>
               <input matInput type="number" id="latestNewsContentAmount" name="latestNewsContentAmount" min="1" max="6"
                 [(ngModel)]="latestNews.amount" #latestNewsContentAmountInput="ngModel" required>
-              <mat-error [hidden]="latestNewsContentAmountInput.valid || latestNewsContentAmountInput.pristine">
+              <mat-error *ngIf="latestNewsContentAmountInput.invalid">
                 Aantal is verplicht
               </mat-error>
             </mat-form-field>

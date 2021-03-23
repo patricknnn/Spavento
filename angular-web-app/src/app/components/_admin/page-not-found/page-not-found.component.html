@@ -63,7 +63,7 @@
                     <mat-label>Content titel</mat-label>
                     <input matInput type="text" id="contentTitle" placeholder="Titel" name="contentTitle"
                       [(ngModel)]="pageContent.title" #contentTitleInput="ngModel" required>
-                    <mat-error [hidden]="contentTitleInput.valid || contentTitleInput.pristine">
+                    <mat-error *ngIf="contentTitleInput.invalid">
                       Titel is <strong>verplicht</strong>
                     </mat-error>
                   </mat-form-field>
@@ -73,7 +73,7 @@
                     <mat-label>Content subtitel</mat-label>
                     <input matInput type="text" id="contentSubTitle" placeholder="Subtitel" name="contentSubTitle"
                       [(ngModel)]="pageContent.subTitle" #contentSubTitleInput="ngModel" required>
-                    <mat-error [hidden]="contentSubTitleInput.valid || contentSubTitleInput.pristine">
+                    <mat-error *ngIf="contentSubTitleInput.invalid">
                       Subtitel is <strong>verplicht</strong>
                     </mat-error>
                   </mat-form-field>
@@ -83,7 +83,7 @@
                     <mat-label>Content text</mat-label>
                     <textarea rows="1" matInput type="text" id="contentText" placeholder="Text" name="contentText"
                       [(ngModel)]="pageContent.text" #contentTextInput="ngModel" required> </textarea>
-                    <mat-error [hidden]="contentTextInput.valid || contentTextInput.pristine">
+                    <mat-error *ngIf="contentTextInput.invalid">
                       Text is <strong>verplicht</strong>
                     </mat-error>
                   </mat-form-field>
@@ -95,7 +95,7 @@
                     <mat-label>Vorige knop label</mat-label>
                     <input matInput type="text" id="backBtnLabel" placeholder="Label" name="backBtnLabel"
                       [(ngModel)]="pageContent.btnBackText" #backBtnLabelInput="ngModel" required>
-                    <mat-error [hidden]="backBtnLabelInput.valid || backBtnLabelInput.pristine">
+                    <mat-error *ngIf="backBtnLabelInput.invalid">
                       Label is <strong>verplicht</strong>
                     </mat-error>
                   </mat-form-field>
@@ -105,7 +105,7 @@
                     <mat-label>Home knop label</mat-label>
                     <input matInput type="text" id="homeBtnLabel" placeholder="Label" name="homeBtnLabel"
                       [(ngModel)]="pageContent.btnHomeText" #homeBtnLabelInput="ngModel" required>
-                    <mat-error [hidden]="homeBtnLabelInput.valid || homeBtnLabelInput.pristine">
+                    <mat-error *ngIf="homeBtnLabelInput.invalid">
                       Label is <strong>verplicht</strong>
                     </mat-error>
                   </mat-form-field>

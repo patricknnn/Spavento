@@ -21,7 +21,7 @@
               <mat-label>Titel</mat-label>
               <input matInput type="text" id="defaultTitle" placeholder="Titel" name="defaultTitle"
                 [(ngModel)]="pageTitle.title" #title="ngModel" required>
-              <mat-error [hidden]="title.valid || title.pristine">
+              <mat-error *ngIf="title.invalid">
                 Titel is verplicht
               </mat-error>
             </mat-form-field>
@@ -31,7 +31,7 @@
               <mat-label>Subtitel</mat-label>
               <input matInput type="text" id="defaultSubTitle" placeholder="Subtitel" name="defaultSubTitle"
                 [(ngModel)]="pageTitle.subTitle" #subTitle="ngModel" required>
-              <mat-error [hidden]="subTitle.valid || subTitle.pristine">
+              <mat-error *ngIf="subTitle.invalid">
                 Subtitel is verplicht
               </mat-error>
             </mat-form-field>

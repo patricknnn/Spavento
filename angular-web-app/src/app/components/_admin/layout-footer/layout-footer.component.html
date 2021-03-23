@@ -23,7 +23,7 @@
                 <mat-label>Over titel</mat-label>
                 <input matInput type="text" id="aboutTitle" placeholder="Titel" name="aboutTitle"
                   [(ngModel)]="footerContent.aboutTitle" #aboutTitle="ngModel" required />
-                <mat-error [hidden]="aboutTitle.valid || aboutTitle.pristine">
+                <mat-error *ngIf="aboutTitle.invalid">
                   Titel is verplicht
                 </mat-error>
               </mat-form-field>
@@ -33,7 +33,7 @@
                 <textarea matInput rows="3" [(ngModel)]="footerContent.aboutText" name="aboutText" id="aboutText"
                   type="text" #aboutText="ngModel" required>
                 </textarea>
-                <mat-error [hidden]="aboutText.valid || aboutText.pristine">
+                <mat-error *ngIf="aboutText.invalid">
                   Over tekst is verplicht
                 </mat-error>
               </mat-form-field>
@@ -44,7 +44,7 @@
                 <mat-label>Social media titel</mat-label>
                 <input matInput type="text" id="socialTitle" placeholder="Titel" name="socialTitle"
                   [(ngModel)]="footerContent.socialTitle" #socialTitle="ngModel" required />
-                <mat-error [hidden]="socialTitle.valid || socialTitle.pristine">
+                <mat-error *ngIf="socialTitle.invalid">
                   Social media titel is verplicht
                 </mat-error>
               </mat-form-field>
@@ -54,7 +54,7 @@
                 <textarea matInput rows="3" [(ngModel)]="footerContent.socialText" name="socialText" id="socialText"
                   type="text" #socialText="ngModel" required>
                 </textarea>
-                <mat-error [hidden]="socialText.valid || socialText.pristine">
+                <mat-error *ngIf="socialText.invalid">
                   Social media tekst is verplicht
                 </mat-error>
               </mat-form-field>
@@ -97,7 +97,7 @@
               <mat-label>Footer tekst</mat-label>
               <input matInput type="text" id="footerText" placeholder="Tekst" name="footerText"
                 [(ngModel)]="footerContent.footerText" #footerText="ngModel" required />
-              <mat-error [hidden]="footerText.valid || footerText.pristine">
+              <mat-error *ngIf="footerText.invalid">
                 Footer text is verplicht
               </mat-error>
             </mat-form-field>

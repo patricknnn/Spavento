@@ -52,7 +52,7 @@
               <input matInput type="text" id="contactFormContentTitle" placeholder="Titel"
                 name="contactFormContentTitle" [(ngModel)]="content.title" #contactFormContentTitleInput="ngModel"
                 required>
-              <mat-error [hidden]="contactFormContentTitleInput.valid || contactFormContentTitleInput.pristine">
+              <mat-error *ngIf="contactFormContentTitleInput.invalid">
                 Titel is verplicht
               </mat-error>
             </mat-form-field>
@@ -62,7 +62,7 @@
               <input matInput type="text" id="contactFormContentSubTitle" placeholder="Subtitel"
                 name="contactFormContentSubTitle" [(ngModel)]="content.subTitle"
                 #contactFormContentSubTitleInput="ngModel" required>
-              <mat-error [hidden]="contactFormContentSubTitleInput.valid || contactFormContentSubTitleInput.pristine">
+              <mat-error *ngIf="contactFormContentSubTitleInput.invalid">
                 Subtitel is verplicht
               </mat-error>
             </mat-form-field>
@@ -72,7 +72,7 @@
               <textarea rows="1" matInput type="text" id="contactFormContentText" placeholder="Text"
                 name="contactFormContentText" [(ngModel)]="content.text" #contactFormContentTextInput="ngModel"
                 required> </textarea>
-              <mat-error [hidden]="contactFormContentTextInput.valid || contactFormContentTextInput.pristine">
+              <mat-error *ngIf="contactFormContentTextInput.invalid">
                 Text is verplicht
               </mat-error>
             </mat-form-field>
@@ -85,7 +85,7 @@
                   {{ style }}
                 </mat-option>
               </mat-select>
-              <mat-error [hidden]="contactFormContentFormStyleInput.valid || contactFormContentFormStyleInput.pristine ">
+              <mat-error *ngIf="contactFormContentFormStyleInput.invalid">
                 Form style is verplicht
               </mat-error>
             </mat-form-field>
@@ -98,7 +98,7 @@
                 <mat-option value="accent">Accent</mat-option>
                 <mat-option value="warn">Warn</mat-option>
               </mat-select>
-              <mat-error [hidden]="contactFormContentFormColorInput.valid || contactFormContentFormColorInput.pristine ">
+              <mat-error *ngIf="contactFormContentFormColorInput.invalid">
                 Form kleur is verplicht
               </mat-error>
             </mat-form-field>
