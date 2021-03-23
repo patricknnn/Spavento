@@ -63,9 +63,9 @@
                 <button mat-icon-button color="accent" (click)="setModalItem(item); openModal(modalContent)">
                   <mat-icon>edit</mat-icon>
                 </button>
-                <button mat-icon-button color="primary" (click)="deleteItem(item.id)">
+                <!-- <button mat-icon-button color="primary" (click)="deleteItem(item.id)">
                   <mat-icon>delete</mat-icon>
-                </button>
+                </button> -->
               </td>
             </ng-container>
 
@@ -86,18 +86,38 @@
       </div>
     </div>
   </div>
-
-  <div class="row mb-4">
+  <!-- 
+  <div class="row mb-5">
     <div class="col-12">
       <mat-card class="{{generalContent.cardElevation}}">
         <h4 class="title-underlined">Toevoegen</h4>
         <form (ngSubmit)="onSubmit()" #signUpForm="ngForm">
+
+          <div class="form-group">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="w-100">
+              <mat-label>Naam</mat-label>
+              <input matInput type="text" placeholder="Naam" [(ngModel)]="form.name" name="name" id="name"
+                #nameInput="ngModel" required />
+              <mat-error *ngIf="nameInput.invalid">
+                Naam is <strong>verplicht</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-group">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="w-100">
+              <mat-label>Foto</mat-label>
+              <input matInput type="text" placeholder="Foto" [(ngModel)]="form.photo" name="photo" id="photo"
+                #photoInput="ngModel" />
+            </mat-form-field>
+          </div>
+
           <div class="form-group">
             <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="w-100">
               <mat-label>E-mail</mat-label>
-              <input matInput type="text" placeholder="info@spavento.com" [(ngModel)]="form.email" name="email"
-                id="email" #emailInput="ngModel" required />
-              <mat-error [hidden]="emailInput.valid || emailInput.pristine">
+              <input matInput type="text" placeholder="info@spavento.com" [(ngModel)]="form.email" name="usermmail"
+                id="usermmail" #usermmailInput="ngModel" required />
+              <mat-error *ngIf="usermmailInput.invalid">
                 Email is <strong>verplicht</strong>
               </mat-error>
             </mat-form-field>
@@ -106,9 +126,9 @@
           <div class="form-group">
             <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="w-100">
               <mat-label>Wachtwoord</mat-label>
-              <input matInput type="password" placeholder="Wachtwoord" [(ngModel)]="form.password" name="password"
-                id="password" #passwordInput="ngModel" required />
-              <mat-error [hidden]="passwordInput.valid || passwordInput.pristine">
+              <input matInput type="password" placeholder="Wachtwoord" [(ngModel)]="form.password" name="userpassword"
+                id="userpassword" #userpasswordInput="ngModel" required />
+              <mat-error *ngIf="userpasswordInput.invalid">
                 Wachtwoord is <strong>verplicht</strong>
               </mat-error>
             </mat-form-field>
@@ -126,14 +146,14 @@
           </div>
 
           <button mat-raised-button color="accent" type="submit"
-            [disabled]="!signUpForm.form.valid || passwordInput.value != confirmPasswordInput.value">
+            [disabled]="!signUpForm.form.valid || userpasswordInput.value != confirmPasswordInput.value">
             Toevoegen
           </button>
 
         </form>
       </mat-card>
     </div>
-  </div>
+  </div> -->
 </div>
 
 
@@ -150,13 +170,26 @@
       </div>
 
       <form #editUserForm="ngForm" style="width: 400px;">
+
         <div class="form-group row">
-          <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="col-12">
-            <mat-label>Foto</mat-label>
-            <input matInput type="text" [(ngModel)]="modalUser.photoURL" name="photoURL" id="photoURL"
-              #photoURLInput="ngModel" />
-          </mat-form-field>
+          <div class="col-6">
+            <img [src]="modalUser.photoURL" class="img-thumbnail" style="height: 180px;">
+          </div>
+
+          <div class="col-6">
+            <ngx-dropzone [multiple]="false" (change)="onFileSelect($event)" class="mat-dropzone">
+              <ngx-dropzone-label class="d-flex align-items-center">
+                <mat-icon class="mr-2">upload</mat-icon>
+                Kies afbeelding
+              </ngx-dropzone-label>
+              <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let file of selectedFiles"
+                [file]="file" [removable]="true" (removed)="onFileRemove(file)">
+                <ngx-dropzone-label>{{ file.name }} ({{ file.type }})</ngx-dropzone-label>
+              </ngx-dropzone-image-preview>
+            </ngx-dropzone>
+          </div>
         </div>
+
         <div class="form-group row">
           <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="col-12">
             <mat-label>Naam</mat-label>
@@ -168,7 +201,7 @@
           <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="col-12">
             <mat-label>Email</mat-label>
             <input matInput type="text" [(ngModel)]="modalUser.email" name="userEmail" id="userEmail"
-              #userEmailInput="ngModel" />
+              #userEmailInput="ngModel" disabled />
           </mat-form-field>
         </div>
       </form>
@@ -176,7 +209,7 @@
   </mat-dialog-content>
 
   <mat-dialog-actions align="end">
-    <button mat-raised-button color="accent" [disabled]="editUserForm.form.pristine"
+    <button mat-raised-button color="accent" [disabled]="editUserForm.form.pristine && !selectedFiles.length"
       (click)="updateUser()">Opslaan</button>
     <button mat-button mat-dialog-close cdkFocusInitial>Sluit</button>
   </mat-dialog-actions>

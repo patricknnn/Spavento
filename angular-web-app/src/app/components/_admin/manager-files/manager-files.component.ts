@@ -3,10 +3,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { map } from 'rxjs/operators';
-import { FileUpload } from 'src/app/models/fileupload';
+import { File } from 'src/app/models/file';
 import { GeneralContent } from 'src/app/models/generalcontent';
 import { ContentService } from 'src/app/services/content.service';
-import { FileUploadService } from 'src/app/services/file-upload.service';
+import { FileService } from 'src/app/services/file.service';
 import { SwalService } from 'src/app/services/swal.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
@@ -23,7 +23,7 @@ export class ManagerFilesComponent implements AfterViewInit {
     'Hier is een overzicht van alle bestanden op de server te vinden. Om bestanden toe te voegen kan je gebruik maken van het upload formulier.';
   fileUploads: any[];
   selectedFiles: File[] = [];
-  currentFileUpload: FileUpload;
+  currentFileUpload: File;
   displayedColumns: string[] = ['thumbnail', 'name', 'created', 'options'];
   percentage = 0;
   uploadCount = 0;
@@ -31,13 +31,13 @@ export class ManagerFilesComponent implements AfterViewInit {
   formColor = "accent";
   resultsLength = 0;
   isLoadingResults = true;
-  dataSource: MatTableDataSource<FileUpload>;
+  dataSource: MatTableDataSource<File>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
-    private uploadService: FileUploadService,
+    private uploadService: FileService,
     private contentService: ContentService,
     private swalService: SwalService
   ) {
@@ -54,12 +54,12 @@ export class ManagerFilesComponent implements AfterViewInit {
 
   retrieveFiles(): void {
     this.uploadService
-      .getFiles(99)
+      .getAll()
       .snapshotChanges()
       .pipe(
         map((changes) =>
           // store the key
-          changes.map((c) => ({ key: c.payload.key, ...c.payload.val() }))
+          changes.map((c) => ({ key: c.payload.doc.id, ...c.payload.doc.data() }))
         )
       )
       .subscribe((data) => {
@@ -83,7 +83,7 @@ export class ManagerFilesComponent implements AfterViewInit {
   }
 
   initTable(data): void {
-    this.dataSource = new MatTableDataSource<FileUpload>(data);
+    this.dataSource = new MatTableDataSource<File>(data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
@@ -120,9 +120,18 @@ export class ManagerFilesComponent implements AfterViewInit {
 
   uploadFiles(): void {
     if (this.selectedFiles.length) {
-      this.selectedFiles.forEach((file) => {
-        this.currentFileUpload = new FileUpload(file);
-        this.uploadService.pushFileToStorageAndReturnPercentage(this.currentFileUpload).subscribe(
+      this.selectedFiles.forEach((sFile) => {
+        let file: File = {
+          id: "",
+          name: "",
+          url: "",
+          timestampCreated: 0,
+          timestampUpdated: 0,
+          file: sFile,
+        };
+        this.currentFileUpload = file;
+        const { downloadUrl, uploadProgress } = this.uploadService.pushFileToStorageAndReturnMetadata(file);
+        uploadProgress.subscribe(
           (percentage) => {
             percentage == 100
               ? this.onUploadComplete()
@@ -147,10 +156,10 @@ export class ManagerFilesComponent implements AfterViewInit {
     }
   }
 
-  deleteFileUpload(fileUpload: FileUpload): void {
+  deleteFileUpload(fileUpload: File): void {
     this.swalService.promptSwal("Dit kan niet worden terug gedraaid").then((result) => {
       if (result.value) {
-        this.uploadService.deleteFile(fileUpload);
+        this.uploadService.delete(fileUpload.id);
         this.swalService.successSwal("Bestand verwijderd");
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         this.swalService.cancelSwal("Bestand niet verwijderd");

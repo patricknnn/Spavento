@@ -37,7 +37,6 @@ import { PaintingOverviewComponent } from './components/_admin/painting-overview
 import { PaintingAddComponent } from './components/_admin/painting-add/painting-add.component';
 import { AdminComponent } from './components/_pages/admin/admin.component';
 import { SidenavComponent } from './components/_admin/sidenav/sidenav.component';
-import { ToolbarComponent } from './components/_admin/toolbar/toolbar.component';
 import { PageHomeComponent } from './components/_admin/page-home/page-home.component';
 import { PagePortfolioComponent } from './components/_admin/page-portfolio/page-portfolio.component';
 import { PageNewsComponent } from './components/_admin/page-news/page-news.component';
@@ -74,6 +73,7 @@ import { LoadingComponent } from './components/_admin/loading/loading.component'
 import { ManagerMessagesComponent } from './components/_admin/manager-messages/manager-messages.component';
 import { NgxEditorModule } from 'ngx-editor';
 import { GeneralComponent } from './components/_admin/general/general.component';
+import { ToolbarComponent } from './components/_admin/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [

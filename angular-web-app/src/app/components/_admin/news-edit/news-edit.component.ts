@@ -2,11 +2,11 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Editor } from 'ngx-editor';
 import { map } from 'rxjs/operators';
-import { FileUpload } from 'src/app/models/fileupload';
+import { File } from 'src/app/models/file';
 import { GeneralContent } from 'src/app/models/generalcontent';
 import { NewsItem } from 'src/app/models/newsitem';
 import { ContentService } from 'src/app/services/content.service';
-import { FileUploadService } from 'src/app/services/file-upload.service';
+import { FileService } from 'src/app/services/file.service';
 import { NewsService } from 'src/app/services/news.service';
 import { SwalService } from 'src/app/services/swal.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
@@ -35,7 +35,7 @@ export class NewsEditComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private newsService: NewsService,
-    private uploadService: FileUploadService,
+    private uploadService: FileService,
     private contentService: ContentService,
     private swalService: SwalService
   ) { }
@@ -95,14 +95,24 @@ export class NewsEditComponent implements OnInit, OnDestroy {
     this.swalService.loadingSwal("Nieuws item opslaan");
     // Upload files
     if (this.selectedFiles.length > 0) {
-      const { downloadUrl, uploadProgress } = this.uploadService.pushFileToStorageAndReturnMetadata(new FileUpload(this.selectedFiles[0]));
+      let file: File = {
+        id: "",
+        name: "",
+        url: "",
+        timestampCreated: 0,
+        timestampUpdated: 0,
+        file: this.selectedFiles[0],
+      };
+      const { downloadUrl, uploadProgress } = this.uploadService.pushFileToStorageAndReturnMetadata(file);
       downloadUrl.subscribe((downloadUrl) => {
         // add url to painting
         this.newsItem.image = downloadUrl;
         this.updateItem();
       });
     } else {
-      this.newsItem.image = "../../../../assets/img/material-bg.jpg";
+      if (!this.newsItem.image) {
+        this.newsItem.image = "../../../../assets/img/material-bg.jpg";
+      }
       this.updateItem();
     }
   }

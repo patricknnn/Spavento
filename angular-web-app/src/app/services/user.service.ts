@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { User } from '../models/user';
-import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +14,7 @@ export class UserService {
    * @param db Angular Firestore
    */
   constructor(
-    private db: AngularFirestore,
-    private authService: AuthService
+    private db: AngularFirestore
   ) {
     this.usersRef = db.collection(this.dbPath);
   }
@@ -25,12 +23,7 @@ export class UserService {
     return this.usersRef;
   }
 
-  public getAllActive(): AngularFirestoreCollection<User> {
-    return this.db.collection(this.dbPath, ref => ref
-      .where('active', '==', true));
-  }
-
-  public create(item: User): any {
+  public create(item: User): Promise<any> {
     return this.usersRef.add({ ...item });
   }
 

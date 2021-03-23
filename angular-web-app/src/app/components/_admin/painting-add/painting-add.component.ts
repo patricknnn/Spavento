@@ -3,11 +3,11 @@ import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { Editor } from 'ngx-editor';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { FileUpload } from 'src/app/models/fileupload';
+import { File } from 'src/app/models/file';
 import { GeneralContent } from 'src/app/models/generalcontent';
 import { Painting } from 'src/app/models/painting';
 import { ContentService } from 'src/app/services/content.service';
-import { FileUploadService } from 'src/app/services/file-upload.service';
+import { FileService } from 'src/app/services/file.service';
 import { PaintingService } from 'src/app/services/painting.service';
 import { SwalService } from 'src/app/services/swal.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
@@ -50,7 +50,7 @@ export class PaintingAddComponent implements OnInit, OnDestroy {
   constructor(
     private paintingService: PaintingService,
     private contentService: ContentService,
-    private uploadService: FileUploadService,
+    private uploadService: FileService,
     private swalService: SwalService
   ) { }
 
@@ -92,8 +92,16 @@ export class PaintingAddComponent implements OnInit, OnDestroy {
     this.swalService.loadingSwal("Afbeeldingen opslaan");
     // Upload files
     if (this.selectedFiles.length) {
-      this.selectedFiles.forEach((file) => {
-        const { downloadUrl, uploadProgress } = this.uploadService.pushFileToStorageAndReturnMetadata(new FileUpload(file));
+      this.selectedFiles.forEach((sFile) => {
+        let file: File = {
+          id: "",
+          name: "",
+          url: "",
+          timestampCreated: 0,
+          timestampUpdated: 0,
+          file: sFile,
+        };
+        const { downloadUrl, uploadProgress } = this.uploadService.pushFileToStorageAndReturnMetadata(file);
         this.percentage = uploadProgress;
         downloadUrl.subscribe((downloadUrl) => {
           // add url to painting

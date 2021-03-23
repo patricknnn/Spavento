@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Editor } from 'ngx-editor';
 import { map } from 'rxjs/operators';
-import { FileUpload } from 'src/app/models/fileupload';
+import { File } from 'src/app/models/file';
 import { GeneralContent } from 'src/app/models/generalcontent';
 import { NewsItem } from 'src/app/models/newsitem';
 import { ContentService } from 'src/app/services/content.service';
-import { FileUploadService } from 'src/app/services/file-upload.service';
+import { FileService } from 'src/app/services/file.service';
 import { NewsService } from 'src/app/services/news.service';
 import { SwalService } from 'src/app/services/swal.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
@@ -33,7 +33,7 @@ export class NewsAddComponent implements OnInit, OnDestroy {
    */
   constructor(
     private newsService: NewsService,
-    private uploadService: FileUploadService,
+    private fileService: FileService,
     private contentService: ContentService,
     private swalService: SwalService
   ) { }
@@ -77,7 +77,15 @@ export class NewsAddComponent implements OnInit, OnDestroy {
     this.swalService.loadingSwal("Nieuws item opslaan");
     // Upload files
     if (this.selectedFiles.length > 0) {
-      const { downloadUrl, uploadProgress } = this.uploadService.pushFileToStorageAndReturnMetadata(new FileUpload(this.selectedFiles[0]));
+      let file: File = {
+        id: "",
+        name: "",
+        url: "",
+        timestampCreated: 0,
+        timestampUpdated: 0,
+        file: this.selectedFiles[0],
+      };
+      const { downloadUrl, uploadProgress } = this.fileService.pushFileToStorageAndReturnMetadata(file);
       downloadUrl.subscribe((downloadUrl) => {
         // add url to painting
         this.newsItem.image = downloadUrl;

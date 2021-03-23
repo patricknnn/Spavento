@@ -3,11 +3,13 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { map } from 'rxjs/operators';
+import { File } from 'src/app/models/file';
 import { GeneralContent } from 'src/app/models/generalcontent';
 import { LoginForm } from 'src/app/models/loginform';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { ContentService } from 'src/app/services/content.service';
+import { FileService } from 'src/app/services/file.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { SwalService } from 'src/app/services/swal.service';
 import { UserService } from 'src/app/services/user.service';
@@ -27,12 +29,14 @@ export class ManagerUsersComponent implements OnInit {
   formStyle = "standard";
   formColor = "accent";
   form: LoginForm;
-  displayedColumns: string[] = ['photoURL', 'displayName', 'email', 'emailVerified', 'options'];
+  //displayedColumns: string[] = ['photoURL', 'displayName', 'email', 'emailVerified', 'options'];
+  displayedColumns: string[] = ['photoURL', 'displayName', 'email', 'options'];
   resultsLength = 0;
   isLoadingResults = true;
   users: User[];
   modalUser: User;
   dataSource: MatTableDataSource<User>;
+  selectedFiles: File[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -42,6 +46,7 @@ export class ManagerUsersComponent implements OnInit {
     private swalService: SwalService,
     private authService: AuthService,
     private userService: UserService,
+    private fileService: FileService,
     private contentService: ContentService,
     private modalService: ModalService
   ) {
@@ -53,24 +58,47 @@ export class ManagerUsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new LoginForm();
+    this.selectedFiles = [];
     this.retrieveData();
     this.retrieveGeneralContent();
   }
 
   onSubmit() {
-    this.swalService.loadingSwal("toevoegen");
-    this.authService.signUp(this.form.email, this.form.password).then(() => {
-      this.swalService.successSwal("toegevoegd");
-    });
+    // this.swalService.loadingSwal("toevoegen");
+    // this.authService.signUp(this.form.email, this.form.password, this.form.name, this.form.photo).then(() => {
+    //   this.swalService.successSwal("toegevoegd");
+    // });
   }
 
   updateUser(): void {
     this.swalService.loadingSwal("opslaan");
-    this.authService.updateProfile(this.modalUser.displayName, this.modalUser.photoURL).then(() => {
-      this.swalService.successSwal("Gebruiker bijgewerkt");
-    }).catch((error) => {
-      this.swalService.errorSwal(error.message);
-    });
+    if (this.selectedFiles.length > 0) {
+      let file: File = {
+        id: "",
+        name: "",
+        url: "",
+        timestampCreated: 0,
+        timestampUpdated: 0,
+        file: this.selectedFiles[0],
+      };
+      const { downloadUrl, uploadProgress } = this.fileService.pushFileToStorageAndReturnMetadata(file);
+      downloadUrl.subscribe((downloadUrl) => {
+        this.modalUser.photoURL = downloadUrl;
+        this.authService.updateProfile(this.modalUser.displayName, this.modalUser.photoURL).then(() => {
+          this.swalService.successSwal("Gebruiker bijgewerkt");
+        }).catch((error) => {
+          this.swalService.errorSwal(error.message);
+        });
+      });
+    } else {
+      this.authService.updateProfile(this.modalUser.displayName, this.modalUser.photoURL).then(() => {
+        this.swalService.successSwal("Gebruiker bijgewerkt");
+      }).catch((error) => {
+        this.swalService.errorSwal(error.message);
+      });
+    }
+    this.selectedFiles = [];
+
   }
 
   retrieveData(): void {
@@ -161,6 +189,26 @@ export class ManagerUsersComponent implements OnInit {
   }
 
   /**
+   * Handles file select
+   * @param event File select event
+   */
+  onFileSelect(event): void {
+    if (this.selectedFiles.length) {
+      this.swalService.errorSwal("Maximaal 1 foto toegestaan")
+    } else {
+      this.selectedFiles.push(...event.addedFiles);
+    }
+  }
+
+  /**
+   * Handles file remove
+   * @param event File remove event
+   */
+  onFileRemove(event): void {
+    this.selectedFiles.splice(this.selectedFiles.indexOf(event), 1);
+  }
+
+  /**
    * Clears form of data
    * Asks user for confirmation
    */
@@ -168,6 +216,7 @@ export class ManagerUsersComponent implements OnInit {
     this.swalService.promptSwal("Alle veranderingen zullen worden teruggedraaid").then((result) => {
       if (result.value) {
         this.form = new LoginForm();
+        this.selectedFiles = [];
         this.swalService.successSwal("Veranderingen teruggedraaid");
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         this.swalService.cancelSwal("Veranderingen niet teruggedraaid");

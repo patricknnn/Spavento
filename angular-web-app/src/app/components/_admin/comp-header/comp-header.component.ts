@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { GeneralContent } from 'src/app/models/generalcontent';
 import { PageTitle } from 'src/app/models/pagetitle';
 import { ContentService } from 'src/app/services/content.service';
-import { FileUploadService } from 'src/app/services/file-upload.service';
+import { FileService } from 'src/app/services/file.service';
 import { SwalService } from 'src/app/services/swal.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
@@ -22,10 +22,10 @@ export class CompHeaderComponent implements OnInit {
   fileUploads: any;
   formStyle = "standard";
   formColor = "accent";
-  
+
   constructor(
     private contentService: ContentService,
-    private uploadService: FileUploadService,
+    private uploadService: FileService,
     private swalService: SwalService
   ) { }
 
@@ -58,9 +58,9 @@ export class CompHeaderComponent implements OnInit {
   }
 
   retrieveFiles(): void {
-    this.uploadService.getFiles(99).snapshotChanges().pipe(
+    this.uploadService.getAll().snapshotChanges().pipe(
       map((changes) =>
-        changes.map((c) => ({ key: c.payload.key, ...c.payload.val() }))
+        changes.map((c) => ({ key: c.payload.doc.id, ...c.payload.doc.data() }))
       )
     ).subscribe((data) => {
       this.fileUploads = data;

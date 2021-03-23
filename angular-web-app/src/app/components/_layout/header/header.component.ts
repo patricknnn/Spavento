@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit, OnChanges {
   @Input() typing: boolean;
   @Input() title: string;
   @Input() subTitle: string;
-  @Input() image: string;
+  @Input() image:  string;
   @Input() elevation = "mat-elevation-z8";
   titleDisplay: string;
   headerContent: HeaderContent;

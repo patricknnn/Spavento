@@ -10,8 +10,9 @@
 
 
   <button mat-button *ngIf="authService.userState as user" [matMenuTriggerFor]="profileMenu">
-    <img *ngIf="user.photoURL" [src]="user.photoURL" class="img-fluid img-thumbnail rounded-circle mr-2">
-    {{user.email}}
+    <img *ngIf="user.photoURL" [src]="user.photoURL" class="img-profile img-thumbnail rounded-circle mr-2">
+    <span *ngIf="user.displayName">{{user.displayName}}</span>
+    <span *ngIf="!user.displayName">{{user.email}}</span>
   </button>
 
   <mat-menu #profileMenu="matMenu" xPosition="before">

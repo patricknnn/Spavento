@@ -101,6 +101,10 @@ button::-moz-focus-inner {
   }
 }
 
+.img-profile {
+  max-height: 42px;
+}
+
 /*************************************/
 /**            Masonry              **/
 /*************************************/
@@ -541,7 +545,7 @@ td.mat-cell {
 }
 
 .img-table {
-  max-height: 75px;
+  max-height: 56px;
   width: auto;
   margin: 0.5rem;
 }

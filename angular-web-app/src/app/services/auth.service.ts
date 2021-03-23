@@ -4,6 +4,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { Router } from "@angular/router";
 import { User } from '../models/user';
 import { SwalService } from './swal.service';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class AuthService {
     public afAuth: AngularFireAuth,
     public router: Router,
     public ngZone: NgZone,
+    private userService: UserService,
     private swalService: SwalService
   ) {
     this.afAuth.authState.subscribe(user => {
@@ -48,23 +50,42 @@ export class AuthService {
     });
   }
 
-  signUp(email, password): Promise<void> {
+  signUp(email, password, name, photo): Promise<void> {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        this.sendVerificationMail();
-        this.setUserData(result.user);
+        let data: User = {
+          uid: result.user.uid,
+          email: result.user.email,
+          emailVerified: result.user.emailVerified,
+          displayName: name,
+          photoURL: photo,
+        };
+        console.log(data);
+        this.userService.create(data);
+        result.user.updateProfile({ displayName: name, photoURL: photo });
+        result.user.sendEmailVerification().then(() => { this.swalService.successSwal("Verificatie email verstuurd") });
       }).catch((error) => {
         this.swalService.errorSwal(error.message);
       })
   }
 
-  sendVerificationMail(): Promise<void> {
-    return this.afAuth.currentUser.then((u) => {
-      u.sendEmailVerification();
-    }).then(() => {
-      this.swalService.successSwal("Verificatie email verstuurd");
-    });
-  }
+  updateProfile(displayName: string, photoURL: string): Promise<any> {
+    return this.afAuth.currentUser.then((user) => {
+      user.updateProfile({
+        displayName: displayName,
+        photoURL: photoURL
+      }).then(() => {
+        let data: User = {
+          uid: user.uid,
+          email: user.email,
+          emailVerified: user.emailVerified,
+          displayName: displayName,
+          photoURL: photoURL,
+        };
+        this.userService.update(user.uid, data);
+      });
+    })
+  };
 
   forgotPassword(passwordResetEmail): Promise<void> {
     return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
@@ -95,13 +116,11 @@ export class AuthService {
     });
   }
 
-  updateProfile(displayName: string, photoURL: string): Promise<any> {
-    return this.afAuth.currentUser.then((user) => {
-      user.updateProfile({
-        displayName: displayName,
-        photoURL: photoURL
-      })
-    })
-  };
+  createUser(user: User): Promise<any> {
+    return this.userService.create(user);
+  }
 
+  updateUser(user: User): Promise<any> {
+    return this.userService.update(user.uid, user);
+  }
 }

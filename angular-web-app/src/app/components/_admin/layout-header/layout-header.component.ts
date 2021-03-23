@@ -1,10 +1,10 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { GeneralContent } from 'src/app/models/generalcontent';
 import { HeaderContent } from 'src/app/models/headercontent';
 import { ContentService } from 'src/app/services/content.service';
-import { FileUploadService } from 'src/app/services/file-upload.service';
+import { FileService } from 'src/app/services/file.service';
 import { SwalService } from 'src/app/services/swal.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
@@ -26,7 +26,7 @@ export class LayoutHeaderComponent implements OnInit {
   formColor = "accent";
 
   constructor(
-    private uploadService: FileUploadService,
+    private uploadService: FileService,
     private contentService: ContentService,
     private swalService: SwalService
   ) { }
@@ -77,9 +77,9 @@ export class LayoutHeaderComponent implements OnInit {
   }
 
   retrieveFiles(): void {
-    this.uploadService.getFiles(99).snapshotChanges().pipe(
+    this.uploadService.getAll().snapshotChanges().pipe(
       map((changes) =>
-        changes.map((c) => ({ key: c.payload.key, ...c.payload.val() }))
+        changes.map((c) => ({ key: c.payload.doc.id, ...c.payload.doc.data() }))
       )
     ).subscribe((data) => {
       this.fileUploads = data;
