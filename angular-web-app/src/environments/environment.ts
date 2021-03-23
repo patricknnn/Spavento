@@ -5,14 +5,13 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyBo82980lqYV0sgOv77ZL5y6LqsIq1C-qc",
-    authDomain: "spavento-firebase.firebaseapp.com",
-    databaseURL: "https://spavento-firebase-default-rtdb.firebaseio.com/",
-    projectId: "spavento-firebase",
-    storageBucket: "spavento-firebase.appspot.com",
-    messagingSenderId: "407199607924",
-    appId: "1:407199607924:web:29f844c8de8c8349bff521",
-    measurementId: "G-9J50F43CDH"
+    apiKey: "AIzaSyAGHKx7WpStf753n2ZDtTA45ENpPtxZjK0",
+    authDomain: "spavento-paintings.firebaseapp.com",
+    projectId: "spavento-paintings",
+    storageBucket: "spavento-paintings.appspot.com",
+    messagingSenderId: "430960074979",
+    appId: "1:430960074979:web:f262252fc1d9887feb25d6",
+    measurementId: "G-12T68LYDV1"
   }
 };
 
