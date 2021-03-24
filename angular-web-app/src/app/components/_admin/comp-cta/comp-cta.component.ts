@@ -18,9 +18,9 @@ export class CompCtaComponent implements OnInit {
   cta: CtaContent;
   ctaHistory: CtaContent[];
   backgrounds = [
-    "../../../../assets/img/material-bg-primary.jpg",
-    "../../../../assets/img/material-bg-light.jpg",
-    "../../../../assets/img/material-bg.jpg",
+    "https://firebasestorage.googleapis.com/v0/b/spavento-paintings.appspot.com/o/files%2Fmaterial-bg-primary.jpg?alt=media&token=989aa550-ca6b-424c-ab82-eb920b50ff35",
+    "https://firebasestorage.googleapis.com/v0/b/spavento-paintings.appspot.com/o/files%2Fmaterial-bg-light.jpg?alt=media&token=dd49351f-dbce-4666-8e77-63dca11caf90",
+    "https://firebasestorage.googleapis.com/v0/b/spavento-paintings.appspot.com/o/files%2Fmaterial-bg.jpg?alt=media&token=0cfedd0b-f345-49a2-868a-f2386ee97f9a",
   ];
   formStyle = "standard";
   formColor = "accent";
