@@ -13,11 +13,31 @@
 
   <div class="row mb-5">
     <div class="col-12">
-      <mat-card class="{{generalContent.cardElevation}}">
-        <h4 class="title-underlined">Instellingen</h4>
 
-        <form (ngSubmit)="onSubmit()" #navigationForm="ngForm">
+      <form (ngSubmit)="onSubmit()" #navigationForm="ngForm">
 
+        <mat-card class="{{generalContent.cardElevation}} mb-4">
+          <h4 class="title-underlined">Afbeelding</h4>
+
+          <div class="form-group row">
+            <div class="col-12 d-flex">
+              <img [src]="navContent.brandImage" class="img-thumbnail mr-2" style="height: 180px;">
+              <ngx-dropzone [multiple]="false" (change)="onFileSelect($event)" class="mat-dropzone flex-grow-1">
+                <ngx-dropzone-label class="d-flex align-items-center">
+                  <mat-icon class="mr-2">upload</mat-icon>
+                  Kies afbeelding
+                </ngx-dropzone-label>
+                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let file of selectedFiles"
+                  [file]="file" [removable]="true" (removed)="onFileRemove(file)">
+                  <ngx-dropzone-label>{{ file.name }} ({{ file.type }})</ngx-dropzone-label>
+                </ngx-dropzone-image-preview>
+              </ngx-dropzone>
+            </div>
+          </div>
+        </mat-card>
+
+        <mat-card class="{{generalContent.cardElevation}} mb-4">
+          <h4 class="title-underlined">Instellingen</h4>
           <div class="form-group row">
             <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
               class="form-field col-12">
@@ -26,18 +46,6 @@
                 #navTitle="ngModel" required>
               <mat-error *ngIf="navTitle.invalid">
                 Titel is verplicht
-              </mat-error>
-            </mat-form-field>
-          </div>
-
-          <div class="form-group row">
-            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-              class="form-field col-12">
-              <mat-label>Logo</mat-label>
-              <input matInput type="text" id="logo" placeholder="Logo" name="logo" [(ngModel)]="navContent.brandImage"
-                #navLogo="ngModel" disabled>
-              <mat-error *ngIf="navLogo.invalid">
-                Logo is verplicht
               </mat-error>
             </mat-form-field>
           </div>
@@ -65,15 +73,16 @@
           </div>
 
           <button mat-flat-button color="accent" type="submit"
-            [disabled]="!navigationForm.form.valid || navigationForm.form.pristine">
+            [disabled]="!navigationForm.form.valid || navigationForm.form.pristine && !selectedFiles.length">
             Opslaan
           </button>
           <button mat-flat-button color="primary" type="button" class="ml-3" [disabled]="navigationForm.form.pristine"
             (click)="resetForm()">
             Reset
           </button>
-        </form>
-      </mat-card>
+
+        </mat-card>
+      </form>
     </div>
   </div>
 </div>

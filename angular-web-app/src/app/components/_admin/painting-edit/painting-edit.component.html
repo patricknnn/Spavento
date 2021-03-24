@@ -157,7 +157,7 @@
           <div class="row mt-3">
             <div class="col-12">
               <button mat-flat-button color="accent" type="submit" class="mr-2"
-                [disabled]="!editPaintingForm.valid || editPaintingForm.form.pristine || (!painting.images.length && !selectedFiles.length )">opslaan</button>
+                [disabled]="!editPaintingForm.valid || editPaintingForm.form.pristine && !selectedFiles.length">opslaan</button>
               <button mat-flat-button color="primary" type="button"
                 (click)="resetForm(); editPaintingForm.form.markAsUntouched()">reset</button>
             </div>

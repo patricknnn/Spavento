@@ -10,11 +10,9 @@
           <h4 class="title-underlined">Afbeelding</h4>
 
           <div class="form-group row">
-            <div class="col-4" *ngIf="newsItem.image">
-              <img [src]="newsItem.image" class="img-thumbnail" style="max-height: 180px;">
-            </div>
-            <div class="col-8">
-              <ngx-dropzone [multiple]="false" (change)="onFileSelect($event)" class="mat-dropzone">
+            <div class="col-12 d-flex">
+              <img *ngIf="newsItem.image" [src]="newsItem.image" class="img-thumbnail mr-2" style="max-height: 180px;">
+              <ngx-dropzone [multiple]="false" (change)="onFileSelect($event)" class="mat-dropzone flex-grow-1">
                 <ngx-dropzone-label class="d-flex align-items-center">
                   <mat-icon class="mr-2">upload</mat-icon>
                   Kies nieuwe afbeelding
@@ -97,7 +95,7 @@
           <div class="row mt-3">
             <div class="col-12">
               <button mat-flat-button color="accent" type="submit" class="mr-2"
-                [disabled]="!editNewsItemForm.valid">opslaan</button>
+                [disabled]="!editNewsItemForm.valid && !selectedFiles.length">opslaan</button>
               <button mat-flat-button color="primary" type="button" (click)="resetForm(); editNewsItemForm.form.markAsUntouched()">reset</button>
             </div>
           </div>

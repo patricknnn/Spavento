@@ -172,12 +172,9 @@
       <form #editUserForm="ngForm" style="width: 400px;">
 
         <div class="form-group row">
-          <div class="col-6">
-            <img [src]="modalUser.photoURL" class="img-thumbnail" style="height: 180px;">
-          </div>
-
-          <div class="col-6">
-            <ngx-dropzone [multiple]="false" (change)="onFileSelect($event)" class="mat-dropzone">
+          <div class="col-12 d-flex">
+            <img [src]="modalUser.photoURL" class="img-thumbnail mr-2" style="height: 180px;">
+            <ngx-dropzone [multiple]="false" (change)="onFileSelect($event)" class="mat-dropzone flex-grow-1">
               <ngx-dropzone-label class="d-flex align-items-center">
                 <mat-icon class="mr-2">upload</mat-icon>
                 Kies afbeelding
