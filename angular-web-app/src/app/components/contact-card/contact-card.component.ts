@@ -30,6 +30,7 @@ export class ContactCardComponent implements OnInit {
   saveMessage(): void {
     this.swalService.loadingSwal("Bericht verzenden");
     this.contactformService.create(this.model).then(() => {
+      this.submitted = true;
       this.model = new ContactForm();
       this.swalService.successSwal("Bericht verzonden");
     });

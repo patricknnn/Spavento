@@ -1,6 +1,6 @@
 <ngb-carousel *ngIf="newsItems && generalContent" #newsCarousel>
   <ng-template ngbSlide *ngFor="let newsItem of newsItems">
-    <div style="margin: 0 75px">
+    <div style="margin: 0 15px">
       <app-news-card [newsItem]="newsItem" [direction]="'row'" [elevation]="generalContent.cardElevation"></app-news-card>
     </div>
   </ng-template>
