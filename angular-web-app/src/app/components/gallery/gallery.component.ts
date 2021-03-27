@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Painting } from '../../models/painting';
 import { PaintingService } from '../../services/painting.service';
 import { Router } from '@angular/router';
@@ -13,11 +13,10 @@ import Shuffle from 'shufflejs';
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.scss'],
 })
-export class GalleryComponent implements OnInit {
+export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() generalContent: GeneralContent;
   private shuffleInstance: Shuffle;
   paintings: Painting[];
-  filteredPaintings: Painting[];
   activeFilters = {
     categories: [],
     paints: [],
@@ -29,6 +28,7 @@ export class GalleryComponent implements OnInit {
   @ViewChild('pageContent') private pageContent: ElementRef;
   @ViewChild('shuffleContainer') private shuffleContainer: ElementRef;
   @ViewChild('shuffleSizer') private shuffleSizer: ElementRef;
+  @ViewChildren('shuffleItems') shuffleItems: QueryList<any>;
 
   /**
    * Constructor
@@ -40,19 +40,22 @@ export class GalleryComponent implements OnInit {
     private router: Router
   ) { }
 
-
   ngOnInit(): void {
     this.retrievePaintings();
   }
 
-  initShuffle(): void {
-    this.shuffleInstance = new Shuffle(this.shuffleContainer.nativeElement, {
-      itemSelector: '.shuffle-item',
-      sizer: this.shuffleSizer.nativeElement
+  ngAfterViewInit(): void {
+    this.shuffleItems.changes.subscribe(t => {
+      setTimeout(() => {
+        this.initShuffle();
+      }, 1500);
     });
-    this.pageContent.nativeElement.classList.remove("d-none");
-    this.pageLoader.nativeElement.classList.add("d-none");
-    this.shuffleInstance.update();
+  }
+
+  ngOnDestroy(): void {
+    if (this.shuffleInstance) {
+      this.shuffleInstance.destroy();
+    }
   }
 
   retrievePaintings(): void {
@@ -65,10 +68,17 @@ export class GalleryComponent implements OnInit {
     ).subscribe(data => {
       this.paintings = data;
       this.resetFilters();
-      setTimeout(() => {
-        this.initShuffle();
-      }, 2500);
     });
+  }
+
+  initShuffle(): void {
+    this.shuffleInstance = new Shuffle(this.shuffleContainer.nativeElement, {
+      itemSelector: '.shuffle-item',
+      sizer: this.shuffleSizer.nativeElement
+    });
+    this.pageContent.nativeElement.classList.remove("d-none");
+    this.pageLoader.nativeElement.classList.add("d-none");
+    this.shuffleInstance.update();
   }
 
   goToPaintingDetails(paintingId: string): void {
@@ -77,44 +87,15 @@ export class GalleryComponent implements OnInit {
 
   // Apply filter
   applyFilters() {
-    // this.filteredPaintings = this.paintings.filter((painting: Painting) => {
-    //   return this.itemPassesFilters(painting);
-    // });
-    // Apply filter
     if (this.shuffleInstance) {
       this.shuffleInstance.filter((element: Element) => {
-        return this.itemPassesShuffleFilters(element);
+        return this.itemPassesFilters(element);
       });
     }
   }
 
   // Check if item passes current filters
-  itemPassesFilters(painting: Painting): boolean {
-    var categories = this.activeFilters.categories;
-    var paints = this.activeFilters.paints;
-    var materials = this.activeFilters.materials;
-    var states = this.activeFilters.states;
-    // Categories
-    if (categories.length > 0 && !categories.includes(painting.category)) {
-      return false;
-    }
-    // Paints
-    if (paints.length > 0 && !paints.includes(painting.paint)) {
-      return false;
-    }
-    // Materials
-    if (materials.length > 0 && !materials.includes(painting.material)) {
-      return false;
-    }
-    // States
-    if (states.length > 0 && !states.includes(painting.status)) {
-      return false;
-    }
-    return true;
-  }
-
-  // Check if item passes current filters
-  itemPassesShuffleFilters(element): boolean {
+  itemPassesFilters(element): boolean {
     var categories = this.activeFilters.categories;
     var paints = this.activeFilters.paints;
     var materials = this.activeFilters.materials;
@@ -148,7 +129,6 @@ export class GalleryComponent implements OnInit {
     this.activeFilters.paints = [];
     this.activeFilters.materials = [];
     this.activeFilters.states = [];
-    this.filteredPaintings = this.paintings;
     if (this.shuffleInstance) {
       this.shuffleInstance.filter();
     }

@@ -1,4 +1,4 @@
-<mat-card class="{{elevation}} p-3 m-2">
+<!-- <mat-card class="{{elevation}} p-3 m-2">
   <div class="d-flex flex-column">
     <div class="d-flex flex-row align-items-center justify-content-between mb-1">
       <div class="card-info-icon bg-primary d-flex align-items-center justify-content-center mat-elevation-z0">
@@ -10,4 +10,14 @@
       </div>
     </div>
   </div>
+</mat-card> -->
+
+<mat-card class="info-card {{elevation}} m-2">
+  <mat-card-header>
+    <div mat-card-avatar>
+      <mat-icon class="txt-secondary card-header-icon">{{icon}}</mat-icon>
+    </div>
+    <mat-card-title>{{ title }}</mat-card-title>
+    <mat-card-subtitle [innerHTML]="text"></mat-card-subtitle>
+  </mat-card-header>
 </mat-card>

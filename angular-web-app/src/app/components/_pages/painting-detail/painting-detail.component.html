@@ -6,9 +6,10 @@
   <!-- Main -->
   <main class="main main-raised">
     <!-- Content -->
-    <section class="page-section bg-light">
-      <app-section-title [title]="'Gallerij'" [subTitle]="'Foto'"
-        [text]="'Alle beschikbare fotos zijn hier te vinden.'"></app-section-title>
+    <section class="page-section">
+      <!-- <app-section-title [title]="'Gallerij'" [subTitle]="'Foto'"
+        [text]="'Alle beschikbare fotos zijn hier te vinden.'">
+      </app-section-title> -->
       <div class="container" *ngIf="generalContent">
         <div class="row mb-5">
           <div class="col-12">
@@ -18,13 +19,13 @@
       </div>
     </section>
 
-    <section class="page-section">
+    <!-- <section class="page-section">
       <app-section-title [title]="'Informatie'" [subTitle]="'Meer'"
         [text]="'Over ' + painting.title + ' van ' + painting.artist + '.'">
       </app-section-title>
       <div class="container">
         <div class="row">
-          <div class="col-12">
+          <div class="col-12 col-md-6">
             <mat-accordion multi="true" class="admin-accordion">
               <mat-expansion-panel [expanded]="true" *ngIf="painting.artist">
                 <mat-expansion-panel-header>
@@ -47,43 +48,7 @@
                 </div>
               </mat-expansion-panel>
 
-              <mat-expansion-panel *ngIf="painting.paint || painting.material">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    <mat-icon color="accent" class="mr-3">palette</mat-icon>
-                    <strong>Verf en materiaal</strong>
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-                <div class="panel-content">
-                  {{ painting.paint }} op {{ painting.material }}
-                </div>
-              </mat-expansion-panel>
-
-              <mat-expansion-panel *ngIf="painting.length || painting.width">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    <mat-icon color="accent" class="mr-3">photo_size_select_actual</mat-icon>
-                    <strong>Afmetingen</strong>
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-                <div class="panel-content">
-                  {{ painting.length }} x {{ painting.width }} cm
-                </div>
-              </mat-expansion-panel>
-
-              <mat-expansion-panel *ngIf="painting.category">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    <mat-icon color="accent" class="mr-3">category</mat-icon>
-                    <strong>Categorie</strong>
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-                <div class="panel-content">
-                  {{ painting.category }}
-                </div>
-              </mat-expansion-panel>
-
-              <mat-expansion-panel *ngIf="painting.status">
+              <mat-expansion-panel [expanded]="true" *ngIf="painting.status">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <mat-icon color="accent" class="mr-3">more</mat-icon>
@@ -95,7 +60,7 @@
                 </div>
               </mat-expansion-panel>
 
-              <mat-expansion-panel *ngIf="painting.price">
+              <mat-expansion-panel [expanded]="true" *ngIf="painting.price">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <mat-icon color="accent" class="mr-3">shopping_bag</mat-icon>
@@ -106,41 +71,92 @@
               </mat-expansion-panel>
             </mat-accordion>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Cards -->
-    <!-- <section class="page-section">
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <app-info-card [title]="'Omschrijving'" [text]="painting.description" [icon]="'description'">
-            </app-info-card>
-          </div>
-          <div class="col-12 col-md-6 col-xl-4">
-            <app-info-card [title]="'Kunstenaar'" [text]="painting.artist" [icon]="'person'"></app-info-card>
-          </div>
-          <div class="col-12 col-md-6 col-xl-4">
-            <app-info-card [title]="'Verf en materiaal'" [text]="painting.paint + ' op ' + painting.material"
-              [icon]="'palette'"></app-info-card>
-          </div>
-          <div class="col-12 col-md-6 col-xl-4">
-            <app-info-card [title]="'Afmetingen'" [text]="painting.length + ' x ' + painting.width + ' cm'"
-              [icon]="'photo_size_select_actual'"></app-info-card>
-          </div>
-          <div class="col-12 col-md-6 col-xl-4">
-            <app-info-card [title]="'Categorie'" [text]="painting.category" [icon]="'category'"></app-info-card>
-          </div>
-          <div class="col-12 col-md-6 col-xl-4">
-            <app-info-card [title]="'Status'" [text]="painting.status" [icon]="'more'"></app-info-card>
-          </div>
-          <div class="col-12 col-md-6 col-xl-4">
-            <app-info-card [title]="'Prijs'" [text]="painting.price" [icon]="'shopping_bag'"></app-info-card>
+          <div class="col-12 col-md-6">
+            <mat-accordion multi="true" class="admin-accordion">
+              <mat-expansion-panel [expanded]="true" *ngIf="painting.paint || painting.material">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <mat-icon color="accent" class="mr-3">palette</mat-icon>
+                    <strong>Verf en materiaal</strong>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="panel-content">
+                  {{ painting.paint }} op {{ painting.material }}
+                </div>
+              </mat-expansion-panel>
+
+              <mat-expansion-panel [expanded]="true" *ngIf="painting.length || painting.width">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <mat-icon color="accent" class="mr-3">photo_size_select_actual</mat-icon>
+                    <strong>Afmetingen</strong>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="panel-content">
+                  {{ painting.length }} x {{ painting.width }} cm
+                </div>
+              </mat-expansion-panel>
+
+              <mat-expansion-panel [expanded]="true" *ngIf="painting.category">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <mat-icon color="accent" class="mr-3">category</mat-icon>
+                    <strong>Categorie</strong>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="panel-content">
+                  {{ painting.category }}
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
           </div>
         </div>
       </div>
     </section> -->
+
+    <!-- Cards -->
+    <section class="page-section bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <app-info-card [title]="'Omschrijving'" [text]="painting.description" [icon]="'description'"
+              [elevation]="generalContent.cardElevation">
+            </app-info-card>
+          </div>
+          <div class="col-12 col-md-6 col-xl-4">
+            <app-info-card [title]="'Kunstenaar'" [text]="painting.artist" [icon]="'person'"
+              [elevation]="generalContent.cardElevation">
+            </app-info-card>
+          </div>
+          <div class="col-12 col-md-6 col-xl-4">
+            <app-info-card [title]="'Verf en materiaal'" [text]="painting.paint + ' op ' + painting.material"
+              [icon]="'palette'" [elevation]="generalContent.cardElevation">
+            </app-info-card>
+          </div>
+          <div class="col-12 col-md-6 col-xl-4">
+            <app-info-card [title]="'Afmetingen'" [text]="painting.length + ' x ' + painting.width + ' cm'"
+              [icon]="'photo_size_select_actual'" [elevation]="generalContent.cardElevation">
+            </app-info-card>
+          </div>
+          <div class="col-12 col-md-6 col-xl-4">
+            <app-info-card [title]="'Categorie'" [text]="painting.category" [icon]="'category'"
+              [elevation]="generalContent.cardElevation">
+            </app-info-card>
+          </div>
+          <div class="col-12 col-md-6 col-xl-4">
+            <app-info-card [title]="'Status'" [text]="painting.status" [icon]="'more'"
+              [elevation]="generalContent.cardElevation">
+            </app-info-card>
+          </div>
+          <div class="col-12 col-md-6 col-xl-4">
+            <app-info-card [title]="'Prijs'" [text]="painting.price" [icon]="'shopping_bag'"
+              [elevation]="generalContent.cardElevation">
+            </app-info-card>
+          </div>
+        </div>
+      </div>
+    </section>
 
   </main>
 </div>

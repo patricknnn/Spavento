@@ -77,7 +77,7 @@
 
   <!-- Shuffle Gallery -->
   <div #shuffleContainer class="shuffle-container row">
-    <app-painting-card *ngFor="let painting of paintings" class="col-12 col-md-6 col-lg-4 p-0 shuffle-item"
+    <app-painting-card #shuffleItems *ngFor="let painting of paintings" class="col-12 col-md-6 col-lg-4 p-0 shuffle-item"
       [attr.data-category]="painting.category" [attr.data-paint]="painting.paint"
       [attr.data-material]="painting.material" [attr.data-status]="painting.status" [painting]="painting"
       [elevation]="generalContent.cardElevation">
@@ -85,13 +85,4 @@
     <div #shuffleSizer class="col-1 shuffle-sizer"></div>
   </div>
 
-</div>
-
-
-<div class="container" *ngIf="!filteredPaintings || !filteredPaintings.length">
-  <div class="row mt-5">
-    <div class="col-12 text-center" @fadeAnimation>
-      <p>Geen resultaten gevonden.</p>
-    </div>
-  </div>
 </div>
