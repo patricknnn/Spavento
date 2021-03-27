@@ -74,6 +74,7 @@ import { ManagerMessagesComponent } from './components/_admin/manager-messages/m
 import { NgxEditorModule } from 'ngx-editor';
 import { GeneralComponent } from './components/_admin/general/general.component';
 import { ToolbarComponent } from './components/_admin/toolbar/toolbar.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -137,7 +138,8 @@ import { ToolbarComponent } from './components/_admin/toolbar/toolbar.component'
     PaintingEditComponent,
     NewsEditComponent,
     LoadingComponent,
-    ManagerMessagesComponent
+    ManagerMessagesComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

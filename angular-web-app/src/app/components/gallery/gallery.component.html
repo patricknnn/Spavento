@@ -1,6 +1,15 @@
-<div class="container" *ngIf="paintings && generalContent">
+<!-- Loader -->
+<div #pageLoader class="container">
+  <div class="row">
+    <div class="col-12">
+      <app-loader></app-loader>
+    </div>
+  </div>
+</div>
+
+<div #pageContent class="container d-none">
   <!-- Filters -->
-  <div id="filterRow" class="row">
+  <div id="filterRow" class="row mb-3" *ngIf="generalContent">
     <div class="col-12 d-flex align-items-center justify-content-center flex-wrap">
       <button mat-raised-button [matMenuTriggerFor]="menuCategory" [matBadge]="activeFilters.categories.length"
         [matBadgeHidden]="activeFilters.categories.length == 0" matBadgePosition="after" matBadgeColor="accent"
@@ -66,17 +75,15 @@
     </div>
   </div>
 
-  <!-- Gallery -->
-  <div class="row" *ngIf="filteredPaintings && filteredPaintings.length">
-    <div class="col-12 mt-3 masonry">
-      <app-painting-card *ngFor="let painting of filteredPaintings" class="item" @fadeAnimation
-        [attr.data-category]="painting.category" [attr.data-paint]="painting.paint"
-        [attr.data-material]="painting.material" [attr.data-status]="painting.status" 
-        [painting]="painting" [elevation]="generalContent.cardElevation">
-      </app-painting-card>
-    </div>
+  <!-- Shuffle Gallery -->
+  <div #shuffleContainer class="shuffle-container row">
+    <app-painting-card *ngFor="let painting of paintings" class="col-12 col-md-6 col-lg-4 p-0 shuffle-item"
+      [attr.data-category]="painting.category" [attr.data-paint]="painting.paint"
+      [attr.data-material]="painting.material" [attr.data-status]="painting.status" [painting]="painting"
+      [elevation]="generalContent.cardElevation">
+    </app-painting-card>
+    <div #shuffleSizer class="col-1 shuffle-sizer"></div>
   </div>
-
 
 </div>
 
