@@ -19,7 +19,7 @@
       </button>
       <mat-menu #menuCategory="matMenu">
         <mat-selection-list #categorylist [(ngModel)]="activeFilters.categories" (ngModelChange)="applyFilters()">
-          <mat-list-option color="primary" checkboxPosition="after"
+          <mat-list-option class="text-capitalize" color="primary" checkboxPosition="after"
             *ngFor="let category of generalContent.paintingCategories" [value]="category">
             {{ category }}
           </mat-list-option>
@@ -33,7 +33,7 @@
       </button>
       <mat-menu #menuPaint="matMenu">
         <mat-selection-list #paintlist [(ngModel)]="activeFilters.paints" (ngModelChange)="applyFilters()">
-          <mat-list-option color="primary" checkboxPosition="after" *ngFor="let paint of generalContent.paintingPaints"
+          <mat-list-option class="text-capitalize" color="primary" checkboxPosition="after" *ngFor="let paint of generalContent.paintingPaints"
             [value]="paint">
             {{ paint }}
           </mat-list-option>
@@ -48,7 +48,7 @@
       </button>
       <mat-menu #menuMaterial="matMenu">
         <mat-selection-list #materiallist [(ngModel)]="activeFilters.materials" (ngModelChange)="applyFilters()">
-          <mat-list-option color="primary" checkboxPosition="after"
+          <mat-list-option class="text-capitalize" color="primary" checkboxPosition="after"
             *ngFor="let material of generalContent.paintingMaterials" [value]="material">
             {{ material }}
           </mat-list-option>
@@ -62,7 +62,7 @@
       </button>
       <mat-menu #menuState="matMenu">
         <mat-selection-list #statelist [(ngModel)]="activeFilters.states" (ngModelChange)="applyFilters()">
-          <mat-list-option color="primary" checkboxPosition="after" *ngFor="let state of generalContent.paintingStates"
+          <mat-list-option class="text-capitalize" color="primary" checkboxPosition="after" *ngFor="let state of generalContent.paintingStates"
             [value]="state">
             {{ state }}
           </mat-list-option>
