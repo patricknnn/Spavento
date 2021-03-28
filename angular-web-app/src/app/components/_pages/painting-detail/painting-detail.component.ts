@@ -28,7 +28,7 @@ export class PaintingDetailComponent implements OnInit {
     this.retrieveGeneralContent();
     if (!this.painting) {
       let id = this.route.snapshot.paramMap.get('id');
-      this.retrievePainting(id);
+      id ? this.retrievePainting(id) : this.goTo404();
     }
   }
 
@@ -41,6 +41,10 @@ export class PaintingDetailComponent implements OnInit {
       this.painting = data;
       if (!this.painting) {
         this.goTo404();
+      } else {
+        if (!this.painting.price.toString().startsWith('€')) {
+          this.painting.price = '€ ' + this.painting.price;
+        }
       }
     });
   }

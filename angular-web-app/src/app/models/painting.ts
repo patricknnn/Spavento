@@ -9,7 +9,7 @@ export class Painting extends FirebaseEntity {
   paint: string;
   material: string;
   status: string;
-  price: number;
+  price: string;
   category: string;
   length: number;
   width: number;
