@@ -1,13 +1,13 @@
 <!-- Section title -->
 <div [ngClass]="admin ? 'container-fluid' : 'container'">
-  <div class="row mb-5">
+  <div class="row my-5">
 
     <div class="col-md-8">
       <p *ngIf="subTitle" class="subtitle txt-primary text-uppercase">{{subTitle}}</p>
       <h2>{{title}}</h2>
-      <p *ngIf="text" class="txt-dark-muted">{{text}}</p>
+      <p *ngIf="text" class="txt-dark-muted m-0">{{text}}</p>
     </div>
-    
+
     <div *ngIf="link" class="col-md-4 d-flex align-items-center justify-content-end">
       <a mat-mini-fab color="accent" aria-label="Read more" href="{{link}}">
         <mat-icon *ngIf="!linkIcon">more_horiz</mat-icon>

@@ -1,7 +1,7 @@
-<div class="container-fluid pt-5">
-  <app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [admin]="true">
-  </app-section-title>
+<app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [admin]="true">
+</app-section-title>
 
+<div class="container-fluid">
   <div class="row mb-5">
 
     <div class="col-12" *ngIf="isLoadingResults">
@@ -81,7 +81,7 @@
         </div>
 
         <!-- Paginator -->
-        <mat-paginator [length]="resultsLength" [pageSizeOptions]="[5, 10, 25, 50]" showFirstLastButtons>
+        <mat-paginator [length]="resultsLength" [pageSize]="generalContent.pageSizeDefault" [pageSizeOptions]="generalContent.pageSizeOptions" showFirstLastButtons>
         </mat-paginator>
 
       </div>

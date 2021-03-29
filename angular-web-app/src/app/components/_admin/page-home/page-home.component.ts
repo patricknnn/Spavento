@@ -12,7 +12,6 @@ export class PageHomeComponent implements OnInit {
   title = "Home";
   subTitle = "Pagina";
   text = "Stel hier alles in met betrekking tot de home pagina op de website.";
-  panelStep = -1;
   generalContent: GeneralContent;
 
   constructor(
@@ -33,18 +32,6 @@ export class PageHomeComponent implements OnInit {
     ).subscribe(data => {
       this.generalContent = data[0];
     });
-  }
-
-  setStep(i: number) {
-    this.panelStep = i;
-  }
-
-  nextStep() {
-    this.panelStep++;
-  }
-
-  prevStep() {
-    this.panelStep--;
   }
 
 }

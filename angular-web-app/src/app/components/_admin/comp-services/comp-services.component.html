@@ -1,182 +1,168 @@
-<div class="container-fluid p-0" *ngIf="services && generalContent">
-  <div class="row mb-4">
-    <div class="col-12">
-      <mat-card class="{{generalContent.cardElevation}}">
-        <h4 class="title-underlined">Resultaat</h4>
-        <div *ngIf="services.active">
-          <app-section-title [title]="services.title" [subTitle]="services.subTitle" [text]="services.text">
-          </app-section-title>
-          <div class="row">
-            <div *ngFor="let service of services.services" class="col-lg-4 col-md-6 col-sm-12">
-              <app-service-card [service]="service" [elevation]="generalContent.cardElevation"></app-service-card>
-            </div>
-          </div>
-        </div>
-        <!-- Not visible -->
-        <div *ngIf="!services.active" class="w-100 text-center">
-          <ngb-alert [dismissible]="false" class="mb-0">
-            <strong>Niet</strong> zichtbaar op de website.
-          </ngb-alert>
-        </div>
-      </mat-card>
+<mat-card *ngIf="services && generalContent" class="{{generalContent.cardElevation}}">
+  <h4 class="title-underlined">Resultaat</h4>
+  <div *ngIf="services.active">
+    <app-section-title [title]="services.title" [subTitle]="services.subTitle" [text]="services.text">
+    </app-section-title>
+    <div class="row">
+      <div *ngFor="let service of services.services" class="col-lg-4 col-md-6 col-sm-12">
+        <app-service-card [service]="service" [elevation]="generalContent.cardElevation"></app-service-card>
+      </div>
     </div>
   </div>
+  <!-- Not visible -->
+  <div *ngIf="!services.active" class="w-100 text-center">
+    <ngb-alert [dismissible]="false" class="mb-0">
+      <strong>Niet</strong> zichtbaar op de website.
+    </ngb-alert>
+  </div>
+</mat-card>
 
-  <div class="row mb-4">
-    <div class="col-12">
-      <mat-card class="{{generalContent.cardElevation}}">
-        <form (ngSubmit)="onSubmit()" #servicesForm="ngForm">
+<mat-card *ngIf="services && generalContent" class="{{generalContent.cardElevation}}">
+  <form (ngSubmit)="onSubmit()" #servicesForm="ngForm">
 
-          <div class="form-group row">
-            <div class="col-sm-12 col-md-10 d-flex align-items-center">
-              <h4 class="title-underlined">Instellingen</h4>
-            </div>
-            <div class="col-sm-12 col-md-2 d-flex align-items-start justify-content-end">
-              <button mat-mini-fab type="button"
-                (click)="services.active = !services.active; services.active ? servicesForm.form.enable() : servicesForm.form.disable(); servicesForm.form.markAsTouched()"
-                [color]="services.active ? 'accent' : 'primary'" [attr.aria-label]="'Hide component'"
-                [attr.aria-pressed]="services.active">
-                <mat-icon>{{services.active ? 'visibility' : 'visibility_off'}}</mat-icon>
-              </button>
-            </div>
-          </div>
+    <div class="form-group row">
+      <div class="col-sm-12 col-md-10 d-flex align-items-center">
+        <h4 class="title-underlined">Instellingen</h4>
+      </div>
+      <div class="col-sm-12 col-md-2 d-flex align-items-start justify-content-end">
+        <button mat-mini-fab type="button"
+          (click)="services.active = !services.active; services.active ? servicesForm.form.enable() : servicesForm.form.disable(); servicesForm.form.markAsTouched()"
+          [color]="services.active ? 'accent' : 'primary'" [attr.aria-label]="'Hide component'"
+          [attr.aria-pressed]="services.active">
+          <mat-icon>{{services.active ? 'visibility' : 'visibility_off'}}</mat-icon>
+        </button>
+      </div>
+    </div>
 
-          <div class="form-group row">
-            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-              class="form-field col-sm-12 col-md-6">
-              <mat-label>Content titel</mat-label>
-              <input matInput type="text" id="servicesContentTitle" placeholder="Titel" name="servicesContentTitle"
-                [(ngModel)]="services.title" #servicesContentTitleInput="ngModel" required>
-              <mat-error *ngIf="servicesContentTitleInput.invalid">
-                Titel is verplicht
-              </mat-error>
-            </mat-form-field>
+    <div class="form-group row">
+      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+        class="form-field col-sm-12 col-md-6">
+        <mat-label>Content titel</mat-label>
+        <input matInput type="text" id="servicesContentTitle" placeholder="Titel" name="servicesContentTitle"
+          [(ngModel)]="services.title" #servicesContentTitleInput="ngModel" required>
+        <mat-error *ngIf="servicesContentTitleInput.invalid">
+          Titel is verplicht
+        </mat-error>
+      </mat-form-field>
 
-            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-              class="form-field col-sm-12 col-md-6">
-              <mat-label>Content subtitel</mat-label>
-              <input matInput type="text" id="servicesContentSubTitle" placeholder="Subtitel"
-                name="servicesContentSubTitle" [(ngModel)]="services.subTitle" #servicesContentSubTitleInput="ngModel"
-                required>
-              <mat-error *ngIf="servicesContentSubTitleInput.invalid">
-                Subtitel is verplicht
-              </mat-error>
-            </mat-form-field>
+      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+        class="form-field col-sm-12 col-md-6">
+        <mat-label>Content subtitel</mat-label>
+        <input matInput type="text" id="servicesContentSubTitle" placeholder="Subtitel" name="servicesContentSubTitle"
+          [(ngModel)]="services.subTitle" #servicesContentSubTitleInput="ngModel" required>
+        <mat-error *ngIf="servicesContentSubTitleInput.invalid">
+          Subtitel is verplicht
+        </mat-error>
+      </mat-form-field>
 
-            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-              class="form-field col-12">
-              <mat-label>Content text</mat-label>
-              <textarea rows="1" matInput type="text" id="servicesContentText" placeholder="Text"
-                name="servicesContentText" [(ngModel)]="services.text" #servicesContentTextInput="ngModel"
-                required> </textarea>
-              <mat-error *ngIf="servicesContentTextInput.invalid">
-                Text is verplicht
-              </mat-error>
-            </mat-form-field>
-          </div>
+      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+        class="form-field col-12">
+        <mat-label>Content text</mat-label>
+        <textarea rows="1" matInput type="text" id="servicesContentText" placeholder="Text" name="servicesContentText"
+          [(ngModel)]="services.text" #servicesContentTextInput="ngModel" required> </textarea>
+        <mat-error *ngIf="servicesContentTextInput.invalid">
+          Text is verplicht
+        </mat-error>
+      </mat-form-field>
+    </div>
 
-          <div class="form-group row">
-            <div class="col-xs-12 col-sm-6 col-md-4">
-              <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-                class="form-field w-100">
-                <mat-label>Card titel</mat-label>
-                <input matInput type="text" id="servicesCard0Title" placeholder="Titel" name="servicesCard0Title"
-                  [(ngModel)]="services.services[0].title" #servicesCard0TitleInput="ngModel" required>
-                <mat-error *ngIf="servicesCard0TitleInput.invalid">
-                  Titel is verplicht
-                </mat-error>
-              </mat-form-field>
+    <div class="form-group row">
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field w-100">
+          <mat-label>Card titel</mat-label>
+          <input matInput type="text" id="servicesCard0Title" placeholder="Titel" name="servicesCard0Title"
+            [(ngModel)]="services.services[0].title" #servicesCard0TitleInput="ngModel" required>
+          <mat-error *ngIf="servicesCard0TitleInput.invalid">
+            Titel is verplicht
+          </mat-error>
+        </mat-form-field>
 
-              <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-                class="form-field w-100">
-                <mat-label>Card icon</mat-label>
-                <input matInput type="text" id="card0Icon" placeholder="Icon" name="card0Icon"
-                  [(ngModel)]="services.services[0].icon" #card0IconInput="ngModel" required>
-                <mat-error *ngIf="card0IconInput.invalid">
-                  Icon is verplicht
-                </mat-error>
-              </mat-form-field>
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field w-100">
+          <mat-label>Card icon</mat-label>
+          <input matInput type="text" id="card0Icon" placeholder="Icon" name="card0Icon"
+            [(ngModel)]="services.services[0].icon" #card0IconInput="ngModel" required>
+          <mat-error *ngIf="card0IconInput.invalid">
+            Icon is verplicht
+          </mat-error>
+        </mat-form-field>
 
-              <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-                class="form-field w-100">
-                <mat-label>Card tekst</mat-label>
-                <input matInput type="text" id="servicesCard0Text" placeholder="Text" name="servicesCard0Text"
-                  [(ngModel)]="services.services[0].description">
-              </mat-form-field>
-            </div>
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field w-100">
+          <mat-label>Card tekst</mat-label>
+          <input matInput type="text" id="servicesCard0Text" placeholder="Text" name="servicesCard0Text"
+            [(ngModel)]="services.services[0].description">
+        </mat-form-field>
+      </div>
 
-            <div class="col-xs-12 col-sm-6 col-md-4">
-              <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-                class="form-field w-100">
-                <mat-label>Card titel</mat-label>
-                <input matInput type="text" id="servicesCard1Title" placeholder="Titel" name="servicesCard1Title"
-                  [(ngModel)]="services.services[1].title" #servicesCard1TitleInput="ngModel" required>
-                <mat-error *ngIf="servicesCard1TitleInput.invalid">
-                  Titel is verplicht
-                </mat-error>
-              </mat-form-field>
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field w-100">
+          <mat-label>Card titel</mat-label>
+          <input matInput type="text" id="servicesCard1Title" placeholder="Titel" name="servicesCard1Title"
+            [(ngModel)]="services.services[1].title" #servicesCard1TitleInput="ngModel" required>
+          <mat-error *ngIf="servicesCard1TitleInput.invalid">
+            Titel is verplicht
+          </mat-error>
+        </mat-form-field>
 
-              <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-                class="form-field w-100">
-                <mat-label>Card icon</mat-label>
-                <input matInput type="text" id="card1Icon" placeholder="Icon" name="card1Icon"
-                  [(ngModel)]="services.services[1].icon" #card1IconInput="ngModel" required>
-                <mat-error *ngIf="card1IconInput.invalid">
-                  Icon is verplicht
-                </mat-error>
-              </mat-form-field>
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field w-100">
+          <mat-label>Card icon</mat-label>
+          <input matInput type="text" id="card1Icon" placeholder="Icon" name="card1Icon"
+            [(ngModel)]="services.services[1].icon" #card1IconInput="ngModel" required>
+          <mat-error *ngIf="card1IconInput.invalid">
+            Icon is verplicht
+          </mat-error>
+        </mat-form-field>
 
-              <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-                class="form-field w-100">
-                <mat-label>Card tekst</mat-label>
-                <input matInput type="text" id="servicesCard1Text" placeholder="Text" name="servicesCard1Text"
-                  [(ngModel)]="services.services[1].description">
-              </mat-form-field>
-            </div>
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field w-100">
+          <mat-label>Card tekst</mat-label>
+          <input matInput type="text" id="servicesCard1Text" placeholder="Text" name="servicesCard1Text"
+            [(ngModel)]="services.services[1].description">
+        </mat-form-field>
+      </div>
 
-            <div class="col-xs-12 col-sm-6 col-md-4">
-              <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-                class="form-field w-100">
-                <mat-label>Card titel</mat-label>
-                <input matInput type="text" id="servicesCard2Title" placeholder="Titel" name="servicesCard2Title"
-                  [(ngModel)]="services.services[2].title" #servicesCard2TitleInput="ngModel" required>
-                <mat-error *ngIf="servicesCard2TitleInput.invalid">
-                  Titel is verplicht
-                </mat-error>
-              </mat-form-field>
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field w-100">
+          <mat-label>Card titel</mat-label>
+          <input matInput type="text" id="servicesCard2Title" placeholder="Titel" name="servicesCard2Title"
+            [(ngModel)]="services.services[2].title" #servicesCard2TitleInput="ngModel" required>
+          <mat-error *ngIf="servicesCard2TitleInput.invalid">
+            Titel is verplicht
+          </mat-error>
+        </mat-form-field>
 
-              <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-                class="form-field w-100">
-                <mat-label>Card icon</mat-label>
-                <input matInput type="text" id="card2Icon" placeholder="Icon" name="card2Icon"
-                  [(ngModel)]="services.services[2].icon" #card2IconInput="ngModel" required>
-                <mat-error *ngIf="card2IconInput.invalid">
-                  Icon is verplicht
-                </mat-error>
-              </mat-form-field>
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field w-100">
+          <mat-label>Card icon</mat-label>
+          <input matInput type="text" id="card2Icon" placeholder="Icon" name="card2Icon"
+            [(ngModel)]="services.services[2].icon" #card2IconInput="ngModel" required>
+          <mat-error *ngIf="card2IconInput.invalid">
+            Icon is verplicht
+          </mat-error>
+        </mat-form-field>
 
-              <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-                class="form-field w-100">
-                <mat-label>Card tekst</mat-label>
-                <input matInput type="text" id="servicesCard2Text" placeholder="Text" name="servicesCard2Text"
-                  [(ngModel)]="services.services[2].description">
-              </mat-form-field>
-            </div>
-
-          </div>
-
-          <button mat-flat-button color="accent" type="submit"
-            [disabled]="!servicesForm.form.valid || servicesForm.form.pristine">
-            Opslaan
-          </button>
-          <button mat-flat-button color="primary" type="button" class="ml-3" [disabled]="servicesForm.form.pristine"
-            (click)="resetForm()">
-            Reset
-          </button>
-        </form>
-      </mat-card>
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field w-100">
+          <mat-label>Card tekst</mat-label>
+          <input matInput type="text" id="servicesCard2Text" placeholder="Text" name="servicesCard2Text"
+            [(ngModel)]="services.services[2].description">
+        </mat-form-field>
+      </div>
 
     </div>
-  </div>
 
-</div>
+    <button mat-flat-button color="accent" type="submit"
+      [disabled]="!servicesForm.form.valid || servicesForm.form.pristine">
+      Opslaan
+    </button>
+    <button mat-flat-button color="primary" type="button" class="ml-3" [disabled]="servicesForm.form.pristine"
+      (click)="resetForm()">
+      Reset
+    </button>
+  </form>
+</mat-card>

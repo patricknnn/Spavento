@@ -1,12 +1,12 @@
-<div class="container-fluid pt-5" *ngIf="generalContent">
-  <app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [admin]="true">
-  </app-section-title>
+<app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [admin]="true">
+</app-section-title>
 
+<div class="container-fluid" *ngIf="generalContent">
   <div class="row mb-5">
     <div class="col-12">
 
       <form *ngIf="newsItem" (ngSubmit)="onSubmit()" #editNewsItemForm="ngForm">
-        <mat-card class="{{generalContent.cardElevation}} mb-4">
+        <mat-card class="{{generalContent.cardElevation}}">
           <h4 class="title-underlined">Afbeelding</h4>
 
           <div class="form-group row">
@@ -27,11 +27,12 @@
         </mat-card>
 
         <!-- General information -->
-        <mat-card class="{{generalContent.cardElevation}} mb-4">
+        <mat-card class="{{generalContent.cardElevation}}">
           <h4 class="title-underlined">Details</h4>
 
           <div class="form-group row">
-            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-12 col-md-6">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+              class="form-field col-12 col-md-6">
               <mat-label>Titel</mat-label>
               <input matInput id="title" placeholder="Titel" name="title" [(ngModel)]="newsItem.title"
                 [disabled]="formDisabled" #title="ngModel" required />
@@ -40,7 +41,8 @@
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-12 col-md-6">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+              class="form-field col-12 col-md-6">
               <mat-label>Auteur</mat-label>
               <input matInput id="author" placeholder="Auteur" name="author" [(ngModel)]="newsItem.author"
                 [disabled]="formDisabled" #author="ngModel" required />
@@ -51,7 +53,8 @@
           </div>
 
           <div class="form-group row">
-            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-12 col-md-6">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+              class="form-field col-12 col-md-6">
               <mat-label>Categorie</mat-label>
               <mat-select id="category" name="category" [(ngModel)]="newsItem.category" [disabled]="formDisabled"
                 #category="ngModel" required>
@@ -64,7 +67,8 @@
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-12 col-md-6">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+              class="form-field col-12 col-md-6">
               <mat-label>Locatie</mat-label>
               <input matInput id="location" placeholder="Locatie" name="location" [(ngModel)]="newsItem.location"
                 [disabled]="formDisabled" #location="ngModel" />
@@ -72,7 +76,8 @@
           </div>
 
           <div class="form-group row">
-            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-12 col-md-6">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+              class="form-field col-12 col-md-6">
               <mat-label>Datum</mat-label>
               <input matInput id="date" placeholder="Datum" name="date" [(ngModel)]="newsItem.date"
                 [disabled]="formDisabled" [matDatepicker]="datePicker" #date="ngModel" />
@@ -85,7 +90,8 @@
             <div class="col-12">
               <div class="NgxEditor__Wrapper">
                 <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
-                <ngx-editor [editor]="editor" [ngModel]="editorOutput" [placeholder]="'Bericht...'" name="editorOutput" (ngModelChange)="onEditorContentChange($event)">
+                <ngx-editor [editor]="editor" [ngModel]="editorOutput" [placeholder]="'Bericht...'" name="editorOutput"
+                  (ngModelChange)="onEditorContentChange($event)">
                 </ngx-editor>
               </div>
             </div>
@@ -96,7 +102,8 @@
             <div class="col-12">
               <button mat-flat-button color="accent" type="submit" class="mr-2"
                 [disabled]="!editNewsItemForm.valid && !selectedFiles.length">opslaan</button>
-              <button mat-flat-button color="primary" type="button" (click)="resetForm(); editNewsItemForm.form.markAsUntouched()">reset</button>
+              <button mat-flat-button color="primary" type="button"
+                (click)="resetForm(); editNewsItemForm.form.markAsUntouched()">reset</button>
             </div>
           </div>
         </mat-card>

@@ -1,12 +1,12 @@
-<div class="container-fluid pt-5" *ngIf="generalContent">
-  <app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [admin]="true">
-  </app-section-title>
+<app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [admin]="true">
+</app-section-title>
 
+<div class="container-fluid" *ngIf="generalContent">
   <div class="row mb-5">
     <div class="col-12">
 
       <form *ngIf="newsItem" (ngSubmit)="onSubmit()" #addNewsItemForm="ngForm">
-        <mat-card class="{{generalContent.cardElevation}} mb-4">
+        <mat-card class="{{generalContent.cardElevation}}">
 
           <h4 class="title-underlined">Afbeelding</h4>
 
@@ -27,7 +27,7 @@
         </mat-card>
 
         <!-- General information -->
-        <mat-card class="{{generalContent.cardElevation}} mb-4">
+        <mat-card class="{{generalContent.cardElevation}}">
           <h4 class="title-underlined">Details</h4>
 
           <div class="form-group row">

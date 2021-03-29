@@ -50,9 +50,7 @@ export class GeneralComponent implements OnInit {
     ).subscribe(data => {
       this.contentHistory = data;
       this.content = data[0];
-      if (!this.content) {
-        this.loadDefaults();
-      }
+      this.loadDefaults();
     });
   }
 
@@ -91,44 +89,70 @@ export class GeneralComponent implements OnInit {
   }
 
   loadDefaults(): void {
-    this.content = new GeneralContent();
-    this.content.formStyle = "standard";
-    this.content.formColor = "accent";
-    this.content.cardElevation = "mat-elevation-z8";
-    this.content.paintingCategories = [
-      "Portretten",
-      "Natuur",
-      "Dieren",
-      "TV Series",
-      "Algemeen"
-    ];
-    this.content.paintingStates = [
-      "Beschikbaar",
-      "Niet beschikbaar",
-      "Opdrachten",
-      "Eerdere werken"
-    ];
-    this.content.paintingPaints = [
-      "Acryl",
-      "Aquarel",
-      "Olie",
-      "Plakkaat",
-      "Water"
-    ];
-    this.content.paintingMaterials = [
-      "Doek",
-      "Hout",
-    ];
-    this.content.newsCategories = [
-      "Exposities",
-      "Technologie",
-      "Services"
-    ];
-    this.content.contactformCategories = [
-      "Vraag",
-      "Offerte",
-      "Anders"
-    ];
+    if (!this.content) {
+      this.content = new GeneralContent();
+    }
+    if (!this.content.formStyle) {
+      this.content.formStyle = "standard";
+    }
+    if (!this.content.formColor) {
+      this.content.formColor = "accent";
+    }
+    if (!this.content.cardElevation) {
+      this.content.cardElevation = "mat-elevation-z8";
+    }
+    if (!this.content.pageSizeOptions) {
+      this.content.pageSizeOptions = [5, 10, 25, 50];
+    }
+    if (!this.content.pageSizeDefault) {
+      this.content.pageSizeDefault = 10;
+    }
+    if (!this.content.paintingCategories) {
+      this.content.paintingCategories = [
+        "Portretten",
+        "Natuur",
+        "Dieren",
+        "TV Series",
+        "Algemeen"
+      ];
+    }
+    if (!this.content.paintingStates) {
+      this.content.paintingStates = [
+        "Beschikbaar",
+        "Niet beschikbaar",
+        "Opdrachten",
+        "Eerdere werken"
+      ];
+    }
+    if (!this.content.paintingPaints) {
+      this.content.paintingPaints = [
+        "Acryl",
+        "Aquarel",
+        "Olie",
+        "Plakkaat",
+        "Water"
+      ];
+    }
+    if (!this.content.paintingMaterials) {
+      this.content.paintingMaterials = [
+        "Doek",
+        "Hout",
+      ];
+    }
+    if (!this.content.newsCategories) {
+      this.content.newsCategories = [
+        "Exposities",
+        "Technologie",
+        "Services"
+      ];
+    }
+    if (!this.content.contactformCategories) {
+      this.content.contactformCategories = [
+        "Vraag",
+        "Offerte",
+        "Anders"
+      ];
+    }
   }
 
   /**

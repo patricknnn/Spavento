@@ -1,104 +1,67 @@
-<div class="container-fluid py-5" *ngIf="generalContent">
-  <app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [admin]="true">
-  </app-section-title>
+<!-- Page title -->
+<app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [admin]="true"></app-section-title>
 
-
-  <mat-accordion class="admin-accordion">
-    <!-- Header -->
-    <mat-expansion-panel [expanded]="panelStep === 0" (opened)="setStep(0)">
-      <mat-expansion-panel-header class="title-header">
-        <mat-panel-title>
-          <h4 class="title-underlined mb-0 mt-2">Header</h4>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <app-comp-header [page]="'home'" [generalContent]="generalContent"></app-comp-header>
-      <mat-action-row>
-        <button mat-raised-button color="accent" (click)="nextStep()">Volgende</button>
-      </mat-action-row>
-    </mat-expansion-panel>
-
-    <!-- Services -->
-    <mat-expansion-panel [expanded]="panelStep === 1" (opened)="setStep(1)">
-      <mat-expansion-panel-header class="title-header">
-        <mat-panel-title>
-          <h4 class="title-underlined mb-0 mt-2">Diensten</h4>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <app-comp-services [generalContent]="generalContent"></app-comp-services>
-      <mat-action-row>
-        <button mat-raised-button color="primary" (click)="prevStep()">Vorige</button>
-        <button mat-raised-button color="accent" (click)="nextStep()">Volgende</button>
-      </mat-action-row>
-    </mat-expansion-panel>
-
-    <!-- Featured -->
-    <mat-expansion-panel [expanded]="panelStep === 2" (opened)="setStep(2)">
-      <mat-expansion-panel-header class="title-header">
-        <mat-panel-title>
-          <h4 class="title-underlined mb-0 mt-2">Uitgelicht</h4>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <app-comp-features [generalContent]="generalContent"></app-comp-features>
-      <mat-action-row>
-        <button mat-raised-button color="primary" (click)="prevStep()">Vorige</button>
-        <button mat-raised-button color="accent" (click)="nextStep()">Volgende</button>
-      </mat-action-row>
-    </mat-expansion-panel>
-
-    <!-- News -->
-    <mat-expansion-panel [expanded]="panelStep === 3" (opened)="setStep(3)">
-      <mat-expansion-panel-header class="title-header">
-        <mat-panel-title>
-          <h4 class="title-underlined mb-0 mt-2">Laatste nieuws</h4>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <app-comp-latest-news [generalContent]="generalContent"></app-comp-latest-news>
-      <mat-action-row>
-        <button mat-raised-button color="primary" (click)="prevStep()">Vorige</button>
-        <button mat-raised-button color="accent" (click)="nextStep()">Volgende</button>
-      </mat-action-row>
-    </mat-expansion-panel>
-
-    <!-- Paintings -->
-    <mat-expansion-panel [expanded]="panelStep === 4" (opened)="setStep(4)">
-      <mat-expansion-panel-header class="title-header">
-        <mat-panel-title>
-          <h4 class="title-underlined mb-0 mt-2">Laatste werk</h4>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <app-comp-latest-work [generalContent]="generalContent"></app-comp-latest-work>
-      <mat-action-row>
-        <button mat-raised-button color="primary" (click)="prevStep()">Vorige</button>
-        <button mat-raised-button color="accent" (click)="nextStep()">Volgende</button>
-      </mat-action-row>
-    </mat-expansion-panel>
-
-    <!-- CTA -->
-    <mat-expansion-panel [expanded]="panelStep === 5" (opened)="setStep(5)">
-      <mat-expansion-panel-header class="title-header">
-        <mat-panel-title>
-          <h4 class="title-underlined mb-0 mt-2">Call to action</h4>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <app-comp-cta [generalContent]="generalContent"></app-comp-cta>
-      <mat-action-row>
-        <button mat-raised-button color="primary" (click)="prevStep()">Vorige</button>
-      </mat-action-row>
-    </mat-expansion-panel>
-
-  </mat-accordion>
+<!-- Tab group -->
+<div class="container-fluid" *ngIf="generalContent">
+  <div class="row mb-4">
+    <div class="col-12">
+      <mat-tab-group mat-stretch-tabs color="primary">
+        <!-- Header tab -->
+        <mat-tab label="Header">
+          <ng-container *ngTemplateOutlet="headerTab"></ng-container>
+        </mat-tab>
+        <!-- Services tab -->
+        <mat-tab label="Diensten">
+          <ng-container *ngTemplateOutlet="servicesTab"></ng-container>
+        </mat-tab>
+        <!-- Featured tab -->
+        <mat-tab label="Uitgelicht">
+          <ng-container *ngTemplateOutlet="featuredTab"></ng-container>
+        </mat-tab>
+        <!-- News tab -->
+        <mat-tab label="Laatste Nieuws">
+          <ng-container *ngTemplateOutlet="newsTab"></ng-container>
+        </mat-tab>
+        <!-- Paintings tab -->
+        <mat-tab label="Laatste Werk">
+          <ng-container *ngTemplateOutlet="workTab"></ng-container>
+        </mat-tab>
+        <!-- CTA tab -->
+        <mat-tab label="Extra Aandacht">
+          <ng-container *ngTemplateOutlet="ctaTab"></ng-container>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
 </div>
 
+<!-- Tab content templates -->
+<ng-template #headerTab>
+  <app-comp-header [page]="'home'" [generalContent]="generalContent"></app-comp-header>
+</ng-template>
+<ng-template #servicesTab>
+  <app-comp-services [generalContent]="generalContent"></app-comp-services>
+</ng-template>
+<ng-template #featuredTab>
+  <app-comp-features [generalContent]="generalContent"></app-comp-features>
+</ng-template>
+<ng-template #newsTab>
+  <app-comp-latest-news [generalContent]="generalContent"></app-comp-latest-news>
+</ng-template>
+<ng-template #workTab>
+  <app-comp-latest-work [generalContent]="generalContent"></app-comp-latest-work>
+</ng-template>
+<ng-template #ctaTab>
+  <app-comp-cta [generalContent]="generalContent"></app-comp-cta>
+</ng-template>
 
-<!-- Page preview -->
+
+<!-- Page preview template -->
 <ng-template #content>
-
   <mat-dialog-content>
     <app-home></app-home>
   </mat-dialog-content>
-
   <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
   </mat-dialog-actions>
-
 </ng-template>

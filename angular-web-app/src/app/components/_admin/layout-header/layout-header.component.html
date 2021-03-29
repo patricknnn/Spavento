@@ -1,7 +1,7 @@
-<div class="container-fluid pt-5" *ngIf="headerContent && generalContent">
-  <app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [admin]="true">
-  </app-section-title>
+<app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [admin]="true">
+</app-section-title>
 
+<div class="container-fluid" *ngIf="headerContent && generalContent">
   <div class="row mb-4">
     <div class="col-12">
       <mat-card class="{{generalContent.cardElevation}}">

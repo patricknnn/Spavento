@@ -1,7 +1,7 @@
-<div class="container-fluid pt-5" *ngIf="navContent && generalContent">
-  <app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [admin]="true">
-  </app-section-title>
+<app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [admin]="true">
+</app-section-title>
 
+<div class="container-fluid pt-5" *ngIf="navContent && generalContent">
   <div class="row mb-4">
     <div class="col-12">
       <mat-card class="{{generalContent.cardElevation}}">
@@ -16,7 +16,7 @@
 
       <form (ngSubmit)="onSubmit()" #navigationForm="ngForm">
 
-        <mat-card class="{{generalContent.cardElevation}} mb-4">
+        <mat-card class="{{generalContent.cardElevation}}">
           <h4 class="title-underlined">Afbeelding</h4>
 
           <div class="form-group row">
@@ -36,7 +36,7 @@
           </div>
         </mat-card>
 
-        <mat-card class="{{generalContent.cardElevation}} mb-4">
+        <mat-card class="{{generalContent.cardElevation}}">
           <h4 class="title-underlined">Instellingen</h4>
           <div class="form-group row">
             <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"

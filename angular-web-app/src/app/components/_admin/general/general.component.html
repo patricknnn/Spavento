@@ -1,11 +1,40 @@
-<div class="container-fluid pt-5">
-  <app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [admin]="true">
-  </app-section-title>
+<app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [admin]="true">
+</app-section-title>
 
+<div class="container-fluid">
   <div class="row mb-4" *ngIf="content">
     <div class="col-12">
       <mat-card class="{{content.cardElevation}}">
         <form (ngSubmit)="onSubmit()" #generalContentForm="ngForm" *ngIf="content">
+
+          <!-- Table settings -->
+          <h4 class="title-underlined my-5">Tabellen</h4>
+          <div class="form-group row">
+            <mat-form-field [appearance]="content.formStyle" [color]="content.formColor"
+              class="form-field col-12 col-md-6">
+              <mat-label>Aantal resultaten</mat-label>
+              <mat-chip-list #generalFormPageSizeOptions>
+                <mat-chip *ngFor="let option of content.pageSizeOptions" [selectable]="true" [removable]="true"
+                  (removed)="removeChip(option, content.pageSizeOptions)">
+                  {{option}}
+                  <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="Nieuw..." [matChipInputFor]="generalFormPageSizeOptions"
+                  [matChipInputSeparatorKeyCodes]="[ENTER, COMMA]" [matChipInputAddOnBlur]="true"
+                  (matChipInputTokenEnd)="addChip($event, content.pageSizeOptions)">
+              </mat-chip-list>
+            </mat-form-field>
+            <mat-form-field [appearance]="content.formStyle" [color]="content.formColor"
+              class="form-field col-sm-12 col-md-6">
+              <mat-label>Standaard aantal</mat-label>
+              <mat-select id="generalFormPageSizeDefault" name="generalFormPageSizeDefault" [(ngModel)]="content.pageSizeDefault"
+                #generalFormPageSizeDefaultInput="ngModel">
+                <mat-option *ngFor="let option of content.pageSizeOptions" [value]="option">
+                  {{ option }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
 
           <!-- Form settings -->
           <h4 class="title-underlined my-5">Formulieren</h4>
@@ -36,13 +65,13 @@
           <div class="form-group row">
             <mat-form-field [appearance]="content.formStyle" [color]="content.formColor" class="form-field col-12">
               <mat-label>Categorieen contactformulier</mat-label>
-              <mat-chip-list #generalFormcontactformCategories>
+              <mat-chip-list #generalFormPageSizeOptions>
                 <mat-chip *ngFor="let category of content.contactformCategories" [selectable]="true" [removable]="true"
                   (removed)="removeChip(category, content.contactformCategories)">
                   {{category}}
                   <mat-icon matChipRemove>cancel</mat-icon>
                 </mat-chip>
-                <input placeholder="Nieuw..." [matChipInputFor]="generalFormcontactformCategories"
+                <input placeholder="Nieuw..." [matChipInputFor]="generalFormPageSizeOptions"
                   [matChipInputSeparatorKeyCodes]="[ENTER, COMMA]" [matChipInputAddOnBlur]="true"
                   (matChipInputTokenEnd)="addChip($event, content.contactformCategories)">
               </mat-chip-list>

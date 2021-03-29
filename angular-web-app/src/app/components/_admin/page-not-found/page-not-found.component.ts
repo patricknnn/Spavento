@@ -18,7 +18,6 @@ export class PageNotFoundAdminComponent implements OnInit {
   text = "Indien een pagina niet wordt gevonden zal een gebruiker deze pagina zien.";
   pageContent: PageNotFoundContent;
   pageContentHistory: PageNotFoundContent[];
-  panelStep = -1;;
   formStyle = "standard";
   formColor = "accent";
 
@@ -37,18 +36,6 @@ export class PageNotFoundAdminComponent implements OnInit {
     this.contentService.savePageNotFoundContent(this.pageContent).then(() => {
       this.swalService.successSwal("opgeslagen");
     });
-  }
-
-  setStep(i: number) {
-    this.panelStep = i;
-  }
-
-  nextStep() {
-    this.panelStep++;
-  }
-
-  prevStep() {
-    this.panelStep--;
   }
 
   retrieveData(): void {

@@ -1,64 +1,35 @@
-<div class="container-fluid py-5" *ngIf="generalContent">
-  <app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [admin]="true">
-  </app-section-title>
+<app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [admin]="true">
+</app-section-title>
 
-  <!-- Page preview -->
-  <!-- <div class="row mb-4">
+<!-- Tab group -->
+<div class="container-fluid" *ngIf="generalContent">
+  <div class="row mb-4">
     <div class="col-12">
-      <mat-card class="{{generalContent.cardElevation}}">
-        <h4 class="title-underlined">Resultaat</h4>
-        <div class="d-flex flex-column scroll-content-wrapper" style="height: 500px; padding-bottom: 20px;">
-          <ngx-simplebar class="d-flex flex-column scroll-content">
-            <app-home></app-home>
-          </ngx-simplebar>
-          <div class="icon-scroll" style="bottom: 70px;"></div>
-        </div>
-      </mat-card>
+      <mat-tab-group mat-stretch-tabs color="primary">
+        <!-- Header tab -->
+        <mat-tab label="Header">
+          <ng-container *ngTemplateOutlet="headerTab"></ng-container>
+        </mat-tab>
+        <!-- Cards tab -->
+        <mat-tab label="Cards">
+          <ng-container *ngTemplateOutlet="cardsTab"></ng-container>
+        </mat-tab>
+        <!-- Form tab -->
+        <mat-tab label="Formulier">
+          <ng-container *ngTemplateOutlet="formTab"></ng-container>
+        </mat-tab>
+      </mat-tab-group>
     </div>
-  </div> -->
-
-  <mat-accordion class="admin-accordion">
-
-    <!-- Header -->
-    <mat-expansion-panel [expanded]="panelStep === 0" (opened)="setStep(0)">
-      <mat-expansion-panel-header class="title-header">
-        <mat-panel-title>
-          <h4 class="title-underlined mb-0 mt-2">Header</h4>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <app-comp-header [page]="'contact'" [generalContent]="generalContent"></app-comp-header>
-      <mat-action-row>
-        <button mat-raised-button color="accent" (click)="nextStep()">Volgende</button>
-      </mat-action-row>
-    </mat-expansion-panel>
-
-    <!-- Cards -->
-    <mat-expansion-panel [expanded]="panelStep === 1" (opened)="setStep(1)">
-      <mat-expansion-panel-header class="title-header">
-        <mat-panel-title>
-          <h4 class="title-underlined mb-0 mt-2">Cards</h4>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <app-comp-contact-cards [generalContent]="generalContent"></app-comp-contact-cards>
-      <mat-action-row>
-        <button mat-raised-button color="primary" (click)="prevStep()">Vorige</button>
-        <button mat-raised-button color="accent" (click)="nextStep()">Volgende</button>
-      </mat-action-row>
-    </mat-expansion-panel>
-
-    <!-- Form -->
-    <mat-expansion-panel [expanded]="panelStep === 2" (opened)="setStep(2)">
-      <mat-expansion-panel-header class="title-header">
-        <mat-panel-title>
-          <h4 class="title-underlined mb-0 mt-2">Formulier</h4>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <app-comp-contact-form [generalContent]="generalContent"></app-comp-contact-form>
-      <mat-action-row>
-        <button mat-raised-button color="primary" (click)="prevStep()">Vorige</button>
-        <!-- <button mat-raised-button color="accent" (click)="nextStep()">Volgende</button> -->
-      </mat-action-row>
-    </mat-expansion-panel>
-
-  </mat-accordion>
+  </div>
 </div>
+
+<!-- Tab content templates -->
+<ng-template #headerTab>
+  <app-comp-header [page]="'contact'" [generalContent]="generalContent"></app-comp-header>
+</ng-template>
+<ng-template #cardsTab>
+  <app-comp-contact-cards [generalContent]="generalContent"></app-comp-contact-cards>
+</ng-template>
+<ng-template #formTab>
+  <app-comp-contact-form [generalContent]="generalContent"></app-comp-contact-form>
+</ng-template>

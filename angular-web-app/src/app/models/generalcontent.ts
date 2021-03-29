@@ -10,4 +10,6 @@ export class GeneralContent extends FirebaseEntity {
     paintingMaterials?: string[];
     newsCategories?: string[];
     contactformCategories?: string[];
+    pageSizeOptions?: number[];
+    pageSizeDefault?: number;
 }
