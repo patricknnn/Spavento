@@ -168,11 +168,12 @@ button::-moz-focus-inner {
 /*************************************/
 
 /*************************************/
-/**             Cards               **/
+/**          Cards / Panels         **/
 /*************************************/
 
 mat-card {
   padding: 2rem !important;
+  margin-bottom: 1.5rem;
 }
 
 .card-clean {
@@ -188,6 +189,32 @@ mat-card {
 
 .mat-expansion-panel-header.title-header {
   height: 100px !important;
+}
+
+.list-divider {
+  width: calc(100% - 4rem) !important;
+  left: 2rem !important;
+}
+
+.expansion-list-item {
+  min-height: 72px !important;
+  padding: 12px 0 !important;
+}
+
+.expansion-list-panel {
+  white-space: normal !important;
+}
+
+.expansion-list-panel-header {
+  padding-left: 0 !important;
+  background-color: transparent !important;
+  font-size: inherit !important;
+}
+
+.expansion-list-panel-content {
+  display: flex;
+  flex-direction: column;
+  padding-left: 40px;
 }
 
 /*************************************/

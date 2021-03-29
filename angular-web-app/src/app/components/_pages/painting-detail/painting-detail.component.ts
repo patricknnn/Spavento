@@ -12,10 +12,9 @@ import { PaintingService } from '../../../services/painting.service';
   styleUrls: ['./painting-detail.component.scss'],
 })
 export class PaintingDetailComponent implements OnInit {
-  title = '';
-  subTitle = 'Schilderij informatie';
   @Input() painting: Painting;
   generalContent: GeneralContent;
+  panelOpenState = false;
 
   constructor(
     private router: Router,
@@ -42,7 +41,10 @@ export class PaintingDetailComponent implements OnInit {
       if (!this.painting) {
         this.goTo404();
       } else {
-        if (!this.painting.price.toString().startsWith('€')) {
+        if (!this.painting.price) {
+          this.painting.price = "n.v.t.";
+        }
+        if (!this.painting.price.startsWith('€')) {
           this.painting.price = '€ ' + this.painting.price;
         }
       }

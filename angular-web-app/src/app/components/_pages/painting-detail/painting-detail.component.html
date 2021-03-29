@@ -1,14 +1,15 @@
 <!-- Painting -->
 <div *ngIf="painting">
   <!-- Header small -->
-  <app-header [title]="painting.title" [subTitle]="subTitle" [small]="true" [image]="painting.thumbnail"></app-header>
+  <app-header [title]="painting.title" [subTitle]="'Door ' + painting.artist" [small]="true"
+    [image]="painting.thumbnail"></app-header>
 
   <!-- Main -->
   <main class="main main-raised">
-    <!-- Content -->
-    <section class="page-section bg-light">
-      <app-section-title [title]="'Gallerij'" [subTitle]="'Foto'"
-        [text]="'Alle beschikbare fotos zijn hier te vinden.'">
+
+    <!-- Gallery -->
+    <section class="page-section">
+      <app-section-title [title]="'Gallerij'" [subTitle]="'Foto'">
       </app-section-title>
       <div class="container" *ngIf="generalContent">
         <div class="row mb-5">
@@ -19,68 +20,84 @@
       </div>
     </section>
 
-    <section class="page-section">
-      <app-section-title [title]="'Informatie'" [subTitle]="'Meer'"
-        [text]="'Over ' + painting.title + ' van ' + painting.artist + '.'">
+    <!-- Info -->
+    <section class="page-section bg-light">
+      <app-section-title [title]="'Informatie'" [subTitle]="'Detail'">
       </app-section-title>
       <div class="container">
         <div class="row">
 
-          <div class="col-8">
+          <div class="col-12 col-md-6">
             <mat-card class="{{generalContent.cardElevation}}">
               <mat-list>
                 <mat-list-item>
-                  <mat-icon mat-list-icon color="accent">person</mat-icon>
-                  <div mat-line>Kunstenaar</div>
-                  <div mat-line>{{painting.artist}}</div>
+                  <mat-icon mat-list-icon color="accent">sell</mat-icon>
+                  <div mat-line class="txt-dark-muted">Titel</div>
+                  <div mat-line>{{painting.title}}</div>
                 </mat-list-item>
                 <mat-divider class="list-divider"></mat-divider>
                 <mat-list-item>
-                  <mat-icon mat-list-icon color="accent">photo_size_select_actual</mat-icon>
-                  <div mat-line>Status en Prijs</div>
+                  <mat-icon mat-list-icon color="accent">person</mat-icon>
+                  <div mat-line class="txt-dark-muted">Kunstenaar</div>
+                  <div mat-line>{{painting.artist}}</div>
+                </mat-list-item>
+                <mat-divider class="list-divider"></mat-divider>
+                <div class="expansion-list-item">
+                  <mat-expansion-panel class="expansion-list-panel mat-elevation-z0" (opened)="panelOpenState = true"
+                    (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header class="expansion-list-panel-header">
+                      <mat-list>
+                        <mat-list-item>
+                          <mat-icon mat-list-icon color="accent">description</mat-icon>
+                          <div mat-line class="txt-dark-muted">Omschrijving</div>
+                        </mat-list-item>
+                      </mat-list>
+                    </mat-expansion-panel-header>
+                    <span class="expansion-list-panel-content" [innerHTML]="painting.description"></span>
+                  </mat-expansion-panel>
+                </div>
+
+                <mat-divider class="list-divider"></mat-divider>
+                <mat-list-item class="expansion-list-item">
+                  <mat-icon mat-list-icon color="accent">shopping_cart</mat-icon>
                   <div mat-line>
-                    <mat-chip-list aria-label="Fish selection">
+                    <mat-chip-list [ngSwitch]="painting.status">
                       <mat-chip>{{painting.price}}</mat-chip>
-                      <mat-chip color="accent" selected>{{painting.status}}</mat-chip>
+                      <mat-chip *ngSwitchCase="'Beschikbaar'" color="accent" selected>{{painting.status}}</mat-chip>
+                      <mat-chip *ngSwitchCase="'Niet Beschikbaar'" color="primary" selected>{{painting.status}}
+                      </mat-chip>
+                      <mat-chip *ngSwitchDefault>{{painting.status}}</mat-chip>
                     </mat-chip-list>
                   </div>
                 </mat-list-item>
-                <mat-divider class="list-divider"></mat-divider>
               </mat-list>
-
-              <mat-expansion-panel class="expansion-list-panel mat-elevation-z0">
-                <mat-expansion-panel-header class="expansion-list-panel-header">
-                  <mat-list>
-                    <mat-list-item>
-                      <mat-icon mat-list-icon color="accent">description</mat-icon>
-                      <div mat-line>Omschrijving</div>
-                    </mat-list-item>
-                  </mat-list>
-                </mat-expansion-panel-header>
-                <span class="expansion-list-panel-content" [innerHTML]="painting.description"></span>
-              </mat-expansion-panel>
-
             </mat-card>
           </div>
 
-          <div class="col-4">
+          <div class="col-12 col-md-6">
             <mat-card class="{{generalContent.cardElevation}}">
               <mat-list>
                 <mat-list-item>
                   <mat-icon mat-list-icon color="accent">palette</mat-icon>
-                  <div mat-line>Verf en materiaal</div>
-                  <div mat-line>{{painting.paint}} op {{painting.material}}</div>
+                  <div mat-line class="txt-dark-muted">Verf</div>
+                  <div mat-line>{{painting.paint}}</div>
+                </mat-list-item>
+                <mat-divider class="list-divider"></mat-divider>
+                <mat-list-item>
+                  <mat-icon mat-list-icon color="accent">compare</mat-icon>
+                  <div mat-line class="txt-dark-muted">Materiaal</div>
+                  <div mat-line>{{painting.material}}</div>
                 </mat-list-item>
                 <mat-divider class="list-divider"></mat-divider>
                 <mat-list-item>
                   <mat-icon mat-list-icon color="accent">category</mat-icon>
-                  <div mat-line>Categorie</div>
+                  <div mat-line class="txt-dark-muted">Categorie</div>
                   <div mat-line>{{painting.category}}</div>
                 </mat-list-item>
                 <mat-divider class="list-divider"></mat-divider>
                 <mat-list-item>
-                  <mat-icon mat-list-icon color="accent">photo_size_select_actual</mat-icon>
-                  <div mat-line>Afmetingen</div>
+                  <mat-icon mat-list-icon color="accent">photo_size_select_large</mat-icon>
+                  <div mat-line class="txt-dark-muted">Afmetingen</div>
                   <div mat-line>{{painting.length}} x {{painting.width}} cm</div>
                 </mat-list-item>
               </mat-list>
