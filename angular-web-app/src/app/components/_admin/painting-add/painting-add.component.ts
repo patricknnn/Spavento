@@ -195,14 +195,14 @@ export class PaintingAddComponent implements OnInit, OnDestroy {
   getMockPainting(): Painting {
     let painting = new Painting();
     painting.artist = 'Rolien Schrik';
-    painting.title = 'Dessert car';
-    painting.description = 'Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu. Cras ac vehicula diam. Nullam molestie vehicula ipsum a consequat. Vivamus efficitur metus ut nulla consectetur porta. Proin auctor dui ut orci aliquet, sit amet ultricies justo mattis. Mauris nec massa sit amet metus dignissim placerat elementum a justo. Nunc sit amet facilisis velit, ac varius enim.';
-    painting.material = 'Doek';
-    painting.paint = 'Olie';
-    painting.status = 'Beschikbaar';
-    painting.category = 'Nature';
-    painting.length = 100;
-    painting.width = 200;
+    painting.title = '';
+    painting.description = '';
+    painting.material = '';
+    painting.paint = '';
+    painting.status = '';
+    painting.category = '';
+    painting.length = null;
+    painting.width = null;
     painting.images = [];
     return painting;
   }
