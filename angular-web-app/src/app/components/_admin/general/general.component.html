@@ -27,8 +27,8 @@
             <mat-form-field [appearance]="content.formStyle" [color]="content.formColor"
               class="form-field col-sm-12 col-md-6">
               <mat-label>Standaard aantal</mat-label>
-              <mat-select id="generalFormPageSizeDefault" name="generalFormPageSizeDefault" [(ngModel)]="content.pageSizeDefault"
-                #generalFormPageSizeDefaultInput="ngModel">
+              <mat-select id="generalFormPageSizeDefault" name="generalFormPageSizeDefault"
+                [(ngModel)]="content.pageSizeDefault" #generalFormPageSizeDefaultInput="ngModel">
                 <mat-option *ngFor="let option of content.pageSizeOptions" [value]="option">
                   {{ option }}
                 </mat-option>
@@ -49,7 +49,6 @@
                 </mat-option>
               </mat-select>
             </mat-form-field>
-
             <mat-form-field [appearance]="content.formStyle" [color]="content.formColor"
               class="form-field col-sm-12 col-md-6">
               <mat-label>Form kleur</mat-label>
@@ -61,7 +60,6 @@
               </mat-select>
             </mat-form-field>
           </div>
-
           <div class="form-group row">
             <mat-form-field [appearance]="content.formStyle" [color]="content.formColor" class="form-field col-12">
               <mat-label>Categorieen contactformulier</mat-label>
@@ -99,7 +97,6 @@
           <!-- Painting settings -->
           <h4 class="title-underlined my-5">Portfolio</h4>
           <div class="form-group row">
-
             <mat-form-field [appearance]="content.formStyle" [color]="content.formColor" class="form-field col-12">
               <mat-label>Categorieen</mat-label>
               <mat-chip-list #generalFormPaintingCategories>
@@ -113,7 +110,6 @@
                   (matChipInputTokenEnd)="addChip($event, content.paintingCategories)">
               </mat-chip-list>
             </mat-form-field>
-
             <mat-form-field [appearance]="content.formStyle" [color]="content.formColor" class="form-field col-12">
               <mat-label>Statussen</mat-label>
               <mat-chip-list #generalFormPaintingStates>
@@ -127,7 +123,6 @@
                   (matChipInputTokenEnd)="addChip($event, content.paintingStates)">
               </mat-chip-list>
             </mat-form-field>
-
             <mat-form-field [appearance]="content.formStyle" [color]="content.formColor" class="form-field col-12">
               <mat-label>Verf soorten</mat-label>
               <mat-chip-list #generalFormPaintingPaints>
@@ -141,7 +136,6 @@
                   (matChipInputTokenEnd)="addChip($event, content.paintingPaints)">
               </mat-chip-list>
             </mat-form-field>
-
             <mat-form-field [appearance]="content.formStyle" [color]="content.formColor" class="form-field col-12">
               <mat-label>Materialen</mat-label>
               <mat-chip-list #generalFormPaintingMaterials>
@@ -155,13 +149,11 @@
                   (matChipInputTokenEnd)="addChip($event, content.paintingMaterials)">
               </mat-chip-list>
             </mat-form-field>
-
           </div>
 
           <!-- News settings -->
           <h4 class="title-underlined my-5">Nieuws</h4>
           <div class="form-group row">
-
             <mat-form-field [appearance]="content.formStyle" [color]="content.formColor" class="form-field col-12">
               <mat-label>Categorieen</mat-label>
               <mat-chip-list #generalFormNewsCategories>
@@ -175,10 +167,10 @@
                   (matChipInputTokenEnd)="addChip($event, content.newsCategories)">
               </mat-chip-list>
             </mat-form-field>
-
           </div>
 
 
+          <!-- Save -->
           <div class="mt-5">
             <button mat-flat-button color="accent" type="submit" [disabled]="!generalContentForm.form.valid">
               Opslaan

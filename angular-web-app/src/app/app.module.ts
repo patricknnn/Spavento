@@ -75,6 +75,8 @@ import { NgxEditorModule } from 'ngx-editor';
 import { GeneralComponent } from './components/_admin/general/general.component';
 import { ToolbarComponent } from './components/_admin/toolbar/toolbar.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { BackToTopComponent } from './components/back-to-top/back-to-top.component';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -139,7 +141,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     NewsEditComponent,
     LoadingComponent,
     ManagerMessagesComponent,
-    LoaderComponent
+    LoaderComponent,
+    BackToTopComponent
   ],
   imports: [
     BrowserModule,
@@ -152,6 +155,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     NgxEditorModule,
     SweetAlert2Module.forRoot({ provideSwal: () => import('sweetalert2/dist/sweetalert2.js') }),
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule.enablePersistence(),
     AngularFireDatabaseModule,
     AngularFireStorageModule,
     AngularFireAuthModule,

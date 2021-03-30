@@ -90,6 +90,13 @@ export class NewsOverviewComponent implements AfterViewInit {
   initTable(data): void {
     this.dataSource = new MatTableDataSource<NewsItem>(data);
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sortingDataAccessor = (item, property) => {
+      switch (property) {
+        case 'created': return item.timestampCreated;
+        case 'updated': return item.timestampUpdated;
+        default: return item[property];
+      }
+    };
     this.dataSource.sort = this.sort;
   }
 

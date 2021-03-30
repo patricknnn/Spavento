@@ -112,6 +112,22 @@ button::-moz-focus-inner {
 }
 
 /*************************************/
+/**            Dialog               **/
+/*************************************/
+.mat-dialog-fullscreen {
+  & .mat-dialog-container {
+    padding: 0 !important;
+  }
+  
+  & .mat-dialog-content {
+    //max-height: calc(100vh - 96px) !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+
+/*************************************/
 /**            Sections             **/
 /*************************************/
 
@@ -490,6 +506,10 @@ hr.divider {
 /*************************************/
 /**             Tables              **/
 /*************************************/
+.mat-table-container {
+  max-height: 75vh;
+  overflow: auto;
+}
 
 td.mat-cell {
   white-space: nowrap;

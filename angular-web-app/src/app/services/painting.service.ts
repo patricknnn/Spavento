@@ -23,9 +23,10 @@ export class PaintingService {
 
   public getAllActive(): AngularFirestoreCollection<Painting> {
     return this.db.collection(this.dbPath, ref => ref
-      .where('active', '==', true));
+      .where('active', '==', true)
+    );
   }
-
+  
   public create(painting: Painting): any {
     painting.timestampCreated = Date.now();
     return this.paintingsRef.add({ ...painting });

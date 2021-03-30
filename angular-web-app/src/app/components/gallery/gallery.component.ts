@@ -1,11 +1,11 @@
 import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Painting } from '../../models/painting';
 import { PaintingService } from '../../services/painting.service';
-import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { fadeAnimation } from 'src/app/animations/fade-animation';
 import { GeneralContent } from 'src/app/models/generalcontent';
 import Shuffle from 'shufflejs';
+import { ScrollService } from 'src/app/services/scroll.service';
 
 @Component({
   selector: 'app-gallery',
@@ -17,6 +17,7 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() generalContent: GeneralContent;
   private shuffleInstance: Shuffle;
   paintings: Painting[];
+  modalPainting: Painting;
   activeFilters = {
     categories: [],
     paints: [],
@@ -37,7 +38,7 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   constructor(
     private paintingService: PaintingService,
-    private router: Router
+    private scrollService: ScrollService
   ) { }
 
   ngOnInit(): void {
@@ -45,10 +46,14 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
+    let scrollY = this.scrollService.getScrollPosition("portfolio");
     this.shuffleItems.changes.subscribe(t => {
       setTimeout(() => {
         this.initShuffle();
-      }, 1500);
+        setTimeout(() => {
+          window.scrollTo(0, scrollY);
+        }, 500);
+      }, 500);
     });
   }
 
@@ -79,10 +84,6 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
     this.pageContent.nativeElement.classList.remove("d-none");
     this.pageLoader.nativeElement.classList.add("d-none");
     this.shuffleInstance.update();
-  }
-
-  goToPaintingDetails(paintingId: string): void {
-    this.router.navigate(['/painting', { id: paintingId }]);
   }
 
   // Apply filter
