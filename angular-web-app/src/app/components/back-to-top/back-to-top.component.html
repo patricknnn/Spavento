@@ -1,4 +1,10 @@
-<button mat-fab color="primary" type="button" aria-label="Back to top" class="btn-back-top" [@appearInOut]="animationState" (click)="scrollTop($event)">
+<!-- <button mat-fab color="primary" type="button" aria-label="Back to top" class="btn-back-top"
+    [@appearInOut]="animationState" (click)="scrollTop($event)">
     <mat-icon>keyboard_arrow_up</mat-icon>
-</button>
+</button> -->
 
+<div class="back-top mat-elevation-z8" [@appearInOut]="animationState">
+    <button mat-icon-button color="accent" class="m-2" (click)="scrollTop($event)">
+        <mat-icon>keyboard_arrow_up</mat-icon>
+    </button>
+</div>

@@ -7,7 +7,7 @@ import { GeneralContent } from 'src/app/models/generalcontent';
 import Shuffle from 'shufflejs';
 import { ScrollService } from 'src/app/services/scroll.service';
 import { ModalService } from 'src/app/services/modal.service';
-import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 
 @Component({
   selector: 'app-gallery',
@@ -26,15 +26,13 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
     materials: [],
     states: [],
   };
-  step: number;
   scrolled: boolean = false;
-
   @ViewChild('pageLoader') private pageLoader: ElementRef;
   @ViewChild('pageContent') private pageContent: ElementRef;
   @ViewChild('shuffleContainer') private shuffleContainer: ElementRef;
   @ViewChild('shuffleSizer') private shuffleSizer: ElementRef;
   @ViewChildren('shuffleItems') shuffleItems: QueryList<any>;
-
+  @ViewChild('filterBar') private filterBar: ElementRef;
   /**
    * Constructor
    * @param paintingService painting service
@@ -43,22 +41,23 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private paintingService: PaintingService,
     private scrollService: ScrollService,
-    private bottomSheet: MatBottomSheet
   ) { }
 
   ngOnInit(): void {
+    console.log('onInit');
     this.retrievePaintings();
   }
 
   ngAfterViewInit(): void {
+    console.log('afterViewInit');
     let scrollY = this.scrollService.getScrollPosition("portfolio");
     this.shuffleItems.changes.subscribe(t => {
+      console.log('shuffleItemsChanged');
       setTimeout(() => {
         this.initShuffle();
         if (!this.scrolled) {
           setTimeout(() => {
             window.scrollTo(0, scrollY);
-            console.log('scrolling to...');
             this.scrolled = true;
           }, 500);
         }
@@ -67,12 +66,14 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    console.log('onDestroy');
     if (this.shuffleInstance) {
       this.shuffleInstance.destroy();
     }
   }
 
   retrievePaintings(): void {
+    console.log('retrievePaintings');
     this.paintingService.getAllActive().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
@@ -86,6 +87,7 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   initShuffle(): void {
+    console.log('initShuffle');
     this.shuffleInstance = new Shuffle(this.shuffleContainer.nativeElement, {
       itemSelector: '.shuffle-item',
       sizer: this.shuffleSizer.nativeElement
@@ -97,6 +99,7 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // Apply filter
   applyFilters() {
+    console.log('applyFilters');
     if (this.shuffleInstance) {
       this.shuffleInstance.filter((element: Element) => {
         return this.itemPassesFilters(element);
@@ -135,6 +138,7 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // Clear filters and reset
   resetFilters(): void {
+    console.log('resetFilters');
     this.activeFilters.categories = [];
     this.activeFilters.paints = [];
     this.activeFilters.materials = [];
@@ -144,20 +148,13 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  setStep(index: number) {
-    this.step = index;
+  toggleFilter(): void {
+    this.filterBar.nativeElement.classList.toggle('visible');
   }
 
-  nextStep() {
-    this.step++;
+  closeFilters(): void {
+    this.filterBar.nativeElement.classList.remove('visible');
   }
 
-  prevStep() {
-    this.step--;
-  }
-
-  openBottomSheet(content): void {
-    this.bottomSheet.open(content);
-  }
 
 }

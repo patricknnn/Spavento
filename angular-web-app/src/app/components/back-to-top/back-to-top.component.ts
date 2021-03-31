@@ -8,15 +8,13 @@ import { Component, HostListener, Input, OnInit } from '@angular/core';
   animations: [
     trigger('appearInOut', [
       state('in', style({
-        'display': 'block',
-        'opacity': '1'
+        'transform': 'translateY(0px)'
       })),
       state('out', style({
-        'display': 'none',
-        'opacity': '0'
+        'transform': 'translateY(56px)'
       })),
-      transition('in => out', animate('400ms ease-in-out')),
-      transition('out => in', animate('400ms ease-in-out'))
+      transition('in => out', animate('250ms ease-in-out')),
+      transition('out => in', animate('250ms ease-in-out'))
     ]),
   ]
 })

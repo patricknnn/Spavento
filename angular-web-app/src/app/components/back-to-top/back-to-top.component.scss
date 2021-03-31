@@ -4,3 +4,13 @@
   bottom: 20px;
   z-index: 5;
 }
+
+.back-top {
+  position: fixed;
+  right: 35px;
+  bottom: 0;
+  z-index: 5;
+  background-color: white;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}

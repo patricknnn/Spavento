@@ -1,0 +1,27 @@
+
+.filterBar {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  bottom: 0;
+  left: calc(50% - 175px);
+  background-color: white;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  transform: translateY(calc(100% - 56px));
+  transition: 0.25s cubic-bezier(0.250, 0.460, 0.450, 0.940);
+}
+.filterBar.visible {
+    transform: translateY(0%);
+}
+.filterBar-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.filterAccordion {
+  width: 350px;
+  max-height: 50vh;
+  overflow: auto;
+  background-color: white;
+}
