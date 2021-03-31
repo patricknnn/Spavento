@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, Input, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Painting } from '../../models/painting';
 import { PaintingService } from '../../services/painting.service';
 import { map } from 'rxjs/operators';
@@ -6,14 +6,26 @@ import { fadeAnimation } from 'src/app/animations/fade-animation';
 import { GeneralContent } from 'src/app/models/generalcontent';
 import Shuffle from 'shufflejs';
 import { ScrollService } from 'src/app/services/scroll.service';
-import { ModalService } from 'src/app/services/modal.service';
-import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-gallery',
-  animations: [fadeAnimation],
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.scss'],
+  animations: [
+    trigger('appearInOut', [
+      state('in', style({
+        'transform': 'translateY(calc(100% - 56px))'
+      })),
+      state('out', style({
+        'transform': 'translateY(100%)'
+      })),
+      state('visible', style({
+        'transform': 'translateY(0%)'
+      })),
+      transition('* <=> *', animate('250ms ease-in-out'))
+    ]),
+  ]
 })
 export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() generalContent: GeneralContent;
@@ -27,12 +39,15 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
     states: [],
   };
   scrolled: boolean = false;
+  animationState = 'out';
+  scrollDistance = 50;
   @ViewChild('pageLoader') private pageLoader: ElementRef;
   @ViewChild('pageContent') private pageContent: ElementRef;
   @ViewChild('shuffleContainer') private shuffleContainer: ElementRef;
   @ViewChild('shuffleSizer') private shuffleSizer: ElementRef;
   @ViewChildren('shuffleItems') shuffleItems: QueryList<any>;
   @ViewChild('filterBar') private filterBar: ElementRef;
+
   /**
    * Constructor
    * @param paintingService painting service
@@ -42,6 +57,16 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
     private paintingService: PaintingService,
     private scrollService: ScrollService,
   ) { }
+
+  /**
+   * Listens to window scroll and animates the button
+   */
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    if (typeof (window) !== 'undefined') {
+      this.animationState = this.getCurrentScrollTop() > this.scrollDistance / 2 ? 'in' : 'out';
+    }
+  }
 
   ngOnInit(): void {
     console.log('onInit');
@@ -149,12 +174,37 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   toggleFilter(): void {
-    this.filterBar.nativeElement.classList.toggle('visible');
+    this.animationState == 'visible' ? this.animationState = 'in' : this.animationState = 'visible';
+    //this.filterBar.nativeElement.classList.toggle('visible');
   }
 
   closeFilters(): void {
     this.filterBar.nativeElement.classList.remove('visible');
   }
 
+  getActiveFilterCount(): number {
+    return this.activeFilters.categories.length + this.activeFilters.materials.length + this.activeFilters.paints.length + this.activeFilters.states.length;
+  }
+
+
+  /**
+   * Get current Y scroll position
+   * @returns {number}
+   */
+  getCurrentScrollTop() {
+    if (typeof window.scrollY !== 'undefined' && window.scrollY >= 0) {
+      return window.scrollY;
+    }
+    if (typeof window.pageYOffset !== 'undefined' && window.pageYOffset >= 0) {
+      return window.pageYOffset;
+    }
+    if (typeof document.body.scrollTop !== 'undefined' && document.body.scrollTop >= 0) {
+      return document.body.scrollTop;
+    }
+    if (typeof document.documentElement.scrollTop !== 'undefined' && document.documentElement.scrollTop >= 0) {
+      return document.documentElement.scrollTop;
+    }
+    return 0;
+  }
 
 }

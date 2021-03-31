@@ -7,75 +7,8 @@
   </div>
 </div>
 
+<!-- Shuffle Gallery -->
 <div #pageContent class="container d-none">
-  <!-- Filters -->
-  <div id="filterRow" class="row mb-3" *ngIf="generalContent">
-    <div class="col-12 d-flex align-items-center justify-content-center flex-wrap">
-      <button mat-raised-button [matMenuTriggerFor]="menuCategory" [matBadge]="activeFilters.categories.length"
-        [matBadgeHidden]="activeFilters.categories.length == 0" matBadgePosition="after" matBadgeColor="accent"
-        class="m-2">
-        <mat-icon class="mr-0 mr-sm-2">category</mat-icon>
-        <span class="d-none d-sm-inline">Categorie</span>
-      </button>
-      <mat-menu #menuCategory="matMenu">
-        <mat-selection-list #categorylist [(ngModel)]="activeFilters.categories" (ngModelChange)="applyFilters()">
-          <mat-list-option class="text-capitalize" color="primary" checkboxPosition="after"
-            *ngFor="let category of generalContent.paintingCategories" [value]="category">
-            {{ category }}
-          </mat-list-option>
-        </mat-selection-list>
-      </mat-menu>
-
-      <button mat-raised-button [matMenuTriggerFor]="menuPaint" [matBadge]="activeFilters.paints.length"
-        [matBadgeHidden]="activeFilters.paints.length == 0" matBadgePosition="after" matBadgeColor="accent" class="m-2">
-        <mat-icon class="mr-0 mr-sm-2">brush</mat-icon>
-        <span class="d-none d-sm-inline">Verf</span>
-      </button>
-      <mat-menu #menuPaint="matMenu">
-        <mat-selection-list #paintlist [(ngModel)]="activeFilters.paints" (ngModelChange)="applyFilters()">
-          <mat-list-option class="text-capitalize" color="primary" checkboxPosition="after"
-            *ngFor="let paint of generalContent.paintingPaints" [value]="paint">
-            {{ paint }}
-          </mat-list-option>
-        </mat-selection-list>
-      </mat-menu>
-
-      <button mat-raised-button [matMenuTriggerFor]="menuMaterial" [matBadge]="activeFilters.materials.length"
-        [matBadgeHidden]="activeFilters.materials.length == 0" matBadgePosition="after" matBadgeColor="accent"
-        class="m-2">
-        <mat-icon class="mr-0 mr-sm-2">photo_filter</mat-icon>
-        <span class="d-none d-sm-inline">Materiaal</span>
-      </button>
-      <mat-menu #menuMaterial="matMenu">
-        <mat-selection-list #materiallist [(ngModel)]="activeFilters.materials" (ngModelChange)="applyFilters()">
-          <mat-list-option class="text-capitalize" color="primary" checkboxPosition="after"
-            *ngFor="let material of generalContent.paintingMaterials" [value]="material">
-            {{ material }}
-          </mat-list-option>
-        </mat-selection-list>
-      </mat-menu>
-
-      <button mat-raised-button [matMenuTriggerFor]="menuState" [matBadge]="activeFilters.states.length"
-        [matBadgeHidden]="activeFilters.states.length == 0" matBadgePosition="after" matBadgeColor="accent" class="m-2">
-        <mat-icon class="mr-0 mr-sm-2">local_offer</mat-icon>
-        <span class="d-none d-sm-inline">Status</span>
-      </button>
-      <mat-menu #menuState="matMenu">
-        <mat-selection-list #statelist [(ngModel)]="activeFilters.states" (ngModelChange)="applyFilters()">
-          <mat-list-option class="text-capitalize" color="primary" checkboxPosition="after"
-            *ngFor="let state of generalContent.paintingStates" [value]="state">
-            {{ state }}
-          </mat-list-option>
-        </mat-selection-list>
-      </mat-menu>
-
-      <button mat-icon-button color="primary" class="m-2" (click)="resetFilters();">
-        <mat-icon>replay</mat-icon>
-      </button>
-    </div>
-  </div>
-
-  <!-- Shuffle Gallery -->
   <div #shuffleContainer class="shuffle-container row">
     <app-painting-card #shuffleItems *ngFor="let painting of paintings"
       class="col-12 col-md-6 col-lg-4 p-0 shuffle-item" [attr.data-category]="painting.category"
@@ -84,29 +17,32 @@
     </app-painting-card>
     <div #shuffleSizer class="col-1 shuffle-sizer"></div>
   </div>
-
 </div>
 
-
-
 <!-- Filter sheet -->
-<div #filterBar class="filterBar mat-elevation-z8" (clickOutside)="closeFilters();">
+<div #filterBar class="filterBar mat-elevation-z8" (clickOutside)="closeFilters();" [@appearInOut]="animationState">
   <div class="filterBar-buttons">
-    <button mat-icon-button color="accent" class="m-2" (click)="toggleFilter();">
+    <button mat-button color="accent" [matBadge]="getActiveFilterCount()" [matBadgeHidden]="getActiveFilterCount() == 0"
+      matBadgePosition="after" matBadgeColor="accent" class="m-2" (click)="toggleFilter();">
       <mat-icon>filter_alt</mat-icon>
+      <span>Filter</span>
     </button>
-    <button mat-icon-button color="primary" class="m-2" (click)="resetFilters();">
+    <button mat-button color="primary" class="m-2" (click)="resetFilters();">
       <mat-icon>replay</mat-icon>
+      <span>Reset</span>
     </button>
   </div>
+
   <mat-accordion *ngIf="generalContent" class="filterAccordion">
     <mat-expansion-panel [expanded]="false" class="mat-elevation-z0">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <mat-icon class="mr-0 mr-sm-2">category</mat-icon>
-          <span [matBadge]="activeFilters.categories.length" [matBadgeHidden]="activeFilters.categories.length == 0"
-            matBadgePosition="after" matBadgeColor="accent">Categorie</span>
+          <mat-icon class="mr-2">category</mat-icon>
+          <span>Categorie</span>
         </mat-panel-title>
+        <mat-panel-description class="flex-grow-0 mr-5">
+          <span *ngIf="activeFilters.categories.length">{{activeFilters.categories.length}}</span>
+        </mat-panel-description>
       </mat-expansion-panel-header>
       <mat-selection-list #categorylistSheet [(ngModel)]="activeFilters.categories" (ngModelChange)="applyFilters()">
         <mat-list-option class="text-capitalize" color="primary" checkboxPosition="after"
@@ -119,9 +55,12 @@
     <mat-expansion-panel [expanded]="false" class="mat-elevation-z0">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <mat-icon class="mr-0 mr-sm-2">brush</mat-icon>
-          <span class="d-none d-sm-inline">Verf</span>
+          <mat-icon class="mr-2">brush</mat-icon>
+          <span>Verf</span>
         </mat-panel-title>
+        <mat-panel-description class="flex-grow-0 mr-5">
+          <span *ngIf="activeFilters.paints.length">{{activeFilters.paints.length}}</span>
+        </mat-panel-description>
       </mat-expansion-panel-header>
       <mat-selection-list #paintlistSheet [(ngModel)]="activeFilters.paints" (ngModelChange)="applyFilters()">
         <mat-list-option class="text-capitalize" color="primary" checkboxPosition="after"
@@ -134,9 +73,12 @@
     <mat-expansion-panel [expanded]="false" class="mat-elevation-z0">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <mat-icon class="mr-0 mr-sm-2">photo_filter</mat-icon>
-          <span class="d-none d-sm-inline">Materiaal</span>
+          <mat-icon class="mr-2">photo_filter</mat-icon>
+          <span>Materiaal</span>
         </mat-panel-title>
+        <mat-panel-description class="flex-grow-0 mr-5">
+          <span *ngIf="activeFilters.materials.length">{{activeFilters.materials.length}}</span>
+        </mat-panel-description>
       </mat-expansion-panel-header>
       <mat-selection-list #materiallistSheet [(ngModel)]="activeFilters.materials" (ngModelChange)="applyFilters()">
         <mat-list-option class="text-capitalize" color="primary" checkboxPosition="after"
@@ -149,9 +91,12 @@
     <mat-expansion-panel [expanded]="false" class="mat-elevation-z0">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <mat-icon class="mr-0 mr-sm-2">local_offer</mat-icon>
-          <span class="d-none d-sm-inline">Status</span>
+          <mat-icon class="mr-2">local_offer</mat-icon>
+          <span>Status</span>
         </mat-panel-title>
+        <mat-panel-description class="flex-grow-0 mr-5">
+          <span *ngIf="activeFilters.states.length">{{activeFilters.states.length}}</span>
+        </mat-panel-description>
       </mat-expansion-panel-header>
       <mat-selection-list #statelistSheet [(ngModel)]="activeFilters.states" (ngModelChange)="applyFilters()">
         <mat-list-option class="text-capitalize" color="primary" checkboxPosition="after"
