@@ -33,8 +33,8 @@
       </button>
       <mat-menu #menuPaint="matMenu">
         <mat-selection-list #paintlist [(ngModel)]="activeFilters.paints" (ngModelChange)="applyFilters()">
-          <mat-list-option class="text-capitalize" color="primary" checkboxPosition="after" *ngFor="let paint of generalContent.paintingPaints"
-            [value]="paint">
+          <mat-list-option class="text-capitalize" color="primary" checkboxPosition="after"
+            *ngFor="let paint of generalContent.paintingPaints" [value]="paint">
             {{ paint }}
           </mat-list-option>
         </mat-selection-list>
@@ -62,8 +62,8 @@
       </button>
       <mat-menu #menuState="matMenu">
         <mat-selection-list #statelist [(ngModel)]="activeFilters.states" (ngModelChange)="applyFilters()">
-          <mat-list-option class="text-capitalize" color="primary" checkboxPosition="after" *ngFor="let state of generalContent.paintingStates"
-            [value]="state">
+          <mat-list-option class="text-capitalize" color="primary" checkboxPosition="after"
+            *ngFor="let state of generalContent.paintingStates" [value]="state">
             {{ state }}
           </mat-list-option>
         </mat-selection-list>
@@ -72,17 +72,90 @@
       <button mat-icon-button color="primary" class="m-2" (click)="resetFilters();">
         <mat-icon>replay</mat-icon>
       </button>
+
+      <button mat-icon-button color="accent" class="m-2" (click)="openBottomSheet(filterSheet);">
+        <mat-icon>filter_alt</mat-icon>
+      </button>
     </div>
   </div>
 
   <!-- Shuffle Gallery -->
   <div #shuffleContainer class="shuffle-container row">
-    <app-painting-card #shuffleItems *ngFor="let painting of paintings" class="col-12 col-md-6 col-lg-4 p-0 shuffle-item"
-      [attr.data-category]="painting.category" [attr.data-paint]="painting.paint"
-      [attr.data-material]="painting.material" [attr.data-status]="painting.status" [painting]="painting"
-      [elevation]="generalContent.cardElevation">
+    <app-painting-card #shuffleItems *ngFor="let painting of paintings"
+      class="col-12 col-md-6 col-lg-4 p-0 shuffle-item" [attr.data-category]="painting.category"
+      [attr.data-paint]="painting.paint" [attr.data-material]="painting.material" [attr.data-status]="painting.status"
+      [painting]="painting" [elevation]="generalContent.cardElevation">
     </app-painting-card>
     <div #shuffleSizer class="col-1 shuffle-sizer"></div>
   </div>
 
 </div>
+
+
+
+<!-- Modal -->
+<ng-template #filterSheet>
+  <mat-accordion>
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" class="mat-elevation-z0">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon class="mr-0 mr-sm-2">category</mat-icon>
+          <span class="d-none d-sm-inline">Categorie</span>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-selection-list #categorylist [(ngModel)]="activeFilters.categories" (ngModelChange)="applyFilters()">
+        <mat-list-option class="text-capitalize" color="primary" checkboxPosition="after"
+          *ngFor="let category of generalContent.paintingCategories" [value]="category">
+          {{ category }}
+        </mat-list-option>
+      </mat-selection-list>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" class="mat-elevation-z0">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon class="mr-0 mr-sm-2">brush</mat-icon>
+          <span class="d-none d-sm-inline">Verf</span>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-selection-list #paintlist [(ngModel)]="activeFilters.paints" (ngModelChange)="applyFilters()">
+        <mat-list-option class="text-capitalize" color="primary" checkboxPosition="after"
+          *ngFor="let paint of generalContent.paintingPaints" [value]="paint">
+          {{ paint }}
+        </mat-list-option>
+      </mat-selection-list>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" class="mat-elevation-z0">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon class="mr-0 mr-sm-2">photo_filter</mat-icon>
+          <span class="d-none d-sm-inline">Materiaal</span>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-selection-list #materiallist [(ngModel)]="activeFilters.materials" (ngModelChange)="applyFilters()">
+        <mat-list-option class="text-capitalize" color="primary" checkboxPosition="after"
+          *ngFor="let material of generalContent.paintingMaterials" [value]="material">
+          {{ material }}
+        </mat-list-option>
+      </mat-selection-list>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" class="mat-elevation-z0">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon class="mr-0 mr-sm-2">local_offer</mat-icon>
+          <span class="d-none d-sm-inline">Status</span>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-selection-list #statelist [(ngModel)]="activeFilters.states" (ngModelChange)="applyFilters()">
+        <mat-list-option class="text-capitalize" color="primary" checkboxPosition="after"
+          *ngFor="let state of generalContent.paintingStates" [value]="state">
+          {{ state }}
+        </mat-list-option>
+      </mat-selection-list>
+    </mat-expansion-panel>
+
+  </mat-accordion>
+
+</ng-template>

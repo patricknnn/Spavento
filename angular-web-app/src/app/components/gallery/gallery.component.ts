@@ -6,6 +6,8 @@ import { fadeAnimation } from 'src/app/animations/fade-animation';
 import { GeneralContent } from 'src/app/models/generalcontent';
 import Shuffle from 'shufflejs';
 import { ScrollService } from 'src/app/services/scroll.service';
+import { ModalService } from 'src/app/services/modal.service';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
 @Component({
   selector: 'app-gallery',
@@ -24,6 +26,8 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
     materials: [],
     states: [],
   };
+  step: number;
+  scrolled: boolean = false;
 
   @ViewChild('pageLoader') private pageLoader: ElementRef;
   @ViewChild('pageContent') private pageContent: ElementRef;
@@ -38,7 +42,8 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   constructor(
     private paintingService: PaintingService,
-    private scrollService: ScrollService
+    private scrollService: ScrollService,
+    private bottomSheet: MatBottomSheet
   ) { }
 
   ngOnInit(): void {
@@ -50,9 +55,13 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
     this.shuffleItems.changes.subscribe(t => {
       setTimeout(() => {
         this.initShuffle();
-        setTimeout(() => {
-          window.scrollTo(0, scrollY);
-        }, 500);
+        if (!this.scrolled) {
+          setTimeout(() => {
+            window.scrollTo(0, scrollY);
+            console.log('scrolling to...');
+            this.scrolled = true;
+          }, 500);
+        }
       }, 500);
     });
   }
@@ -133,6 +142,22 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.shuffleInstance) {
       this.shuffleInstance.filter();
     }
+  }
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
+  }
+
+  openBottomSheet(content): void {
+    this.bottomSheet.open(content);
   }
 
 }
