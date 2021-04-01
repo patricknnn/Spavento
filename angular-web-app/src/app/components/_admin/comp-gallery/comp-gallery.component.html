@@ -46,6 +46,43 @@
         </mat-error>
       </mat-form-field>
 
+      <div class="col-sm-12 col-md-6 col-lg-3">
+        <div class="form-field form-field-slide">
+          <mat-label>Categorie Filter</mat-label>
+          <mat-slide-toggle [(ngModel)]="galleryContent.filterCategoriesActive" name="filterCategoriesActive'"
+            [checked]="galleryContent.filterCategoriesActive"
+            (change)="setActive(galleryContent.filterCategoriesActive, $event)" class="slide-toggle-form">
+          </mat-slide-toggle>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-3">
+        <div class="form-field form-field-slide">
+          <mat-label>Verf Filter</mat-label>
+          <mat-slide-toggle [(ngModel)]="galleryContent.filterPaintsActive" name="filterPaintsActive'"
+            [checked]="galleryContent.filterPaintsActive"
+            (change)="setActive(galleryContent.filterPaintsActive, $event)" class="slide-toggle-form">
+          </mat-slide-toggle>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-3">
+        <div class="form-field form-field-slide">
+          <mat-label>Materiaal Filter</mat-label>
+          <mat-slide-toggle [(ngModel)]="galleryContent.filterMaterialsActive" name="filterMaterialsActive'"
+            [checked]="galleryContent.filterMaterialsActive"
+            (change)="setActive(galleryContent.filterMaterialsActive, $event)" class="slide-toggle-form">
+          </mat-slide-toggle>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-3">
+        <div class="form-field form-field-slide">
+          <mat-label>Status Filter</mat-label>
+          <mat-slide-toggle [(ngModel)]="galleryContent.filterStatesActive" name="filterStatesActive'"
+            [checked]="galleryContent.filterStatesActive"
+            (change)="setActive(galleryContent.filterStatesActive, $event)" class="slide-toggle-form">
+          </mat-slide-toggle>
+        </div>
+      </div>
+
     </div>
 
 

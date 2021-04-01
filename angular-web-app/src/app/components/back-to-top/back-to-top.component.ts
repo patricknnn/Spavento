@@ -13,8 +13,7 @@ import { Component, HostListener, Input, OnInit } from '@angular/core';
       state('out', style({
         'transform': 'translateY(56px)'
       })),
-      transition('in => out', animate('250ms ease-in-out')),
-      transition('out => in', animate('250ms ease-in-out'))
+      transition('in <=> out', animate('250ms cubic-bezier(0.250, 0.460, 0.450, 0.940)'))
     ]),
   ]
 })

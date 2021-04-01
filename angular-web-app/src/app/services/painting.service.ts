@@ -8,6 +8,7 @@ import { Painting } from '../models/painting';
 export class PaintingService {
   private dbPath = '/portfolioitems';
   paintingsRef: AngularFirestoreCollection<Painting>;
+  activeFilters: any;
 
   /**
    * Constructor
@@ -63,42 +64,12 @@ export class PaintingService {
       .where('description', '<=', param + '\uf8ff'));
   }
 
-
-
-
-  public getCategories(): string[] {
-    return [
-      "Portretten",
-      "Natuur",
-      "Dieren",
-      "TV Series",
-      "Algemeen"
-    ];
+  public setActiveFilters(filters: any): void {
+    this.activeFilters = filters;
   }
 
-  public getStates(): string[] {
-    return [
-      "Beschikbaar",
-      "Niet beschikbaar",
-      "Opdrachten",
-      "Eerdere werken"
-    ];
+  public getActiveFilters(): any {
+    return this.activeFilters;
   }
-
-  public getPaints(): string[] {
-    return [
-      "Oil",
-      "Acryl",
-      "Water"
-    ];
-  }
-
-  public getMaterials(): string[] {
-    return [
-      "Doek",
-      "Hout",
-    ];
-  }
-
 
 }

@@ -1,3 +1,7 @@
+<!-- Title -->
+<app-section-title [title]="galleryContent.title" [subTitle]="galleryContent.subTitle" [text]="galleryContent.text">
+</app-section-title>
+
 <!-- Loader -->
 <div #pageLoader class="container">
   <div class="row">
@@ -20,10 +24,11 @@
 </div>
 
 <!-- Filter sheet -->
-<div #filterBar class="filterBar mat-elevation-z8" (clickOutside)="closeFilters();" [@appearInOut]="animationState">
+<div #filterBar class="filterBar mat-elevation-z8" (clickOutside)="closeFilters();"
+  [@appearInOut]="filterAnimationState">
   <div class="filterBar-buttons">
     <button mat-button color="accent" [matBadge]="getActiveFilterCount()" [matBadgeHidden]="getActiveFilterCount() == 0"
-      matBadgePosition="after" matBadgeColor="accent" class="m-2" (click)="toggleFilter();">
+      matBadgePosition="after" matBadgeColor="accent" class="m-2" (click)="toggleFilters();">
       <mat-icon>filter_alt</mat-icon>
       <span>Filter</span>
     </button>
@@ -34,7 +39,7 @@
   </div>
 
   <mat-accordion *ngIf="generalContent" class="filterAccordion">
-    <mat-expansion-panel [expanded]="false" class="mat-elevation-z0">
+    <mat-expansion-panel *ngIf="galleryContent.filterCategoriesActive" [expanded]="false" class="mat-elevation-z0">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <mat-icon class="mr-2">category</mat-icon>
@@ -52,7 +57,7 @@
       </mat-selection-list>
     </mat-expansion-panel>
 
-    <mat-expansion-panel [expanded]="false" class="mat-elevation-z0">
+    <mat-expansion-panel *ngIf="galleryContent.filterPaintsActive" [expanded]="false" class="mat-elevation-z0">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <mat-icon class="mr-2">brush</mat-icon>
@@ -70,7 +75,7 @@
       </mat-selection-list>
     </mat-expansion-panel>
 
-    <mat-expansion-panel [expanded]="false" class="mat-elevation-z0">
+    <mat-expansion-panel *ngIf="galleryContent.filterMaterialsActive" [expanded]="false" class="mat-elevation-z0">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <mat-icon class="mr-2">photo_filter</mat-icon>
@@ -88,7 +93,7 @@
       </mat-selection-list>
     </mat-expansion-panel>
 
-    <mat-expansion-panel [expanded]="false" class="mat-elevation-z0">
+    <mat-expansion-panel *ngIf="galleryContent.filterStatesActive" [expanded]="false" class="mat-elevation-z0">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <mat-icon class="mr-2">local_offer</mat-icon>

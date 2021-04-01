@@ -5,14 +5,10 @@
 <main id="portfolio" class="main main-raised">
 
   <!-- Content -->
-  <section *ngIf="galleryContent" class="page-section bg-light">
-
-    <!-- Title -->
-    <app-section-title [title]="galleryContent.title" [subTitle]="galleryContent.subTitle" [text]="galleryContent.text">
-    </app-section-title>
+  <section *ngIf="galleryContent && generalContent" class="page-section bg-light">
 
     <!-- Gallery -->
-    <app-gallery [generalContent]="generalContent"></app-gallery>
+    <app-gallery [galleryContent]="galleryContent" [generalContent]="generalContent"></app-gallery>
 
   </section>
 

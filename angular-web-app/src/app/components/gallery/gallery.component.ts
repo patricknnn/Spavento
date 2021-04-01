@@ -2,11 +2,11 @@ import { AfterViewInit, Component, ElementRef, HostListener, Input, OnDestroy, O
 import { Painting } from '../../models/painting';
 import { PaintingService } from '../../services/painting.service';
 import { map } from 'rxjs/operators';
-import { fadeAnimation } from 'src/app/animations/fade-animation';
 import { GeneralContent } from 'src/app/models/generalcontent';
 import Shuffle from 'shufflejs';
 import { ScrollService } from 'src/app/services/scroll.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { GalleryContent } from 'src/app/models/gallerycontent';
 
 @Component({
   selector: 'app-gallery',
@@ -23,11 +23,12 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
       state('visible', style({
         'transform': 'translateY(0%)'
       })),
-      transition('* <=> *', animate('250ms ease-in-out'))
+      transition('* <=> *', animate('250ms cubic-bezier(0.250, 0.460, 0.450, 0.940)'))
     ]),
   ]
 })
 export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
+  @Input() galleryContent: GalleryContent;
   @Input() generalContent: GeneralContent;
   private shuffleInstance: Shuffle;
   paintings: Painting[];
@@ -39,14 +40,13 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
     states: [],
   };
   scrolled: boolean = false;
-  animationState = 'out';
+  filterAnimationState = 'out';
   scrollDistance = 50;
   @ViewChild('pageLoader') private pageLoader: ElementRef;
   @ViewChild('pageContent') private pageContent: ElementRef;
   @ViewChild('shuffleContainer') private shuffleContainer: ElementRef;
   @ViewChild('shuffleSizer') private shuffleSizer: ElementRef;
   @ViewChildren('shuffleItems') shuffleItems: QueryList<any>;
-  @ViewChild('filterBar') private filterBar: ElementRef;
 
   /**
    * Constructor
@@ -64,20 +64,17 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
   @HostListener('window:scroll', [])
   onWindowScroll() {
     if (typeof (window) !== 'undefined') {
-      this.animationState = this.getCurrentScrollTop() > this.scrollDistance / 2 ? 'in' : 'out';
+      this.filterAnimationState = this.getCurrentScrollTop() > this.scrollDistance / 2 ? 'in' : 'out';
     }
   }
 
   ngOnInit(): void {
-    console.log('onInit');
     this.retrievePaintings();
   }
 
   ngAfterViewInit(): void {
-    console.log('afterViewInit');
     let scrollY = this.scrollService.getScrollPosition("portfolio");
     this.shuffleItems.changes.subscribe(t => {
-      console.log('shuffleItemsChanged');
       setTimeout(() => {
         this.initShuffle();
         if (!this.scrolled) {
@@ -91,14 +88,12 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.log('onDestroy');
     if (this.shuffleInstance) {
       this.shuffleInstance.destroy();
     }
   }
 
   retrievePaintings(): void {
-    console.log('retrievePaintings');
     this.paintingService.getAllActive().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
@@ -112,7 +107,6 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   initShuffle(): void {
-    console.log('initShuffle');
     this.shuffleInstance = new Shuffle(this.shuffleContainer.nativeElement, {
       itemSelector: '.shuffle-item',
       sizer: this.shuffleSizer.nativeElement
@@ -120,15 +114,20 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
     this.pageContent.nativeElement.classList.remove("d-none");
     this.pageLoader.nativeElement.classList.add("d-none");
     this.shuffleInstance.update();
+    let filters = this.paintingService.getActiveFilters();
+    if (filters) {
+      this.activeFilters = filters;
+      this.applyFilters();
+    }
   }
 
   // Apply filter
   applyFilters() {
-    console.log('applyFilters');
     if (this.shuffleInstance) {
       this.shuffleInstance.filter((element: Element) => {
         return this.itemPassesFilters(element);
       });
+      this.paintingService.setActiveFilters(this.activeFilters);
     }
   }
 
@@ -163,7 +162,6 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // Clear filters and reset
   resetFilters(): void {
-    console.log('resetFilters');
     this.activeFilters.categories = [];
     this.activeFilters.paints = [];
     this.activeFilters.materials = [];
@@ -173,25 +171,26 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  toggleFilter(): void {
-    this.animationState == 'visible' ? this.animationState = 'in' : this.animationState = 'visible';
-    //this.filterBar.nativeElement.classList.toggle('visible');
+  toggleFilters(): void {
+    this.filterAnimationState == 'visible' ? this.filterAnimationState = 'in' : this.filterAnimationState = 'visible';
+  }
+
+  openFilters(): void {
+    this.filterAnimationState = 'visible';
   }
 
   closeFilters(): void {
-    this.filterBar.nativeElement.classList.remove('visible');
+    this.filterAnimationState = 'in';
   }
 
   getActiveFilterCount(): number {
     return this.activeFilters.categories.length + this.activeFilters.materials.length + this.activeFilters.paints.length + this.activeFilters.states.length;
   }
 
-
   /**
    * Get current Y scroll position
-   * @returns {number}
    */
-  getCurrentScrollTop() {
+  getCurrentScrollTop(): number {
     if (typeof window.scrollY !== 'undefined' && window.scrollY >= 0) {
       return window.scrollY;
     }
