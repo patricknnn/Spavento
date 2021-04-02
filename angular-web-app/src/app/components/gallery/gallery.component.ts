@@ -33,7 +33,9 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
   private shuffleInstance: Shuffle;
   paintings: Painting[];
   modalPainting: Painting;
+  activeSort = "Standaard";
   activeFilters = {
+    sort: ["dom"],
     categories: [],
     paints: [],
     materials: [],
@@ -121,6 +123,31 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  // Apply sorting
+  applySort(option: string) {
+    this.activeFilters.sort = [option];
+    let options = {};
+    if (option === 'date-created') {
+      options = {
+        reverse: true,
+        by: this.sortByDate,
+      };
+    } else if (option === 'title') {
+      options = {
+        by: this.sortByTitle,
+      };
+    }
+    this.shuffleInstance.sort(options);
+  }
+
+  sortByDate(element) {
+    return element.getAttribute('data-created');
+  }
+
+  sortByTitle(element) {
+    return element.getAttribute('data-title').toLowerCase();
+  }
+
   // Apply filter
   applyFilters() {
     if (this.shuffleInstance) {
@@ -162,12 +189,15 @@ export class GalleryComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // Clear filters and reset
   resetFilters(): void {
+    this.activeSort = 'Standaard';
+    this.activeFilters.sort = ["dom"];
     this.activeFilters.categories = [];
     this.activeFilters.paints = [];
     this.activeFilters.materials = [];
     this.activeFilters.states = [];
     if (this.shuffleInstance) {
       this.shuffleInstance.filter();
+      this.applySort("dom");
     }
   }
 

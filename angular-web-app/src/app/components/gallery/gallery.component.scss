@@ -3,19 +3,40 @@
   flex-direction: column;
   position: fixed;
   bottom: 0;
-  left: calc(50% - 175px);
-  background-color: white;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
+  right: 88px;
+  left: 16px;
 }
+
 .filterBar-buttons {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  padding-bottom: 10px;
+  margin-bottom: -10px;
 }
+
 .filterAccordion {
-  width: 350px;
   max-height: 50vh;
   overflow: auto;
+}
+
+.filterBar-buttons,
+.filterAccordion {
+  width: 100%;
   background-color: white;
+}
+
+@media (min-width: 768px) {
+  .filterBar {
+    right: 104px;
+    left: 32px;
+  }
+
+  .filterBar-buttons,
+  .filterAccordion {
+    width: 400px;
+    margin-left: calc(50% - 164px);
+  }
 }
