@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Painting } from '../../models/painting';
 import { Router } from '@angular/router';
 import { ModalService } from 'src/app/services/modal.service';
+import { FeaturedContent } from 'src/app/models/featuredcontent';
 
 @Component({
   selector: 'app-featured',
@@ -9,33 +9,12 @@ import { ModalService } from 'src/app/services/modal.service';
   styleUrls: ['./featured.component.scss']
 })
 export class FeaturedComponent implements OnInit {
-  @Input() painting: Painting;
+  @Input() featured: FeaturedContent;
   @Input() elevation: string;
 
-  constructor(
-    private router: Router,
-    private modalService: ModalService,
-  ) {
-  }
+  constructor() { }
 
   ngOnInit(): void {
-  }
-
-  goToPaintingDetails(): void {
-    this.router.navigate(['/painting', { id: this.painting.id }]);
-  }
-
-  getTrimmedDescription(): string {
-    const limit = 120;
-    if (this.painting.description.length > limit) {
-      return this.painting.description.substring(0, limit) + '...';
-    } else {
-      return this.painting.description;
-    }
-  }
-
-  openImage(content) {
-    this.modalService.openModal(content);
   }
 
 }

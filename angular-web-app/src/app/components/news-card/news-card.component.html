@@ -1,29 +1,28 @@
 <mat-card *ngIf="newsItem" (click)="openNewsItem(content)" style="cursor: pointer;" class="{{elevation}}">
   <div class="container-fluid">
     <div class="row">
-      <div [class]="colOne">
+      <div class="col-3 d-none d-md-flex">
         <div class="news-header">
-          <img class="w-100 rounded {{imageClass}} {{elevation}}" [src]="newsItem.image" alt="news" />
+          <img class="w-100 rounded news-image {{elevation}}" [src]="newsItem.image" alt="news" />
         </div>
       </div>
-      <div [class]="colTwo">
+      <div class="col-12 col-md-9">
         <h6 class="txt-primary text-uppercase mt-2">
           {{ newsItem.category }}
         </h6>
         <h3 class="mb-3">{{ newsItem.title }}</h3>
-
-        <div class="txt-dark-muted mb-0">
-          <hr class="hr-news">
-          <mat-icon class="inline-icon mr-2">today</mat-icon>
-          <span>{{ newsItem.timestampCreated | date}}</span>
-          <span class="px-2">|</span>
-          <mat-icon class="inline-icon mr-2">person</mat-icon>
-          <span>{{ newsItem.author }}</span>
-          <span class="px-2">|</span>
-          <mat-icon class="inline-icon mr-2">local_offer</mat-icon>
-          <span>{{ newsItem.category }}</span>
-          <hr class="hr-news">
+        <hr class="hr-news">
+        <div class="news-item-category-wrapper txt-dark-muted mb-0">
+          <div class="news-item-category">
+            <mat-icon class="inline-icon mr-2">today</mat-icon>
+            <span>{{ newsItem.timestampCreated | date}}</span>
+          </div>
+          <div class="news-item-category">
+            <mat-icon class="inline-icon mr-2">person</mat-icon>
+            <span>{{ newsItem.author }}</span>
+          </div>
         </div>
+        <hr class="hr-news">
       </div>
     </div>
   </div>

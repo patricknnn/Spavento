@@ -13,7 +13,7 @@ import { GeneralContent } from 'src/app/models/generalcontent';
 export class LatestComponent implements OnInit, OnChanges {
   @Input() generalContent: GeneralContent;
   @Input() amount: number = 3;
-  @Input() maxHeight = "70vh";
+  @Input() maxHeight = "50vh";
   paintings: Painting[];
 
   constructor(

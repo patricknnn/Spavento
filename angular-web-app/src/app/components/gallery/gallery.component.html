@@ -28,12 +28,12 @@
 <!-- Filter -->
 <div #filterBar class="filterBar" (clickOutside)="closeFilters();" [@appearInOut]="filterAnimationState">
   <div class="filterBar-buttons mat-elevation-z8">
-    <button mat-button color="accent" [matBadge]="getActiveFilterCount()" [matBadgeHidden]="getActiveFilterCount() == 0"
-      matBadgePosition="after" matBadgeColor="accent" class="m-2" (click)="toggleFilters();">
+    <button mat-raised-button color="accent" [matBadge]="getActiveFilterCount()" [matBadgeHidden]="getActiveFilterCount() == 0"
+      matBadgePosition="after" matBadgeColor="accent" class="m-2 rounded-pill" (click)="toggleFilters();">
       <mat-icon>filter_alt</mat-icon>
       <span>Filter</span>
     </button>
-    <button mat-button color="primary" class="m-2" (click)="resetFilters();">
+    <button mat-raised-button color="primary" class="m-2 rounded-pill" (click)="resetFilters();">
       <mat-icon>replay</mat-icon>
       <span>Reset</span>
     </button>

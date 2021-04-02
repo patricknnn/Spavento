@@ -11,7 +11,6 @@ import { ScrollService } from 'src/app/services/scroll.service';
 })
 export class PaintingCardComponent implements OnInit {
   @Input() painting: Painting;
-  @Input() height: Painting;
   @Input() maxHeight: string;
   @Input() elevation: string;
 

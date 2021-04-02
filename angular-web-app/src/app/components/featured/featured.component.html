@@ -1,37 +1,4 @@
-<mat-card id="featured-card" class="">
-  <img [src]="painting.thumbnail" class="featured-img {{elevation}}" [alt]="painting.title" />
-  <mat-card-content class="p-4 text-center">
-    <h2 class="">{{ painting.title }}</h2>
-    <h6 class="font-italic mb-3 txt-primary">By {{ painting.artist}}.</h6>
-    <div class="portfolio-project-buttons">
-      <button mat-fab color="accent" class="mx-2" aria-label="Show image" (click)="openImage(content)">
-        <mat-icon>search</mat-icon>
-      </button>
-      <button mat-fab color="accent" class="mx-2" aria-label="Show details" (click)="goToPaintingDetails()">
-        <mat-icon>more_horiz</mat-icon>
-      </button>
-    </div>
-  </mat-card-content>
-</mat-card>
-
-
-<!-- Modal -->
-<ng-template #content>
-
-  <mat-dialog-content>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <div class="d-flex align-items-center justify-content-center">
-            <img class="img-modal" [src]="painting.thumbnail" [alt]="painting.title" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </mat-dialog-content>
-
-  <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
-  </mat-dialog-actions>
-
-</ng-template>
+<div class="featured-item-wrapper" [style.max-height]="featured.maxHeight">
+  <app-painting-card [painting]="featured.painting" [maxHeight]="featured.maxHeight" [elevation]="elevation">
+  </app-painting-card>
+</div>

@@ -1,6 +1,6 @@
-<mat-card *ngIf="painting" [ngStyle]="{'max-height': maxHeight}" class="painting-card p-0 {{elevation}}">
+<mat-card *ngIf="painting" class="painting-card p-0 {{elevation}}" [style.max-height]="maxHeight">
   <!-- Image -->
-  <img class="painting-card-img" [src]="painting.thumbnail" [alt]="painting.title" [ngStyle]="{'height': height}" />
+  <img class="painting-card-img" [src]="painting.thumbnail" [alt]="painting.title" [style.max-height]="maxHeight"/>
 
   <!-- Caption -->
   <div class="painting-card-caption p-3">

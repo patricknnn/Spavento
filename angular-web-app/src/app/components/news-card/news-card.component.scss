@@ -8,3 +8,16 @@
 .img-news-small {
     max-height: 150px;
 }
+
+.news-item-category-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.news-item-category {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: fit-content;
+    margin-right: 1rem;
+}

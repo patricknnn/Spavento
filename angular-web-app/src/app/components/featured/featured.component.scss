@@ -1,18 +1,6 @@
-#featured-card {
-  margin-left: 4% !important;
-  margin-right: 4% !important;
-}
-
-.featured-img {
-  width: 108%;
-  height: 60vh;
-  margin-left: -4% !important;
-  margin-right: -4% !important;
-  border-radius: inherit;
-  object-position: 50% 35%;
-  object-fit: cover;
-}
-
-.round-button {
-  border-radius: 1rem;
+.featured-item-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }

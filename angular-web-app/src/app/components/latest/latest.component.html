@@ -1,7 +1,7 @@
 <ngb-carousel *ngIf="paintings && generalContent" #latestCarousel>
   <ng-template ngbSlide *ngFor="let painting of paintings">
-    <div [style.height]="maxHeight" class="d-flex flex-column align-items-center justify-content-center img-wrapper">
-      <app-painting-card class="slider-img" [painting]="painting" [elevation]="generalContent.cardElevation">
+    <div class="latest-item-wrapper" [style.height]="maxHeight">
+      <app-painting-card [painting]="painting" [maxHeight]="maxHeight" [elevation]="generalContent.cardElevation">
       </app-painting-card>
     </div>
   </ng-template>

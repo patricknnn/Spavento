@@ -1,21 +1,21 @@
 <!-- Section title -->
 <div [ngClass]="admin ? 'container-fluid' : 'container'">
-  <div class="row my-5">
+  <div class="row mb-5">
 
-    <div class="col-md-8">
+    <div class="col-10">
       <p *ngIf="subTitle" class="subtitle txt-primary text-uppercase">{{subTitle}}</p>
       <h2>{{title}}</h2>
       <p *ngIf="text" class="txt-dark-muted m-0">{{text}}</p>
     </div>
 
-    <div *ngIf="link" class="col-md-4 d-flex align-items-center justify-content-end">
-      <a mat-mini-fab color="accent" aria-label="Read more" href="{{link}}">
-        <mat-icon *ngIf="!linkIcon">more_horiz</mat-icon>
+    <div *ngIf="link" class="col-2 d-flex align-items-center justify-content-end">
+      <a mat-icon-button color="accent" aria-label="Read more" href="{{link}}">
+        <mat-icon *ngIf="!linkIcon">east</mat-icon>
         <mat-icon *ngIf="linkIcon">{{linkIcon}}</mat-icon>
       </a>
     </div>
 
-    <div *ngIf="modal" class="col-md-4 d-flex align-items-center justify-content-end">
+    <div *ngIf="modal" class="col-2 d-flex align-items-center justify-content-end">
       <button mat-fab color="accent" aria-label="Preview page" (click)="openModal(modal)">
         <mat-icon *ngIf="!modalIcon">open_in_new</mat-icon>
         <mat-icon *ngIf="modalIcon">{{modalIcon}}</mat-icon>
