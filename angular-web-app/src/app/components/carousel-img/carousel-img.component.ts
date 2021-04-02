@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class CarouselImgComponent implements OnInit {
   modalImage: string;
 
   constructor(
-    private modalService: ModalService
+    private modalService: ModalService,
   ) { }
 
   ngOnInit(): void {

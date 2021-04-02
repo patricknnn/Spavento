@@ -111,6 +111,11 @@ button::-moz-focus-inner {
   width: 40px;
 }
 
+.container {
+  width: 100%;
+  max-width: 1140px !important;
+}
+
 /*************************************/
 /**            Dialog               **/
 /*************************************/
@@ -293,7 +298,7 @@ mat-card {
 }
 
 .carousel-indicators {
-  bottom: -45px;
+  //bottom: -42px;
 }
 .carousel-indicators li {
   background-color: $color-secondary;
