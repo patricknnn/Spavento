@@ -1,4 +1,4 @@
-<mat-card *ngIf="images" class="card-clean p-0">
+<mat-card *ngIf="images" class="px-0 {{elevation}}">
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">
@@ -8,7 +8,7 @@
           <ng-template ngbSlide *ngFor="let image of images">
             <div class="d-flex flex-column align-items-center justify-content-center img-wrapper">
               <!-- Image -->
-              <img [src]="image" class="slider-img {{elevation}}">
+              <img [src]="image" class="slider-img">
               <!-- Caption -->
               <div class="slider-img-caption p-3">
                 <button mat-fab color="primary" class="mx-2" aria-label="Show image"
@@ -24,7 +24,7 @@
         <div *ngIf="images.length == 1"
           class="d-flex flex-column align-items-center justify-content-center img-wrapper">
           <!-- Image -->
-          <img [src]="images[0]" class="slider-img {{elevation}}">
+          <img [src]="images[0]" class="slider-img">
           <!-- Caption -->
           <div class="slider-img-caption p-3">
             <button mat-fab color="primary" class="mx-2" aria-label="Show image" (click)="openImage(content, images[0])">

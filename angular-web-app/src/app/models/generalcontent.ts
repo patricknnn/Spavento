@@ -12,4 +12,5 @@ export class GeneralContent extends FirebaseEntity {
     contactformCategories?: string[];
     pageSizeOptions?: number[];
     pageSizeDefault?: number;
+    routerLinkOptions?: string[];
 }

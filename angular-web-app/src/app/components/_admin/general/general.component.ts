@@ -153,6 +153,14 @@ export class GeneralComponent implements OnInit {
         "Anders"
       ];
     }
+    if (!this.content.routerLinkOptions) {
+      this.content.routerLinkOptions = [
+        "/home",
+        "/portfolio",
+        "/news",
+        "/contact"
+      ];
+    }
   }
 
   /**

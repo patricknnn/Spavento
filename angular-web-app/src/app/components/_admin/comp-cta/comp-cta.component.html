@@ -83,15 +83,22 @@
         <mat-error *ngIf="ctaContentBtnLabelInput.invalid">Label is verplicht
         </mat-error>
       </mat-form-field>
+
       <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
         class="form-field col-xs-12 col-sm-6">
-        <mat-label>Knop link</mat-label>
-        <input matInput type="text" id="ctaContentBtnLink" placeholder="Link" name="ctaContentBtnLink"
-          [(ngModel)]="cta.btnLink" #ctaContentBtnLinkInput="ngModel" required>
+        <mat-label>Router link</mat-label>
+        <mat-select id="ctaContentBtnLink" name="ctaContentBtnLink" [(ngModel)]="cta.btnLink"
+          #ctaContentBtnLinkInput="ngModel" required>
+          <mat-option *ngFor="let option of generalContent.routerLinkOptions" [value]="option">
+            {{ option }}
+          </mat-option>
+        </mat-select>
         <mat-error *ngIf="ctaContentBtnLinkInput.invalid">
           Link is verplicht
         </mat-error>
       </mat-form-field>
+
+
     </div>
 
 

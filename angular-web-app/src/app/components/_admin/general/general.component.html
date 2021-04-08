@@ -169,6 +169,24 @@
             </mat-form-field>
           </div>
 
+          <!-- Router settings -->
+          <h4 class="title-underlined my-5">Router</h4>
+          <div class="form-group row">
+            <mat-form-field [appearance]="content.formStyle" [color]="content.formColor" class="form-field col-12">
+              <mat-label>Router links</mat-label>
+              <mat-chip-list #generalFormRouterLinks>
+                <mat-chip *ngFor="let item of content.routerLinkOptions" [selectable]="true" [removable]="true"
+                  (removed)="removeChip(item, content.routerLinkOptions)">
+                  {{item}}
+                  <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="Nieuw..." [matChipInputFor]="generalFormRouterLinks"
+                  [matChipInputSeparatorKeyCodes]="[ENTER, COMMA]" [matChipInputAddOnBlur]="true"
+                  (matChipInputTokenEnd)="addChip($event, content.routerLinkOptions)">
+              </mat-chip-list>
+            </mat-form-field>
+          </div>
+
 
           <!-- Save -->
           <div class="mt-5">

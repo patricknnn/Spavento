@@ -57,12 +57,17 @@
               <input matInput [(ngModel)]="navlink.label" type="text" [id]="navlink.label" [name]="navlink.label"
                 placeholder="Label" required>
             </mat-form-field>
+
             <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
               class="form-field col-sm-12 col-md-5">
               <mat-label>Router link</mat-label>
-              <input matInput [(ngModel)]="navlink.routerLink" type="text" [id]="navlink.routerLink"
-                [name]="navlink.routerLink" placeholder="Router link" required>
+              <mat-select [id]="navlink.routerLink" [name]="navlink.routerLink" [(ngModel)]="navlink.routerLink" required>
+                <mat-option *ngFor="let option of generalContent.routerLinkOptions" [value]="option">
+                  {{ option }}
+                </mat-option>
+              </mat-select>
             </mat-form-field>
+
             <div class="col-sm-12 col-md-2">
               <div class="form-field form-field-slide">
                 <mat-label>Zichtbaar</mat-label>
