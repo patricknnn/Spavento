@@ -1,5 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Editor } from 'ngx-editor';
 import { map } from 'rxjs/operators';
 import { File } from 'src/app/models/file';

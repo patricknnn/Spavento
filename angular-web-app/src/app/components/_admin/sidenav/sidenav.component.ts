@@ -9,7 +9,6 @@ import { Sidenavlink } from 'src/app/models/sidenavlink';
 })
 export class SidenavComponent implements OnInit {
   public navlinks: Sidenavlink[];
-  public simplebarOptions: object;
 
   constructor(private router: Router) {
     this.navlinks = [
@@ -40,8 +39,11 @@ export class SidenavComponent implements OnInit {
         new Sidenavlink("Overzicht", "library_books", "/admin/news-overview"),
         new Sidenavlink("Toevoegen", "library_add", "/admin/news-add"),
       ]),
+      new Sidenavlink("Kalender", "library_books", "", [
+        new Sidenavlink("Overzicht", "library_books", "/admin/calendar-overview"),
+        new Sidenavlink("Toevoegen", "library_add", "/admin/calendar-add"),
+      ]),
     ];
-    this.simplebarOptions = { autoHide: true };
   }
 
   ngOnInit(): void {

@@ -77,6 +77,12 @@ import { ToolbarComponent } from './components/_admin/toolbar/toolbar.component'
 import { LoaderComponent } from './components/loader/loader.component';
 import { BackToTopComponent } from './components/back-to-top/back-to-top.component';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { CalendarComponent } from './components/_pages/calendar/calendar.component';
+import { CalendarCardComponent } from './components/calendar-card/calendar-card.component';
+import { CalendarAddComponent } from './components/_admin/calendar-add/calendar-add.component';
+import { CalendarEditComponent } from './components/_admin/calendar-edit/calendar-edit.component';
+import { CalendarOverviewComponent } from './components/_admin/calendar-overview/calendar-overview.component';
+import { PageCalendarComponent } from './components/_admin/page-calendar/page-calendar.component';
 
 @NgModule({
   declarations: [
@@ -142,7 +148,13 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     LoadingComponent,
     ManagerMessagesComponent,
     LoaderComponent,
-    BackToTopComponent
+    BackToTopComponent,
+    CalendarComponent,
+    CalendarCardComponent,
+    CalendarAddComponent,
+    CalendarEditComponent,
+    CalendarOverviewComponent,
+    PageCalendarComponent
   ],
   imports: [
     BrowserModule,

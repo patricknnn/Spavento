@@ -1,0 +1,20 @@
+<!-- Header small -->
+<app-header *ngIf="pageTitle" [title]="pageTitle.title" [subTitle]="pageTitle.subTitle" [image]="pageTitle.image"
+  [small]="true"></app-header>
+
+<!-- Main -->
+<main id="contact" class="main main-raised" *ngIf="generalContent">
+  <!-- Calendar -->
+  <section *ngIf="calendarItems" class="page-section bg-light">
+    <app-section-title [title]="contactCards.title" [subTitle]="contactCards.subTitle" [text]="contactCards.text">
+    </app-section-title>
+    <div class="container">
+      <div class="row">
+        <div *ngFor="let item of calendarItems" class="col-lg-4 col-md-6 col-sm-12">
+          <!-- Calendar cards -->
+          <app-calendar-card [calendarItem]="item" [elevation]="generalContent.cardElevation"></app-calendar-card>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

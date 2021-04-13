@@ -29,12 +29,17 @@ import { AuthGuard } from './guards/auth.guard';
 import { PaintingEditComponent } from './components/_admin/painting-edit/painting-edit.component';
 import { NewsEditComponent } from './components/_admin/news-edit/news-edit.component';
 import { ManagerMessagesComponent } from './components/_admin/manager-messages/manager-messages.component';
+import { CalendarComponent } from './components/_pages/calendar/calendar.component';
+import { CalendarOverviewComponent } from './components/_admin/calendar-overview/calendar-overview.component';
+import { CalendarAddComponent } from './components/_admin/calendar-add/calendar-add.component';
+import { CalendarEditComponent } from './components/_admin/calendar-edit/calendar-edit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   // pages
   { path: 'home', component: HomeComponent, data: { animation: 'home' } },
   { path: 'portfolio', component: PortfolioComponent, data: { animation: 'portfolio' } },
+  { path: 'calendar', component: CalendarComponent, data: { animation: 'calendar' } },
   { path: 'news', component: NewsComponent, data: { animation: 'news' } },
   { path: 'about', component: AboutComponent, data: { animation: 'about' } },
   { path: 'contact', component: ContactComponent, data: { animation: 'contact' } },
@@ -62,6 +67,9 @@ const routes: Routes = [
       { path: 'news-overview', component: NewsOverviewComponent },
       { path: 'news-add', component: NewsAddComponent },
       { path: 'news-edit', component: NewsEditComponent },
+      { path: 'calendar-overview', component: CalendarOverviewComponent },
+      { path: 'calendar-add', component: CalendarAddComponent },
+      { path: 'calendar-edit', component: CalendarEditComponent },
     ], canActivate: [AuthGuard]
   },
   // page not found

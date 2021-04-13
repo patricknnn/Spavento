@@ -41,6 +41,7 @@ export class ContentService {
   private newsTitlePath = '/content/title/news';
   private contactTitlePath = '/content/title/contact';
   private pnfTitlePath = '/content/title/pagenotfound';
+  private calendarTitlePath = '/content/title/calendar';
 
   // Layout
   navRef: AngularFirestoreCollection<NavContent>;
@@ -64,6 +65,7 @@ export class ContentService {
   nestitleRef: AngularFirestoreCollection<PageTitle>;
   contacttitleRef: AngularFirestoreCollection<PageTitle>;
   pnftitleRef: AngularFirestoreCollection<PageTitle>;
+  calendartitleRef: AngularFirestoreCollection<PageTitle>;
 
   /**
    * Contructor
@@ -89,6 +91,7 @@ export class ContentService {
     this.nestitleRef = db.collection(this.newsTitlePath);
     this.contacttitleRef = db.collection(this.contactTitlePath);
     this.pnftitleRef = db.collection(this.pnfTitlePath);
+    this.calendartitleRef = db.collection(this.calendarTitlePath);
   }
 
   /**
@@ -332,6 +335,8 @@ export class ContentService {
       case 'contact':
         return this.contacttitleRef.add({ ...data });
       case '404':
+        return this.pnftitleRef.add({ ...data });
+      case 'calendar':
         return this.pnftitleRef.add({ ...data });
       default:
         return null;

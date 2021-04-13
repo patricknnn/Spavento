@@ -63,15 +63,12 @@ export class CompServicesComponent implements OnInit {
     this.services.active = true;
     this.services.services = [
       new Service(),
-      new Service(),
-      new Service(),
+      new Service()
     ]
     this.services.services[0].icon = "brush";
     this.services.services[0].title = "Paintings";
-    this.services.services[1].icon = "palette";
-    this.services.services[1].title = "Artwork";
-    this.services.services[2].icon = "architecture";
-    this.services.services[2].title = "Expositions";
+    this.services.services[1].icon = "architecture";
+    this.services.services[1].title = "Expositions";
   }
 
   /**

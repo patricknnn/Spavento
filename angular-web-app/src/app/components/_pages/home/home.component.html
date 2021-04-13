@@ -9,7 +9,7 @@
     </app-section-title>
     <div class="container">
       <div class="row">
-        <div *ngFor="let service of services.services" class="col-lg-4 col-md-6 col-sm-12">
+        <div *ngFor="let service of services.services" class="col-12 col-md-6">
           <!-- Service cards -->
           <app-service-card [service]="service" [elevation]="generalContent.cardElevation"></app-service-card>
         </div>

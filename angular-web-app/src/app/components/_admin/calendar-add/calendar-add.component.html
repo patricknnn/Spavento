@@ -1,0 +1,81 @@
+<app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [admin]="true">
+</app-section-title>
+
+<div class="container-fluid" *ngIf="generalContent">
+  <div class="row mb-5">
+    <div class="col-12">
+
+      <form *ngIf="calendarItem" (ngSubmit)="onSubmit()" #addCalendarItemForm="ngForm">
+
+        <!-- General information -->
+        <mat-card class="{{generalContent.cardElevation}}">
+
+          <div class="form-group row">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+              class="form-field col-12 col-md-6">
+              <mat-label>Titel</mat-label>
+              <input matInput id="title" placeholder="Titel" name="title" [(ngModel)]="calendarItem.title"
+                [disabled]="formDisabled" #title="ngModel" required />
+              <mat-error *ngIf="title.invalid">
+                Titel is <strong>verplicht</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+              class="form-field col-12 col-md-6">
+              <mat-label>Auteur</mat-label>
+              <input matInput id="author" placeholder="Auteur" name="author" [(ngModel)]="calendarItem.author"
+                [disabled]="formDisabled" #author="ngModel" required />
+              <mat-error *ngIf="author.invalid">
+                Auteur is <strong>verplicht</strong>
+              </mat-error>
+            </mat-form-field>            
+          </div>
+
+          <div class="form-group row">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+              class="form-field col-12 col-md-6">
+              <mat-label>Locatie</mat-label>
+              <input matInput id="location" placeholder="Locatie" name="location" [(ngModel)]="calendarItem.location"
+                [disabled]="formDisabled" #location="ngModel" />
+            </mat-form-field>
+
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-12 col-md-6">
+              <mat-label>Start en eind datum</mat-label>
+              <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+                <input matStartDate id="dateStart" placeholder="Start datum" name="dateStart" [(ngModel)]="calendarItem.dateStart" [disabled]="formDisabled" #dateStart="ngModel">
+                <input matEndDate id="dateEnd" placeholder="Eind datum" name="dateEnd" [(ngModel)]="calendarItem.dateEnd" [disabled]="formDisabled" #dateEnd="ngModel">
+              </mat-date-range-input>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-date-range-picker #picker></mat-date-range-picker>
+              <mat-error *ngIf="dateStart.invalid">Start datum ongeldig</mat-error>
+              <mat-error *ngIf="dateEnd.invalid">Eind datum ongeldig</mat-error>
+            </mat-form-field>
+
+
+          </div>
+
+          <div class="form-group row">
+            <div class="col-12">
+              <div class="NgxEditor__Wrapper">
+                <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+                <ngx-editor [editor]="editor" [ngModel]="editorOutput" [placeholder]="'Bericht...'" name="editorOutput"
+                  (ngModelChange)="onEditorContentChange($event)">
+                </ngx-editor>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="row mt-3">
+            <div class="col-12">
+              <button mat-flat-button color="accent" type="submit" class="mr-2"
+                [disabled]="!addCalendarItemForm.form.valid">opslaan</button>
+              <button mat-flat-button color="primary" type="button"
+                (click)="resetForm(); addCalendarItemForm.form.markAsUntouched()">reset</button>
+            </div>
+          </div>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>

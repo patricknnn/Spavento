@@ -1,0 +1,145 @@
+<app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [admin]="true">
+</app-section-title>
+
+<div class="container-fluid">
+  <div class="row mb-5">
+
+    <div class="col-12" *ngIf="isLoadingResults">
+      <app-loading [message]="'Kalender items laden...'"></app-loading>
+    </div>
+
+    <div class="col-12">
+      <!-- Table Filter -->
+      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="w-100">
+        <button mat-button matPrefix mat-icon-button>
+          <mat-icon>search</mat-icon>
+        </button>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Expositie" #input>
+        <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear"
+          (click)="input.value=''; resetFilter()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <!-- Elevation -->
+      <div class="{{generalContent.cardElevation}}">
+        <!-- Table -->
+        <div class="mat-table-container">
+          <table mat-table [dataSource]="dataSource" class="w-100" matSort matSortActive="created"
+            matSortDirection="desc">
+
+            <ng-container matColumnDef="title">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Titel </th>
+              <td mat-cell *matCellDef="let item"> {{ item.title }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="location">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Locatie </th>
+              <td mat-cell *matCellDef="let item"> {{ item.category }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="author">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Auteur </th>
+              <td mat-cell *matCellDef="let item"> {{ item.author }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="created">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear> Toegevoegd </th>
+              <td mat-cell *matCellDef="let item"> {{ item.timestampCreated | date }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="updated">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear> Bewerkt </th>
+              <td mat-cell *matCellDef="let item"> {{ item.timestampUpdated | date }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="active">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Actief </th>
+              <td mat-cell *matCellDef="let item">
+                <mat-slide-toggle [checked]="item.active" (change)="setActiveState(item , $event)"></mat-slide-toggle>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="options">
+              <th mat-header-cell *matHeaderCellDef> Opties </th>
+              <td mat-cell *matCellDef="let item">
+                <button mat-icon-button color="accent" (click)="openModalItem(item);" class="mr-2">
+                  <mat-icon>launch</mat-icon>
+                </button>
+                <button mat-icon-button color="accent" (click)="goToItemEdit(item.id)" class="mr-2">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="primary" (click)="deleteItem(item.id)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="7">Geen data beschikbaar.</td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- Paginator -->
+        <mat-paginator [length]="resultsLength" [pageSize]="generalContent.pageSizeDefault"
+          [pageSizeOptions]="generalContent.pageSizeOptions" showFirstLastButtons>
+        </mat-paginator>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<ng-template #modalContent *ngIf="generalContent">
+
+  <mat-dialog-content>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="news-header">
+            <img class="w-100 rounded {{ generalContent.cardElevation }}" [src]="modalItem.image" alt="news" />
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="d-flex flex-column justify-content-center h-100">
+            <h6 class="txt-secondary text-uppercase mt-2">
+              {{ modalItem.category }}
+            </h6>
+            <h3>{{ modalItem.title }}</h3>
+            <div class="txt-dark-muted">
+              <hr class="hr-news">
+              <mat-icon class="inline-icon mr-2">today</mat-icon>
+              <span>{{ modalItem.timestampCreated | date}}</span>
+              <span class="px-2">|</span>
+              <mat-icon class="inline-icon mr-2">person</mat-icon>
+              <span>{{ modalItem.author }}</span>
+              <span class="px-2">|</span>
+              <mat-icon class="inline-icon mr-2">local_offer</mat-icon>
+              <span>{{ modalItem.category }}</span>
+              <hr class="hr-news">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-12" [innerHTML]="modalItem.text">
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
+  </mat-dialog-actions>
+
+</ng-template>
