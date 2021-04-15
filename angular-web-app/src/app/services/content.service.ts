@@ -32,7 +32,7 @@ export class ContentService {
   private latestworkPath = '/content/components/latestwork';
   private ctaPath = '/content/components/cta';
   private galleryPath = '/content/components/gallery';
-  private calendarPath = '/content/components/gallery';
+  private calendarPath = '/content/components/calendar';
   private newsPath = '/content/components/news';
   private contactcardsPath = '/content/components/contactcards';
   private contactFormPath = '/content/components/contactform';
@@ -324,6 +324,10 @@ export class ContentService {
         return this.db.collection(this.portfolioTitlePath, ref => ref
           .orderBy('timestampCreated', 'desc')
           .limit(limit));
+      case 'calendar':
+        return this.db.collection(this.calendarTitlePath, ref => ref
+          .orderBy('timestampCreated', 'desc')
+          .limit(limit));
       case 'news':
         return this.db.collection(this.newsTitlePath, ref => ref
           .orderBy('timestampCreated', 'desc')
@@ -347,6 +351,8 @@ export class ContentService {
         return this.hometitleRef.add({ ...data });
       case 'portfolio':
         return this.portfoliotitleRef.add({ ...data });
+      case 'calendar':
+        return this.calendartitleRef.add({ ...data });
       case 'news':
         return this.nestitleRef.add({ ...data });
       case 'contact':

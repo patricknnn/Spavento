@@ -33,6 +33,7 @@ import { CalendarComponent } from './components/_pages/calendar/calendar.compone
 import { CalendarOverviewComponent } from './components/_admin/calendar-overview/calendar-overview.component';
 import { CalendarAddComponent } from './components/_admin/calendar-add/calendar-add.component';
 import { CalendarEditComponent } from './components/_admin/calendar-edit/calendar-edit.component';
+import { PageCalendarComponent } from './components/_admin/page-calendar/page-calendar.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -58,6 +59,7 @@ const routes: Routes = [
       { path: 'layout-footer', component: LayoutFooterComponent },
       { path: 'page-home', component: PageHomeComponent },
       { path: 'page-portfolio', component: PagePortfolioComponent },
+      { path: 'page-calendar', component: PageCalendarComponent },
       { path: 'page-news', component: PageNewsComponent },
       { path: 'page-contact', component: PageContactComponent },
       { path: 'page-not-found', component: PageNotFoundAdminComponent },

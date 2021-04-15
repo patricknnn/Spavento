@@ -35,7 +35,7 @@ export class CompCalendarComponent implements OnInit {
   }
 
   retrieveData(): void {
-    this.contentService.getGalleryContent().snapshotChanges().pipe(
+    this.contentService.getCalendarContent().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({ id: c.payload.doc.id, ...c.payload.doc.data() })

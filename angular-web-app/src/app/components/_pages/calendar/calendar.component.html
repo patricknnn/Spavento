@@ -10,7 +10,7 @@
     </app-section-title>
     <div class="container">
       <div class="row">
-        <div *ngFor="let item of calendarItems" class="col-lg-4 col-md-6 col-sm-12">
+        <div *ngFor="let item of calendarItems" class="col-12">
           <!-- Calendar cards -->
           <app-calendar-card [calendarItem]="item" [elevation]="generalContent.cardElevation"></app-calendar-card>
         </div>

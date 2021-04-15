@@ -1,1 +1,21 @@
-<p>calendar-card works!</p>
+<div class="row">
+    <!-- date -->
+    <div class="col-3">
+        <!-- <mat-chip-list class="mat-chip-list-stacked">
+            <mat-chip selected color="accent"> {{calendarItem.dateStart}} </mat-chip>
+            <mat-chip> {{calendarItem.dateEnd}} </mat-chip>
+        </mat-chip-list> -->
+        <h6 class="txt-secondary text-uppercase mb-0">
+            {{ getDay(startDate.getDay()) }}
+        </h6>
+        <h2 class="mb-3"> {{ startDate.getDate() }} {{ getMonth(startDate.getMonth()) }} </h2>
+    </div>
+    <!-- content -->
+    <div class="col-9">
+        <mat-card [class]="elevation">
+            <h6 class="txt-primary text-uppercase mt-2"> {{calendarItem.location}} </h6>
+            <h3 class="mb-3"> {{calendarItem. title}} </h3>
+            <span [innerHTML]="calendarItem.description"> </span>
+        </mat-card>
+    </div>
+</div>
