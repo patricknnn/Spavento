@@ -7,7 +7,7 @@ import { GeneralContent } from 'src/app/models/generalcontent';
 import { CalendarService } from 'src/app/services/calendar.service';
 import { ContentService } from 'src/app/services/content.service';
 import { SwalService } from 'src/app/services/swal.service';
-import Swal from 'sweetalert2';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-calendar-edit',
@@ -23,6 +23,8 @@ export class CalendarEditComponent implements OnInit, OnDestroy {
   formDisabled: boolean;
   editor: Editor;
   editorOutput = "";
+  startDate: Date;
+  endDate: Date;
 
   /**
    * Constructor
@@ -70,6 +72,8 @@ export class CalendarEditComponent implements OnInit, OnDestroy {
     ).subscribe(data => {
       this.calendarItem = data;
       this.editorOutput = data.description;
+      this.startDate = new Date(this.calendarItem.dateStart);
+      this.endDate = new Date(this.calendarItem.dateEnd);
       if (!this.calendarItem) {
         this.goToDashboard();
       }
@@ -88,8 +92,8 @@ export class CalendarEditComponent implements OnInit, OnDestroy {
     this.formDisabled = true;
     // set newsitem variables
     this.calendarItem.description = this.editorOutput;
-    //this.calendarItem.dateStart = Date.parse(this.calendarItem.dateStart.toString());
-    //this.calendarItem.dateEnd = Date.parse(this.calendarItem.dateEnd.toString());
+    this.calendarItem.dateStart = this.startDate.toDateString();
+    this.calendarItem.dateEnd = this.endDate.toDateString();
     // loading swal
     this.swalService.loadingSwal("Kalender item opslaan");
     // Save item

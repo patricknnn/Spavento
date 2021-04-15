@@ -40,15 +40,17 @@ export class CalendarComponent implements OnInit {
   }
 
   retrievePageTitle(): void {
-    this.contentService.getPageTitle('calendar').snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(data => {
-      this.pageTitle = data[0];
-    });
+    this.pageTitle = new PageTitle();
+    this.pageTitle.title = "Kalender";
+    // this.contentService.getPageTitle('calendar').snapshotChanges().pipe(
+    //   map(changes =>
+    //     changes.map(c =>
+    //       ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+    //     )
+    //   )
+    // ).subscribe(data => {
+    //   this.pageTitle = data[0];
+    // });
   }
 
   retrieveGeneralContent(): void {

@@ -1,22 +1,22 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { map } from 'rxjs/operators';
-import { GalleryContent } from 'src/app/models/gallerycontent';
+import { CalendarContent } from 'src/app/models/calendarcontent';
 import { GeneralContent } from 'src/app/models/generalcontent';
 import { ContentService } from 'src/app/services/content.service';
 import { SwalService } from 'src/app/services/swal.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
-  selector: 'app-comp-gallery',
-  templateUrl: './comp-gallery.component.html',
-  styleUrls: ['./comp-gallery.component.scss']
+  selector: 'app-comp-calendar',
+  templateUrl: './comp-calendar.component.html',
+  styleUrls: ['./comp-calendar.component.scss']
 })
-export class CompGalleryComponent implements OnInit {
+export class CompCalendarComponent implements OnInit {
   @Input() generalContent: GeneralContent;
-  @ViewChild('galleryContentForm') form: NgForm;
-  galleryContent: GalleryContent;
-  galleryContentHistory: GalleryContent[];
+  @ViewChild('calendarContentForm') form: NgForm;
+  content: CalendarContent;
+  contentHistory: CalendarContent[];
 
   constructor(
     private contentService: ContentService,
@@ -29,7 +29,7 @@ export class CompGalleryComponent implements OnInit {
 
   onSubmit() {
     this.swalService.loadingSwal("opslaan");
-    this.contentService.saveGalleryContent(this.galleryContent).then(() => {
+    this.contentService.saveCalendarContent(this.content).then(() => {
       this.swalService.successSwal("opgeslagen");
     });
   }
@@ -42,9 +42,9 @@ export class CompGalleryComponent implements OnInit {
         )
       )
     ).subscribe(data => {
-      this.galleryContentHistory = data;
-      this.galleryContent = data[0];
-      if (!this.galleryContent) {
+      this.contentHistory = data;
+      this.content = data[0];
+      if (!this.content) {
         this.loadDefaults();
       }
     });
@@ -55,14 +55,10 @@ export class CompGalleryComponent implements OnInit {
   }
 
   loadDefaults(): void {
-    this.galleryContent = new GalleryContent();
-    this.galleryContent.title = "My portfolio";
-    this.galleryContent.subTitle = "Paintings & Artwork";
-    this.galleryContent.text = "Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu.";
-    this.galleryContent.filterCategoriesActive = true;
-    this.galleryContent.filterMaterialsActive = true;
-    this.galleryContent.filterPaintsActive = true;
-    this.galleryContent.filterStatesActive = true;
+    this.content = new CalendarContent();
+    this.content.title = "Kalender";
+    this.content.subTitle = "Aankomende zaken";
+    this.content.text = "Phasellus ultricies, nisi vitae rutrum hendrerit, justo nunc faucibus libero, vel suscipit nibh erat id arcu.";
   }
 
   /**

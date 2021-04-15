@@ -5,8 +5,8 @@ export class CalendarItem extends FirebaseEntity {
   author: string;
   description: string;
   location: string;
-  dateStart: number;
-  dateEnd: number;
+  dateStart: string;
+  dateEnd: string;
   timeStart: number;
   timeEnd: number;
   active: boolean;

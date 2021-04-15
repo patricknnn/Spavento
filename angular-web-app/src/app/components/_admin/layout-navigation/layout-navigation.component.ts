@@ -95,11 +95,12 @@ export class LayoutNavigationComponent implements OnInit {
   loadDefaults(): void {
     this.navContent = new NavContent();
     this.navContent.brandName = "Spavento";
-    this.navContent.brandImage = "../../../../assets/img/spavento-logo.png";
+    this.navContent.brandImage = "https://firebasestorage.googleapis.com/v0/b/spavento-paintings.appspot.com/o/files%2Fspavento-logo.png?alt=media&token=41650cbb-9a3e-43be-bcc1-46a3c3ab432e";
     this.navContent.navLinks = [
       new NavLink("Home", "/home", true),
       new NavLink("Portfolio", "/portfolio", true),
-      new NavLink("News", "/news", true),
+      new NavLink("Kalender", "/calendar", true),
+      new NavLink("Nieuws", "/news", true),
       new NavLink("Contact", "/contact", true),
     ];
   }

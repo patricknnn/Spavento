@@ -1,1 +1,28 @@
-<p>page-calendar works!</p>
+<app-section-title [title]="title" [subTitle]="subTitle" [text]="text" [admin]="true">
+</app-section-title>
+
+<!-- Tab group -->
+<div class="container-fluid" *ngIf="generalContent">
+  <div class="row mb-4">
+    <div class="col-12">
+      <mat-tab-group mat-stretch-tabs color="primary">
+        <!-- Header tab -->
+        <mat-tab label="Header">
+          <ng-container *ngTemplateOutlet="headerTab"></ng-container>
+        </mat-tab>
+        <!-- Cards tab -->
+        <mat-tab label="Kalender">
+          <ng-container *ngTemplateOutlet="portfolioTab"></ng-container>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>
+
+<!-- Tab content templates -->
+<ng-template #headerTab>
+  <app-comp-header [page]="'calendar'" [generalContent]="generalContent"></app-comp-header>
+</ng-template>
+<ng-template #portfolioTab>
+  <app-comp-calendar [generalContent]="generalContent"></app-comp-calendar>
+</ng-template>

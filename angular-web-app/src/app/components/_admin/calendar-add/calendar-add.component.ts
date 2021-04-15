@@ -22,6 +22,8 @@ export class CalendarAddComponent implements OnInit, OnDestroy {
   formDisabled: boolean;
   editor: Editor;
   editorOutput = "";
+  startDate: Date;
+  endDate: Date;
 
   /**
    * Constructor
@@ -67,8 +69,8 @@ export class CalendarAddComponent implements OnInit, OnDestroy {
     this.formDisabled = true;
     // set newsitem variables
     this.calendarItem.description = this.editorOutput;
-    this.calendarItem.dateStart = new Date(this.calendarItem.dateStart).getDate();
-    this.calendarItem.dateEnd = new Date(this.calendarItem.dateEnd).getDate();
+    this.calendarItem.dateStart = this.startDate.toDateString();
+    this.calendarItem.dateEnd = this.endDate.toDateString();
     this.calendarItem.active = true;
     // loading swal
     this.swalService.loadingSwal("Kalender item opslaan");

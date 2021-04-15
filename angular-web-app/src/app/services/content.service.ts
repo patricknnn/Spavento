@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { CalendarContent } from '../models/calendarcontent';
 import { ContactFormContent } from '../models/contactformcontent';
 import { CtaContent } from '../models/ctacontent';
 import { FeaturedContent } from '../models/featuredcontent';
@@ -31,6 +32,7 @@ export class ContentService {
   private latestworkPath = '/content/components/latestwork';
   private ctaPath = '/content/components/cta';
   private galleryPath = '/content/components/gallery';
+  private calendarPath = '/content/components/gallery';
   private newsPath = '/content/components/news';
   private contactcardsPath = '/content/components/contactcards';
   private contactFormPath = '/content/components/contactform';
@@ -55,6 +57,7 @@ export class ContentService {
   latestworkRef: AngularFirestoreCollection<LatestWorkContent>;
   ctaRef: AngularFirestoreCollection<CtaContent>;
   galleryRef: AngularFirestoreCollection<GalleryContent>;
+  calendarRef: AngularFirestoreCollection<CalendarContent>;
   newsRef: AngularFirestoreCollection<NewsContent>;
   contactcardsRef: AngularFirestoreCollection<ServiceContent>;
   contactformRef: AngularFirestoreCollection<ContactFormContent>;
@@ -82,6 +85,7 @@ export class ContentService {
     this.latestworkRef = db.collection(this.latestworkPath);
     this.ctaRef = db.collection(this.ctaPath);
     this.galleryRef = db.collection(this.galleryPath);
+    this.calendarRef = db.collection(this.calendarPath);
     this.newsRef = db.collection(this.newsPath);
     this.contactcardsRef = db.collection(this.contactcardsPath);
     this.contactformRef = db.collection(this.contactFormPath);
@@ -239,6 +243,19 @@ export class ContentService {
   public saveGalleryContent(data: GalleryContent): any {
     data.timestampCreated = Date.now();
     return this.galleryRef.add({ ...data });
+  }
+
+  /**
+   * Gallery Content
+   */
+  public getCalendarContent(limit = 5): AngularFirestoreCollection<CalendarContent> {
+    return this.db.collection(this.calendarPath, ref => ref
+      .orderBy('timestampCreated', 'desc')
+      .limit(limit));
+  }
+  public saveCalendarContent(data: CalendarContent): any {
+    data.timestampCreated = Date.now();
+    return this.calendarRef.add({ ...data });
   }
 
   /**

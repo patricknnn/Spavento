@@ -83,6 +83,7 @@ import { CalendarAddComponent } from './components/_admin/calendar-add/calendar-
 import { CalendarEditComponent } from './components/_admin/calendar-edit/calendar-edit.component';
 import { CalendarOverviewComponent } from './components/_admin/calendar-overview/calendar-overview.component';
 import { PageCalendarComponent } from './components/_admin/page-calendar/page-calendar.component';
+import { CompCalendarComponent } from './components/_admin/comp-calendar/comp-calendar.component';
 
 @NgModule({
   declarations: [
@@ -154,7 +155,8 @@ import { PageCalendarComponent } from './components/_admin/page-calendar/page-ca
     CalendarAddComponent,
     CalendarEditComponent,
     CalendarOverviewComponent,
-    PageCalendarComponent
+    PageCalendarComponent,
+    CompCalendarComponent
   ],
   imports: [
     BrowserModule,

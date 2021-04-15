@@ -1,0 +1,61 @@
+<mat-card *ngIf="content && generalContent" class="{{generalContent.cardElevation}}">
+  <h4 class="title-underlined">Resultaat</h4>
+  <div class="container-fluid">
+    <app-section-title [title]="galleryContent.title" [subTitle]="galleryContent.subTitle" [text]="galleryContent.text">
+    </app-section-title>
+  </div>
+</mat-card>
+
+<mat-card *ngIf="content && generalContent" class="{{generalContent.cardElevation}}">
+  <form (ngSubmit)="onSubmit()" #calendarContentForm="ngForm">
+
+    <div class="form-group row">
+      <div class="col-12 d-flex align-items-center">
+        <h4 class="title-underlined">Instellingen</h4>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+        class="form-field col-sm-12 col-md-6">
+        <mat-label>Content titel</mat-label>
+        <input matInput type="text" id="galleryContentTitle" placeholder="Titel" name="galleryContentTitle"
+          [(ngModel)]="galleryContent.title" #galleryContentTitleInput="ngModel" required>
+        <mat-error *ngIf="galleryContentTitleInput.invalid">
+          Titel is verplicht
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+        class="form-field col-sm-12 col-md-6">
+        <mat-label>Content subtitel</mat-label>
+        <input matInput type="text" id="galleryContentSubTitle" placeholder="Subtitel" name="galleryContentSubTitle"
+          [(ngModel)]="galleryContent.subTitle" #galleryContentSubTitleInput="ngModel" required>
+        <mat-error *ngIf="galleryContentSubTitleInput.invalid">
+          Subtitel is verplicht
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+        class="form-field col-12">
+        <mat-label>Content text</mat-label>
+        <textarea rows="1" matInput type="text" id="galleryContentText" placeholder="Text" name="galleryContentText"
+          [(ngModel)]="galleryContent.text" #galleryContentTextInput="ngModel" required> </textarea>
+        <mat-error *ngIf="galleryContentTextInput.invalid">
+          Text is verplicht
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+
+
+    <button mat-flat-button color="accent" type="submit"
+      [disabled]="!calendarContentForm.form.valid || calendarContentForm.form.pristine">
+      Opslaan
+    </button>
+    <button mat-flat-button color="primary" type="button" class="ml-3" [disabled]="calendarContentForm.form.pristine"
+      (click)="resetForm()">
+      Reset
+    </button>
+  </form>
+</mat-card>
