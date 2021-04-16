@@ -19,6 +19,10 @@ export class CalendarCardComponent implements OnInit {
     this.endDate = new Date(this.calendarItem.dateEnd);
   }
 
+  multipleDays(): boolean {
+    return this.startDate.toISOString() != this.endDate.toISOString();
+  }
+
   getDay(num): string {
     let day = "";
     switch (num) {
@@ -70,16 +74,22 @@ export class CalendarCardComponent implements OnInit {
         break;
       case 6:
         month = "Juli";
+        break;
       case 7:
         month = "Augustus";
+        break;
       case 8:
         month = "September";
+        break;
       case 9:
         month = "October";
+        break;
       case 10:
         month = "November";
+        break;
       case 11:
         month = "December";
+        break;
     }
     return month;
   }

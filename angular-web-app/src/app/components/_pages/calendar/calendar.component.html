@@ -5,8 +5,8 @@
 <!-- Main -->
 <main id="contact" class="main main-raised" *ngIf="generalContent">
   <!-- Calendar -->
-  <section *ngIf="calendarItems" class="page-section bg-light">
-    <app-section-title [title]="'Kalender'" [subTitle]="'Aankomende activiteiten'" [text]="">
+  <section *ngIf="calendarContent && calendarItems" class="page-section bg-light">
+    <app-section-title [title]="calendarContent.title" [subTitle]="calendarContent.subTitle" [text]="calendarContent.text">
     </app-section-title>
     <div class="container">
       <div class="row">

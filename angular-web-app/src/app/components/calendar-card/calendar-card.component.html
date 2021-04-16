@@ -1,21 +1,29 @@
-<div class="row">
-    <!-- date -->
-    <div class="col-3">
-        <!-- <mat-chip-list class="mat-chip-list-stacked">
-            <mat-chip selected color="accent"> {{calendarItem.dateStart}} </mat-chip>
-            <mat-chip> {{calendarItem.dateEnd}} </mat-chip>
-        </mat-chip-list> -->
-        <h6 class="txt-secondary text-uppercase mb-0">
-            {{ getDay(startDate.getDay()) }}
-        </h6>
-        <h2 class="mb-3"> {{ startDate.getDate() }} {{ getMonth(startDate.getMonth()) }} </h2>
+<div class="row mb-5">
+  <!-- date -->
+  <div class="col-12 col-sm-3">
+    <div class="calendar-date-wrapper">
+      <!-- from -->
+      <div class="calendar-date">
+        <h6 class="txt-secondary text-uppercase mb-0"> {{ getDay(startDate.getDay()) }} </h6>
+        <h5 class="mb-0"> {{ startDate.getDate() }} {{ getMonth(startDate.getMonth()) }} </h5>
+      </div>
+      <!-- divider -->
+      <div *ngIf="multipleDays()" class="calendar-date-divider">
+        <mat-icon>horizontal_rule</mat-icon>
+      </div>
+      <!-- until -->
+      <div *ngIf="multipleDays()" class="calendar-date">
+        <h6 class="txt-primary text-uppercase mb-0"> {{ getDay(endDate.getDay()) }} </h6>
+        <h5 class="mb-0"> {{ endDate.getDate() }} {{ getMonth(endDate.getMonth()) }} </h5>
+      </div>
     </div>
-    <!-- content -->
-    <div class="col-9">
-        <mat-card [class]="elevation">
-            <h6 class="txt-primary text-uppercase mt-2"> {{calendarItem.location}} </h6>
-            <h3 class="mb-3"> {{calendarItem. title}} </h3>
-            <span [innerHTML]="calendarItem.description"> </span>
-        </mat-card>
-    </div>
+  </div>
+  <!-- content -->
+  <div class="col-12 col-sm-9">
+    <mat-card [class]="elevation">
+      <h6 class="txt-primary text-uppercase mt-2"> {{calendarItem.location}} </h6>
+      <h3 class="mb-3"> {{calendarItem. title}} </h3>
+      <span [innerHTML]="calendarItem.description"> </span>
+    </mat-card>
+  </div>
 </div>

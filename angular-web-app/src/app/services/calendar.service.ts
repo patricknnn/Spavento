@@ -23,7 +23,8 @@ export class CalendarService {
 
   public getAllActive(): AngularFirestoreCollection<CalendarItem> {
     return this.db.collection(this.dbPath, ref => ref
-      .where('active', '==', true));
+      .where('active', '==', true)
+    );
   }
 
   public create(item: CalendarItem): any {

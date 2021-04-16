@@ -1,0 +1,35 @@
+.calendar-date-wrapper {
+  display: flex;
+  flex-direction: row;
+  padding-top: 0px;
+  margin-top: 0rem;
+  margin-bottom: 1.5rem;
+}
+
+.calendar-date-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-top: 19px;
+}
+
+@media (min-width: 576px) {
+  .calendar-date-wrapper {
+    flex-direction: column;
+    align-items: flex-end;
+    padding-top: 16px;
+    margin-top: 0.5rem;
+    margin-bottom: 0rem;
+  }
+
+  .calendar-date {
+    text-align: end;
+  }
+
+  .calendar-date-divider {
+    margin-right: 0px;
+    margin-top: 0px;
+  }
+}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { CalendarContent } from 'src/app/models/calendarcontent';
 import { CalendarItem } from 'src/app/models/calendaritem';
 import { GeneralContent } from 'src/app/models/generalcontent';
 import { PageTitle } from 'src/app/models/pagetitle';
@@ -15,6 +16,7 @@ export class CalendarComponent implements OnInit {
   generalContent: GeneralContent;
   pageTitle: PageTitle;
   calendarItems: CalendarItem[];
+  calendarContent: CalendarContent;
 
   constructor(
     private calendarService: CalendarService,
@@ -25,6 +27,7 @@ export class CalendarComponent implements OnInit {
     this.retrievePageTitle();
     this.retrieveGeneralContent();
     this.retrieveCalendar();
+    this.retrieveContent();
   }
 
   retrieveCalendar(): void {
@@ -36,6 +39,18 @@ export class CalendarComponent implements OnInit {
       )
     ).subscribe(data => {
       this.calendarItems = data;
+    });
+  }
+
+  retrieveContent(): void {
+    this.contentService.getCalendarContent(1).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.calendarContent = data[0];
     });
   }
 
