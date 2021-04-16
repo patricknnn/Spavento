@@ -1,12 +1,12 @@
-<!-- Card-->
-<mat-card *ngIf="generalContent" class="{{generalContent.cardElevation}}">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-12">
-        <div [hidden]="submitted" class="w-100">
-          <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+<form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+  <mat-card *ngIf="generalContent" class="{{generalContent.cardElevation}} mb-5">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div [hidden]="submitted" class="w-100">
             <div class="form-group">
-              <mat-form-field appearance="{{ generalContent.formStyle }}" color="{{ generalContent.formColor }}" class="w-100">
+              <mat-form-field appearance="{{ generalContent.formStyle }}" color="{{ generalContent.formColor }}"
+                class="w-100">
                 <mat-label>Naam</mat-label>
                 <input matInput type="text" [(ngModel)]="model.name" name="name" id="name" #name="ngModel" required />
                 <mat-error *ngIf="name.invalid">
@@ -16,7 +16,8 @@
             </div>
 
             <div class="form-group">
-              <mat-form-field appearance="{{ generalContent.formStyle }}" color="{{ generalContent.formColor }}" class="w-100">
+              <mat-form-field appearance="{{ generalContent.formStyle }}" color="{{ generalContent.formColor }}"
+                class="w-100">
                 <mat-label>Email</mat-label>
                 <input matInput type="email" placeholder="info@example.com" [(ngModel)]="model.email" name="email"
                   id="email" #email="ngModel" required />
@@ -27,10 +28,12 @@
             </div>
 
             <div class="form-group" *ngIf="generalContent && generalContent.contactformCategories">
-              <mat-form-field appearance="{{ generalContent.formStyle }}" color="{{ generalContent.formColor }}" class="w-100">
+              <mat-form-field appearance="{{ generalContent.formStyle }}" color="{{ generalContent.formColor }}"
+                class="w-100">
                 <mat-label>Onderwerp</mat-label>
                 <mat-select [(ngModel)]="model.subject" name="subject" id="subject" #subject="ngModel" required>
-                  <mat-option *ngFor="let subject of generalContent.contactformCategories" [value]="subject">{{ subject }}</mat-option>
+                  <mat-option *ngFor="let subject of generalContent.contactformCategories" [value]="subject">{{ subject
+                    }}</mat-option>
                 </mat-select>
                 <mat-error *ngIf="subject.invalid">
                   Onderwerp is <strong>verplicht</strong>
@@ -39,7 +42,8 @@
             </div>
 
             <div class="form-group">
-              <mat-form-field appearance="{{ generalContent.formStyle }}" color="{{ generalContent.formColor }}" class="w-100">
+              <mat-form-field appearance="{{ generalContent.formStyle }}" color="{{ generalContent.formColor }}"
+                class="w-100">
                 <mat-label>Bericht</mat-label>
                 <textarea matInput [(ngModel)]="model.text" name="text" id="text" #text="ngModel" required></textarea>
                 <mat-error *ngIf="text.invalid">
@@ -47,22 +51,22 @@
                 </mat-error>
               </mat-form-field>
             </div>
+          </div>
 
-            <button mat-raised-button color="accent" type="submit" class="mr-3 rounded-pill" [disabled]="!contactForm.form.valid">
-              Verstuur
-            </button>
-            <button mat-raised-button color="primary" type="button" class="rounded-pill" (click)="resetForm();">
-              Reset
-            </button>
-
-          </form>
-        </div>
-
-        <!-- Submitted -->
-        <div [hidden]="!submitted">
-          <p>Bedankt voor je bericht.</p>
+          <!-- Submitted -->
+          <div [hidden]="!submitted">
+            <p>Bedankt voor je bericht.</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</mat-card>
+  </mat-card>
+
+  <button mat-raised-button color="accent" type="submit" class="mr-3 rounded-pill" [disabled]="!contactForm.form.valid">
+    Verstuur
+  </button>
+  <button mat-raised-button color="primary" type="button" class="rounded-pill" (click)="resetForm();">
+    Reset
+  </button>
+
+</form>
