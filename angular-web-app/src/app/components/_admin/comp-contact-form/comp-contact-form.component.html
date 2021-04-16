@@ -1,28 +1,29 @@
-<mat-card *ngIf="content && generalContent" class="{{generalContent.cardElevation}}">
-  <h4 class="title-underlined">Resultaat</h4>
-  <div *ngIf="content.active">
-    <app-section-title [title]="content.title" [subTitle]="content.subTitle" [text]="content.text">
-    </app-section-title>
-    <div class="row">
-      <div *ngFor="let service of content.content" class="col-lg-4 col-md-6 col-sm-12">
-        <app-service-card [service]="service"></app-service-card>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <app-contact-card [generalContent]="generalContent"></app-contact-card>
-      </div>
-    </div>
-  </div>
-  <!-- Not visible -->
-  <div *ngIf="!content.active" class="w-100 text-center">
-    <ngb-alert [dismissible]="false" class="mb-0">
-      <strong>Niet</strong> zichtbaar op de website.
-    </ngb-alert>
-  </div>
-</mat-card>
+<div *ngIf="content && generalContent" class="container-fluid bg-light">
 
-<mat-card *ngIf="content && generalContent" class="{{generalContent.cardElevation}}">
+  <div class="my-5">
+    <h4 class="title-underlined">Resultaat</h4>
+    <div *ngIf="content.active">
+      <app-section-title [title]="content.title" [subTitle]="content.subTitle" [text]="content.text">
+      </app-section-title>
+      <div class="row">
+        <div *ngFor="let service of content.content" class="col-lg-4 col-md-6 col-sm-12">
+          <app-service-card [service]="service"></app-service-card>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <app-contact-card [generalContent]="generalContent"></app-contact-card>
+        </div>
+      </div>
+    </div>
+    <!-- Not visible -->
+    <div *ngIf="!content.active" class="w-100 text-center">
+      <ngb-alert [dismissible]="false" class="mb-0">
+        <strong>Niet</strong> zichtbaar op de website.
+      </ngb-alert>
+    </div>
+  </div>
+
   <form (ngSubmit)="onSubmit()" #contactFormForm="ngForm">
 
     <div class="form-group row">
@@ -38,68 +39,69 @@
         </button>
       </div>
     </div>
+    <mat-card class="{{generalContent.cardElevation}} mb-5">
+      <div class="form-group row">
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field col-sm-12 col-md-6">
+          <mat-label>Content titel</mat-label>
+          <input matInput type="text" id="contactFormContentTitle" placeholder="Titel" name="contactFormContentTitle"
+            [(ngModel)]="content.title" #contactFormContentTitleInput="ngModel" required>
+          <mat-error *ngIf="contactFormContentTitleInput.invalid">
+            Titel is verplicht
+          </mat-error>
+        </mat-form-field>
 
-    <div class="form-group row">
-      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-        class="form-field col-sm-12 col-md-6">
-        <mat-label>Content titel</mat-label>
-        <input matInput type="text" id="contactFormContentTitle" placeholder="Titel" name="contactFormContentTitle"
-          [(ngModel)]="content.title" #contactFormContentTitleInput="ngModel" required>
-        <mat-error *ngIf="contactFormContentTitleInput.invalid">
-          Titel is verplicht
-        </mat-error>
-      </mat-form-field>
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field col-sm-12 col-md-6">
+          <mat-label>Content subtitel</mat-label>
+          <input matInput type="text" id="contactFormContentSubTitle" placeholder="Subtitel"
+            name="contactFormContentSubTitle" [(ngModel)]="content.subTitle" #contactFormContentSubTitleInput="ngModel"
+            required>
+          <mat-error *ngIf="contactFormContentSubTitleInput.invalid">
+            Subtitel is verplicht
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-        class="form-field col-sm-12 col-md-6">
-        <mat-label>Content subtitel</mat-label>
-        <input matInput type="text" id="contactFormContentSubTitle" placeholder="Subtitel"
-          name="contactFormContentSubTitle" [(ngModel)]="content.subTitle" #contactFormContentSubTitleInput="ngModel"
-          required>
-        <mat-error *ngIf="contactFormContentSubTitleInput.invalid">
-          Subtitel is verplicht
-        </mat-error>
-      </mat-form-field>
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field col-12">
+          <mat-label>Content text</mat-label>
+          <textarea rows="1" matInput type="text" id="contactFormContentText" placeholder="Text"
+            name="contactFormContentText" [(ngModel)]="content.text" #contactFormContentTextInput="ngModel"
+            required> </textarea>
+          <mat-error *ngIf="contactFormContentTextInput.invalid">
+            Text is verplicht
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-        class="form-field col-12">
-        <mat-label>Content text</mat-label>
-        <textarea rows="1" matInput type="text" id="contactFormContentText" placeholder="Text"
-          name="contactFormContentText" [(ngModel)]="content.text" #contactFormContentTextInput="ngModel"
-          required> </textarea>
-        <mat-error *ngIf="contactFormContentTextInput.invalid">
-          Text is verplicht
-        </mat-error>
-      </mat-form-field>
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field col-sm-12 col-md-6">
+          <mat-label>Form style</mat-label>
+          <mat-select id="contactFormContentFormStyle" name="contactFormContentFormStyle"
+            [(ngModel)]="content.formStyle" #contactFormContentFormStyleInput="ngModel" required>
+            <mat-option *ngFor="let style of formStyles" [value]="style">
+              {{ style }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="contactFormContentFormStyleInput.invalid">
+            Form style is verplicht
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-        class="form-field col-sm-12 col-md-6">
-        <mat-label>Form style</mat-label>
-        <mat-select id="contactFormContentFormStyle" name="contactFormContentFormStyle" [(ngModel)]="content.formStyle"
-          #contactFormContentFormStyleInput="ngModel" required>
-          <mat-option *ngFor="let style of formStyles" [value]="style">
-            {{ style }}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="contactFormContentFormStyleInput.invalid">
-          Form style is verplicht
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-        class="form-field col-sm-12 col-md-6">
-        <mat-label>Form kleur</mat-label>
-        <mat-select id="contactFormContentFormColor" name="contactFormContentFormColor" [(ngModel)]="content.formColor"
-          #contactFormContentFormColorInput="ngModel" required>
-          <mat-option value="primary">Primary</mat-option>
-          <mat-option value="accent">Accent</mat-option>
-          <mat-option value="warn">Warn</mat-option>
-        </mat-select>
-        <mat-error *ngIf="contactFormContentFormColorInput.invalid">
-          Form kleur is verplicht
-        </mat-error>
-      </mat-form-field>
-    </div>
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field col-sm-12 col-md-6">
+          <mat-label>Form kleur</mat-label>
+          <mat-select id="contactFormContentFormColor" name="contactFormContentFormColor"
+            [(ngModel)]="content.formColor" #contactFormContentFormColorInput="ngModel" required>
+            <mat-option value="primary">Primary</mat-option>
+            <mat-option value="accent">Accent</mat-option>
+            <mat-option value="warn">Warn</mat-option>
+          </mat-select>
+          <mat-error *ngIf="contactFormContentFormColorInput.invalid">
+            Form kleur is verplicht
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </mat-card>
 
     <button mat-flat-button color="accent" type="submit"
       [disabled]="!contactFormForm.form.valid || contactFormForm.form.pristine">
@@ -109,5 +111,6 @@
       (click)="resetForm()">
       Reset
     </button>
+
   </form>
-</mat-card>
+</div>

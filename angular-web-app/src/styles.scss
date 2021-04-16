@@ -294,7 +294,7 @@ button::-moz-focus-inner {
 }
 
 .carousel-indicators {
-  //bottom: -42px;
+  display: none !important;
 }
 .carousel-indicators li {
   background-color: $color-secondary;

@@ -1,6 +1,6 @@
 <!-- Section title -->
 <div [ngClass]="admin ? 'container-fluid' : 'container'">
-  <div class="row mb-5">
+  <div [ngClass]="admin ? 'my-5' : 'mb-5'" class="row">
 
     <div class="col-10">
       <p *ngIf="subTitle" class="subtitle txt-primary text-uppercase">{{subTitle}}</p>

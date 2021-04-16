@@ -4,12 +4,10 @@
 <div class="container-fluid" *ngIf="generalContent">
   <div class="row mb-5">
     <div class="col-12">
-
       <form *ngIf="newsItem" (ngSubmit)="onSubmit()" #addNewsItemForm="ngForm">
-        <mat-card class="{{generalContent.cardElevation}}">
 
-          <h4 class="title-underlined">Afbeelding</h4>
-
+        <h4 class="title-underlined">Afbeelding</h4>
+        <mat-card class="{{generalContent.cardElevation}} mb-5">
           <div class="form-group row">
             <div class="col-12">
               <ngx-dropzone [multiple]="false" (change)="onFileSelect($event)" class="mat-dropzone">
@@ -27,8 +25,8 @@
         </mat-card>
 
         <!-- General information -->
-        <mat-card class="{{generalContent.cardElevation}}">
-          <h4 class="title-underlined">Details</h4>
+        <h4 class="title-underlined">Details</h4>
+        <mat-card class="{{generalContent.cardElevation}} mb-5">
 
           <div class="form-group row">
             <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
@@ -96,17 +94,17 @@
               </div>
             </div>
           </div>
-
-          <!-- Actions -->
-          <div class="row mt-3">
-            <div class="col-12">
-              <button mat-flat-button color="accent" type="submit" class="mr-2"
-                [disabled]="!addNewsItemForm.form.valid">opslaan</button>
-              <button mat-flat-button color="primary" type="button"
-                (click)="resetForm(); addNewsItemForm.form.markAsUntouched()">reset</button>
-            </div>
-          </div>
         </mat-card>
+
+        <!-- Actions -->
+        <div class="row mt-3">
+          <div class="col-12">
+            <button mat-flat-button color="accent" type="submit" class="mr-2"
+              [disabled]="!addNewsItemForm.form.valid">opslaan</button>
+            <button mat-flat-button color="primary" type="button"
+              (click)="resetForm(); addNewsItemForm.form.markAsUntouched()">reset</button>
+          </div>
+        </div>
       </form>
     </div>
   </div>

@@ -3,22 +3,22 @@
 
 <div class="container-fluid" *ngIf="headerContent && generalContent">
   <div class="row mb-4">
-    <div class="col-12">
-      <mat-card class="{{generalContent.cardElevation}}">
-        <h4 class="title-underlined">Resultaat</h4>
-        <app-header [small]="headerContent.small" [typing]="headerContent.typing" [paralax]="headerContent.paralax"
-          [title]="headerContent.defaultTitle" [subTitle]="headerContent.defaultSubtitle"
-          [image]="headerContent.defaultImage" [elevation]="generalContent.cardElevation">
-        </app-header>
-      </mat-card>
+    <div class="col-12 mb-4">
+
+      <h4 class="title-underlined">Resultaat</h4>
+      <app-header [small]="headerContent.small" [typing]="headerContent.typing" [paralax]="headerContent.paralax"
+        [title]="headerContent.defaultTitle" [subTitle]="headerContent.defaultSubtitle"
+        [image]="headerContent.defaultImage" [elevation]="generalContent.cardElevation">
+      </app-header>
     </div>
   </div>
 
   <div class="row mb-5">
     <div class="col-12">
-      <mat-card class="{{generalContent.cardElevation}}">
+
+      <form (ngSubmit)="onSubmit()" #headerForm="ngForm">
         <h4 class="title-underlined">Instellingen</h4>
-        <form (ngSubmit)="onSubmit()" #headerForm="ngForm">
+        <mat-card class="{{generalContent.cardElevation}} mb-5">
 
           <div class="form-group row">
             <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
@@ -84,19 +84,18 @@
               </div>
             </div>
           </div>
+        </mat-card>
 
+        <button mat-flat-button color="accent" type="submit"
+          [disabled]="!headerForm.form.valid || headerForm.form.pristine">
+          Opslaan
+        </button>
+        <button mat-flat-button color="primary" type="button" class="ml-3" [disabled]="headerForm.form.pristine"
+          (click)="resetForm()">
+          Reset
+        </button>
 
-          <button mat-flat-button color="accent" type="submit"
-            [disabled]="!headerForm.form.valid || headerForm.form.pristine">
-            Opslaan
-          </button>
-          <button mat-flat-button color="primary" type="button" class="ml-3" [disabled]="headerForm.form.pristine"
-            (click)="resetForm()">
-            Reset
-          </button>
-        </form>
-      </mat-card>
-
+      </form>
     </div>
   </div>
 </div>

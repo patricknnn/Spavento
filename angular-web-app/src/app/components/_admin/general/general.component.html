@@ -4,11 +4,11 @@
 <div class="container-fluid">
   <div class="row mb-4" *ngIf="content">
     <div class="col-12">
-      <mat-card class="{{content.cardElevation}}">
-        <form (ngSubmit)="onSubmit()" #generalContentForm="ngForm" *ngIf="content">
+      <form (ngSubmit)="onSubmit()" #generalContentForm="ngForm" *ngIf="content">
 
-          <!-- Table settings -->
-          <h4 class="title-underlined my-5">Tabellen</h4>
+        <!-- Table settings -->
+        <h4 class="title-underlined my-5">Tabellen</h4>
+        <mat-card class="{{content.cardElevation}}">
           <div class="form-group row">
             <mat-form-field [appearance]="content.formStyle" [color]="content.formColor"
               class="form-field col-12 col-md-6">
@@ -35,9 +35,11 @@
               </mat-select>
             </mat-form-field>
           </div>
+        </mat-card>
 
-          <!-- Form settings -->
-          <h4 class="title-underlined my-5">Formulieren</h4>
+        <!-- Form settings -->
+        <h4 class="title-underlined my-5">Formulieren</h4>
+        <mat-card class="{{content.cardElevation}}">
           <div class="form-group row">
             <mat-form-field [appearance]="content.formStyle" [color]="content.formColor"
               class="form-field col-sm-12 col-md-6">
@@ -75,9 +77,11 @@
               </mat-chip-list>
             </mat-form-field>
           </div>
+        </mat-card>
 
-          <!-- Card settings -->
-          <h4 class="title-underlined my-5">Cards</h4>
+        <!-- Card settings -->
+        <h4 class="title-underlined my-5">Cards</h4>
+        <mat-card class="{{content.cardElevation}}">
           <div class="form-group row">
             <mat-form-field [appearance]="content.formStyle" [color]="content.formColor"
               class="form-field col-12 col-md-6">
@@ -89,13 +93,12 @@
                 </mat-option>
               </mat-select>
             </mat-form-field>
-            <div class="col-12 col-md-6">
-              <mat-card [ngClass]="content.cardElevation" class=""></mat-card>
-            </div>
           </div>
+        </mat-card>
 
-          <!-- Painting settings -->
-          <h4 class="title-underlined my-5">Portfolio</h4>
+        <!-- Painting settings -->
+        <h4 class="title-underlined my-5">Portfolio</h4>
+        <mat-card class="{{content.cardElevation}}">
           <div class="form-group row">
             <mat-form-field [appearance]="content.formStyle" [color]="content.formColor" class="form-field col-12">
               <mat-label>Categorieen</mat-label>
@@ -150,9 +153,11 @@
               </mat-chip-list>
             </mat-form-field>
           </div>
+        </mat-card>
 
-          <!-- News settings -->
-          <h4 class="title-underlined my-5">Nieuws</h4>
+        <!-- News settings -->
+        <h4 class="title-underlined my-5">Nieuws</h4>
+        <mat-card class="{{content.cardElevation}}">
           <div class="form-group row">
             <mat-form-field [appearance]="content.formStyle" [color]="content.formColor" class="form-field col-12">
               <mat-label>Categorieen</mat-label>
@@ -168,9 +173,11 @@
               </mat-chip-list>
             </mat-form-field>
           </div>
+        </mat-card>
 
-          <!-- Router settings -->
-          <h4 class="title-underlined my-5">Router</h4>
+        <!-- Router settings -->
+        <h4 class="title-underlined my-5">Router</h4>
+        <mat-card class="{{content.cardElevation}}">
           <div class="form-group row">
             <mat-form-field [appearance]="content.formStyle" [color]="content.formColor" class="form-field col-12">
               <mat-label>Router links</mat-label>
@@ -186,21 +193,21 @@
               </mat-chip-list>
             </mat-form-field>
           </div>
+        </mat-card>
+
+        <!-- Save -->
+        <div class="mt-5">
+          <button mat-flat-button color="accent" type="submit" [disabled]="!generalContentForm.form.valid">
+            Opslaan
+          </button>
+          <button mat-flat-button color="primary" type="button" class="ml-3"
+            (click)="resetForm(); generalContentForm.form.markAsUntouched();">
+            Reset
+          </button>
+        </div>
 
 
-          <!-- Save -->
-          <div class="mt-5">
-            <button mat-flat-button color="accent" type="submit" [disabled]="!generalContentForm.form.valid">
-              Opslaan
-            </button>
-            <button mat-flat-button color="primary" type="button" class="ml-3"
-              (click)="resetForm(); generalContentForm.form.markAsUntouched();">
-              Reset
-            </button>
-          </div>
-
-        </form>
-      </mat-card>
+      </form>
     </div>
   </div>
 </div>

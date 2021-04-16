@@ -1,21 +1,25 @@
-<mat-card *ngIf="cta && generalContent" class="{{generalContent.cardElevation}}">
-  <h4 class="title-underlined">Resultaat</h4>
-  <div *ngIf="cta.active" class="container-fluid p-5" [style.backgroundImage]="'url(' + cta.image + ')'">
-    <div class="col-12">
-      <app-call-to-action [title]="cta.title" [subTitle]="cta.subTitle" [buttonText]="cta.btnText"
-        [buttonLink]="cta.btnLink">
-      </app-call-to-action>
+<div *ngIf="cta && generalContent" class="container-fluid bg-light">
+
+
+  <div class="my-5">
+    <h4 class="title-underlined">Resultaat</h4>
+    <div *ngIf="cta.active" class="container-fluid p-5" [style.backgroundImage]="'url(' + cta.image + ')'">
+      <div class="col-12">
+        <app-call-to-action [title]="cta.title" [subTitle]="cta.subTitle" [buttonText]="cta.btnText"
+          [buttonLink]="cta.btnLink">
+        </app-call-to-action>
+      </div>
+    </div>
+    <!-- Not visible -->
+    <div *ngIf="!cta.active" class="w-100 text-center">
+      <ngb-alert [dismissible]="false" class="mb-0">
+        <strong>Niet</strong> zichtbaar op de website.
+      </ngb-alert>
     </div>
   </div>
-  <!-- Not visible -->
-  <div *ngIf="!cta.active" class="w-100 text-center">
-    <ngb-alert [dismissible]="false" class="mb-0">
-      <strong>Niet</strong> zichtbaar op de website.
-    </ngb-alert>
-  </div>
-</mat-card>
 
-<mat-card *ngIf="cta && generalContent" class="{{generalContent.cardElevation}}">
+
+
   <form (ngSubmit)="onSubmit()" #ctaForm="ngForm">
 
     <div class="form-group row">
@@ -32,75 +36,74 @@
       </div>
     </div>
 
-    <div class="form-group row">
-      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-        class="form-field col-sm-12 col-md-6">
-        <mat-label>Content titel</mat-label>
-        <input matInput type="text" id="ctaContentTitle" placeholder="Titel" name="ctaContentTitle"
-          [(ngModel)]="cta.title" #ctaContentTitleInput="ngModel" required>
-        <mat-error *ngIf="ctaContentTitleInput.invalid">
-          Titel is verplicht
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-        class="form-field col-sm-12 col-md-6">
-        <mat-label>Content subtitel</mat-label>
-        <input matInput type="text" id="ctaContentSubTitle" placeholder="Subtitel" name="ctaContentSubTitle"
-          [(ngModel)]="cta.subTitle" #ctaContentSubTitleInput="ngModel" required>
-        <mat-error *ngIf="ctaContentSubTitleInput.invalid">
-          Subtitel is verplicht
-        </mat-error>
-      </mat-form-field>
-    </div>
+    <mat-card class="{{generalContent.cardElevation}} mb-5">
+      <div class="form-group row">
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field col-sm-12 col-md-6">
+          <mat-label>Content titel</mat-label>
+          <input matInput type="text" id="ctaContentTitle" placeholder="Titel" name="ctaContentTitle"
+            [(ngModel)]="cta.title" #ctaContentTitleInput="ngModel" required>
+          <mat-error *ngIf="ctaContentTitleInput.invalid">
+            Titel is verplicht
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field col-sm-12 col-md-6">
+          <mat-label>Content subtitel</mat-label>
+          <input matInput type="text" id="ctaContentSubTitle" placeholder="Subtitel" name="ctaContentSubTitle"
+            [(ngModel)]="cta.subTitle" #ctaContentSubTitleInput="ngModel" required>
+          <mat-error *ngIf="ctaContentSubTitleInput.invalid">
+            Subtitel is verplicht
+          </mat-error>
+        </mat-form-field>
+      </div>
 
-    <div class="form-group row">
-      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-        class="form-field col-12">
-        <mat-label>Achtergrond</mat-label>
-        <mat-select id="ctaContentImage" name="ctaContentImage" [(ngModel)]="cta.image">
-          <mat-option [value]="backgrounds[0]">
-            <img [src]="backgrounds[0]" alt="thumbnail" class="img-thumbnail img-dropdown" />
-            Blauw
-          </mat-option>
-          <mat-option [value]="backgrounds[1]">
-            <img [src]="backgrounds[1]" alt="thumbnail" class="img-thumbnail img-dropdown" />
-            Licht
-          </mat-option>
-          <mat-option [value]="backgrounds[2]">
-            <img [src]="backgrounds[2]" alt="thumbnail" class="img-thumbnail img-dropdown" />
-            Donker
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+      <div class="form-group row">
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field col-12">
+          <mat-label>Achtergrond</mat-label>
+          <mat-select id="ctaContentImage" name="ctaContentImage" [(ngModel)]="cta.image">
+            <mat-option [value]="backgrounds[0]">
+              <img [src]="backgrounds[0]" alt="thumbnail" class="img-thumbnail img-dropdown" />
+              Blauw
+            </mat-option>
+            <mat-option [value]="backgrounds[1]">
+              <img [src]="backgrounds[1]" alt="thumbnail" class="img-thumbnail img-dropdown" />
+              Licht
+            </mat-option>
+            <mat-option [value]="backgrounds[2]">
+              <img [src]="backgrounds[2]" alt="thumbnail" class="img-thumbnail img-dropdown" />
+              Donker
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 
-    <div class="form-group row">
-      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-        class="form-field col-xs-12 col-sm-6">
-        <mat-label>Knop label</mat-label>
-        <input matInput type="text" id="ctaContentBtnLabel" placeholder="Label" name="ctaContentBtnLabel"
-          [(ngModel)]="cta.btnText" #ctaContentBtnLabelInput="ngModel" required>
-        <mat-error *ngIf="ctaContentBtnLabelInput.invalid">Label is verplicht
-        </mat-error>
-      </mat-form-field>
+      <div class="form-group row">
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field col-xs-12 col-sm-6">
+          <mat-label>Knop label</mat-label>
+          <input matInput type="text" id="ctaContentBtnLabel" placeholder="Label" name="ctaContentBtnLabel"
+            [(ngModel)]="cta.btnText" #ctaContentBtnLabelInput="ngModel" required>
+          <mat-error *ngIf="ctaContentBtnLabelInput.invalid">Label is verplicht
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-        class="form-field col-xs-12 col-sm-6">
-        <mat-label>Router link</mat-label>
-        <mat-select id="ctaContentBtnLink" name="ctaContentBtnLink" [(ngModel)]="cta.btnLink"
-          #ctaContentBtnLinkInput="ngModel" required>
-          <mat-option *ngFor="let option of generalContent.routerLinkOptions" [value]="option">
-            {{ option }}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="ctaContentBtnLinkInput.invalid">
-          Link is verplicht
-        </mat-error>
-      </mat-form-field>
-
-
-    </div>
-
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field col-xs-12 col-sm-6">
+          <mat-label>Router link</mat-label>
+          <mat-select id="ctaContentBtnLink" name="ctaContentBtnLink" [(ngModel)]="cta.btnLink"
+            #ctaContentBtnLinkInput="ngModel" required>
+            <mat-option *ngFor="let option of generalContent.routerLinkOptions" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="ctaContentBtnLinkInput.invalid">
+            Link is verplicht
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </mat-card>
 
     <button mat-flat-button color="accent" type="submit" [disabled]="!ctaForm.form.valid || ctaForm.form.pristine">
       Opslaan
@@ -110,4 +113,4 @@
       Reset
     </button>
   </form>
-</mat-card>
+</div>

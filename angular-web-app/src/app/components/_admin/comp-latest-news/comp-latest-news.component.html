@@ -1,25 +1,24 @@
-<mat-card *ngIf="latestNews && generalContent" class="{{generalContent.cardElevation}}">
-  <h4 class="title-underlined">Resultaat</h4>
-  <div *ngIf="latestNews.active" class="container-fluid">
-    <app-section-title [title]="latestNews.title" [subTitle]="latestNews.subTitle" [text]="latestNews.text"
-      [link]="latestNews.link">
-    </app-section-title>
-    <div class="row">
-      <div class="col-12">
-        <app-latest-news [amount]="latestNews.amount" [generalContent]="generalContent"></app-latest-news>
+<div *ngIf="latestNews && generalContent" class="container-fluid bg-light">
+
+  <h4 class="title-underlined mt-5">Resultaat</h4>
+  <div class="mb-5">
+    <div *ngIf="latestNews.active" class="container-fluid">
+      <app-section-title [title]="latestNews.title" [subTitle]="latestNews.subTitle" [text]="latestNews.text"
+        [link]="latestNews.link">
+      </app-section-title>
+      <div class="row">
+        <div class="col-12">
+          <app-latest-news [amount]="latestNews.amount" [generalContent]="generalContent"></app-latest-news>
+        </div>
       </div>
     </div>
+    <!-- Not visible -->
+    <div *ngIf="!latestNews.active" class="w-100 text-center">
+      <ngb-alert [dismissible]="false" class="mb-0">
+        <strong>Niet</strong> zichtbaar op de website.
+      </ngb-alert>
+    </div>
   </div>
-  <!-- Not visible -->
-  <div *ngIf="!latestNews.active" class="w-100 text-center">
-    <ngb-alert [dismissible]="false" class="mb-0">
-      <strong>Niet</strong> zichtbaar op de website.
-    </ngb-alert>
-  </div>
-</mat-card>
-
-<mat-card *ngIf="latestNews && generalContent" class="{{generalContent.cardElevation}}">
-
 
   <form (ngSubmit)="onSubmit()" #latestNewsForm="ngForm">
 
@@ -36,51 +35,52 @@
         </button>
       </div>
     </div>
+    
+    <mat-card class="{{generalContent.cardElevation}} mb-5">
+      <div class="form-group row">
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field col-sm-12 col-md-6">
+          <mat-label>Content titel</mat-label>
+          <input matInput type="text" id="latestNewsContentTitle" placeholder="Titel" name="latestNewsContentTitle"
+            [(ngModel)]="latestNews.title" #latestNewsContentTitleInput="ngModel" required>
+          <mat-error *ngIf="latestNewsContentTitleInput.invalid">
+            Titel is verplicht
+          </mat-error>
+        </mat-form-field>
 
-    <div class="form-group row">
-      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-        class="form-field col-sm-12 col-md-6">
-        <mat-label>Content titel</mat-label>
-        <input matInput type="text" id="latestNewsContentTitle" placeholder="Titel" name="latestNewsContentTitle"
-          [(ngModel)]="latestNews.title" #latestNewsContentTitleInput="ngModel" required>
-        <mat-error *ngIf="latestNewsContentTitleInput.invalid">
-          Titel is verplicht
-        </mat-error>
-      </mat-form-field>
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field col-sm-12 col-md-6">
+          <mat-label>Content subtitel</mat-label>
+          <input matInput type="text" id="latestNewsContentSubTitle" placeholder="Subtitel"
+            name="latestNewsContentSubTitle" [(ngModel)]="latestNews.subTitle" #latestNewsContentSubTitleInput="ngModel"
+            required>
+          <mat-error *ngIf="latestNewsContentSubTitleInput.invalid">
+            Subtitel is verplicht
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-        class="form-field col-sm-12 col-md-6">
-        <mat-label>Content subtitel</mat-label>
-        <input matInput type="text" id="latestNewsContentSubTitle" placeholder="Subtitel"
-          name="latestNewsContentSubTitle" [(ngModel)]="latestNews.subTitle" #latestNewsContentSubTitleInput="ngModel"
-          required>
-        <mat-error *ngIf="latestNewsContentSubTitleInput.invalid">
-          Subtitel is verplicht
-        </mat-error>
-      </mat-form-field>
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field col-10">
+          <mat-label>Content text</mat-label>
+          <textarea rows="1" matInput type="text" id="latestNewsContentText" placeholder="Text"
+            name="latestNewsContentText" [(ngModel)]="latestNews.text" #latestNewsContentTextInput="ngModel"
+            required> </textarea>
+          <mat-error *ngIf="latestNewsContentTextInput.invalid">
+            Text is verplicht
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-        class="form-field col-10">
-        <mat-label>Content text</mat-label>
-        <textarea rows="1" matInput type="text" id="latestNewsContentText" placeholder="Text"
-          name="latestNewsContentText" [(ngModel)]="latestNews.text" #latestNewsContentTextInput="ngModel"
-          required> </textarea>
-        <mat-error *ngIf="latestNewsContentTextInput.invalid">
-          Text is verplicht
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-        class="form-field col-2">
-        <mat-label>Items</mat-label>
-        <input matInput type="number" id="latestNewsContentAmount" name="latestNewsContentAmount" min="1" max="6"
-          [(ngModel)]="latestNews.amount" #latestNewsContentAmountInput="ngModel" required>
-        <mat-error *ngIf="latestNewsContentAmountInput.invalid">
-          Aantal is verplicht
-        </mat-error>
-      </mat-form-field>
-
-    </div>
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field col-2">
+          <mat-label>Items</mat-label>
+          <input matInput type="number" id="latestNewsContentAmount" name="latestNewsContentAmount" min="1" max="6"
+            [(ngModel)]="latestNews.amount" #latestNewsContentAmountInput="ngModel" required>
+          <mat-error *ngIf="latestNewsContentAmountInput.invalid">
+            Aantal is verplicht
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </mat-card>
 
 
     <button mat-flat-button color="accent" type="submit"
@@ -92,4 +92,4 @@
       Reset
     </button>
   </form>
-</mat-card>
+</div>

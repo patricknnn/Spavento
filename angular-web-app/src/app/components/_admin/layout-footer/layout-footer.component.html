@@ -3,19 +3,18 @@
 
 <div class="container-fluid" *ngIf="footerContent && generalContent">
   <div class="row mb-4">
-    <div class="col-12">
-      <mat-card class="{{generalContent.cardElevation}}">
-        <h4 class="title-underlined">Resultaat</h4>
-        <app-footer [footerContent]="footerContent" [fixed]="false" [elevated]="true"></app-footer>
-      </mat-card>
+    <div class="col-12 mb-4">
+      <h4 class="title-underlined">Resultaat</h4>
+      <app-footer [footerContent]="footerContent" [fixed]="false" [elevated]="true"></app-footer>
     </div>
   </div>
 
   <div class="row mb-5">
     <div class="col-12">
-      <mat-card class="{{generalContent.cardElevation}}">
+      <form (ngSubmit)="onSubmit()" #footerForm="ngForm">
+
         <h4 class="title-underlined">Instellingen</h4>
-        <form (ngSubmit)="onSubmit()" #footerForm="ngForm">
+        <mat-card class="{{generalContent.cardElevation}} mb-5">
           <div class="form-group row">
             <div class="col-sm-12 col-md-6">
               <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
@@ -103,16 +102,18 @@
             </mat-form-field>
           </div>
 
-          <button mat-flat-button color="accent" type="submit"
-            [disabled]="!footerForm.form.valid || footerForm.form.pristine">
-            Opslaan
-          </button>
-          <button mat-flat-button color="primary" type="button" class="ml-3" [disabled]="footerForm.form.pristine"
-            (click)="resetForm()">
-            Reset
-          </button>
-        </form>
-      </mat-card>
+        </mat-card>
+
+        <button mat-flat-button color="accent" type="submit"
+          [disabled]="!footerForm.form.valid || footerForm.form.pristine">
+          Opslaan
+        </button>
+        <button mat-flat-button color="primary" type="button" class="ml-3" [disabled]="footerForm.form.pristine"
+          (click)="resetForm()">
+          Reset
+        </button>
+
+      </form>
     </div>
   </div>
 </div>

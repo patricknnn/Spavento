@@ -4,12 +4,10 @@
 <div class="container-fluid" *ngIf="generalContent">
   <div class="row mb-5">
     <div class="col-12">
-
       <form *ngIf="painting" (ngSubmit)="onSubmit()" #editPaintingForm="ngForm">
 
-        <mat-card class="{{generalContent.cardElevation}}">
-          <h4 class="title-underlined">Afbeeldingen</h4>
-
+        <h4 class="title-underlined">Afbeeldingen</h4>
+        <mat-card class="{{generalContent.cardElevation}} mb-5">
           <div class="form-group row">
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" *ngFor="let img of painting.images">
               <img [src]="img" class="img-thumbnail">
@@ -18,7 +16,6 @@
                   <mat-icon>delete</mat-icon>
                 </button>
               </div>
-
             </div>
           </div>
 
@@ -39,9 +36,8 @@
         </mat-card>
 
         <!-- General information -->
-        <mat-card class="{{generalContent.cardElevation}}">
-          <h4 class="title-underlined">Details</h4>
-
+        <h4 class="title-underlined">Details</h4>
+        <mat-card class="{{generalContent.cardElevation}} mb-5">
           <div class="form-group row">
             <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
               class="form-field col-12 col-md-6">
@@ -152,17 +148,17 @@
               </div>
             </div>
           </div>
-
-          <!-- Actions -->
-          <div class="row mt-3">
-            <div class="col-12">
-              <button mat-flat-button color="accent" type="submit" class="mr-2"
-                [disabled]="!editPaintingForm.valid || editPaintingForm.form.pristine && !selectedFiles.length">opslaan</button>
-              <button mat-flat-button color="primary" type="button"
-                (click)="resetForm(); editPaintingForm.form.markAsUntouched()">reset</button>
-            </div>
-          </div>
         </mat-card>
+
+        <!-- Actions -->
+        <div class="row mt-3">
+          <div class="col-12">
+            <button mat-flat-button color="accent" type="submit" class="mr-2"
+              [disabled]="!editPaintingForm.valid || editPaintingForm.form.pristine && !selectedFiles.length">opslaan</button>
+            <button mat-flat-button color="primary" type="button"
+              (click)="resetForm(); editPaintingForm.form.markAsUntouched()">reset</button>
+          </div>
+        </div>
       </form>
     </div>
   </div>

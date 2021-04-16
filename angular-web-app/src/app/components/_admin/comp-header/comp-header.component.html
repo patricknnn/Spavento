@@ -1,48 +1,49 @@
-<mat-card *ngIf="pageTitle && generalContent" class="{{generalContent.cardElevation}}">
-  <h4 class="title-underlined">Resultaat</h4>
+<div *ngIf="pageTitle && generalContent" class="container-fluid bg-light">
+
+  <h4 class="title-underlined mt-5">Resultaat</h4>
   <app-header [title]="pageTitle.title" [subTitle]="pageTitle.subTitle" [image]="pageTitle.image"
     [elevation]="generalContent.cardElevation"></app-header>
-</mat-card>
 
-<mat-card *ngIf="pageTitle && generalContent" class="{{generalContent.cardElevation}}">
-  <h4 class="title-underlined">Instellingen</h4>
   <form (ngSubmit)="onSubmit()" #headerForm="ngForm">
+    <h4 class="title-underlined mt-5">Instellingen</h4>
+    <mat-card class="{{generalContent.cardElevation}} mb-5">
 
-    <div class="form-group row">
-      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-        class="form-field col-sm-12 col-md-6">
-        <mat-label>Titel</mat-label>
-        <input matInput type="text" id="defaultTitle" placeholder="Titel" name="defaultTitle"
-          [(ngModel)]="pageTitle.title" #title="ngModel" required>
-        <mat-error *ngIf="title.invalid">
-          Titel is verplicht
-        </mat-error>
-      </mat-form-field>
+      <div class="form-group row">
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field col-sm-12 col-md-6">
+          <mat-label>Titel</mat-label>
+          <input matInput type="text" id="defaultTitle" placeholder="Titel" name="defaultTitle"
+            [(ngModel)]="pageTitle.title" #title="ngModel" required>
+          <mat-error *ngIf="title.invalid">
+            Titel is verplicht
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-        class="form-field col-sm-12 col-md-6">
-        <mat-label>Subtitel</mat-label>
-        <input matInput type="text" id="defaultSubTitle" placeholder="Subtitel" name="defaultSubTitle"
-          [(ngModel)]="pageTitle.subTitle" #subTitle="ngModel" required>
-        <mat-error *ngIf="subTitle.invalid">
-          Subtitel is verplicht
-        </mat-error>
-      </mat-form-field>
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field col-sm-12 col-md-6">
+          <mat-label>Subtitel</mat-label>
+          <input matInput type="text" id="defaultSubTitle" placeholder="Subtitel" name="defaultSubTitle"
+            [(ngModel)]="pageTitle.subTitle" #subTitle="ngModel" required>
+          <mat-error *ngIf="subTitle.invalid">
+            Subtitel is verplicht
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field *ngIf="fileUploads" [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-        class="form-field col-sm-12">
-        <mat-label>Afbeelding</mat-label>
-        <mat-select id="defaultImage" name="defaultImage" [(ngModel)]="pageTitle.image" #defaultImage="ngModel">
-          <mat-option *ngFor="let file of fileUploads" [value]="file.url">
-            <img [src]="file.url" alt="thumbnail" class="img-thumbnail img-dropdown" />
-            {{ file.name }}
-          </mat-option>
-        </mat-select>
-        <mat-hint>
-          Als deze afbeelding leeg is zal de standaard header afbeelding getoond worden.
-        </mat-hint>
-      </mat-form-field>
-    </div>
+        <mat-form-field *ngIf="fileUploads" [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field col-sm-12">
+          <mat-label>Afbeelding</mat-label>
+          <mat-select id="defaultImage" name="defaultImage" [(ngModel)]="pageTitle.image" #defaultImage="ngModel">
+            <mat-option *ngFor="let file of fileUploads" [value]="file.url">
+              <img [src]="file.url" alt="thumbnail" class="img-thumbnail img-dropdown" />
+              {{ file.name }}
+            </mat-option>
+          </mat-select>
+          <mat-hint>
+            Als deze afbeelding leeg is zal de standaard header afbeelding getoond worden.
+          </mat-hint>
+        </mat-form-field>
+      </div>
+    </mat-card>
 
     <button mat-flat-button color="accent" type="submit"
       [disabled]="!headerForm.form.valid || headerForm.form.pristine">
@@ -54,4 +55,6 @@
     </button>
   </form>
 
-</mat-card>
+
+
+</div>

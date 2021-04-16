@@ -8,8 +8,8 @@
       <form *ngIf="calendarItem" (ngSubmit)="onSubmit()" #addCalendarItemForm="ngForm">
 
         <!-- General information -->
-        <mat-card class="{{generalContent.cardElevation}}">
-
+        <h4 class="title-underlined">Details</h4>
+        <mat-card class="{{generalContent.cardElevation}} mb-5">
           <div class="form-group row">
             <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
               class="form-field col-12 col-md-6">
@@ -28,7 +28,7 @@
               <mat-error *ngIf="author.invalid">
                 Auteur is <strong>verplicht</strong>
               </mat-error>
-            </mat-form-field>            
+            </mat-form-field>
           </div>
 
           <div class="form-group row">
@@ -39,19 +39,20 @@
                 [disabled]="formDisabled" #location="ngModel" />
             </mat-form-field>
 
-            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor" class="form-field col-12 col-md-6">
+            <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+              class="form-field col-12 col-md-6">
               <mat-label>Start en eind datum</mat-label>
               <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
-                <input matStartDate id="dateStart" placeholder="Start datum" name="dateStart" [(ngModel)]="startDate" [disabled]="formDisabled" #dateStart="ngModel">
-                <input matEndDate id="dateEnd" placeholder="Eind datum" name="dateEnd" [(ngModel)]="endDate" [disabled]="formDisabled" #dateEnd="ngModel">
+                <input matStartDate id="dateStart" placeholder="Start datum" name="dateStart" [(ngModel)]="startDate"
+                  [disabled]="formDisabled" #dateStart="ngModel">
+                <input matEndDate id="dateEnd" placeholder="Eind datum" name="dateEnd" [(ngModel)]="endDate"
+                  [disabled]="formDisabled" #dateEnd="ngModel">
               </mat-date-range-input>
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-date-range-picker #picker></mat-date-range-picker>
               <mat-error *ngIf="dateStart.invalid">Start datum ongeldig</mat-error>
               <mat-error *ngIf="dateEnd.invalid">Eind datum ongeldig</mat-error>
             </mat-form-field>
-
-
           </div>
 
           <div class="form-group row">
@@ -65,16 +66,17 @@
             </div>
           </div>
 
-          <!-- Actions -->
-          <div class="row mt-3">
-            <div class="col-12">
-              <button mat-flat-button color="accent" type="submit" class="mr-2"
-                [disabled]="!addCalendarItemForm.form.valid">opslaan</button>
-              <button mat-flat-button color="primary" type="button"
-                (click)="resetForm(); addCalendarItemForm.form.markAsUntouched()">reset</button>
-            </div>
-          </div>
         </mat-card>
+
+        <!-- Actions -->
+        <div class="row mt-3">
+          <div class="col-12">
+            <button mat-flat-button color="accent" type="submit" class="mr-2"
+              [disabled]="!addCalendarItemForm.form.valid">opslaan</button>
+            <button mat-flat-button color="primary" type="button"
+              (click)="resetForm(); addCalendarItemForm.form.markAsUntouched()">reset</button>
+          </div>
+        </div>
       </form>
     </div>
   </div>

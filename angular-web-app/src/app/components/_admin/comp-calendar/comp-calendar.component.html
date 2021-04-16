@@ -1,52 +1,48 @@
-<mat-card *ngIf="content && generalContent" class="{{generalContent.cardElevation}}">
-  <h4 class="title-underlined">Resultaat</h4>
+<div *ngIf="content && generalContent" class="container-fluid bg-light">
+
+  <h4 class="title-underlined mt-5">Resultaat</h4>
   <div class="container-fluid">
     <app-section-title [title]="content.title" [subTitle]="content.subTitle" [text]="content.text">
     </app-section-title>
   </div>
-</mat-card>
 
-<mat-card *ngIf="content && generalContent" class="{{generalContent.cardElevation}}">
   <form (ngSubmit)="onSubmit()" #calendarContentForm="ngForm">
 
-    <div class="form-group row">
-      <div class="col-12 d-flex align-items-center">
-        <h4 class="title-underlined">Instellingen</h4>
+    <h4 class="title-underlined">Instellingen</h4>
+    <mat-card class="{{generalContent.cardElevation}} mb-5">
+
+      <div class="form-group row">
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field col-sm-12 col-md-6">
+          <mat-label>Content titel</mat-label>
+          <input matInput type="text" id="contentTitle" placeholder="Titel" name="contentTitle"
+            [(ngModel)]="content.title" #contentTitleInput="ngModel" required>
+          <mat-error *ngIf="contentTitleInput.invalid">
+            Titel is verplicht
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field col-sm-12 col-md-6">
+          <mat-label>Content subtitel</mat-label>
+          <input matInput type="text" id="contentSubTitle" placeholder="Subtitel" name="contentSubTitle"
+            [(ngModel)]="content.subTitle" #contentSubTitleInput="ngModel" required>
+          <mat-error *ngIf="contentSubTitleInput.invalid">
+            Subtitel is verplicht
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field col-12">
+          <mat-label>Content text</mat-label>
+          <textarea rows="1" matInput type="text" id="contentText" placeholder="Text" name="contentText"
+            [(ngModel)]="content.text" #contentTextInput="ngModel" required> </textarea>
+          <mat-error *ngIf="contentTextInput.invalid">
+            Text is verplicht
+          </mat-error>
+        </mat-form-field>
       </div>
-    </div>
-
-    <div class="form-group row">
-      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-        class="form-field col-sm-12 col-md-6">
-        <mat-label>Content titel</mat-label>
-        <input matInput type="text" id="contentTitle" placeholder="Titel" name="contentTitle"
-          [(ngModel)]="content.title" #contentTitleInput="ngModel" required>
-        <mat-error *ngIf="contentTitleInput.invalid">
-          Titel is verplicht
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-        class="form-field col-sm-12 col-md-6">
-        <mat-label>Content subtitel</mat-label>
-        <input matInput type="text" id="contentSubTitle" placeholder="Subtitel" name="contentSubTitle"
-          [(ngModel)]="content.subTitle" #contentSubTitleInput="ngModel" required>
-        <mat-error *ngIf="contentSubTitleInput.invalid">
-          Subtitel is verplicht
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-        class="form-field col-12">
-        <mat-label>Content text</mat-label>
-        <textarea rows="1" matInput type="text" id="contentText" placeholder="Text" name="contentText"
-          [(ngModel)]="content.text" #contentTextInput="ngModel" required> </textarea>
-        <mat-error *ngIf="contentTextInput.invalid">
-          Text is verplicht
-        </mat-error>
-      </mat-form-field>
-
-    </div>
+    </mat-card>
 
 
     <button mat-flat-button color="accent" type="submit"
@@ -57,5 +53,6 @@
       (click)="resetForm()">
       Reset
     </button>
+
   </form>
-</mat-card>
+</div>

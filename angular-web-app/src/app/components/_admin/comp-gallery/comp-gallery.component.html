@@ -1,90 +1,85 @@
-<mat-card *ngIf="galleryContent && generalContent" class="{{generalContent.cardElevation}}">
-  <h4 class="title-underlined">Resultaat</h4>
+<div *ngIf="galleryContent && generalContent" class="container-fluid bg-light">
+
+  <h4 class="title-underlined mt-5">Resultaat</h4>
   <div class="container-fluid">
     <app-section-title [title]="galleryContent.title" [subTitle]="galleryContent.subTitle" [text]="galleryContent.text">
     </app-section-title>
   </div>
-</mat-card>
 
-<mat-card *ngIf="galleryContent && generalContent" class="{{generalContent.cardElevation}}">
   <form (ngSubmit)="onSubmit()" #galleryContentForm="ngForm">
 
-    <div class="form-group row">
-      <div class="col-12 d-flex align-items-center">
-        <h4 class="title-underlined">Instellingen</h4>
-      </div>
-    </div>
+    <h4 class="title-underlined">Instellingen</h4>
+    <mat-card class="{{generalContent.cardElevation}} mb-5">
+      <div class="form-group row">
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field col-sm-12 col-md-6">
+          <mat-label>Content titel</mat-label>
+          <input matInput type="text" id="galleryContentTitle" placeholder="Titel" name="galleryContentTitle"
+            [(ngModel)]="galleryContent.title" #galleryContentTitleInput="ngModel" required>
+          <mat-error *ngIf="galleryContentTitleInput.invalid">
+            Titel is verplicht
+          </mat-error>
+        </mat-form-field>
 
-    <div class="form-group row">
-      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-        class="form-field col-sm-12 col-md-6">
-        <mat-label>Content titel</mat-label>
-        <input matInput type="text" id="galleryContentTitle" placeholder="Titel" name="galleryContentTitle"
-          [(ngModel)]="galleryContent.title" #galleryContentTitleInput="ngModel" required>
-        <mat-error *ngIf="galleryContentTitleInput.invalid">
-          Titel is verplicht
-        </mat-error>
-      </mat-form-field>
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field col-sm-12 col-md-6">
+          <mat-label>Content subtitel</mat-label>
+          <input matInput type="text" id="galleryContentSubTitle" placeholder="Subtitel" name="galleryContentSubTitle"
+            [(ngModel)]="galleryContent.subTitle" #galleryContentSubTitleInput="ngModel" required>
+          <mat-error *ngIf="galleryContentSubTitleInput.invalid">
+            Subtitel is verplicht
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-        class="form-field col-sm-12 col-md-6">
-        <mat-label>Content subtitel</mat-label>
-        <input matInput type="text" id="galleryContentSubTitle" placeholder="Subtitel" name="galleryContentSubTitle"
-          [(ngModel)]="galleryContent.subTitle" #galleryContentSubTitleInput="ngModel" required>
-        <mat-error *ngIf="galleryContentSubTitleInput.invalid">
-          Subtitel is verplicht
-        </mat-error>
-      </mat-form-field>
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field col-12">
+          <mat-label>Content text</mat-label>
+          <textarea rows="1" matInput type="text" id="galleryContentText" placeholder="Text" name="galleryContentText"
+            [(ngModel)]="galleryContent.text" #galleryContentTextInput="ngModel" required> </textarea>
+          <mat-error *ngIf="galleryContentTextInput.invalid">
+            Text is verplicht
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-        class="form-field col-12">
-        <mat-label>Content text</mat-label>
-        <textarea rows="1" matInput type="text" id="galleryContentText" placeholder="Text" name="galleryContentText"
-          [(ngModel)]="galleryContent.text" #galleryContentTextInput="ngModel" required> </textarea>
-        <mat-error *ngIf="galleryContentTextInput.invalid">
-          Text is verplicht
-        </mat-error>
-      </mat-form-field>
-
-      <div class="col-sm-12 col-md-6 col-lg-3">
-        <div class="form-field form-field-slide">
-          <mat-label>Categorie Filter</mat-label>
-          <mat-slide-toggle [(ngModel)]="galleryContent.filterCategoriesActive" name="filterCategoriesActive'"
-            [checked]="galleryContent.filterCategoriesActive"
-            (change)="setActive(galleryContent.filterCategoriesActive, $event)" class="slide-toggle-form">
-          </mat-slide-toggle>
+        <div class="col-sm-12 col-md-6 col-lg-3">
+          <div class="form-field form-field-slide">
+            <mat-label>Categorie Filter</mat-label>
+            <mat-slide-toggle [(ngModel)]="galleryContent.filterCategoriesActive" name="filterCategoriesActive'"
+              [checked]="galleryContent.filterCategoriesActive"
+              (change)="setActive(galleryContent.filterCategoriesActive, $event)" class="slide-toggle-form">
+            </mat-slide-toggle>
+          </div>
         </div>
-      </div>
-      <div class="col-sm-12 col-md-6 col-lg-3">
-        <div class="form-field form-field-slide">
-          <mat-label>Verf Filter</mat-label>
-          <mat-slide-toggle [(ngModel)]="galleryContent.filterPaintsActive" name="filterPaintsActive'"
-            [checked]="galleryContent.filterPaintsActive"
-            (change)="setActive(galleryContent.filterPaintsActive, $event)" class="slide-toggle-form">
-          </mat-slide-toggle>
+        <div class="col-sm-12 col-md-6 col-lg-3">
+          <div class="form-field form-field-slide">
+            <mat-label>Verf Filter</mat-label>
+            <mat-slide-toggle [(ngModel)]="galleryContent.filterPaintsActive" name="filterPaintsActive'"
+              [checked]="galleryContent.filterPaintsActive"
+              (change)="setActive(galleryContent.filterPaintsActive, $event)" class="slide-toggle-form">
+            </mat-slide-toggle>
+          </div>
         </div>
-      </div>
-      <div class="col-sm-12 col-md-6 col-lg-3">
-        <div class="form-field form-field-slide">
-          <mat-label>Materiaal Filter</mat-label>
-          <mat-slide-toggle [(ngModel)]="galleryContent.filterMaterialsActive" name="filterMaterialsActive'"
-            [checked]="galleryContent.filterMaterialsActive"
-            (change)="setActive(galleryContent.filterMaterialsActive, $event)" class="slide-toggle-form">
-          </mat-slide-toggle>
+        <div class="col-sm-12 col-md-6 col-lg-3">
+          <div class="form-field form-field-slide">
+            <mat-label>Materiaal Filter</mat-label>
+            <mat-slide-toggle [(ngModel)]="galleryContent.filterMaterialsActive" name="filterMaterialsActive'"
+              [checked]="galleryContent.filterMaterialsActive"
+              (change)="setActive(galleryContent.filterMaterialsActive, $event)" class="slide-toggle-form">
+            </mat-slide-toggle>
+          </div>
         </div>
-      </div>
-      <div class="col-sm-12 col-md-6 col-lg-3">
-        <div class="form-field form-field-slide">
-          <mat-label>Status Filter</mat-label>
-          <mat-slide-toggle [(ngModel)]="galleryContent.filterStatesActive" name="filterStatesActive'"
-            [checked]="galleryContent.filterStatesActive"
-            (change)="setActive(galleryContent.filterStatesActive, $event)" class="slide-toggle-form">
-          </mat-slide-toggle>
+        <div class="col-sm-12 col-md-6 col-lg-3">
+          <div class="form-field form-field-slide">
+            <mat-label>Status Filter</mat-label>
+            <mat-slide-toggle [(ngModel)]="galleryContent.filterStatesActive" name="filterStatesActive'"
+              [checked]="galleryContent.filterStatesActive"
+              (change)="setActive(galleryContent.filterStatesActive, $event)" class="slide-toggle-form">
+            </mat-slide-toggle>
+          </div>
         </div>
-      </div>
 
-    </div>
-
+      </div>
+    </mat-card>
 
     <button mat-flat-button color="accent" type="submit"
       [disabled]="!galleryContentForm.form.valid || galleryContentForm.form.pristine">
@@ -94,5 +89,6 @@
       (click)="resetForm()">
       Reset
     </button>
+
   </form>
-</mat-card>
+</div>

@@ -3,11 +3,9 @@
 
 <div class="container-fluid pt-5" *ngIf="navContent && generalContent">
   <div class="row mb-4">
-    <div class="col-12">
-      <mat-card class="{{generalContent.cardElevation}}">
-        <h4 class="title-underlined">Resultaat</h4>
-        <app-nav [navContent]="navContent" [fixed]="false" class="navbar-scrolled"></app-nav>
-      </mat-card>
+    <div class="col-12 mb-4">
+      <h4 class="title-underlined">Resultaat</h4>
+      <app-nav [navContent]="navContent" [fixed]="false" class="navbar-scrolled"></app-nav>
     </div>
   </div>
 
@@ -16,9 +14,9 @@
 
       <form (ngSubmit)="onSubmit()" #navigationForm="ngForm">
 
-        <mat-card class="{{generalContent.cardElevation}}">
-          <h4 class="title-underlined">Afbeelding</h4>
 
+        <h4 class="title-underlined">Afbeelding</h4>
+        <mat-card class="{{generalContent.cardElevation}} mb-5">
           <div class="form-group row">
             <div class="col-12 d-flex">
               <img [src]="navContent.brandImage" class="img-thumbnail mr-2" style="height: 180px;">
@@ -36,8 +34,8 @@
           </div>
         </mat-card>
 
-        <mat-card class="{{generalContent.cardElevation}}">
-          <h4 class="title-underlined">Instellingen</h4>
+        <h4 class="title-underlined">Instellingen</h4>
+        <mat-card class="{{generalContent.cardElevation}} mb-5">
           <div class="form-group row">
             <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
               class="form-field col-12">
@@ -61,7 +59,8 @@
             <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
               class="form-field col-sm-12 col-md-5">
               <mat-label>Router link</mat-label>
-              <mat-select [id]="navlink.routerLink" [name]="navlink.routerLink" [(ngModel)]="navlink.routerLink" required>
+              <mat-select [id]="navlink.routerLink" [name]="navlink.routerLink" [(ngModel)]="navlink.routerLink"
+                required>
                 <mat-option *ngFor="let option of generalContent.routerLinkOptions" [value]="option">
                   {{ option }}
                 </mat-option>
@@ -76,17 +75,17 @@
               </div>
             </div>
           </div>
-
-          <button mat-flat-button color="accent" type="submit"
-            [disabled]="!navigationForm.form.valid || navigationForm.form.pristine && !selectedFiles.length">
-            Opslaan
-          </button>
-          <button mat-flat-button color="primary" type="button" class="ml-3" [disabled]="navigationForm.form.pristine"
-            (click)="resetForm()">
-            Reset
-          </button>
-
         </mat-card>
+
+        <button mat-flat-button color="accent" type="submit"
+          [disabled]="!navigationForm.form.valid || navigationForm.form.pristine && !selectedFiles.length">
+          Opslaan
+        </button>
+        <button mat-flat-button color="primary" type="button" class="ml-3" [disabled]="navigationForm.form.pristine"
+          (click)="resetForm()">
+          Reset
+        </button>
+
       </form>
     </div>
   </div>
