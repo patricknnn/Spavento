@@ -38,7 +38,7 @@ export class CalendarComponent implements OnInit {
         )
       )
     ).subscribe(data => {
-      this.calendarItems = data;
+      this.calendarItems = this.sortByStartDate(data);
     });
   }
 
@@ -75,6 +75,12 @@ export class CalendarComponent implements OnInit {
       )
     ).subscribe(data => {
       this.generalContent = data[0];
+    });
+  }
+
+  sortByStartDate(items: CalendarItem[]): CalendarItem[] {
+    return items.sort((a: CalendarItem, b: CalendarItem) => {
+      return new Date(a.dateStart).getTime() - new Date(b.dateStart).getTime();
     });
   }
 

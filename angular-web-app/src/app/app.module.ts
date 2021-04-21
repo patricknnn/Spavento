@@ -84,7 +84,6 @@ import { CalendarEditComponent } from './components/_admin/calendar-edit/calenda
 import { CalendarOverviewComponent } from './components/_admin/calendar-overview/calendar-overview.component';
 import { PageCalendarComponent } from './components/_admin/page-calendar/page-calendar.component';
 import { CompCalendarComponent } from './components/_admin/comp-calendar/comp-calendar.component';
-import { DynamicFormComponent } from './components/_forms/dynamic-form/dynamic-form.component';
 
 @NgModule({
   declarations: [
@@ -157,8 +156,7 @@ import { DynamicFormComponent } from './components/_forms/dynamic-form/dynamic-f
     CalendarEditComponent,
     CalendarOverviewComponent,
     PageCalendarComponent,
-    CompCalendarComponent,
-    DynamicFormComponent
+    CompCalendarComponent
   ],
   imports: [
     BrowserModule,
