@@ -24,7 +24,7 @@ export class SidenavComponent implements OnInit {
         new Sidenavlink("Header", "vrpano", "/admin/layout-header"),
         new Sidenavlink("Footer", "copyright", "/admin/layout-footer"),
       ]),
-      new Sidenavlink("Teksten", "wysiwyg", "", [
+      new Sidenavlink("Pagina's", "wysiwyg", "", [
         new Sidenavlink("Home", "home", "/admin/page-home"),
         new Sidenavlink("Portfolio", "image", "/admin/page-portfolio"),
         new Sidenavlink("Kalender", "date_range", "/admin/page-calendar"),

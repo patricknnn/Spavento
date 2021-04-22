@@ -24,88 +24,95 @@
   <app-comp-header [page]="'404'" [generalContent]="generalContent"></app-comp-header>
 </ng-template>
 <ng-template #buttonsTab>
-  <mat-card *ngIf="pageContent" class="{{generalContent.cardElevation}}">
-    <h4 class="title-underlined">Resultaat</h4>
-    <app-section-title [title]="pageContent.title" [subTitle]="pageContent.subTitle" [text]="pageContent.text">
-    </app-section-title>
-    <div class="row">
-      <div class="col-xs-12 col-sm-6 d-flex align-items-center justify-content-center">
-        <button mat-raised-button color="accent" class="rounded-pill mt-3">
-          <mat-icon>reply</mat-icon>
-          {{pageContent.btnBackText}}
-        </button>
-      </div>
-      <div class="col-xs-12 col-sm-6 d-flex align-items-center justify-content-center">
-        <button mat-raised-button color="accent" class="rounded-pill mt-3" routerLink="{{pageContent.btnHomeLink}}">
-          <mat-icon>home</mat-icon>
-          {{pageContent.btnHomeText}}
-        </button>
+
+
+  <div *ngIf="pageContent && generalContent" class="container-fluid bg-light">
+
+    <h4 class="title-underlined mt-5">Resultaat</h4>
+    <div class="container-fluid">
+      <app-section-title [title]="pageContent.title" [subTitle]="pageContent.subTitle" [text]="pageContent.text">
+      </app-section-title>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 d-flex align-items-center justify-content-center">
+          <button mat-raised-button color="accent" class="rounded-pill mt-3">
+            <mat-icon>reply</mat-icon>
+            {{pageContent.btnBackText}}
+          </button>
+        </div>
+        <div class="col-xs-12 col-sm-6 d-flex align-items-center justify-content-center">
+          <button mat-raised-button color="accent" class="rounded-pill mt-3" routerLink="{{pageContent.btnHomeLink}}">
+            <mat-icon>home</mat-icon>
+            {{pageContent.btnHomeText}}
+          </button>
+        </div>
       </div>
     </div>
-  </mat-card>
-  <mat-card *ngIf="pageContent" class="{{generalContent.cardElevation}}">
-    <h4 class="title-underlined">Instellingen</h4>
+
     <form (ngSubmit)="onSubmit()" #pnfContentForm="ngForm">
 
-      <div class="form-group row">
-        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-          class="form-field col-sm-12 col-md-6">
-          <mat-label>Content titel</mat-label>
-          <input matInput type="text" id="contentTitle" placeholder="Titel" name="contentTitle"
-            [(ngModel)]="pageContent.title" #contentTitleInput="ngModel" required>
-          <mat-error *ngIf="contentTitleInput.invalid">
-            Titel is <strong>verplicht</strong>
-          </mat-error>
-        </mat-form-field>
+      <h4 class="title-underlined mt-5">Instellingen</h4>
+      <mat-card class="{{generalContent.cardElevation}} mb-5">
 
-        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-          class="form-field col-sm-12 col-md-6">
-          <mat-label>Content subtitel</mat-label>
-          <input matInput type="text" id="contentSubTitle" placeholder="Subtitel" name="contentSubTitle"
-            [(ngModel)]="pageContent.subTitle" #contentSubTitleInput="ngModel" required>
-          <mat-error *ngIf="contentSubTitleInput.invalid">
-            Subtitel is <strong>verplicht</strong>
-          </mat-error>
-        </mat-form-field>
+        <div class="form-group row">
+          <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+            class="form-field col-sm-12 col-md-6">
+            <mat-label>Content titel</mat-label>
+            <input matInput type="text" id="contentTitle" placeholder="Titel" name="contentTitle"
+              [(ngModel)]="pageContent.title" #contentTitleInput="ngModel" required>
+            <mat-error *ngIf="contentTitleInput.invalid">
+              Titel is <strong>verplicht</strong>
+            </mat-error>
+          </mat-form-field>
 
-        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-          class="form-field col-12">
-          <mat-label>Content text</mat-label>
-          <textarea rows="1" matInput type="text" id="contentText" placeholder="Text" name="contentText"
-            [(ngModel)]="pageContent.text" #contentTextInput="ngModel" required> </textarea>
-          <mat-error *ngIf="contentTextInput.invalid">
-            Text is <strong>verplicht</strong>
-          </mat-error>
-        </mat-form-field>
-      </div>
+          <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+            class="form-field col-sm-12 col-md-6">
+            <mat-label>Content subtitel</mat-label>
+            <input matInput type="text" id="contentSubTitle" placeholder="Subtitel" name="contentSubTitle"
+              [(ngModel)]="pageContent.subTitle" #contentSubTitleInput="ngModel" required>
+            <mat-error *ngIf="contentSubTitleInput.invalid">
+              Subtitel is <strong>verplicht</strong>
+            </mat-error>
+          </mat-form-field>
 
-      <div class="form-group row">
-        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-          class="form-field col-sm-12 col-md-6">
-          <mat-label>Vorige knop label</mat-label>
-          <input matInput type="text" id="backBtnLabel" placeholder="Label" name="backBtnLabel"
-            [(ngModel)]="pageContent.btnBackText" #backBtnLabelInput="ngModel" required>
-          <mat-error *ngIf="backBtnLabelInput.invalid">
-            Label is <strong>verplicht</strong>
-          </mat-error>
-        </mat-form-field>
+          <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+            class="form-field col-12">
+            <mat-label>Content text</mat-label>
+            <textarea rows="1" matInput type="text" id="contentText" placeholder="Text" name="contentText"
+              [(ngModel)]="pageContent.text" #contentTextInput="ngModel" required> </textarea>
+            <mat-error *ngIf="contentTextInput.invalid">
+              Text is <strong>verplicht</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
 
-        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
-          class="form-field col-sm-12 col-md-6">
-          <mat-label>Home knop label</mat-label>
-          <input matInput type="text" id="homeBtnLabel" placeholder="Label" name="homeBtnLabel"
-            [(ngModel)]="pageContent.btnHomeText" #homeBtnLabelInput="ngModel" required>
-          <mat-error *ngIf="homeBtnLabelInput.invalid">
-            Label is <strong>verplicht</strong>
-          </mat-error>
-        </mat-form-field>
-      </div>
+        <div class="form-group row">
+          <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+            class="form-field col-sm-12 col-md-6">
+            <mat-label>Vorige knop label</mat-label>
+            <input matInput type="text" id="backBtnLabel" placeholder="Label" name="backBtnLabel"
+              [(ngModel)]="pageContent.btnBackText" #backBtnLabelInput="ngModel" required>
+            <mat-error *ngIf="backBtnLabelInput.invalid">
+              Label is <strong>verplicht</strong>
+            </mat-error>
+          </mat-form-field>
 
-      <button mat-flat-button color="accent" type="submit"
-        [disabled]="!pnfContentForm.form.valid || pnfContentForm.form.pristine">Opslaan</button>
-      <button mat-flat-button color="primary" type="button" class="ml-3" (click)="resetForm()">Reset</button>
+          <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+            class="form-field col-sm-12 col-md-6">
+            <mat-label>Home knop label</mat-label>
+            <input matInput type="text" id="homeBtnLabel" placeholder="Label" name="homeBtnLabel"
+              [(ngModel)]="pageContent.btnHomeText" #homeBtnLabelInput="ngModel" required>
+            <mat-error *ngIf="homeBtnLabelInput.invalid">
+              Label is <strong>verplicht</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <button mat-flat-button color="accent" type="submit"
+          [disabled]="!pnfContentForm.form.valid || pnfContentForm.form.pristine">Opslaan</button>
+        <button mat-flat-button color="primary" type="button" class="ml-3" (click)="resetForm()">Reset</button>
+      </mat-card>
     </form>
-  </mat-card>
+  </div>
 </ng-template>
 
 <!-- Page preview -->
