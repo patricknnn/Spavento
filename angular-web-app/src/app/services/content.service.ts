@@ -8,6 +8,7 @@ import { FooterContent } from '../models/footercontent';
 import { GalleryContent } from '../models/gallerycontent';
 import { GeneralContent } from '../models/generalcontent';
 import { HeaderContent } from '../models/headercontent';
+import { LatestCalendarContent } from '../models/latestcalendarcontent';
 import { LatestNewsContent } from '../models/latestnewscontent';
 import { LatestWorkContent } from '../models/latestworkcontent';
 import { NavContent } from '../models/navcontent';
@@ -28,6 +29,7 @@ export class ContentService {
   private generalPath = '/content/components/general';
   private servicesPath = '/content/components/services';
   private featuredPath = '/content/components/featured';
+  private latestcalendarPath = '/content/components/latestcalendar';
   private latestnewsPath = '/content/components/latestnews';
   private latestworkPath = '/content/components/latestwork';
   private ctaPath = '/content/components/cta';
@@ -53,6 +55,7 @@ export class ContentService {
   generalRef: AngularFirestoreCollection<GeneralContent>;
   servicesRef: AngularFirestoreCollection<ServiceContent>;
   featuredRef: AngularFirestoreCollection<FeaturedContent>;
+  latestcalendarRef: AngularFirestoreCollection<LatestCalendarContent>;
   latestnewsRef: AngularFirestoreCollection<LatestNewsContent>;
   latestworkRef: AngularFirestoreCollection<LatestWorkContent>;
   ctaRef: AngularFirestoreCollection<CtaContent>;
@@ -81,6 +84,7 @@ export class ContentService {
     this.generalRef = db.collection(this.generalPath);
     this.servicesRef = db.collection(this.servicesPath);
     this.featuredRef = db.collection(this.featuredPath);
+    this.latestcalendarRef = db.collection(this.latestcalendarPath);
     this.latestnewsRef = db.collection(this.latestnewsPath);
     this.latestworkRef = db.collection(this.latestworkPath);
     this.ctaRef = db.collection(this.ctaPath);
@@ -191,6 +195,19 @@ export class ContentService {
   public saveFeaturedContent(data: FeaturedContent): any {
     data.timestampCreated = Date.now();
     return this.featuredRef.add({ ...data });
+  }
+
+  /**
+   * Calendar Content
+   */
+  public getLatestCalendarContent(limit = 5): AngularFirestoreCollection<LatestCalendarContent> {
+    return this.db.collection(this.latestcalendarPath, ref => ref
+      .orderBy('timestampCreated', 'desc')
+      .limit(limit));
+  }
+  public saveLatestCalendarContent(data: LatestCalendarContent): any {
+    data.timestampCreated = Date.now();
+    return this.latestcalendarRef.add({ ...data });
   }
 
   /**

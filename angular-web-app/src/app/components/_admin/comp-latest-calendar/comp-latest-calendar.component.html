@@ -1,0 +1,96 @@
+<div *ngIf="latestCalendar && generalContent" class="container-fluid bg-light">
+
+  <h4 class="title-underlined mt-5">Resultaat</h4>
+  <div class="mb-5">
+    <div *ngIf="latestCalendar.active" class="container-fluid">
+      <app-section-title [title]="latestCalendar.title" [subTitle]="latestCalendar.subTitle"
+        [text]="latestCalendar.text" [link]="latestCalendar.link">
+      </app-section-title>
+      <div class="row">
+        <div class="col-12">
+          <app-latest-calendar [amount]="latestCalendar.amount" [generalContent]="generalContent"></app-latest-calendar>
+        </div>
+      </div>
+    </div>
+    <!-- Not visible -->
+    <div *ngIf="!latestCalendar.active" class="w-100 text-center">
+      <ngb-alert [dismissible]="false" class="mb-0">
+        <strong>Niet</strong> zichtbaar op de website.
+      </ngb-alert>
+    </div>
+  </div>
+
+  <form (ngSubmit)="onSubmit()" #latestCalendarForm="ngForm">
+
+    <div class="form-group row">
+      <div class="col-sm-12 col-md-10 d-flex align-items-center">
+        <h4 class="title-underlined">Instellingen</h4>
+      </div>
+      <div class="col-sm-12 col-md-2 d-flex align-items-start justify-content-end">
+        <button mat-mini-fab type="button"
+          (click)="latestCalendar.active = !latestCalendar.active; latestCalendar.active ? latestCalendarForm.form.enable() : latestCalendarForm.form.disable(); latestCalendarForm.form.markAsTouched()"
+          [color]="latestCalendar.active ? 'accent' : 'primary'" [attr.aria-label]="'Hide component'"
+          [attr.aria-pressed]="latestCalendar.active">
+          <mat-icon>{{latestCalendar.active ? 'visibility' : 'visibility_off'}}</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <mat-card class="{{generalContent.cardElevation}} mb-5">
+      <div class="form-group row">
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field col-sm-12 col-md-6">
+          <mat-label>Content titel</mat-label>
+          <input matInput type="text" id="latestCalendarContentTitle" placeholder="Titel"
+            name="latestCalendarContentTitle" [(ngModel)]="latestCalendar.title"
+            #latestCalendarContentTitleInput="ngModel" required>
+          <mat-error *ngIf="latestCalendarContentTitleInput.invalid">
+            Titel is verplicht
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field col-sm-12 col-md-6">
+          <mat-label>Content subtitel</mat-label>
+          <input matInput type="text" id="latestCalendarContentSubTitle" placeholder="Subtitel"
+            name="latestCalendarContentSubTitle" [(ngModel)]="latestCalendar.subTitle"
+            #latestCalendarContentSubTitleInput="ngModel" required>
+          <mat-error *ngIf="latestCalendarContentSubTitleInput.invalid">
+            Subtitel is verplicht
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field col-10">
+          <mat-label>Content text</mat-label>
+          <textarea rows="1" matInput type="text" id="latestCalendarContentText" placeholder="Text"
+            name="latestCalendarContentText" [(ngModel)]="latestCalendar.text" #latestCalendarContentTextInput="ngModel"
+            required> </textarea>
+          <mat-error *ngIf="latestCalendarContentTextInput.invalid">
+            Text is verplicht
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field [appearance]="generalContent.formStyle" [color]="generalContent.formColor"
+          class="form-field col-2">
+          <mat-label>Items</mat-label>
+          <input matInput type="number" id="latestCalendarContentAmount" name="latestCalendarContentAmount" min="1"
+            max="6" [(ngModel)]="latestCalendar.amount" #latestCalendarContentAmountInput="ngModel" required>
+          <mat-error *ngIf="latestCalendarContentAmountInput.invalid">
+            Aantal is verplicht
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </mat-card>
+
+
+    <button mat-flat-button color="accent" type="submit"
+      [disabled]="!latestCalendarForm.form.valid || latestCalendarForm.form.pristine">
+      Opslaan
+    </button>
+    <button mat-flat-button color="primary" type="button" class="ml-3" [disabled]="latestCalendarForm.form.pristine"
+      (click)="resetForm()">
+      Reset
+    </button>
+  </form>
+</div>

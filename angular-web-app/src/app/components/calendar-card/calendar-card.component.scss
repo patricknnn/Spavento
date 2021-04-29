@@ -9,23 +9,23 @@
 .calendar-date-divider {
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-left: 16px;
-  margin-right: 16px;
+  //justify-content: center;
+  //margin-left: 16px;
+  //margin-right: 16px;
   margin-top: 19px;
 }
 
 @media (min-width: 576px) {
   .calendar-date-wrapper {
     flex-direction: column;
-    align-items: flex-end;
+    //align-items: flex-end;
     padding-top: 16px;
     margin-top: 0.5rem;
     margin-bottom: 0rem;
   }
 
   .calendar-date {
-    text-align: end;
+    //text-align: end;
   }
 
   .calendar-date-divider {

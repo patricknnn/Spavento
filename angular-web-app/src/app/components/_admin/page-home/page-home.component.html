@@ -14,6 +14,10 @@
         <mat-tab label="Diensten">
           <ng-container *ngTemplateOutlet="servicesTab"></ng-container>
         </mat-tab>
+        <!-- Calendar tab -->
+        <mat-tab label="Kalender">
+          <ng-container *ngTemplateOutlet="calenderTab"></ng-container>
+        </mat-tab>
         <!-- Featured tab -->
         <mat-tab label="Uitgelicht">
           <ng-container *ngTemplateOutlet="featuredTab"></ng-container>
@@ -41,6 +45,9 @@
 </ng-template>
 <ng-template #servicesTab>
   <app-comp-services [generalContent]="generalContent"></app-comp-services>
+</ng-template>
+<ng-template #calenderTab>
+  <app-comp-latest-calendar [generalContent]="generalContent"></app-comp-latest-calendar>
 </ng-template>
 <ng-template #featuredTab>
   <app-comp-features [generalContent]="generalContent"></app-comp-features>

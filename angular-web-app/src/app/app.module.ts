@@ -84,6 +84,8 @@ import { CalendarEditComponent } from './components/_admin/calendar-edit/calenda
 import { CalendarOverviewComponent } from './components/_admin/calendar-overview/calendar-overview.component';
 import { PageCalendarComponent } from './components/_admin/page-calendar/page-calendar.component';
 import { CompCalendarComponent } from './components/_admin/comp-calendar/comp-calendar.component';
+import { LatestCalendarComponent } from './components/latest-calendar/latest-calendar.component';
+import { CompLatestCalendarComponent } from './components/_admin/comp-latest-calendar/comp-latest-calendar.component';
 
 @NgModule({
   declarations: [
@@ -156,7 +158,9 @@ import { CompCalendarComponent } from './components/_admin/comp-calendar/comp-ca
     CalendarEditComponent,
     CalendarOverviewComponent,
     PageCalendarComponent,
-    CompCalendarComponent
+    CompCalendarComponent,
+    LatestCalendarComponent,
+    CompLatestCalendarComponent
   ],
   imports: [
     BrowserModule,

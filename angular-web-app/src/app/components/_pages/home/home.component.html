@@ -17,8 +17,21 @@
     </div>
   </section>
 
+  <!-- Latest Calendar -->
+  <section *ngIf="latestCalendar && latestCalendar.active" class="page-section">
+    <app-section-title [title]="latestCalendar.title" [subTitle]="latestCalendar.subTitle" [text]="latestCalendar.text"
+      [link]="latestCalendar.link"></app-section-title>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <app-latest-calendar [amount]="latestCalendar.amount" [generalContent]="generalContent"></app-latest-calendar>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Featured -->
-  <section *ngIf="featured && featured.active" class="page-section">
+  <section *ngIf="featured && featured.active" class="page-section bg-light">
     <app-section-title [title]="featured.title" [subTitle]="featured.subTitle" [text]="featured.text">
     </app-section-title>
     <div class="container">
@@ -31,26 +44,26 @@
   </section>
 
   <!-- Latest News -->
-  <section *ngIf="latestNews && latestNews.active" class="page-section bg-light">
+  <section *ngIf="latestNews && latestNews.active" class="page-section">
     <app-section-title [title]="latestNews.title" [subTitle]="latestNews.subTitle" [text]="latestNews.text"
       [link]="latestNews.link"></app-section-title>
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <app-latest-news [generalContent]="generalContent"></app-latest-news>
+          <app-latest-news [amount]="latestNews.amount" [generalContent]="generalContent"></app-latest-news>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Latest paintings -->
-  <section *ngIf="latestWork && latestWork.active" class="page-section">
+  <section *ngIf="latestWork && latestWork.active" class="page-section bg-light">
     <app-section-title [title]="latestWork.title" [subTitle]="latestWork.subTitle" [text]="latestWork.text"
       [link]="latestWork.link"></app-section-title>
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <app-latest [generalContent]="generalContent"></app-latest>
+          <app-latest [amount]="latestWork.amount" [generalContent]="generalContent"></app-latest>
         </div>
       </div>
     </div>

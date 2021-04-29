@@ -3,6 +3,7 @@ import { map } from 'rxjs/operators';
 import { CtaContent } from 'src/app/models/ctacontent';
 import { FeaturedContent } from 'src/app/models/featuredcontent';
 import { GeneralContent } from 'src/app/models/generalcontent';
+import { LatestCalendarContent } from 'src/app/models/latestcalendarcontent';
 import { LatestNewsContent } from 'src/app/models/latestnewscontent';
 import { LatestWorkContent } from 'src/app/models/latestworkcontent';
 import { PageTitle } from 'src/app/models/pagetitle';
@@ -20,6 +21,7 @@ export class HomeComponent implements OnInit {
   @Input() featured: FeaturedContent;
   @Input() latestNews: LatestNewsContent;
   @Input() latestWork: LatestWorkContent;
+  @Input() latestCalendar: LatestCalendarContent;
   @Input() cta: CtaContent;
   generalContent: GeneralContent;
 
@@ -38,6 +40,9 @@ export class HomeComponent implements OnInit {
     }
     if (!this.featured) {
       this.retrieveFeatured();
+    }
+    if (!this.latestCalendar) {
+      this.retrieveLatestCalendar();
     }
     if (!this.latestNews) {
       this.retrieveLatestNews();
@@ -83,6 +88,18 @@ export class HomeComponent implements OnInit {
       )
     ).subscribe(data => {
       this.featured = data[0];
+    });
+  }
+
+  retrieveLatestCalendar(): void {
+    this.contentService.getLatestCalendarContent(1).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.latestCalendar = data[0];
     });
   }
 
