@@ -4,6 +4,8 @@ export class GeneralContent extends FirebaseEntity {
     formStyle?: string;
     formColor?: string;
     cardElevation?: string;
+    paintingShowPrice?: boolean;
+    paintingShowStatus?: boolean;
     paintingCategories?: string[];
     paintingStates?: string[];
     paintingPaints?: string[];

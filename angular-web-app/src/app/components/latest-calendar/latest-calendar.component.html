@@ -1,7 +1,11 @@
-<ngb-carousel *ngIf="calendarItems && generalContent" #newsCarousel>
+<ngb-carousel *ngIf="calendarItems.length && generalContent" #newsCarousel>
   <ng-template ngbSlide *ngFor="let calendarItem of calendarItems">
     <div style="margin: 0 15px">
       <app-calendar-card [calendarItem]="calendarItem" [elevation]="generalContent.cardElevation"></app-calendar-card>
     </div>
   </ng-template>
 </ngb-carousel>
+
+<div *ngIf="!calendarItems.length" class="text-center txt-dark-muted">
+  <span>Geen resultaten gevonden.</span>
+</div>

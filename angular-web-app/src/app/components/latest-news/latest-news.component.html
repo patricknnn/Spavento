@@ -1,7 +1,11 @@
-<ngb-carousel *ngIf="newsItems && generalContent" #newsCarousel>
+<ngb-carousel *ngIf="newsItems.length && generalContent" #newsCarousel>
   <ng-template ngbSlide *ngFor="let newsItem of newsItems">
     <div style="margin: 0 15px">
       <app-news-card [newsItem]="newsItem" [elevation]="generalContent.cardElevation"></app-news-card>
     </div>
   </ng-template>
 </ngb-carousel>
+
+<div *ngIf="!newsItems.length" class="text-center txt-dark-muted">
+  <span>Geen resultaten gevonden.</span>
+</div>

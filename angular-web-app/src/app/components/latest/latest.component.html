@@ -1,4 +1,4 @@
-<ngb-carousel *ngIf="paintings && generalContent" #latestCarousel>
+<ngb-carousel *ngIf="paintings.length && generalContent" #latestCarousel>
   <ng-template ngbSlide *ngFor="let painting of paintings">
     <div class="latest-item-wrapper" [style.height]="maxHeight">
       <app-painting-card [painting]="painting" [maxHeight]="maxHeight" [elevation]="generalContent.cardElevation">
@@ -6,3 +6,7 @@
     </div>
   </ng-template>
 </ngb-carousel>
+
+<div *ngIf="!paintings.length" class="text-center txt-dark-muted">
+  <span>Geen resultaten gevonden.</span>
+</div>

@@ -6,6 +6,20 @@
     <div class="col-12">
       <form (ngSubmit)="onSubmit()" #generalContentForm="ngForm" *ngIf="content">
 
+        <!-- Painting settings -->
+        <h4 class="title-underlined my-5">Schilderijen</h4>
+        <mat-card class="{{content.cardElevation}}">
+          <div class="form-group row">
+            <div class=" col-12 col-md-6">
+              <mat-slide-toggle [(ngModel)]="content.paintingShowPrice" name="showPrices">Toon Prijs</mat-slide-toggle>
+            </div>
+            <div class=" col-12 col-md-6">
+              <mat-slide-toggle [(ngModel)]="content.paintingShowStatus" name="showStatus" required>Toon status
+              </mat-slide-toggle>
+            </div>
+          </div>
+        </mat-card>
+
         <!-- Table settings -->
         <h4 class="title-underlined my-5">Tabellen</h4>
         <mat-card class="{{content.cardElevation}}">
